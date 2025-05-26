@@ -2,7 +2,7 @@
   <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center gap-16 md:gap-20 py-16">
     
     <!-- Text Content -->
-    <div class="flex-1 text-center md:text-left">
+    <div class="flex-1 text-left">
       <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
         Entregamos <span class="text-blue-400">software a tiempo</span>
       </h1>
@@ -11,18 +11,16 @@
       </p>
 
       <div class="mt-10">
-        <a href="/contacto" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full shadow-md transition duration-300 ease-in-out">
-          Comprar scythe
-        </a>
+        <a href="/scythe" class="inline-block bg-primary-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full shadow-md transition duration-300 ease-in-out">Comprar scythe</a>
       </div>
     </div>
 
     <!-- Image Content -->
     <div class="flex-1">
       <img
-        src="https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png"
-        alt="Product screenshot"
-        class="w-full max-w-[600px] rounded-2xl shadow-2xl ring-1 ring-gray-500/20 transition-transform duration-500 hover:scale-[1.02]"
+        src="/hero.png"
+        alt="Hero with man and technology"
+        class="w-full max-w-[600px] rounded-2xl transition-transform duration-500 hover:scale-[1.02]"
         width="2432"
         height="1442"
       />
