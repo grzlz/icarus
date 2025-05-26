@@ -22,7 +22,16 @@
 			<div class="prose">
 				<h2 class="text-xl font-bold mb-4 text-primary-900">¿Quiénes somos?</h2>
 				<p class="text-sm leading-relaxed text-primary-300">Somos un grupo de desarrolladores y diseñadores con la misión de democratizar la producción de software.</p>
-				<p class="text-sm leading-relaxed text-primary-300">Creemos que la tecnología debe ser accesible para todos y estamos construyendo Scythe para hacer de esto una realidad.</p>
+				<p class=" text-sm leading-relaxed text-primary-300">Creemos que la tecnología debe ser accesible para todos</p>
+<p class="text-sm leading-relaxed text-primary-300">
+	Estamos construyendo 
+	<img 
+		src="/scythe.png" 
+		alt="scythe.mx logo"
+		class="inline-block w-16 h-16  mb-10 mt-1"
+	/>
+	para hacer de esto una realidad.
+</p>
 			</div>
 			
 			<div>
