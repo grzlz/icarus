@@ -3,7 +3,7 @@
     
     <!-- Text Content -->
     <div class="flex-1 text-left">
-      <h1 class="text-6xl md:text-8xl font-extrabold leading-tight tracking-tight">
+      <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
         Entregamos <span class="text-blue-400">software a tiempo</span>
       </h1>
       <p class="mt-6 text-2xl text-gray-700 max-w-xl md:max-w-lg mx-auto md:mx-0">

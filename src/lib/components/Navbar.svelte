@@ -6,6 +6,7 @@
 
 
 <nav class="sticky top-0 flex items-center justify-between bg-secondary-800  md:px-8 min-h-[60px] px-4 py-2">
+    
     <h1 class="hidden md:block text-primary-200 text-lg font-semibold font-primary">ICARUS</h1>
     
     <div class="absolute left-1/2 transform -translate-x-1/2">
@@ -18,10 +19,10 @@
 
   <!-- Menú -->
   <ul class="hidden md:flex gap-6 text-primary-200 text-sm font-medium">
+      <li class="hover:underline cursor-pointer">Escuela</li>
+      <li class="hover:underline cursor-pointer">Portafolio</li>
       <li class="hover:underline cursor-pointer">Scythe</li>
-    <li class="hover:underline cursor-pointer">Escuela</li>
-    <li class="hover:underline cursor-pointer">Portafolio</li>
-    <li class="hover:underline cursor-pointer">Contacto</li>
+      <li class="hover:underline cursor-pointer">Contacto</li>
   </ul>
 </nav>
 
@@ -33,20 +34,20 @@
         <img src="/logo.png" alt="scythe.mx logo" class="w-12 h-12" />
 	</li>
     
-    <li class="shadow-lg rounded-b-lg hover:bg-secondary-600 hover:text-blue-50">
-        <a href="/scythe"  class="flex items-center justify-between p-4 gap-3 w-full h-full hover:underline">
-            <span>Scythe</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" class="w-12 h-12">
-                <path d="M 46 38 L 39 154 L 154 155 L 155 116 L 105 95 L 104 83 L 73 100 L 68 38 Z" fill="#b74127"/>
-            </svg>
-        </a>
-	</li>
-	
     <li class="flex items-center justify-between shadow-lg rounded-b-lg p-4 hover:bg-secondary-600 hover:text-blue-50">
         <a href="/portafolio" class="flex items-center gap-3 hover:underline">Portafolio</a>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 fill-yellow-100 text-secondary-100" viewBox="0 0 24 24">
             <path d="M10 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z" />
         </svg>
+    </li>
+    
+    <li class="shadow-lg inline-block rounded-b-lg hover:bg-secondary-600 hover:text-blue-50  ml-3">
+        <a href="/scythe" class="flex justify-between items-center p-2 gap-3 w-full h-full hover:underline">
+            <span class="text-base font-medium text-primary-100">Scythe</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" class="w-12 h-12 text-[#b74127]">
+                <path d="M 46 38 L 39 154 L 154 155 L 155 116 L 105 95 L 104 83 L 73 100 L 68 38 Z" fill="currentColor"/>
+            </svg>
+        </a>
     </li>
 
     <li class="shadow-lg rounded-b-lg hover:bg-secondary-600 hover:text-blue-50">
