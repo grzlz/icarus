@@ -16,7 +16,7 @@
 
     <ul class="hidden md:flex gap-4 text-primary-200 mr-0" >
         <li>Portafolio</li>
-        <li>Blog</li>
+        <li>Scythe</li>
         <li>Contacto</li>
     </ul>
 
@@ -28,7 +28,7 @@
 in:slide={{ duration: 400 }}
 out:slide={{ duration: 400 }}>
     <li>Portafolio</li>
-    <li>Blog</li>
+    <li>Scythe</li>
     <li>Contacto</li>
 
 </ul>
