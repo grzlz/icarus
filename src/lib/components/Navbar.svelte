@@ -4,23 +4,25 @@
     let logoClick = $state(false)
 </script>
 
-<nav class="flex justify-around bg-secondary-800 items-center">
-    <h1 class="hidden md:flex text-primary-200">ICARUS</h1>
 
-    <button onclick={() => logoClick = !logoClick}>
-        <div class="h-16 w-16 md:h-14 md:w-14 shrink-0">
-            <img src="/logo.png" alt="icarus.mx logo">
-        </div>
-    </button>
+<nav class="relative flex items-center justify-between bg-secondary-800  md:px-8 min-h-[60px] px-4 py-2">
+    <h1 class="hidden md:block text-primary-200 text-lg font-semibold font-primary">ICARUS</h1>
     
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+        <button onclick={() => logoClick = !logoClick} class="shrink-0">
+            <div class="h-14 w-14 md:h-16 md:w-16 ">
+                <img src="/logo.png" alt="icarus.mx logo" class="h-full w-full object-contain" />
+            </div>
+        </button>
+    </div>
 
-    <ul class="hidden md:flex gap-4 text-primary-200 mr-0" >
-        <li>Escuela</li>
-        <li>Scythe</li>
-        <li>Portafolio</li>
-        <li>Contacto</li>
-    </ul>
-
+  <!-- Menú -->
+  <ul class="hidden md:flex gap-6 text-primary-200 text-sm font-medium">
+    <li class="hover:underline cursor-pointer">Escuela</li>
+    <li class="hover:underline cursor-pointer">Scythe</li>
+    <li class="hover:underline cursor-pointer">Portafolio</li>
+    <li class="hover:underline cursor-pointer">Contacto</li>
+  </ul>
 </nav>
 
 {#if logoClick}
