@@ -18,8 +18,8 @@
 
   <!-- Menú -->
   <ul class="hidden md:flex gap-6 text-primary-200 text-sm font-medium">
+      <li class="hover:underline cursor-pointer">Scythe</li>
     <li class="hover:underline cursor-pointer">Escuela</li>
-    <li class="hover:underline cursor-pointer">Scythe</li>
     <li class="hover:underline cursor-pointer">Portafolio</li>
     <li class="hover:underline cursor-pointer">Contacto</li>
   </ul>
