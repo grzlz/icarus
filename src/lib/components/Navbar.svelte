@@ -15,8 +15,9 @@
     
 
     <ul class="hidden md:flex gap-4 text-primary-200 mr-0" >
-        <li>Portafolio</li>
+        <li>Escuela</li>
         <li>Scythe</li>
+        <li>Portafolio</li>
         <li>Contacto</li>
     </ul>
 
@@ -24,14 +25,21 @@
 
 {#if logoClick}
 
-<ul class="flex flex-col bg-secondary-900 font-primary text-secondary-100 md:hidden shadow-lg rounded-b-lg p-4 space-y-3"
-in:slide={{ duration: 400 }}
-out:slide={{ duration: 400 }}>
-    <li>Portafolio</li>
-    <li>Scythe</li>
-    <li>Contacto</li>
-
+<ul
+	class="flex flex-col bg-secondary-900 font-primary text-secondary-100 md:hidden p-4 space-y-2 "
+	in:slide={{ duration: 400 }}
+	out:slide={{ duration: 400 }}
+>
+		<li class="flex items-center space-x-2 shadow-lg rounded-b-lg p-4 justify-between space-y-3">
+		<a href="/scythe" class="hover:underline">Escuela</a>
+		<img src="/logo.png" alt="scythe.mx logo" class="w-12 h-12" />
+	</li>
+	<li class="flex items-center space-x-2 shadow-lg rounded-b-lg p-4 justify-between space-y-3">
+		<a href="/scythe" class="hover:underline">Scythe</a>
+		<img src="/scythe.png" alt="scythe.mx logo" class="w-12 h-12" />
+	</li>
+	<li>Portafolio</li>
+	<li>Contacto</li>
 </ul>
-
 
 {/if}
