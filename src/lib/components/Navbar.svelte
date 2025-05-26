@@ -28,7 +28,7 @@
 <ul class="flex flex-col bg-secondary-900 font-primary text-blue-100 md:hidden p-4 space-y-2" in:slide={{ duration: 400 }} out:slide={{ duration: 400 }}>
     <li class="flex items-center space-x-2 shadow-lg rounded-b-lg p-4 justify-between space-y-3 hover:bg-secondary-600 hover:text-blue-50">
         <a href="/scythe" class="hover:underline">Escuela</a>
-        <img src="/logo16.png" alt="scythe.mx logo" class="w-12 h-12" />
+        <img src="/logo.png" alt="scythe.mx logo" class="w-12 h-12" />
 	</li>
     
     <li class="shadow-lg rounded-b-lg hover:bg-secondary-600 hover:text-blue-50">
