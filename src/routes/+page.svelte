@@ -12,7 +12,7 @@
 
       <div class="mt-10">
         <a href="/contacto" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-full shadow-md transition duration-300 ease-in-out">
-          Comprar scythe alv
+          Comprar scythe
         </a>
       </div>
     </div>
