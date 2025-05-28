@@ -2,6 +2,11 @@
 	import { track } from '@vercel/analytics/sveltekit';
 
 	let start = $state(Date.now());
+  
+  function handleClick() {
+      track('Signup');
+    }
+
 
 	function handleVisibilityChange() {
 		if (document.visibilityState === 'hidden') {
@@ -22,6 +27,7 @@
     
     <!-- Text Content -->
     <div class="flex-1 text-left">
+      <button onclick={handleClick} >Signup</button>
       <h1 class=" text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
         Entregamos <span class="text-blue-400">software a tiempo</span>
       </h1>
