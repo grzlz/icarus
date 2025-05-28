@@ -10,12 +10,102 @@
 
 <footer class="bg-primary-950 text-gray-200 font-primary">
     <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="prose">
-            <h2 class="text-xl font-bold mb-4 text-primary-900">¿Quiénes somos?</h2>
-            <p class="text-sm leading-relaxed text-primary-300">Somos un grupo de desarrolladores y diseñadores con la misión de democratizar la producción de software.</p>
-            <p class=" text-sm leading-relaxed text-primary-300">Creemos que la tecnología debe ser accesible para todos. Estamos construyendo <span class="font-bold text-red-500 font-primary">Scythe</span> para hacer de esto una realidad.</p>
-        </div>
-        
+    <div class="prose">
+      <h2 class="text-xl font-bold mb-4 text-primary-900">¿Quiénes somos?</h2>
+      <p class="text-sm leading-relaxed text-primary-300">Somos creadores de software comprometidos con la democratización del acceso a la producción tecnológica. Buscamos superar las barreras que hacen fácil convertir ideas en productos digitales para algunos, pero inaccesible para otros.</p>
+      <p class="text-sm leading-relaxed text-primary-300">Estamos construyendo <span class="font-bold text-red-500 font-primary">Scythe</span>, una nueva arquitectura productiva donde quienes construyen son remunerados de manera justa y también gobiernan. Nuestro token <span class="font-bold text-red-500 font-primary">scythe</span> es el mecanismo con el que redistribuimos el valor, tomamos decisiones colectivas y abrimos el camino hacia una asignación democrática del trabajo.</p>
+    </div>
+
+
+    <div class="max-w-4xl mx-auto bg-primary-950 p-8 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold mb-4 text-primary-900">El internet y la distribución del valor</h2>
+
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">El internet es una innovación capitalista.</p>
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">Esta innovación prometía descentralización y acceso, pero entregó exactamente lo opuesto.</p>
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">En lugar de democratizar el conocimiento, creó muros de pago y algoritmos que priorizan rentabilidad sobre verdad.</p>
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">En lugar de descentralizar el poder, consolidó monopolios sin precedentes: Amazon, Google y Microsoft controlan sus mercados y la infraestructura digital global. Después hablaremos de la nube.</p>
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">En lugar de liberar el trabajo, lo precarizó sistemáticamente. La "economía gig" transfiere riesgos y costos empresariales a trabajadores sin seguridad social: Uber extrae valor mientras los conductores pagan el coche, la gasolina, el mantenimiento y el seguro.</p>
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">En lugar de crear comunidad, las redes sociales se volvieron máquinas de polarización que monetizan la división social.</p>
+        <p class="text-sm leading-relaxed text-primary-300 mb-6">El patrón es claro: cada promesa emancipadora del internet se invirtió en su opuesto porque opera bajo la lógica capitalista de maximizar beneficios privados. Las herramientas digitales tienen potencial transformador real, pero su subordinación al capital las convierte en instrumentos de dominación.</p>
+<p class="text-sm leading-relaxed text-primary-300 mb-6">
+    ¿La solución? Cambiar la lógica del sistema. La capacidad productiva de la humanidad nunca ha sido tan alta; el problema no es de poder, sino de voluntad. Si dejamos de perseguir solo el beneficio privado y empezamos a trabajar por el bien común, podemos enfrentar la raíz de esta crisis.
+</p>
+
+<p class="text-sm leading-relaxed text-primary-300 mb-6">
+    Pero esto nos lleva a una pregunta inevitable: ¿qué es el beneficio social? ¿Y cómo lo medimos? No basta con decir “lo que la mayoría quiere”. Hay cosas que deseamos porque son valiosas, y otras que valoramos porque muchos las desean. Entender esta diferencia es clave.
+</p>
+
+<p class="text-sm leading-relaxed text-primary-300 mb-6">
+    El valor no está en las cosas por sí solas, ni solo en nuestros gustos. Surge de las relaciones que construimos juntos. Y aunque esas relaciones cambian, el valor que generan puede sostener proyectos, guiar decisiones y marcar rumbos colectivos.
+</p>
+
+<p class="text-sm leading-relaxed text-primary-300 mb-6">
+    Hoy, el valor se mide casi exclusivamente en dinero. Pero hay otras formas de valor que importan: el cuidado, la confianza, el tiempo compartido, la justicia. Recuperarlas es parte del desafío.
+</p>
+
+<p class="text-sm leading-relaxed text-primary-300 mb-6">
+    Necesitamos nuevas formas de producir, redistribuir y decidir. Cambios así no nacen en abstracto: se construyen con ejemplos concretos.
+</p>
+
+<p class="text-sm leading-relaxed text-primary-300 mb-6">
+    El desarrollo de software es un buen lugar para empezar. Se basa en colaboración, conocimiento y herramientas digitales que ya permiten experimentar con nuevos modelos de organización.
+</p>
+
+<p class="text-sm leading-relaxed text-primary-300">
+    Por eso estamos construyendo <span class="font-bold text-red-500 font-primary">Scythe</span>: un experimento práctico para distribuir el valor de forma más justa. Si lo logramos aquí, otros sectores podrán seguir.
+</p>
+
+    </div>
+
+    <div class="prose mt-12">
+  <h2 class="text-xl font-bold mb-4 text-primary-900">La economía digital y la crisis del valor</h2>
+  <p class="text-sm leading-relaxed text-primary-300">
+    La innovación capitalista del internet prometía descentralización y acceso, pero ha profundizado una contradicción fundamental del modo de producción burgués: el valor es generado colectivamente, pero apropiado por un reducido puñado de propietarios. La concentración ha llevado a la humanidad a niveles de desigualdad nunca antes visto.  
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    La industria del software, en particular, ha sido capturada por un modelo extractivo que desvincula el trabajo de su reconocimiento material. Los desarrolladores crean valor a través de código, pero ese valor se concentra en manos de quienes controlan la infraestructura y la distribución. La autoría se diluye, el esfuerzo técnico se invisibiliza y el beneficio se concentra.
+    En este modelo, los desarrolladores crean mejoras, automatizaciones y optimizaciones que reducen el gasto de cómputo, aceleran procesos o permiten escalar productos a millones de usuarios. Esas mejoras tienen un impacto económico inmediato y masivo, pero su autor no captura esa plusvalía: las ganancias derivadas de su trabajo se acumulan en manos de quienes controlan la infraestructura y la distribución.
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    La escala brutal de la infraestructura digital convierte cada decisión técnica en una fuente de extracción: una línea de código que ahorra milisegundos puede traducirse en millones en costos reducidos para la nube o mayores ingresos por retención. Pero los desarrolladores siguen sujetos a esquemas de pago fijos, desvinculados del valor real que generan.
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    Esta asimetría entre creación y captura del valor es el núcleo de la crisis. <span class="font-bold text-red-500 font-primary">Scythe</span> nace para revertir esta lógica: redistribuir el valor desde la raíz productiva y devolver el control a quienes sostienen el sistema con su trabajo.
+  </p>
+</div>
+
+
+    <div class="prose mt-12">
+  <h2 class="text-xl font-bold mb-4 text-primary-900">La economía digital y la crisis del valor</h2>
+  <p class="text-sm leading-relaxed text-primary-300">
+    La economía digital prometía descentralización y acceso, pero ha profundizado una contradicción fundamental: el valor es generado colectivamente, pero apropiado por plataformas centralizadas que intermedian, vigilan y rentabilizan cada interacción.
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    Esta nueva forma de acumulación desconecta el trabajo de su reconocimiento material: se invisibiliza el esfuerzo técnico, se diluye la autoría y se concentra el beneficio. En lugar de liberar, la infraestructura digital ha reforzado viejas relaciones de explotación bajo una estética de innovación.
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    Para enfrentar esta crisis, necesitamos nuevas formas de organizar la producción, distribuir el valor y gobernarnos colectivamente. Eso es lo que estamos haciendo con <span class="font-bold text-red-500 font-primary">Scythe</span>.
+  </p>
+</div>
+
+<div class="prose">
+  <h2 class="text-xl font-bold mb-4 text-primary-900">¿Quiénes somos?</h2>
+  <p class="text-sm leading-relaxed text-primary-300">
+    Somos creadores de software. También somos una insurrección técnica contra las estructuras que despojan al trabajador del control sobre su obra y su tiempo.
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    Con <span class="font-bold text-red-500 font-primary">Scythe</span>, diseñamos una arquitectura productiva donde quienes construyen también gobiernan. Proponemos un modelo en el que el valor generado se distribuye de forma justa y transparente.
+  </p>
+  <p class="text-sm leading-relaxed text-primary-300">
+    A través del <span class="font-bold">Scythe Token</span>, habilitamos un sistema de autogobierno colectivo. No se trata solo de tecnología: se trata del trabajo, la dignidad y la posibilidad real de apropiarse de los frutos del esfuerzo común.
+  </p>
+</div>
+
+
+
+
+
+
         <div>
             <h2 class="text-xl font-bold mb-4 text-primary-900">Trade offer:</h2>
             <p class="text-sm mb-6 text-primary-300">Si nos das tu correo, te damos acceso a nuestro resumen semanal del mundo de la tecnología.</p>

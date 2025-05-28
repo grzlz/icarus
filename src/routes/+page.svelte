@@ -1,3 +1,22 @@
+<script>
+	import { track } from '@vercel/analytics/sveltekit';
+
+	let start = $state(Date.now());
+
+	function handleVisibilityChange() {
+		if (document.visibilityState === 'hidden') {
+			const seconds = Math.round((Date.now() - start) / 1000);
+			track('time-spent-home', { seconds });
+		}
+	}
+
+	$effect(() => {
+		document.addEventListener('visibilitychange', handleVisibilityChange);
+		return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+	});
+</script>
+
+
 <section class="bg-secondary-50 text-secondary-900 min-h-[80vh] flex items-center font-primary">
   <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center gap-16 md:gap-20 py-16">
     
