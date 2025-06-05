@@ -42,7 +42,7 @@
     </li>
     
     <li class="shadow-lg inline-block rounded-b-lg hover:bg-secondary-600 hover:text-blue-50  ml-3">
-        <a href="/scythe" class="flex justify-between items-center p-2 gap-3 w-full h-full hover:underline">
+        <a href="https://scythe.icarus.mx/?utm_source=navbar&utm_medium=website&utm_campaign=icarus_link" class="flex justify-between items-center p-2 gap-3 w-full h-full hover:underline">
             <span class="text-base font-medium text-primary-100">Scythe</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" class="w-10 h-10 text-[#b74127]">
                 <path d="M 46 38 L 39 154 L 154 155 L 155 116 L 105 95 L 104 83 L 73 100 L 68 38 Z" fill="currentColor"/>
