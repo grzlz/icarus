@@ -12,8 +12,8 @@
     <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
     <div class="prose">
       <h2 class="text-xl font-bold mb-4 text-primary-900">¿Quiénes somos?</h2>
-      <p class="text-sm leading-relaxed text-primary-300">Somos creadores de software comprometidos con la democratización del acceso a la producción tecnológica. Buscamos superar las barreras que hacen fácil convertir ideas en productos digitales para algunos, pero inaccesible para otros.</p>
-      <p class="text-sm leading-relaxed text-primary-300">Estamos construyendo <span class="font-bold text-red-500 font-primary">Scythe</span>, una nueva arquitectura productiva donde quienes construyen son remunerados de manera justa y también gobiernan. Nuestro token <span class="font-bold text-red-500 font-primary">scythe</span> es el mecanismo con el que redistribuimos el valor, tomamos decisiones colectivas y abrimos el camino hacia una asignación democrática del trabajo.</p>
+      <p class="text-sm leading-relaxed text-primary-300">Somos pensadores, diseñadores y desarrolladores.</p>
+      <p class="text-sm leading-relaxed text-primary-300">Estamos construyendo <span class="font-bold text-red-500">Scythe</span>, un protocolo que mejora la coordinación entre la economía y el gobierno de un sistema.</p>
     </div>
 
 
