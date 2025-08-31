@@ -22,16 +22,8 @@
 </script>
 
 
-<section class="bg-gradient-to-br from-secondary-600 via-secondary-700 to-secondary-800 text-primary-50 min-h-[90vh] flex items-center justify-center relative overflow-hidden">
-  <!-- Background pattern with subtle Scythe logos -->
-  <div class="absolute inset-0 opacity-5">
-    <img src="/logo_scythe.png" alt="" class="hidden sm:block absolute top-16 left-12 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 opacity-30 rotate-12" />
-    <img src="/logo_scythe.png" alt="" class="hidden md:block absolute top-32 right-20 w-12 md:w-16 h-12 md:h-16 opacity-20 -rotate-12" />
-    <img src="/logo_scythe.png" alt="" class="hidden sm:block absolute bottom-40 left-24 w-16 sm:w-20 h-16 sm:h-20 opacity-25 rotate-45" />
-    <img src="/logo_scythe.png" alt="" class="hidden lg:block absolute bottom-20 right-32 w-24 lg:w-28 h-24 lg:h-28 opacity-15 -rotate-6" />
-    <img src="/logo_scythe.png" alt="" class="hidden md:block absolute top-1/2 left-8 w-10 md:w-12 h-10 md:h-12 opacity-35 rotate-90" />
-    <img src="/logo_scythe.png" alt="" class="hidden lg:block absolute top-2/3 right-12 w-16 lg:w-18 h-16 lg:h-18 opacity-20 -rotate-45" />
-  </div>
+<section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-[90vh] flex items-center justify-center relative overflow-hidden">
+
   
   <div class="max-w-4xl mx-auto px-6 md:px-10 text-center relative z-10">
     <!-- Main heading -->
