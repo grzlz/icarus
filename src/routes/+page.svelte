@@ -22,7 +22,7 @@
 </script>
 
 
-<section class="bg-gradient-to-br from-secondary-900 via-secondary-950 to-primary-950 text-primary-50 min-h-[90vh] flex items-center justify-center relative overflow-hidden">
+<section class="bg-gradient-to-br from-secondary-600 via-secondary-700 to-secondary-800 text-primary-50 min-h-[90vh] flex items-center justify-center relative overflow-hidden">
   <!-- Background pattern with subtle Scythe logos -->
   <div class="absolute inset-0 opacity-5">
     <img src="/logo_scythe.png" alt="" class="hidden sm:block absolute top-16 left-12 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 opacity-30 rotate-12" />
