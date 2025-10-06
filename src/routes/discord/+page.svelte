@@ -28,34 +28,35 @@
 </script>
 
 <svelte:head>
-	<!-- Primary Meta Tags -->
-	<title>Entra a Creta</title>
-	<meta name="title" content="Únete a Creta" />
-	<meta name="description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
+  <!-- Primary Meta Tags -->
+  <title>Entra a Creta</title>
+  <meta name="title" content="Únete a Creta" />
+  <meta name="description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
 
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://icarus.mx/discord" />
-	<meta property="og:title" content="Únete a Creta" />
-	<meta property="og:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
-	<meta property="og:image" content="https://icarus.mx/creta-og.png" />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
-	<meta property="og:site_name" content="Icarus" />
-	<meta property="og:locale" content="es_MX" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://icarus.mx/discord" />
+  <meta property="og:title" content="Únete a Creta" />
+  <meta property="og:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
+  <meta property="og:image" content="https://icarus.mx/creta/creta-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Icarus" />
+  <meta property="og:locale" content="es_MX" />
 
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="https://icarus.mx/discord" />
-	<meta property="twitter:title" content="Únete a Creta" />
-	<meta property="twitter:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
-	<meta property="twitter:image" content="https://icarus.mx/creta-og.png" />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://icarus.mx/discord" />
+  <meta property="twitter:title" content="Únete a Creta" />
+  <meta property="twitter:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
+  <meta property="twitter:image" content="https://icarus.mx/creta/creta-og.png" />
 
-	<!-- Additional SEO -->
-	<meta name="keywords" content="Creta, Icarus, Discord, aprendizaje, programación, SCYTHE, sickles, comunidad" />
-	<meta name="author" content="Icarus" />
-	<link rel="canonical" href="https://icarus.mx/discord" />
+  <!-- Additional SEO -->
+  <meta name="keywords" content="Creta, Icarus, Discord, aprendizaje, programación, SCYTHE, sickles, comunidad" />
+  <meta name="author" content="Icarus" />
+  <link rel="canonical" href="https://icarus.mx/discord" />
 </svelte:head>
+
 
 <section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-screen flex items-start md:items-center justify-center pt-24 md:pt-0">
 	<div class="max-w-2xl mx-auto px-6 text-left">
