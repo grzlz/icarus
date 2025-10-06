@@ -3,7 +3,9 @@
 	import { onMount } from 'svelte';
 
 	// Replace with your actual Discord invite link
-	const DISCORD_INVITE = 'https://discord.gg/YOUR_INVITE_CODE';
+	const DISCORD_INVITE = 'https://discord.gg/KXdwbP5yX';
+
+	let countdown = $state(10);
 
 	onMount(() => {
 		// Track Discord link visit
@@ -12,26 +14,30 @@
 			timestamp: new Date().toISOString()
 		});
 
-		// Auto-redirect after 2 seconds
-		const timeout = setTimeout(() => {
-			window.location.href = DISCORD_INVITE;
-		}, 2000);
+		// Countdown interval
+		const interval = setInterval(() => {
+			countdown--;
+			if (countdown <= 0) {
+				clearInterval(interval);
+				window.location.href = DISCORD_INVITE;
+			}
+		}, 1000);
 
-		return () => clearTimeout(timeout);
+		return () => clearInterval(interval);
 	});
 </script>
 
 <svelte:head>
 	<!-- Primary Meta Tags -->
-	<title>Únete a Creta | Comunidad de Aprendizaje Icarus</title>
-	<meta name="title" content="Únete a Creta | Comunidad de Aprendizaje Icarus" />
-	<meta name="description" content="Creta es el laberinto de aprendizaje de Icarus. Gana sickles navegando desafíos y conviértelos en tokens SCYTHE. Visitante → Aprendiz → Constructor → Maestro." />
+	<title>Entra a Creta</title>
+	<meta name="title" content="Únete a Creta" />
+	<meta name="description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://icarus.mx/discord" />
-	<meta property="og:title" content="Únete a Creta | Comunidad de Aprendizaje Icarus" />
-	<meta property="og:description" content="Creta es el laberinto de aprendizaje de Icarus. Gana sickles navegando desafíos y conviértelos en tokens SCYTHE. Visitante → Aprendiz → Constructor → Maestro." />
+	<meta property="og:title" content="Únete a Creta" />
+	<meta property="og:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
 	<meta property="og:image" content="https://icarus.mx/creta-og.png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
@@ -41,8 +47,8 @@
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content="https://icarus.mx/discord" />
-	<meta property="twitter:title" content="Únete a Creta | Comunidad de Aprendizaje Icarus" />
-	<meta property="twitter:description" content="Creta es el laberinto de aprendizaje de Icarus. Gana sickles navegando desafíos y conviértelos en tokens SCYTHE. Visitante → Aprendiz → Constructor → Maestro." />
+	<meta property="twitter:title" content="Únete a Creta" />
+	<meta property="twitter:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
 	<meta property="twitter:image" content="https://icarus.mx/creta-og.png" />
 
 	<!-- Additional SEO -->
@@ -52,46 +58,29 @@
 </svelte:head>
 
 <section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-screen flex items-center justify-center">
-	<div class="max-w-2xl mx-auto px-6 text-center">
-		<!-- Logo or Icon -->
-		<div class="mb-8">
-			<div class="w-24 h-24 mx-auto bg-red-500 rounded-full flex items-center justify-center text-4xl">
-				🏛️
-			</div>
-		</div>
-
+	<div class="max-w-2xl mx-auto px-6 text-left">
 		<!-- Heading -->
 		<h1 class="text-5xl md:text-6xl font-black mb-6">
-			Bienvenido a <span class="text-red-400">Creta</span>
+			Bienvenido a <span class="text-primary-400">Creta</span> 🏛️
 		</h1>
 
 		<!-- Description -->
 		<p class="text-xl md:text-2xl text-primary-200 mb-8 leading-relaxed">
-			El laberinto de aprendizaje donde navegas desafíos, ganas <span class="font-bold">sickles</span>,
-			y los conviertes en tokens <span class="font-bold text-red-400">SCYTHE</span>.
+			Creta es el taller de software de icarus.mx. <br />
+			Aquí encontrarás un laberinto y la ruta para transitarlo.
 		</p>
 
 		<!-- Redirect Message -->
-		<div class="bg-primary-800/50 border border-primary-600 rounded-lg p-6 mb-8">
-			<p class="text-lg text-primary-300">
-				Redirigiendo a Discord...
+		<div class="mb-8 flex items-center gap-4">
+			<p class="text-2xl md:text-3xl text-primary-300">
+				Entrando a Creta...
 			</p>
-			<div class="mt-4 flex justify-center">
-				<div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-400"></div>
-			</div>
+			<span class="text-3xl md:text-4xl font-black text-primary-400">{countdown}</span>
 		</div>
-
-		<!-- Manual Link (in case auto-redirect fails) -->
-		<a
-			href={DISCORD_INVITE}
-			class="inline-block bg-red-500 hover:bg-red-400 text-white font-bold text-lg px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
-		>
-			Ir a Discord ahora
-		</a>
 
 		<!-- Info -->
 		<div class="mt-12 text-sm text-primary-400">
-			<p>Visitante → Aprendiz → Constructor → Maestro</p>
+			<p>→ Aprendiz → Constructor → Maestro</p>
 		</div>
 	</div>
 </section>
