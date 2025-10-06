@@ -38,7 +38,7 @@
   <meta property="og:url" content="https://icarus.mx/discord" />
   <meta property="og:title" content="Únete a Creta" />
   <meta property="og:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
-  <meta property="og:image" content="https://icarus.mx/creta/creta_og.png" />
+  <meta property="og:image" content="https://icarus.mx/creta/creta_og.png?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Icarus" />
@@ -49,7 +49,7 @@
   <meta property="twitter:url" content="https://icarus.mx/discord" />
   <meta property="twitter:title" content="Únete a Creta" />
   <meta property="twitter:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
-  <meta property="twitter:image" content="https://icarus.mx/creta/creta_og.png" />
+  <meta property="twitter:image" content="https://icarus.mx/creta/creta_og.png?v=2" />
 
   <!-- Additional SEO -->
   <meta name="keywords" content="Creta, Icarus, Discord, aprendizaje, programación, SCYTHE, sickles, comunidad" />
