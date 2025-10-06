@@ -2,7 +2,7 @@
 	import { track } from '@vercel/analytics/sveltekit';
 
 	let start = $state(Date.now());
-  
+
   function handleClick() {
       track('Signup');
     }
@@ -21,6 +21,26 @@
 	});
 </script>
 
+<svelte:head>
+	<!-- General Metadata -->
+	<title>icarus.mx</title>
+	<meta name="description" content="Icarus es mitad escuela mitad fábrica socialista de software." />
+
+	<!-- Open Graph Metadata -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="icarus.mx | ¿Ok pero qué es Scythe?" />
+	<meta property="og:description" content="Scythe es un nuevo sistema de producción y gobierno. Está en construcción. Da click si quieres saber más." />
+	<meta property="og:image" content="https://icarus.mx/logo_zoomed.png" />
+	<meta property="og:url" content="https://icarus.mx" />
+	<meta property="og:site_name" content="icarus.mx" />
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://icarus.mx" />
+	<meta property="twitter:title" content="icarus.mx | ¿Ok pero qué es Scythe?" />
+	<meta property="twitter:description" content="Scythe es un nuevo sistema de producción y gobierno. Está en construcción. Da click si quieres saber más." />
+	<meta property="twitter:image" content="https://icarus.mx/logo_zoomed.png" />
+</svelte:head>
 
 <section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-[90vh] flex items-center justify-center relative overflow-hidden">
 
