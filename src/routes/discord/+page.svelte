@@ -57,7 +57,7 @@
 	<link rel="canonical" href="https://icarus.mx/discord" />
 </svelte:head>
 
-<section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-screen flex items-start md:items-center justify-center pt-12 md:pt-0">
+<section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-screen flex items-start md:items-center justify-center pt-24 md:pt-0">
 	<div class="max-w-2xl mx-auto px-6 text-left">
 		<!-- Heading -->
 		<h1 class="text-5xl md:text-6xl font-black mb-6">

@@ -5,7 +5,7 @@
 </script>
 
 
-<nav class="sticky top-0 z-50 flex items-center justify-between bg-primary-950  md:px-8 min-h-[60px] px-4 py-2">
+<nav class="sticky top-0 z-50 flex items-center justify-between backdrop-blur-sm bg-primary-950/20 md:px-8 min-h-[60px] px-4 py-2">
     
     <h1 class="hidden md:block text-primary-200 text-lg font-semibold font-primary">ICARUS</h1>
     
