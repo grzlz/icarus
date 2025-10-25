@@ -1,0 +1,9 @@
+eslint.config.js
+jsconfig.json
+vite.config.js
+svelte.config.js
+package-lock.json
+.prettierrc
+.prettierignore
+.npmrc
+.gitignore
