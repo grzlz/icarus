@@ -1,0 +1,87 @@
+graph TB
+    subgraph "Entorno del Usuario"
+        Terminal["Terminal<br/>(iTerm2, Alacritty, Wezterm)"]
+        NerdFont["Nerd Fonts<br/>(JetBrains Mono)"]
+    end
+
+    subgraph "Creta Vim Core"
+        Neovim["Neovim >= 0.10.0<br/>Motor principal"]
+        LazyVim["LazyVim<br/>Distribución base"]
+        Lazy["Lazy.nvim<br/>Gestor de plugins"]
+    end
+
+    subgraph "Configuración Creta"
+        InitLua["init.lua<br/>Punto de entrada"]
+        ConfigLayer["config/<br/>Configuraciones base"]
+        PluginLayer["plugins/<br/>Plugins personalizados"]
+
+        ConfigLayer --> Options["options.lua<br/>Opciones de Vim"]
+        ConfigLayer --> Keymaps["keymaps.lua<br/>Atajos de teclado"]
+        ConfigLayer --> Autocmds["autocmds.lua<br/>Auto-comandos"]
+        ConfigLayer --> LazyConfig["lazy.lua<br/>Config de Lazy.nvim"]
+
+        PluginLayer --> Colorscheme["colorscheme.lua<br/>Tema Kanagawa"]
+        PluginLayer --> Creta["creta.lua<br/>Dashboard + Mason"]
+        PluginLayer --> Svelte["svelte.lua<br/>SvelteKit support"]
+        PluginLayer --> Tailwind["tailwind.lua<br/>Tailwind CSS"]
+        PluginLayer --> Markdown["markdown.lua<br/>Markdown preview"]
+    end
+
+    subgraph "Ecosistema de Plugins"
+        Mason["Mason<br/>LSP installer"]
+        Telescope["Telescope<br/>Fuzzy finder"]
+        Treesitter["Treesitter<br/>Syntax highlighting"]
+        NeoTree["Neo-tree<br/>File explorer"]
+        Dashboard["Dashboard<br/>Welcome screen"]
+    end
+
+    subgraph "LSP Servers"
+        VTSLS["vtsls<br/>TypeScript/JavaScript"]
+        SvelteLSP["svelte-language-server<br/>SvelteKit 5"]
+        TailwindLSP["tailwindcss-language-server<br/>Tailwind CSS 4"]
+        Prettier["Prettier<br/>Code formatter"]
+        ESLint["ESLint LSP<br/>Linter"]
+        StyLua["StyLua<br/>Lua formatter"]
+    end
+
+    subgraph "Dependencias Externas"
+        NodeJS["Node.js >= 18.0.0<br/>Runtime para LSP"]
+        Git["Git >= 2.19.0<br/>Control de versiones"]
+        Glow["Glow (opcional)<br/>Markdown preview"]
+    end
+
+    Terminal --> Neovim
+    NerdFont -.->|Iconos| Terminal
+
+    Neovim --> LazyVim
+    LazyVim --> Lazy
+    Lazy --> InitLua
+
+    InitLua --> LazyConfig
+    LazyConfig --> ConfigLayer
+    LazyConfig --> PluginLayer
+
+    PluginLayer --> Mason
+    PluginLayer --> Telescope
+    PluginLayer --> Treesitter
+    PluginLayer --> NeoTree
+    PluginLayer --> Dashboard
+
+    Mason --> VTSLS
+    Mason --> SvelteLSP
+    Mason --> TailwindLSP
+    Mason --> Prettier
+    Mason --> ESLint
+    Mason --> StyLua
+
+    VTSLS -.->|requiere| NodeJS
+    SvelteLSP -.->|requiere| NodeJS
+    TailwindLSP -.->|requiere| NodeJS
+    Lazy -.->|requiere| Git
+    Markdown -.->|opcional| Glow
+
+    style Neovim fill:#7aa2f7,stroke:#1f2335,stroke-width:3px
+    style LazyVim fill:#9d7cd8,stroke:#1f2335,stroke-width:2px
+    style InitLua fill:#7dcfff,stroke:#1f2335,stroke-width:2px
+    style Creta fill:#ff9e64,stroke:#1f2335,stroke-width:2px
+    style Mason fill:#9ece6a,stroke:#1f2335,stroke-width:2px

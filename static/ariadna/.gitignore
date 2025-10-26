@@ -1,0 +1,14 @@
+# LazyVim/Neovim generated files
+lazy-lock.json
+.neoconf.json
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Personal customizations (students add their own)
+lua/plugins/personal.lua

@@ -1,0 +1,124 @@
+graph TB
+    subgraph "Core Dependencies"
+        Neovim["Neovim >= 0.10.0"]
+        Git["Git >= 2.19.0"]
+        NodeJS["Node.js >= 18.0.0"]
+    end
+
+    subgraph "Plugin Manager Layer"
+        LazyNvim["Lazy.nvim<br/>Plugin manager"]
+        LazyVim["LazyVim<br/>Base distribution"]
+    end
+
+    subgraph "UI Plugins"
+        Dashboard["dashboard-nvim<br/>Welcome screen"]
+        NeoTree["neo-tree.nvim<br/>File explorer"]
+        Bufferline["bufferline.nvim<br/>Buffer tabs"]
+        Lualine["lualine.nvim<br/>Status line"]
+        WhichKey["which-key.nvim<br/>Keybinding helper"]
+        Kanagawa["kanagawa.nvim<br/>Color scheme"]
+    end
+
+    subgraph "Editor Enhancement"
+        Telescope["telescope.nvim<br/>Fuzzy finder"]
+        TelescopeDeps["plenary.nvim<br/>telescope-fzf-native"]
+        Treesitter["nvim-treesitter<br/>Syntax highlighting"]
+        TreesitterGrammars["Grammars:<br/>svelte, javascript,<br/>typescript, html, css"]
+        Comment["Comment.nvim<br/>Smart commenting"]
+        Autopairs["nvim-autopairs<br/>Auto close brackets"]
+    end
+
+    subgraph "LSP Infrastructure"
+        LspConfig["nvim-lspconfig<br/>LSP configuration"]
+        Mason["mason.nvim<br/>LSP installer"]
+        MasonLsp["mason-lspconfig.nvim<br/>Integration bridge"]
+        MasonServers["LSP Servers:<br/>vtsls, svelte-ls,<br/>tailwindcss-ls,<br/>prettier, eslint"]
+    end
+
+    subgraph "Completion System"
+        NvimCmp["nvim-cmp<br/>Completion engine"]
+        CmpSources["cmp-nvim-lsp<br/>cmp-buffer<br/>cmp-path<br/>cmp-luasnip"]
+        LuaSnip["LuaSnip<br/>Snippet engine"]
+        FriendlySnippets["friendly-snippets<br/>Snippet collection"]
+    end
+
+    subgraph "Git Integration"
+        Gitsigns["gitsigns.nvim<br/>Git decorations"]
+        Lazygit["lazygit.nvim<br/>Git UI integration"]
+        LazygitBin["lazygit (binary)<br/>External tool"]
+    end
+
+    subgraph "Language Specific"
+        SvelteLSP["Svelte support<br/>Treesitter + LSP"]
+        TailwindLSP["Tailwind support<br/>LSP + colorizer"]
+        MarkdownPlugins["Markdown support<br/>render-markdown +<br/>glow.nvim"]
+        Glow["glow (binary)<br/>External tool"]
+    end
+
+    subgraph "Utility Plugins"
+        Persistence["persistence.nvim<br/>Session management"]
+        WebDevicons["nvim-web-devicons<br/>File icons"]
+        NuiNvim["nui.nvim<br/>UI component library"]
+    end
+
+    %% Core dependencies
+    Neovim --> LazyNvim
+    Git -.->|required by| LazyNvim
+    NodeJS -.->|required by| MasonServers
+
+    %% Plugin manager
+    LazyNvim --> LazyVim
+    LazyVim --> Dashboard
+    LazyVim --> NeoTree
+    LazyVim --> Telescope
+    LazyVim --> Treesitter
+    LazyVim --> LspConfig
+    LazyVim --> NvimCmp
+
+    %% UI dependencies
+    Dashboard -.->|uses| WebDevicons
+    NeoTree -.->|uses| WebDevicons
+    NeoTree -.->|uses| NuiNvim
+    Bufferline -.->|uses| WebDevicons
+    Lualine -.->|uses| WebDevicons
+
+    %% Editor enhancements
+    Telescope --> TelescopeDeps
+    Treesitter --> TreesitterGrammars
+    NvimCmp --> CmpSources
+    CmpSources -.->|integrates| LuaSnip
+    LuaSnip -.->|loads| FriendlySnippets
+
+    %% LSP setup
+    Mason --> MasonLsp
+    MasonLsp -.->|configures| LspConfig
+    Mason --> MasonServers
+    LspConfig --> MasonServers
+    NvimCmp -.->|sources from| LspConfig
+
+    %% Git integration
+    Lazygit -.->|requires| LazygitBin
+
+    %% Language specific
+    SvelteLSP -.->|uses| Treesitter
+    SvelteLSP -.->|uses| LspConfig
+    TailwindLSP -.->|uses| LspConfig
+    MarkdownPlugins -.->|optional| Glow
+
+    %% Creta customizations
+    CretaCustom["Creta Customizations"]
+    CretaCustom --> Dashboard
+    CretaCustom --> Mason
+    CretaCustom --> SvelteLSP
+    CretaCustom --> TailwindLSP
+    CretaCustom --> MarkdownPlugins
+    CretaCustom --> Kanagawa
+
+    style Neovim fill:#7aa2f7,stroke:#1f2335,stroke-width:3px
+    style LazyNvim fill:#9d7cd8,stroke:#1f2335,stroke-width:2px
+    style LazyVim fill:#bb9af7,stroke:#1f2335,stroke-width:2px
+    style CretaCustom fill:#ff9e64,stroke:#1f2335,stroke-width:3px
+    style Mason fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style MasonServers fill:#73daca,stroke:#1f2335,stroke-width:2px
+    style SvelteLSP fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style TailwindLSP fill:#73daca,stroke:#1f2335,stroke-width:2px

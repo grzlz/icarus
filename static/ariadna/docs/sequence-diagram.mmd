@@ -1,0 +1,82 @@
+sequenceDiagram
+    actor Usuario
+    participant Terminal
+    participant Neovim
+    participant InitLua as init.lua
+    participant LazyConfig as config/lazy.lua
+    participant LazyNvim as Lazy.nvim
+    participant Plugins
+    participant Mason
+    participant LSP as LSP Servers
+    participant Dashboard
+
+    Usuario->>Terminal: nvim
+    Terminal->>Neovim: Iniciar Neovim
+
+    Note over Neovim: Primera vez: Bootstrap Lazy.nvim
+    Neovim->>InitLua: Ejecutar punto de entrada
+    InitLua->>LazyConfig: require("config.lazy")
+
+    alt Primera instalación
+        LazyConfig->>LazyConfig: Verificar lazy.nvim
+        LazyConfig->>Terminal: git clone lazy.nvim
+        Note over LazyConfig: Instalar gestor de plugins
+    end
+
+    LazyConfig->>LazyNvim: setup({ spec = ... })
+    LazyNvim->>LazyNvim: Cargar configuración LazyVim
+    LazyNvim->>Plugins: Importar plugins personalizados
+
+    par Carga paralela de plugins
+        Plugins->>Plugins: colorscheme.lua (Kanagawa)
+        Plugins->>Plugins: creta.lua (Dashboard + Mason)
+        Plugins->>Plugins: svelte.lua (Treesitter + LSP)
+        Plugins->>Plugins: tailwind.lua (LSP config)
+        Plugins->>Plugins: markdown.lua (Preview)
+    end
+
+    Note over Plugins: Primera vez: Sincronizar plugins
+
+    alt Primera instalación
+        LazyNvim->>LazyNvim: Descargar plugins (~2 min)
+        Note over LazyNvim: Instalar Telescope, Neo-tree,<br/>Treesitter, Mason, etc.
+    end
+
+    Plugins->>Mason: Configurar LSP servers
+    Mason->>Mason: ensure_installed = { vtsls, svelte-ls, ... }
+
+    alt Primera instalación
+        Mason->>LSP: Instalar vtsls
+        Mason->>LSP: Instalar svelte-language-server
+        Mason->>LSP: Instalar tailwindcss-language-server
+        Mason->>LSP: Instalar prettier, eslint, stylua
+        Note over Mason,LSP: Instalación automática (~1 min)
+    end
+
+    LazyNvim->>Dashboard: Mostrar pantalla de bienvenida
+    Dashboard->>Dashboard: Renderizar logo Creta
+    Dashboard->>Dashboard: Calcular tiempo de carga
+    Dashboard->>Terminal: Mostrar dashboard
+
+    Note over Terminal: ⚡ Creta Vim cargado en ~XXms<br/>📦 XX/XX plugins<br/>🏛️ icarus.mx
+
+    Usuario->>Terminal: Space Space (buscar archivo)
+    Terminal->>Neovim: Activar keybinding
+    Neovim->>Plugins: Ejecutar Telescope
+    Plugins->>Terminal: Mostrar fuzzy finder
+
+    Usuario->>Terminal: Abrir archivo .svelte
+    Terminal->>Neovim: Abrir buffer
+    Neovim->>LSP: Activar svelte-language-server
+    LSP->>Neovim: Proveer autocompletado, diagnósticos
+
+    Note over Usuario,LSP: Usuario programa en SvelteKit<br/>con soporte completo de LSP
+
+    Usuario->>Terminal: :w (guardar)
+    Neovim->>LSP: Ejecutar Prettier
+    LSP->>Neovim: Formatear código
+    Neovim->>Terminal: Archivo guardado
+
+    Usuario->>Terminal: :q (salir)
+    Terminal->>Neovim: Cerrar
+    Neovim->>Usuario: Sesión finalizada

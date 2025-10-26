@@ -1,0 +1,73 @@
+graph LR
+    subgraph "Estructura de Configuración"
+        Root["~/.config/nvim/"]
+
+        Root --> InitLua["init.lua<br/><i>Punto de entrada</i>"]
+        Root --> LuaDir["lua/"]
+
+        LuaDir --> ConfigDir["config/"]
+        LuaDir --> PluginsDir["plugins/"]
+
+        ConfigDir --> LazyLua["lazy.lua<br/><b>Interface Principal</b><br/>---<br/>+ setup(spec)<br/>+ ensure_installed"]
+        ConfigDir --> OptionsLua["options.lua<br/><b>Opciones de Vim</b><br/>---<br/>Configuración heredada<br/>de LazyVim"]
+        ConfigDir --> KeymapsLua["keymaps.lua<br/><b>Keybindings</b><br/>---<br/>Atajos personalizados"]
+        ConfigDir --> AutocmdsLua["autocmds.lua<br/><b>Auto-comandos</b><br/>---<br/>Eventos automáticos"]
+
+        PluginsDir --> ColorschemePlugin["colorscheme.lua<br/><b>Tema Visual</b><br/>---<br/>+ kanagawa.nvim<br/>+ transparent: true<br/>+ theme: 'wave'"]
+        PluginsDir --> CretaPlugin["creta.lua<br/><b>Personalización Icarus</b><br/>---<br/>+ dashboard-nvim<br/>+ mason ensure_installed"]
+        PluginsDir --> SveltePlugin["svelte.lua<br/><b>SvelteKit Support</b><br/>---<br/>+ treesitter svelte<br/>+ svelte-language-server<br/>+ compiler warnings config"]
+        PluginsDir --> TailwindPlugin["tailwind.lua<br/><b>Tailwind CSS Support</b><br/>---<br/>+ tailwindcss-language-server<br/>+ color preview<br/>+ autocompletado"]
+        PluginsDir --> MarkdownPlugin["markdown.lua<br/><b>Markdown Tools</b><br/>---<br/>+ render-markdown.nvim<br/>+ glow.nvim preview<br/>+ keybinding: Shift+L"]
+        PluginsDir --> ExamplePlugin["example.lua<br/><b>Plantilla</b><br/>---<br/>Ejemplo para nuevos plugins"]
+    end
+
+    subgraph "LazyVim Base"
+        LazyVimCore["LazyVim Core<br/><b>Distribución Base</b><br/>---<br/>+ Telescope<br/>+ Neo-tree<br/>+ Which-key<br/>+ Bufferline<br/>+ Lualine"]
+    end
+
+    subgraph "Plugin Manager"
+        LazyNvimManager["Lazy.nvim<br/><b>Gestor de Plugins</b><br/>---<br/>+ lazy loading<br/>+ auto-install<br/>+ auto-update<br/>+ profile startup"]
+    end
+
+    subgraph "LSP Infrastructure"
+        MasonCore["Mason<br/><b>LSP Manager</b><br/>---<br/>+ install servers<br/>+ update servers<br/>+ health check"]
+
+        LspConfig["nvim-lspconfig<br/><b>LSP Configuration</b><br/>---<br/>+ server setup<br/>+ capabilities<br/>+ on_attach handlers"]
+    end
+
+    subgraph "Servidores LSP Instalados"
+        VTSLS["vtsls<br/>TypeScript/JavaScript"]
+        SvelteLSP["svelte-language-server<br/>SvelteKit 5"]
+        TailwindLSP["tailwindcss-ls<br/>Tailwind CSS 4"]
+        PrettierLSP["prettier<br/>Formatter"]
+        ESLintLSP["eslint-lsp<br/>Linter"]
+        StyLuaLSP["stylua<br/>Lua Formatter"]
+    end
+
+    InitLua -->|require| LazyLua
+    LazyLua -->|setup| LazyNvimManager
+    LazyNvimManager -->|import LazyVim| LazyVimCore
+    LazyNvimManager -->|import plugins| PluginsDir
+
+    CretaPlugin -->|configure| MasonCore
+    SveltePlugin -->|configure| LspConfig
+    TailwindPlugin -->|configure| LspConfig
+
+    MasonCore -->|ensure_installed| VTSLS
+    MasonCore -->|ensure_installed| SvelteLSP
+    MasonCore -->|ensure_installed| TailwindLSP
+    MasonCore -->|ensure_installed| PrettierLSP
+    MasonCore -->|ensure_installed| ESLintLSP
+    MasonCore -->|ensure_installed| StyLuaLSP
+
+    LspConfig --> VTSLS
+    LspConfig --> SvelteLSP
+    LspConfig --> TailwindLSP
+
+    style InitLua fill:#7dcfff,stroke:#1f2335,stroke-width:3px
+    style LazyLua fill:#7aa2f7,stroke:#1f2335,stroke-width:3px
+    style CretaPlugin fill:#ff9e64,stroke:#1f2335,stroke-width:3px
+    style LazyNvimManager fill:#9d7cd8,stroke:#1f2335,stroke-width:2px
+    style MasonCore fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style SveltePlugin fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style TailwindPlugin fill:#73daca,stroke:#1f2335,stroke-width:2px
