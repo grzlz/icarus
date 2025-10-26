@@ -232,7 +232,7 @@ Guarda y ejecuta `:Lazy` para instalar.
 │       ├── markdown.lua    # Plugins de Markdown
 │       ├── svelte.lua      # SvelteKit support
 │       ├── tailwind.lua    # Tailwind CSS support
-│       └── creta.lua       # Utilidades de Icarus
+│       └── ariadna.lua     # Utilidades de Icarus
 └── README.md
 ```
 

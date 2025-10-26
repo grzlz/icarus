@@ -29,7 +29,7 @@ sequenceDiagram
 
     par Carga paralela de plugins
         Plugins->>Plugins: colorscheme.lua (Kanagawa)
-        Plugins->>Plugins: creta.lua (Dashboard + Mason)
+        Plugins->>Plugins: ariadna.lua (Dashboard + Mason)
         Plugins->>Plugins: svelte.lua (Treesitter + LSP)
         Plugins->>Plugins: tailwind.lua (LSP config)
         Plugins->>Plugins: markdown.lua (Preview)
@@ -54,11 +54,11 @@ sequenceDiagram
     end
 
     LazyNvim->>Dashboard: Mostrar pantalla de bienvenida
-    Dashboard->>Dashboard: Renderizar logo Creta
+    Dashboard->>Dashboard: Renderizar logo Ariadna
     Dashboard->>Dashboard: Calcular tiempo de carga
     Dashboard->>Terminal: Mostrar dashboard
 
-    Note over Terminal: ⚡ Creta Vim cargado en ~XXms<br/>📦 XX/XX plugins<br/>🏛️ icarus.mx
+    Note over Terminal: ⚡ Ariadna cargado en ~XXms<br/>📦 XX/XX plugins<br/>🏛️ icarus.mx
 
     Usuario->>Terminal: Space Space (buscar archivo)
     Terminal->>Neovim: Activar keybinding

@@ -1,14 +1,14 @@
-# Creta Vim - Resumen de Documentación Técnica
+# Ariadna - Resumen de Documentación Técnica
 
 **Generado:** 2025-10-26
 **Versión:** v1.0.0
-**Propósito:** Documentación completa en español para el proyecto Creta Vim
+**Propósito:** Documentación completa en español para el proyecto Ariadna
 
 ---
 
 ## Resumen Ejecutivo
 
-Creta Vim es una distribución de Neovim basada en LazyVim, optimizada específicamente para estudiantes de Icarus que trabajan con el stack moderno: SvelteKit 5, Tailwind CSS 4, y JavaScript/Node.js.
+Ariadna es una distribución de Neovim basada en LazyVim, optimizada específicamente para estudiantes de Icarus que trabajan con el stack moderno: SvelteKit 5, Tailwind CSS 4, y JavaScript/Node.js.
 
 **Características principales:**
 - Configuración zero-config lista para usar
@@ -22,7 +22,7 @@ Creta Vim es una distribución de Neovim basada en LazyVim, optimizada específi
 ## Archivos Generados
 
 ### 1. README.es.md (Principal)
-**Ubicación:** `/Users/guillermo/icarus/creta/creta-vim/README.es.md`
+**Ubicación:** `/Users/guillermo/icarus/creta/ariadna/README.es.md`
 
 **Contenido:**
 - Descripción completa del proyecto en español
@@ -47,7 +47,7 @@ Creta Vim es una distribución de Neovim basada en LazyVim, optimizada específi
 **Características especiales:**
 - Referencias a diagramas Mermaid integrados
 - Ejemplos de código prácticos en cada sección
-- Tablas comparativas (Creta Vim vs otras soluciones)
+- Tablas comparativas (Ariadna vs otras soluciones)
 - Guía de progresión para aprender Vim (semana a semana)
 - Troubleshooting con comandos específicos
 - Enlaces a recursos externos y comunidad
@@ -55,18 +55,18 @@ Creta Vim es una distribución de Neovim basada en LazyVim, optimizada específi
 ---
 
 ### 2. system-architecture.mmd
-**Ubicación:** `/Users/guillermo/icarus/creta/creta-vim/docs/system-architecture.mmd`
+**Ubicación:** `/Users/guillermo/icarus/creta/ariadna/docs/system-architecture.mmd`
 
 **Tipo:** Diagrama de arquitectura del sistema (Mermaid)
 
 **Descripción:**
-Muestra la arquitectura completa de Creta Vim en capas:
+Muestra la arquitectura completa de Ariadna en capas:
 
 1. **Entorno del Usuario**
    - Terminal (iTerm2, Alacritty, Wezterm)
    - Nerd Fonts (JetBrains Mono)
 
-2. **Creta Vim Core**
+2. **Ariadna Core**
    - Neovim >= 0.10.0
    - LazyVim (distribución base)
    - Lazy.nvim (gestor de plugins)
@@ -95,7 +95,7 @@ Muestra la arquitectura completa de Creta Vim en capas:
 ---
 
 ### 3. sequence-diagram.mmd
-**Ubicación:** `/Users/guillermo/icarus/creta/creta-vim/docs/sequence-diagram.mmd`
+**Ubicación:** `/Users/guillermo/icarus/creta/ariadna/docs/sequence-diagram.mmd`
 
 **Tipo:** Diagrama de secuencia (Mermaid)
 
@@ -141,7 +141,7 @@ Documenta el flujo completo desde que el usuario ejecuta `nvim` hasta que está 
 ---
 
 ### 4. main-interfaces.mmd
-**Ubicación:** `/Users/guillermo/icarus/creta/creta-vim/docs/main-interfaces.mmd`
+**Ubicación:** `/Users/guillermo/icarus/creta/ariadna/docs/main-interfaces.mmd`
 
 **Tipo:** Diagrama de componentes/interfaces (Mermaid)
 
@@ -188,12 +188,12 @@ Muestra la estructura modular de la configuración y las interfaces principales:
 ---
 
 ### 5. plugin-dependencies.mmd
-**Ubicación:** `/Users/guillermo/icarus/creta/creta-vim/docs/plugin-dependencies.mmd`
+**Ubicación:** `/Users/guillermo/icarus/creta/ariadna/docs/plugin-dependencies.mmd`
 
 **Tipo:** Diagrama de dependencias de plugins (Mermaid)
 
 **Descripción:**
-Grafo completo de dependencias entre todos los plugins de Creta Vim:
+Grafo completo de dependencias entre todos los plugins de Ariadna:
 
 **Categorías:**
 
@@ -245,7 +245,7 @@ Grafo completo de dependencias entre todos los plugins de Creta Vim:
 ## Estructura de Directorios Resultante
 
 ```
-/Users/guillermo/icarus/creta/creta-vim/
+/Users/guillermo/icarus/creta/ariadna/
 ├── README.md                          (Original en español)
 ├── README.es.md                       (Nuevo - Documentación completa)
 ├── LICENSE
@@ -261,7 +261,7 @@ Grafo completo de dependencias entre todos los plugins de Creta Vim:
 │   │   └── options.lua
 │   └── plugins/
 │       ├── colorscheme.lua
-│       ├── creta.lua
+│       ├── ariadna.lua
 │       ├── example.lua
 │       ├── markdown.lua
 │       ├── svelte.lua
@@ -305,10 +305,10 @@ Grafo completo de dependencias entre todos los plugins de Creta Vim:
 ## Guía de Uso de la Documentación
 
 ### Para Nuevos Usuarios
-1. Leer "Descripción" y "Por qué usar Creta Vim"
+1. Leer "Descripción" y "Por qué usar Ariadna"
 2. Verificar "Requisitos"
 3. Seguir "Instalación - Opción 1"
-4. Leer "Primer Día con Creta Vim"
+4. Leer "Primer Día con Ariadna"
 5. Practicar con "Tu primer flujo de trabajo"
 6. Consultar "Keybindings Esenciales" como referencia
 
@@ -444,7 +444,7 @@ La documentación está escrita para tres audiencias:
 ### Documentación
 1. Crear CONTRIBUTORS.md con lista de contribuidores
 2. Agregar CHANGELOG.md para tracking de versiones
-3. Crear tutoriales interactivos mencionados (`:CretaBasics`, etc.)
+3. Crear tutoriales interactivos mencionados (`:AriadnaBasics`, etc.)
 4. Traducir mensajes de LazyVim a español
 
 ### Diagramas
@@ -497,7 +497,7 @@ La documentación está escrita para tres audiencias:
 
 ## Conclusión
 
-Se ha creado una documentación completa, profesional y accesible para Creta Vim que:
+Se ha creado una documentación completa, profesional y accesible para Ariadna que:
 
 1. **Hace el proyecto accesible** a estudiantes hispanohablantes sin experiencia en Vim
 2. **Provee contexto técnico** mediante diagramas Mermaid detallados
@@ -510,4 +510,4 @@ La documentación sigue las mejores prácticas de proyectos open source exitosos
 
 **Generado por:** Claude Code (Art Vandeley skill)
 **Fecha:** 2025-10-26
-**Versión de Creta Vim:** v1.0.0
+**Versión de Ariadna:** v1.0.0

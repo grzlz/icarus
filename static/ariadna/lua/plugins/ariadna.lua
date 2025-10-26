@@ -1,6 +1,6 @@
--- Creta/Icarus specific customizations
+-- Ariadna/Icarus specific customizations
 return {
-  -- Dashboard with Creta branding
+  -- Dashboard with Ariadna branding
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",

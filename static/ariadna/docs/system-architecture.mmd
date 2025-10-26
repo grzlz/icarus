@@ -4,13 +4,13 @@ graph TB
         NerdFont["Nerd Fonts<br/>(JetBrains Mono)"]
     end
 
-    subgraph "Creta Vim Core"
+    subgraph "Ariadna Core"
         Neovim["Neovim >= 0.10.0<br/>Motor principal"]
         LazyVim["LazyVim<br/>Distribución base"]
         Lazy["Lazy.nvim<br/>Gestor de plugins"]
     end
 
-    subgraph "Configuración Creta"
+    subgraph "Configuración Ariadna"
         InitLua["init.lua<br/>Punto de entrada"]
         ConfigLayer["config/<br/>Configuraciones base"]
         PluginLayer["plugins/<br/>Plugins personalizados"]
@@ -21,7 +21,7 @@ graph TB
         ConfigLayer --> LazyConfig["lazy.lua<br/>Config de Lazy.nvim"]
 
         PluginLayer --> Colorscheme["colorscheme.lua<br/>Tema Kanagawa"]
-        PluginLayer --> Creta["creta.lua<br/>Dashboard + Mason"]
+        PluginLayer --> Creta["ariadna.lua<br/>Dashboard + Mason"]
         PluginLayer --> Svelte["svelte.lua<br/>SvelteKit support"]
         PluginLayer --> Tailwind["tailwind.lua<br/>Tailwind CSS"]
         PluginLayer --> Markdown["markdown.lua<br/>Markdown preview"]
@@ -83,5 +83,5 @@ graph TB
     style Neovim fill:#7aa2f7,stroke:#1f2335,stroke-width:3px
     style LazyVim fill:#9d7cd8,stroke:#1f2335,stroke-width:2px
     style InitLua fill:#7dcfff,stroke:#1f2335,stroke-width:2px
-    style Creta fill:#ff9e64,stroke:#1f2335,stroke-width:2px
+    style Ariadna fill:#ff9e64,stroke:#1f2335,stroke-width:2px
     style Mason fill:#9ece6a,stroke:#1f2335,stroke-width:2px

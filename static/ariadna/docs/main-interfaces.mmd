@@ -14,7 +14,7 @@ graph LR
         ConfigDir --> AutocmdsLua["autocmds.lua<br/><b>Auto-comandos</b><br/>---<br/>Eventos automáticos"]
 
         PluginsDir --> ColorschemePlugin["colorscheme.lua<br/><b>Tema Visual</b><br/>---<br/>+ kanagawa.nvim<br/>+ transparent: true<br/>+ theme: 'wave'"]
-        PluginsDir --> CretaPlugin["creta.lua<br/><b>Personalización Icarus</b><br/>---<br/>+ dashboard-nvim<br/>+ mason ensure_installed"]
+        PluginsDir --> AriadnaPlugin["ariadna.lua<br/><b>Personalización Icarus</b><br/>---<br/>+ dashboard-nvim<br/>+ mason ensure_installed"]
         PluginsDir --> SveltePlugin["svelte.lua<br/><b>SvelteKit Support</b><br/>---<br/>+ treesitter svelte<br/>+ svelte-language-server<br/>+ compiler warnings config"]
         PluginsDir --> TailwindPlugin["tailwind.lua<br/><b>Tailwind CSS Support</b><br/>---<br/>+ tailwindcss-language-server<br/>+ color preview<br/>+ autocompletado"]
         PluginsDir --> MarkdownPlugin["markdown.lua<br/><b>Markdown Tools</b><br/>---<br/>+ render-markdown.nvim<br/>+ glow.nvim preview<br/>+ keybinding: Shift+L"]
@@ -49,7 +49,7 @@ graph LR
     LazyNvimManager -->|import LazyVim| LazyVimCore
     LazyNvimManager -->|import plugins| PluginsDir
 
-    CretaPlugin -->|configure| MasonCore
+    AriadnaPlugin -->|configure| MasonCore
     SveltePlugin -->|configure| LspConfig
     TailwindPlugin -->|configure| LspConfig
 
@@ -66,7 +66,7 @@ graph LR
 
     style InitLua fill:#7dcfff,stroke:#1f2335,stroke-width:3px
     style LazyLua fill:#7aa2f7,stroke:#1f2335,stroke-width:3px
-    style CretaPlugin fill:#ff9e64,stroke:#1f2335,stroke-width:3px
+    style AriadnaPlugin fill:#ff9e64,stroke:#1f2335,stroke-width:3px
     style LazyNvimManager fill:#9d7cd8,stroke:#1f2335,stroke-width:2px
     style MasonCore fill:#9ece6a,stroke:#1f2335,stroke-width:2px
     style SveltePlugin fill:#f7768e,stroke:#1f2335,stroke-width:2px
