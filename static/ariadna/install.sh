@@ -8,6 +8,19 @@ echo "🏛️  Ariadna - Instalador"
 echo "=========================="
 echo ""
 
+# Check if running as root/sudo (common cause of permission issues)
+if [ "$EUID" -eq 0 ] || [ "$USER" = "root" ]; then
+    echo "⚠️  Advertencia: No ejecutes este script con sudo"
+    echo "   Este script debe ejecutarse como tu usuario normal"
+    echo "   Uso correcto: bash install.sh (sin sudo)"
+    echo ""
+    read -p "   ¿Continuar de todas formas? (no recomendado) [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+fi
+
 # Colors
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -124,9 +137,34 @@ echo ""
 # Base URL for downloads
 BASE_URL="https://icarus.mx/ariadna"
 
-# Create directory structure
-mkdir -p "$HOME/.config/nvim/lua/config"
-mkdir -p "$HOME/.config/nvim/lua/plugins"
+# Create directory structure with better error handling
+echo "📂 Creando estructura de directorios..."
+
+# Ensure .config exists first
+if [ ! -d "$HOME/.config" ]; then
+    echo "   Creando directorio .config..."
+    mkdir -p "$HOME/.config" || {
+        echo -e "${RED}❌ Error: No se pudo crear $HOME/.config${NC}"
+        echo "   Verifica los permisos de tu directorio home"
+        exit 1
+    }
+fi
+
+# Create nvim directories
+mkdir -p "$HOME/.config/nvim/lua/config" || {
+    echo -e "${RED}❌ Error: No se pudo crear $HOME/.config/nvim/lua/config${NC}"
+    echo "   Directorio actual: $(pwd)"
+    echo "   HOME: $HOME"
+    echo "   Permisos de .config: $(ls -ld $HOME/.config 2>&1)"
+    exit 1
+}
+
+mkdir -p "$HOME/.config/nvim/lua/plugins" || {
+    echo -e "${RED}❌ Error: No se pudo crear $HOME/.config/nvim/lua/plugins${NC}"
+    exit 1
+}
+
+echo -e "${GREEN}✓${NC} Directorios creados correctamente"
 
 # Files to download
 FILES=(
