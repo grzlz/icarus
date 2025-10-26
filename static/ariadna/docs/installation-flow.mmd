@@ -1,0 +1,150 @@
+graph TD
+    Start([👤 Usuario ejecuta install.sh]) --> CheckRoot{¿Ejecutando<br/>con sudo?}
+
+    CheckRoot -->|Sí| ErrorRoot[❌ Error: No ejecutar con sudo<br/>Mostrar razón y solución]
+    ErrorRoot --> Exit1[🛑 Salir]
+
+    CheckRoot -->|No| CheckNvim{¿Neovim<br/>instalado?}
+
+    CheckNvim -->|No| DetectOS{Detectar<br/>Sistema Operativo}
+
+    DetectOS -->|macOS| CheckBrew{¿Homebrew<br/>disponible?}
+    CheckBrew -->|Sí| InstallMac[brew install neovim]
+    CheckBrew -->|No| ErrorBrew[❌ Instalar Homebrew primero]
+    ErrorBrew --> Exit2[🛑 Salir]
+
+    DetectOS -->|Linux| DetectPM{Detectar<br/>Package Manager}
+    DetectPM -->|apt| InstallApt[sudo apt-get install neovim]
+    DetectPM -->|dnf| InstallDnf[sudo dnf install neovim]
+    DetectPM -->|pacman| InstallPacman[sudo pacman -S neovim]
+    DetectPM -->|zypper| InstallZypper[sudo zypper install neovim]
+    DetectPM -->|Ninguno| ErrorPM[❌ Package manager no soportado]
+    ErrorPM --> Exit3[🛑 Salir]
+
+    DetectOS -->|Windows| CheckWinPM{¿winget o<br/>chocolatey?}
+    CheckWinPM -->|winget| InstallWinget[winget install Neovim]
+    CheckWinPM -->|choco| InstallChoco[choco install neovim]
+    CheckWinPM -->|Ninguno| ErrorWin[❌ Instalar winget/choco]
+    ErrorWin --> Exit4[🛑 Salir]
+
+    DetectOS -->|Otro OS| ErrorOS[❌ OS no soportado]
+    ErrorOS --> Exit5[🛑 Salir]
+
+    InstallMac --> VerifyNvim[✅ Neovim instalado]
+    InstallApt --> VerifyNvim
+    InstallDnf --> VerifyNvim
+    InstallPacman --> VerifyNvim
+    InstallZypper --> VerifyNvim
+    InstallWinget --> VerifyNvim
+    InstallChoco --> VerifyNvim
+
+    CheckNvim -->|Sí| VerifyNvim
+
+    VerifyNvim --> ShowVersion[📦 Mostrar versión de Neovim]
+    ShowVersion --> CheckNode{¿Node.js<br/>instalado?}
+
+    CheckNode -->|Sí| ShowNode[📦 Mostrar versión de Node.js]
+    CheckNode -->|No| WarnNode[⚠️ Advertencia: Node.js necesario para LSP]
+
+    ShowNode --> CheckGit
+    WarnNode --> CheckGit
+
+    CheckGit{¿Git<br/>instalado?} -->|No| ErrorGit[❌ Git es requerido]
+    ErrorGit --> Exit6[🛑 Salir]
+
+    CheckGit -->|Sí| ShowGit[✅ Git encontrado]
+    ShowGit --> VerifyPerms[🔍 Verificar permisos de directorios]
+
+    VerifyPerms --> CheckOwnership{¿Directorios<br/>owned por<br/>usuario actual?}
+
+    CheckOwnership -->|No| ErrorOwnership[❌ Directorios owned por root<br/>Probablemente ejecutaste con sudo antes]
+    ErrorOwnership --> ShowFixOwnership[💡 Mostrar comando para limpiar:<br/>sudo rm -rf ~/.config/nvim ...]
+    ShowFixOwnership --> Exit7[🛑 Salir]
+
+    CheckOwnership -->|Sí| CheckWritable{¿~/.cache<br/>es escribible?}
+
+    CheckWritable -->|No| ErrorWritable[❌ Sin permisos de escritura en cache]
+    ErrorWritable --> ShowFixWritable[💡 Mostrar comando:<br/>sudo chown -R $USER ~/.cache]
+    ShowFixWritable --> Exit8[🛑 Salir]
+
+    CheckWritable -->|Sí| PermsOK[✅ Permisos verificados]
+
+    PermsOK --> CheckExisting{¿Configuración<br/>existente?}
+
+    CheckExisting -->|Sí - nvim config| BackupConfig[📦 Crear backup:<br/>~/.config/nvim.backup.TIMESTAMP]
+    CheckExisting -->|Sí - nvim data| BackupData[📦 Backup de datos:<br/>~/.local/share/nvim.backup.TIMESTAMP]
+    CheckExisting -->|Sí - nvim cache| BackupCache[📦 Backup de cache:<br/>~/.cache/nvim.backup.TIMESTAMP]
+    CheckExisting -->|Sí - nvim state| BackupState[📦 Backup de state:<br/>~/.local/state/nvim.backup.TIMESTAMP]
+
+    BackupConfig --> CreateDirs
+    BackupData --> CreateDirs
+    BackupCache --> CreateDirs
+    BackupState --> CreateDirs
+    CheckExisting -->|No| CreateDirs
+
+    CreateDirs[📂 Crear estructura de directorios] --> CreateConfig[mkdir -p ~/.config/nvim/lua/config]
+    CreateConfig --> CreatePlugins[mkdir -p ~/.config/nvim/lua/plugins]
+    CreatePlugins --> CreateCache[mkdir -p ~/.cache/nvim]
+    CreateCache --> CreateShare[mkdir -p ~/.local/share/nvim]
+    CreateShare --> CreateState[mkdir -p ~/.local/state/nvim]
+
+    CreateState --> DirsOK[✅ Directorios creados]
+
+    DirsOK --> PrepareDownload[🌐 Preparar descarga desde icarus.mx/ariadna]
+
+    PrepareDownload --> DownloadFiles[📥 Descargar archivos de configuración]
+
+    DownloadFiles --> Loop{Por cada<br/>archivo}
+
+    Loop --> ShowProgress[🏛️ Mostrar mensaje aleatorio:<br/>'Desenredando el laberinto...'<br/>'Esquivando al Minotauro...'<br/>'Siguiendo el hilo dorado...']
+
+    ShowProgress --> ProgressBar[█████░░░░░ XX% - archivo.lua]
+
+    ProgressBar --> Download[curl -fsSL icarus.mx/ariadna/FILE]
+
+    Download -->|Error| ErrorDownload[❌ Error descargando archivo]
+    ErrorDownload --> Exit9[🛑 Salir]
+
+    Download -->|OK| NextFile{¿Más<br/>archivos?}
+
+    NextFile -->|Sí| Loop
+    NextFile -->|No| DownloadsComplete[✅ Hilo seguido - ¡Escapaste del laberinto!]
+
+    DownloadsComplete --> InstallPlugins[🎨 Instalar plugins y LSP servers]
+
+    InstallPlugins --> RunNvim[nvim --headless '+Lazy! sync' '+qa']
+
+    RunNvim --> WaitPlugins[⏳ Esperar instalación ~2-3 minutos]
+
+    WaitPlugins --> PluginsOK[✅ Plugins instalados]
+
+    PluginsOK --> ShowSuccess[🎉 ¡Instalación completada!]
+
+    ShowSuccess --> NextSteps[📚 Mostrar próximos pasos:<br/>1. nvim<br/>2. Esperar Mason LSP (~1 min)<br/>3. Reiniciar<br/>4. :help ariadna]
+
+    NextSteps --> ShowKeybindings[⌨️ Mostrar keybindings esenciales:<br/>Space Space - Buscar archivos<br/>Space e - Explorador<br/>Space h - Ayuda]
+
+    ShowKeybindings --> ShowBranding[🏛️ Hecho con <3 por icarus.mx]
+
+    ShowBranding --> Complete([✨ Usuario listo para usar Neovim])
+
+    style Start fill:#7dcfff,stroke:#1f2335,stroke-width:3px
+    style Complete fill:#9ece6a,stroke:#1f2335,stroke-width:3px
+    style ErrorRoot fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorBrew fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorPM fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorWin fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorOS fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorGit fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorOwnership fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorWritable fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style ErrorDownload fill:#f7768e,stroke:#1f2335,stroke-width:2px
+    style VerifyNvim fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style ShowGit fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style PermsOK fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style DirsOK fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style DownloadsComplete fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style PluginsOK fill:#9ece6a,stroke:#1f2335,stroke-width:2px
+    style ShowProgress fill:#ff9e64,stroke:#1f2335,stroke-width:2px
+    style ProgressBar fill:#e0af68,stroke:#1f2335,stroke-width:2px
+    style ShowSuccess fill:#bb9af7,stroke:#1f2335,stroke-width:2px

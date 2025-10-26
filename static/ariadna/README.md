@@ -1,182 +1,242 @@
-# 🏛️ Ariadna
+# Ariadna
 
-**Configuración oficial de Neovim para estudiantes de Icarus**
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Neovim](https://img.shields.io/badge/Neovim-0.10.0+-green.svg)](https://neovim.io/)
+[![LazyVim](https://img.shields.io/badge/LazyVim-Latest-blue.svg)](https://lazyvim.org/)
+[![Icarus](https://img.shields.io/badge/icarus.mx-Powered-orange.svg)](https://icarus.mx)
 
-Ariadna es una distribución de [LazyVim](https://lazyvim.org) optimizada para el stack de Icarus, con tema personalizado, plugins esenciales y documentación en español.
+**Configuración profesional de Neovim lista en 3 minutos**
+
+Ariadna es una distribución de [LazyVim](https://lazyvim.org) optimizada para desarrollo web moderno, con LSP servers pre-configurados, tema elegante y documentación completa en español. Diseñada especialmente para el stack de Icarus (SvelteKit 5 + Tailwind CSS 4 + JavaScript).
 
 > "Salgamos de este laberinto" 🏛️
 
 ---
 
-## ✨ Características
+## ¿Por qué Ariadna?
 
-### 🎨 Estética Icarus
-- **Tema**: Kanagawa Wave (modo transparente)
-- **Welcome screen**: Pantalla de bienvenida personalizada de Ariadna
-- **Iconos**: Nerd Fonts con símbolos de Icarus
+La configuración de Neovim puede tomar **días de trabajo**. Ariadna te lo da todo listo:
 
-### 🚀 Optimizado para el Stack de Icarus
-- **SvelteKit 5**: Syntax highlighting, LSP, snippets
-- **Tailwind CSS 4**: Autocompletado, color preview
-- **JavaScript/Node.js**: ESLint, Prettier, debugging
-
-### 📦 Plugins Pre-configurados
-- **Telescope**: Búsqueda rápida de archivos (Space+Space)
-- **Neotree**: Explorador de archivos (Space+e)
-- **Gitsigns**: Indicadores de Git en gutter
-- **Markdown**: Renderizado inline + preview con Shift+L
-- **LSP**: TypeScript, Svelte, Tailwind, Lua
-- **Treesitter**: Syntax highlighting avanzado
-
-### 📚 Documentación en Español
-- Cheatsheet de keybindings
-- Tutoriales integrados
-- Mensajes de ayuda traducidos
+- **Zero-Config**: Instala y empieza a programar, sin horas de configuración
+- **Stack Moderno**: LSP para SvelteKit 5, Tailwind CSS 4, TypeScript, JavaScript
+- **Documentación en Español**: Tutoriales, keybindings y ayuda en tu idioma
+- **Rendimiento**: Carga en <100ms con lazy loading inteligente
+- **Extensible**: Añade tus propios plugins fácilmente
+- **Mantenido activamente**: Actualizaciones regulares con las últimas herramientas
 
 ---
 
-## 📋 Requisitos
-
-- **Neovim** >= 0.10.0
-- **Git** >= 2.19.0
-- **Node.js** >= 18.0.0 (para LSP servers)
-- **Nerd Font** (recomendado: [JetBrains Mono](https://www.nerdfonts.com/font-downloads))
-- **Terminal con true color** (iTerm2, Alacritty, Wezterm)
-
----
-
-## 🚀 Instalación
-
-### Opción 1: Instalación Limpia (Recomendado para nuevos estudiantes)
+## Instalación Rápida
 
 ```bash
-# Respaldar configuración actual (si existe)
-mv ~/.config/nvim ~/.config/nvim.backup
-mv ~/.local/share/nvim ~/.local/share/nvim.backup
+bash <(curl -fsSL https://icarus.mx/ariadna/install.sh)
+```
 
-# Clonar Ariadna
-git clone https://github.com/icarusmx/ariadna.git ~/.config/nvim
+El instalador automáticamente:
+- ✅ Verifica e instala Neovim si no lo tienes
+- ✅ Detecta y previene problemas de permisos (common con sudo)
+- ✅ Respalda tu configuración existente con timestamp
+- ✅ Descarga la configuración de Ariadna
+- ✅ Instala plugins y LSP servers automáticamente
+- ✅ Valida Node.js y Git (necesarios para LSP)
 
-# Abrir Neovim (instalará plugins automáticamente)
+**Tiempo total**: ~3 minutos (primera vez) | ~30 segundos (re-instalación)
+
+**Flujo de instalación**: Ver [diagrama completo](docs/installation-flow.mmd) para detalles del proceso
+
+### Instalación Manual
+
+Si prefieres instalar paso a paso:
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/icarus-mx/ariadna.git ~/.config/nvim
+
+# 2. Abrir Neovim (instalará plugins automáticamente)
 nvim
-```
 
-**Primera vez:**
-- Lazy.nvim instalará todos los plugins (~2 minutos)
-- Mason instalará LSP servers automáticamente
-- Presiona `q` cuando termine
-- Reinicia Nvim: `:q` y vuelve a abrir `nvim`
+# 3. Esperar a que Mason instale LSP servers (~1 min)
+# 4. Reiniciar Neovim
+```
 
 ---
 
-### Opción 2: Probar sin Afectar tu Configuración
+## Características
+
+### Estética Profesional
+- **Tema**: Kanagawa Wave con transparencia elegante
+- **Dashboard**: Pantalla de bienvenida personalizada con logo ASCII
+- **Iconos**: Nerd Fonts para una interfaz moderna
+- **Statusline**: Información contextual sobre Git, LSP, archivo actual
+
+### Optimizado para Desarrollo Web
+- **SvelteKit 5**: Syntax highlighting avanzado + LSP completo + snippets
+- **Tailwind CSS 4**: Autocompletado inteligente + preview de colores inline
+- **TypeScript/JavaScript**: ESLint integrado + Prettier formatting + debugging
+- **Markdown**: Renderizado inline + preview con Glow (Shift+L)
+
+### Plugins Pre-configurados
+
+| Plugin | Función | Keybinding |
+|--------|---------|------------|
+| **Telescope** | Búsqueda ultrarrápida de archivos y texto | `Space Space` |
+| **Neo-tree** | Explorador de archivos con vista de árbol | `Space e` |
+| **Lazygit** | Interfaz Git completa dentro de Neovim | `Space gg` |
+| **Which-key** | Ayuda contextual de keybindings | `Space ?` |
+| **Gitsigns** | Indicadores de Git en el gutter + preview | `]c` / `[c` |
+| **Mason** | Gestión automática de LSP servers | `:Mason` |
+| **Treesitter** | Syntax highlighting contextual | Automático |
+
+### LSP Servers Incluidos
+
+Ariadna instala automáticamente estos Language Server Protocols:
+
+```lua
+{
+  "vtsls",                      -- TypeScript/JavaScript
+  "svelte-language-server",      -- SvelteKit 5
+  "tailwindcss-language-server", -- Tailwind CSS 4
+  "prettier",                    -- Code formatter
+  "eslint-lsp",                  -- JavaScript linter
+  "stylua",                      -- Lua formatter
+}
+```
+
+Esto te da:
+- ✅ Autocompletado inteligente
+- ✅ Diagnósticos en tiempo real
+- ✅ Go to definition / references
+- ✅ Refactoring automático
+- ✅ Formatting al guardar
+
+---
+
+## Arquitectura
+
+Ariadna está construido sobre una arquitectura modular que facilita la personalización:
+
+```
+~/.config/nvim/
+├── init.lua                 # Punto de entrada (3 líneas)
+└── lua/
+    ├── config/              # Configuración base
+    │   ├── lazy.lua         # Setup de Lazy.nvim
+    │   ├── options.lua      # Opciones de Vim
+    │   ├── keymaps.lua      # Atajos de teclado
+    │   └── autocmds.lua     # Auto-comandos
+    └── plugins/             # Plugins personalizados
+        ├── ariadna.lua      # Dashboard + Mason config
+        ├── colorscheme.lua  # Tema Kanagawa
+        ├── svelte.lua       # SvelteKit support
+        ├── tailwind.lua     # Tailwind CSS support
+        ├── markdown.lua     # Markdown tools
+        └── example.lua      # Plantilla para nuevos plugins
+```
+
+### Flujo de Inicio
+
+```mermaid
+sequenceDiagram
+    actor Usuario
+    participant Terminal
+    participant Neovim
+    participant Lazy as Lazy.nvim
+    participant Mason
+    participant LSP
+
+    Usuario->>Terminal: nvim
+    Terminal->>Neovim: Iniciar
+    Neovim->>Lazy: Cargar plugins (~50ms)
+    Lazy->>Mason: Verificar LSP servers
+    Mason->>LSP: Activar servers instalados
+    Lazy->>Terminal: Mostrar Dashboard
+    Note over Terminal: ⚡ Listo en <100ms
+```
+
+**Documentación completa**: Ver [docs/system-architecture.mmd](docs/system-architecture.mmd) para diagrama detallado
+
+---
+
+## Uso Básico
+
+### Keybindings Esenciales
+
+Los atajos más importantes que debes memorizar:
+
+```
+NAVEGACIÓN
+  Space Space    - Buscar archivos (Telescope)
+  Space e        - Explorador de archivos (Neo-tree)
+  Space /        - Buscar texto en proyecto (grep)
+  Space h        - Ayuda de Neovim
+  Ctrl-h/j/k/l   - Navegar entre ventanas
+
+GIT
+  Space gg       - Lazygit (interfaz Git completa)
+  ]c / [c        - Siguiente/anterior cambio de Git
+  Space gB       - Git blame (ver quién escribió la línea)
+
+LSP (mientras editas código)
+  gd             - Go to definition
+  gr             - Find references
+  K              - Hover documentation
+  Space ca       - Code actions (refactoring)
+  Space rn       - Rename variable/función
+
+BUFFER MANAGEMENT
+  Space bd       - Cerrar buffer actual
+  [ b / ] b      - Buffer anterior/siguiente
+
+MARKDOWN
+  Shift-L        - Preview con Glow (solo .md)
+```
+
+### Flujo de Trabajo Típico
 
 ```bash
-# Clonar en directorio temporal
-git clone https://github.com/icarusmx/ariadna.git ~/ariadna-test
+# 1. Abrir Neovim
+nvim
 
-# Abrir con configuración aislada
-NVIM_APPNAME=ariadna-test nvim
-```
+# 2. Buscar archivo (Space Space)
+# Escribes parte del nombre, Enter para abrir
 
-Esto no toca tu configuración actual de Nvim.
+# 3. Editar código
+# - LSP te da autocompletado mientras escribes
+# - Prettier formatea automáticamente al guardar (:w)
+# - ESLint muestra errores en tiempo real
 
----
+# 4. Commit con Lazygit (Space gg)
+# - Interfaz visual completa de Git
+# - Stage, commit, push sin salir de Neovim
 
-## ⌨️ Keybindings Esenciales
-
-### General
-| Keybinding | Acción |
-|------------|--------|
-| `<leader>` | Space (tecla líder) |
-| `<leader><leader>` | Buscar archivos (Telescope) |
-| `<leader>e` | Toggle explorador de archivos |
-| `<leader>ff` | Buscar archivos por nombre |
-| `<leader>fg` | Buscar texto en proyecto (grep) |
-| `<leader>fb` | Buscar buffers abiertos |
-| `<leader>fh` | Buscar ayuda |
-
-### Navegación
-| Keybinding | Acción |
-|------------|--------|
-| `Ctrl+h/j/k/l` | Navegar entre ventanas |
-| `<leader>sv` | Split vertical |
-| `<leader>sh` | Split horizontal |
-| `gd` | Ir a definición |
-| `gr` | Ver referencias |
-| `K` | Mostrar documentación (hover) |
-
-### Edición
-| Keybinding | Acción |
-|------------|--------|
-| `gcc` | Comentar/descomentar línea |
-| `gc` (visual) | Comentar selección |
-| `<leader>ca` | Code actions (refactors) |
-| `<leader>rn` | Renombrar símbolo |
-
-### Git
-| Keybinding | Acción |
-|------------|--------|
-| `<leader>gg` | Abrir Lazygit |
-| `]h` | Siguiente cambio (hunk) |
-| `[h` | Anterior cambio (hunk) |
-| `<leader>gp` | Preview cambio |
-
-### Markdown (solo en archivos .md)
-| Keybinding | Acción |
-|------------|--------|
-| `Shift+L` | Preview con Glow |
-
----
-
-## 🎓 Para Estudiantes de Icarus
-
-### Primer Día con Ariadna
-
-**1. Familiarízate con los modos:**
-- `Normal` - Navegación (ESC para volver aquí)
-- `Insert` - Edición (i, a, o para entrar)
-- `Visual` - Selección (v para entrar)
-- `Command` - Comandos (: para entrar)
-
-**2. Practica navegación básica:**
-```
-h j k l  → ← ↓ ↑
-w b      → Siguiente/anterior palabra
-gg G     → Inicio/fin de archivo
-Ctrl+d/u → Media página abajo/arriba
-```
-
-**3. Tu primer flujo de trabajo:**
-```
-1. nvim                    # Abrir Nvim
-2. Space Space             # Buscar archivo
-3. Type filename           # Escribir nombre
-4. Enter                   # Abrir archivo
-5. i                       # Entrar a modo Insert
-6. (editar código)
-7. Esc                     # Volver a Normal
-8. :w                      # Guardar
-9. Space e                 # Ver archivos
-10. :q                     # Salir
-```
-
-### Tutoriales Incluidos
-
-Ariadna incluye tutoriales interactivos:
-
-```vim
-:Tutor          " Tutorial oficial de Vim (español)
-:AriadnaBasics    " Básicos de Ariadna
-:AriadnaGit       " Flujo de Git con Lazygit
-:AriadnaSvelte    " Editar SvelteKit como pro
+# 5. Buscar en todo el proyecto (Space /)
+# - Grep ultrarrápido con preview
 ```
 
 ---
 
-## 🛠️ Personalización
+## Personalización
 
-### Cambiar Tema
+### Añadir un Nuevo Plugin
+
+Crea un archivo en `~/.config/nvim/lua/plugins/`:
+
+```lua
+-- ~/.config/nvim/lua/plugins/mi-plugin.lua
+return {
+  {
+    "autor/nombre-del-plugin",
+    event = "VeryLazy",  -- Lazy loading
+    opts = {
+      -- Configuración del plugin
+    },
+  },
+}
+```
+
+**Reinicia Neovim** y Lazy.nvim instalará el plugin automáticamente.
+
+### Cambiar el Tema
 
 Edita `~/.config/nvim/lua/plugins/colorscheme.lua`:
 
@@ -185,124 +245,282 @@ return {
   {
     "rebelot/kanagawa.nvim",
     opts = {
-      theme = "wave",  -- o "dragon" para más oscuro
-      transparent = false,  -- Cambia a false para fondo sólido
+      theme = "dragon",  -- Cambiar a 'dragon' o 'lotus'
+      transparent = false,  -- Deshabilitar transparencia
     },
   },
 }
 ```
 
-Temas alternativos:
-- `tokyonight` - Tokyo Night
-- `catppuccin` - Catppuccin Mocha
-- `rose-pine` - Rosé Pine
+### Añadir Keybindings Personalizados
 
-### Agregar Plugins
-
-Crea un archivo en `~/.config/nvim/lua/plugins/tu-plugin.lua`:
+Edita `~/.config/nvim/lua/config/keymaps.lua`:
 
 ```lua
-return {
-  {
-    "usuario/nombre-del-plugin",
-    opts = {
-      -- configuración
-    },
-  },
+local map = vim.keymap.set
+
+-- Ejemplo: Space w para guardar
+map("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo" })
+```
+
+### Instalar más LSP Servers
+
+Edita `~/.config/nvim/lua/plugins/ariadna.lua`:
+
+```lua
+{
+  "williamboman/mason.nvim",
+  opts = function(_, opts)
+    vim.list_extend(opts.ensure_installed, {
+      "rust-analyzer",  -- Añadir Rust
+      "pyright",        -- Añadir Python
+    })
+  end,
 }
 ```
 
-Guarda y ejecuta `:Lazy` para instalar.
+---
+
+## Requisitos del Sistema
+
+### Requisitos Mínimos
+
+- **Neovim**: >= 0.10.0 (se instala automáticamente si no lo tienes)
+- **Git**: >= 2.19.0 (para clonar plugins)
+- **Node.js**: >= 18.0.0 (para LSP servers de JavaScript/TypeScript)
+- **Sistema Operativo**: macOS, Linux, Windows (WSL)
+
+### Requisitos Opcionales
+
+- **Nerd Font**: Para iconos (recomendado: JetBrains Mono Nerd Font)
+- **Glow**: Para preview de Markdown (`brew install glow` en macOS)
+- **ripgrep**: Para búsquedas ultrarrápidas (generalmente ya incluido)
+- **fd**: Para búsqueda de archivos más rápida (opcional)
+
+### Instalar Nerd Font (Recomendado)
+
+Los iconos de Ariadna requieren una Nerd Font:
+
+```bash
+# macOS
+brew tap homebrew/cask-fonts
+brew install font-jetbrains-mono-nerd-font
+
+# Linux (manual)
+# Descarga de: https://www.nerdfonts.com/font-downloads
+# Instala JetBrains Mono Nerd Font
+```
+
+Luego configura tu terminal para usar "JetBrainsMono Nerd Font".
 
 ---
 
-## 📁 Estructura del Proyecto
+## Troubleshooting
 
+### Error: "Permission denied" al abrir Neovim
+
+**Causa**: Ejecutaste el instalador con `sudo`, lo que crea archivos con permisos de root.
+
+**Solución**:
+```bash
+# Eliminar configuración con permisos incorrectos
+sudo rm -rf ~/.config/nvim ~/.local/share/nvim ~/.cache/nvim ~/.local/state/nvim
+
+# Re-instalar SIN sudo
+bash <(curl -fsSL https://icarus.mx/ariadna/install.sh)
 ```
-~/.config/nvim/
-├── init.lua                 # Punto de entrada
-├── lua/
-│   ├── config/
-│   │   ├── autocmds.lua    # Auto-comandos
-│   │   ├── keymaps.lua     # Keybindings personalizados
-│   │   ├── lazy.lua        # Configuración de Lazy.nvim
-│   │   └── options.lua     # Opciones de Vim
-│   └── plugins/
-│       ├── colorscheme.lua # Tema Kanagawa
-│       ├── markdown.lua    # Plugins de Markdown
-│       ├── svelte.lua      # SvelteKit support
-│       ├── tailwind.lua    # Tailwind CSS support
-│       └── ariadna.lua     # Utilidades de Icarus
-└── README.md
+
+### Plugins no se instalan
+
+**Causa**: Git no está instalado o hay problemas de red.
+
+**Solución**:
+```bash
+# Verificar Git
+git --version
+
+# Reinstalar plugins manualmente
+nvim
+:Lazy sync
+```
+
+### LSP no funciona en archivos .svelte
+
+**Causa**: Node.js no está instalado o svelte-language-server falló.
+
+**Solución**:
+```bash
+# Verificar Node.js
+node --version  # Debe ser >= 18.0.0
+
+# Reinstalar LSP server
+nvim
+:Mason
+# Buscar "svelte-language-server" y reinstalar
+```
+
+### El tema no se ve bien
+
+**Causa**: Tu terminal no soporta true color o no estás usando una Nerd Font.
+
+**Solución**:
+```bash
+# Verificar soporte de colores
+echo $TERM  # Debe ser xterm-256color o similar
+
+# En tu terminal, habilita true color
+# Para iTerm2: Preferences > Profiles > Terminal > Report Terminal Type = xterm-256color
+
+# Instalar Nerd Font (ver sección Requisitos Opcionales)
+```
+
+### Problemas con permisos en ~/.cache
+
+**Causa**: Directorio cache con owner incorrecto.
+
+**Solución**:
+```bash
+# Verificar owner
+ls -ld ~/.cache
+
+# Si es root, cambiarlo
+sudo chown -R $USER:$(id -gn) ~/.cache
 ```
 
 ---
 
-## 🆘 Ayuda
+## Actualizaciones
 
-### Dentro de Nvim
+Ariadna se actualiza automáticamente con Lazy.nvim:
+
 ```vim
-:help ariadna              " Ayuda de Ariadna
-:Lazy                    " Ver/actualizar plugins
-:Mason                   " Ver/instalar LSP servers
-:checkhealth             " Diagnosticar problemas
-:LspInfo                 " Ver LSP servers activos
+:Lazy sync
 ```
 
-### Problemas Comunes
+Esto actualiza:
+- ✅ LazyVim core
+- ✅ Todos los plugins
+- ✅ Configuración de Ariadna (si clonaste el repo)
 
-**LSP no funciona:**
+Para actualizar LSP servers:
+
 ```vim
 :Mason
-# Buscar e instalar: vtsls, svelte-language-server, tailwindcss-language-server
+# Presiona 'U' para actualizar todos
 ```
 
-**Iconos no se ven bien:**
-- Instala una Nerd Font: https://www.nerdfonts.com
-- Configura tu terminal para usarla
+---
 
-**Plugins no cargan:**
+## Desinstalación
+
+Si quieres volver a tu configuración anterior:
+
+```bash
+# 1. Eliminar Ariadna
+rm -rf ~/.config/nvim
+
+# 2. Restaurar tu backup (si existe)
+mv ~/.config/nvim.backup.YYYYMMDD_HHMMSS ~/.config/nvim
+
+# 3. Limpiar datos de plugins
+rm -rf ~/.local/share/nvim
+rm -rf ~/.cache/nvim
+rm -rf ~/.local/state/nvim
+```
+
+---
+
+## Recursos de Aprendizaje
+
+### Dentro de Neovim
+
 ```vim
-:Lazy sync    " Sincronizar plugins
-:Lazy clean   " Limpiar plugins no usados
+:help ariadna           " Documentación completa de Ariadna
+:Tutor                  " Tutorial interactivo de Vim
+:checkhealth            " Verificar estado de Neovim
+:LazyVim                " Documentación de LazyVim
 ```
 
----
+### Documentación Externa
 
-## 🤝 Contribuir
+- **[LazyVim Docs](https://lazyvim.org)**: Distribución base de Ariadna
+- **[Neovim Docs](https://neovim.io/doc)**: Documentación oficial
+- **[ThePrimeagen - Vim Master](https://www.youtube.com/c/theprimeagen)**: Videos de Vim/Neovim
+- **[TJ DeVries - Neovim Core](https://www.youtube.com/c/tjdevries)**: Configuración avanzada
 
-Ariadna es open source y acepta contribuciones de estudiantes de Icarus.
+### Comunidad Icarus
 
-**Cómo contribuir:**
-1. Fork el repositorio
-2. Crea una rama: `git checkout -b feature/mi-mejora`
-3. Commit: `git commit -m "Agrega X funcionalidad"`
-4. Push: `git push origin feature/mi-mejora`
-5. Abre Pull Request
-
-**Ideas para contribuir:**
-- Snippets para SvelteKit/Tailwind
-- Temas de colores personalizados
-- Tutoriales en español
-- Mejoras al README
+- **Discord**: [icarus.mx/discord](https://icarus.mx/discord)
+- **Twitter**: [@icarus_mx](https://twitter.com/icarus_mx)
+- **GitHub**: [github.com/icarus-mx](https://github.com/icarus-mx)
 
 ---
 
-## 📜 Licencia
+## Contribuir
 
-MIT License - Ver [LICENSE](LICENSE) para más detalles
+Ariadna es open source y acepta contribuciones:
+
+```bash
+# 1. Fork el repositorio
+# 2. Crea una rama para tu feature
+git checkout -b feature/mi-mejora
+
+# 3. Haz tus cambios
+# 4. Commit con mensaje descriptivo
+git commit -m "feat: añadir soporte para Python"
+
+# 5. Push y crea un Pull Request
+git push origin feature/mi-mejora
+```
+
+### Áreas donde ayudar:
+
+- 📝 Mejorar documentación y tutoriales
+- 🐛 Reportar bugs o problemas de instalación
+- ✨ Sugerir nuevos plugins o LSP servers
+- 🌍 Traducciones a otros idiomas
+- 🎨 Mejoras al tema o dashboard
 
 ---
 
-## 🏛️ Sobre Icarus
+## Filosofía
 
-Ariadna es parte del ecosistema educativo de [Icarus](https://icarus.mx), una escuela de software que forma desarrolladores mediante proyectos reales.
+Ariadna sigue estos principios:
 
-**Otros proyectos de Icarus:**
-- [Creta CLI](https://github.com/icarusmx/creta) - Escuela interactiva de comandos
-- [Scythe](https://github.com/icarusmx/scythe) - Sistema de recompensas blockchain
-- [Constructores](https://github.com/icarusmx/constructores) - Comunidad de desarrolladores
+1. **Zero-Config First**: Debe funcionar perfectamente sin configuración
+2. **Stack-Specific**: Optimizado para tecnologías específicas, no genérico
+3. **Educational**: Código documentado para que aprendas cómo funciona
+4. **Performance Matters**: Cada plugin debe justificar su impacto en startup
+5. **Spanish-First**: Documentación completa en español, sin compromisos
 
 ---
 
-**Hecho con <3 por icarus.mx** - Salgamos de este laberinto
+## Licencia
+
+MIT License - ver [LICENSE](LICENSE) para detalles
+
+Copyright (c) 2025 [Icarus](https://icarus.mx)
+
+---
+
+## Agradecimientos
+
+Ariadna está construido sobre el trabajo de:
+
+- **[LazyVim](https://lazyvim.org)** por [@folke](https://github.com/folke) - Distribución base excelente
+- **[Lazy.nvim](https://github.com/folke/lazy.nvim)** - Gestor de plugins moderno
+- **[Neovim](https://neovim.io)** - El mejor editor de texto
+- **[Mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP package manager
+- **[Kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)** - Tema visual hermoso
+
+---
+
+<div align="center">
+
+**Hecho con ❤️ por [Icarus](https://icarus.mx)**
+
+*"Salgamos de este laberinto"* 🏛️
+
+[Website](https://icarus.mx) • [Twitter](https://twitter.com/icarus_mx) • [GitHub](https://github.com/icarus-mx)
+
+</div>
