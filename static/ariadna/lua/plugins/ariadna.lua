@@ -1,5 +1,9 @@
 -- Ariadna/Icarus specific customizations
 return {
+  -- Disable LazyVim's default dashboards
+  { "goolord/alpha-nvim", enabled = false },
+  { "echasnovski/mini.starter", enabled = false },
+
   -- Dashboard with Ariadna branding
   {
     "nvimdev/dashboard-nvim",
