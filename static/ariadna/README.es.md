@@ -1,4 +1,4 @@
-# Creta Vim
+# Ariadna
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Neovim](https://img.shields.io/badge/Neovim-0.10.0+-green.svg)](https://neovim.io/)
@@ -7,7 +7,7 @@
 
 **Configuración oficial de Neovim para estudiantes de Icarus**
 
-Creta Vim es una distribución de [LazyVim](https://lazyvim.org) optimizada para el stack de Icarus, con tema personalizado, plugins esenciales y documentación en español.
+Ariadna es una distribución de [LazyVim](https://lazyvim.org) optimizada para el stack de Icarus, con tema personalizado, plugins esenciales y documentación en español.
 
 > "Salgamos de este laberinto" 🏛️
 
@@ -15,9 +15,9 @@ Creta Vim es una distribución de [LazyVim](https://lazyvim.org) optimizada para
 
 ## Descripción
 
-Creta Vim transforma Neovim en un entorno de desarrollo moderno y potente, diseñado específicamente para desarrolladores que trabajan con SvelteKit 5, Tailwind CSS 4 y JavaScript/Node.js. Como estudiante de Icarus, tendrás acceso a una configuración profesional sin la complejidad de construirla desde cero.
+Ariadna transforma Neovim en un entorno de desarrollo moderno y potente, diseñado específicamente para desarrolladores que trabajan con SvelteKit 5, Tailwind CSS 4 y JavaScript/Node.js. Como estudiante de Icarus, tendrás acceso a una configuración profesional sin la complejidad de construirla desde cero.
 
-**Por qué usar Creta Vim:**
+**Por qué usar Ariadna:**
 
 - **Configuración Zero-Config**: Funciona perfectamente desde el primer momento, sin horas de configuración
 - **Optimizado para Icarus Stack**: LSP pre-configurados para SvelteKit, Tailwind y Node.js
@@ -32,7 +32,7 @@ Creta Vim transforma Neovim en un entorno de desarrollo moderno y potente, dise�
 
 ### Estética Icarus
 - **Tema**: Kanagawa Wave con modo transparente elegante
-- **Welcome screen**: Pantalla de bienvenida personalizada de Creta
+- **Welcome screen**: Pantalla de bienvenida personalizada de Ariadna
 - **Iconos**: Nerd Fonts con símbolos cuidadosamente seleccionados
 - **Interfaz moderna**: Statusline, bufferline y file explorer integrados
 
@@ -62,7 +62,7 @@ Creta Vim transforma Neovim en un entorno de desarrollo moderno y potente, dise�
 
 ## Arquitectura
 
-Creta Vim está construido sobre una arquitectura modular que facilita la personalización y el mantenimiento:
+Ariadna está construido sobre una arquitectura modular que facilita la personalización y el mantenimiento:
 
 ### Diagrama de Arquitectura del Sistema
 
@@ -73,13 +73,13 @@ graph TB
         NerdFont["Nerd Fonts<br/>(JetBrains Mono)"]
     end
 
-    subgraph "Creta Vim Core"
+    subgraph "Ariadna Core"
         Neovim["Neovim >= 0.10.0<br/>Motor principal"]
         LazyVim["LazyVim<br/>Distribución base"]
         Lazy["Lazy.nvim<br/>Gestor de plugins"]
     end
 
-    subgraph "Configuración Creta"
+    subgraph "Configuración Ariadna"
         InitLua["init.lua<br/>Punto de entrada"]
         ConfigLayer["config/<br/>Configuraciones base"]
         PluginLayer["plugins/<br/>Plugins personalizados"]
@@ -97,7 +97,7 @@ graph TB
 
 ### Flujo de Inicialización
 
-Cuando ejecutas `nvim`, Creta Vim realiza el siguiente flujo:
+Cuando ejecutas `nvim`, Ariadna realiza el siguiente flujo:
 
 1. **Bootstrap**: Verifica e instala Lazy.nvim si es necesario
 2. **Carga de configuración**: Importa LazyVim base y plugins personalizados
@@ -154,8 +154,8 @@ Si es tu primera vez con Neovim o quieres empezar de cero:
 mv ~/.config/nvim ~/.config/nvim.backup.$(date +%Y%m%d)
 mv ~/.local/share/nvim ~/.local/share/nvim.backup.$(date +%Y%m%d)
 
-# 2. Clonar Creta Vim
-git clone https://github.com/icarusmx/creta-vim.git ~/.config/nvim
+# 2. Clonar Ariadna
+git clone https://github.com/icarusmx/ariadna.git ~/.config/nvim
 
 # 3. Abrir Neovim (instalará plugins automáticamente)
 nvim
@@ -166,7 +166,7 @@ nvim
 1. Lazy.nvim se instalará automáticamente (~10 segundos)
 2. Todos los plugins se descargarán (~2 minutos)
 3. Mason instalará LSP servers en segundo plano (~1-2 minutos)
-4. Verás el dashboard de Creta Vim
+4. Verás el dashboard de Ariadna
 5. Presiona `q` cuando termine la instalación
 6. Reinicia Neovim: `:q` y vuelve a abrir `nvim`
 
@@ -176,10 +176,10 @@ Usa el script automatizado que incluye verificaciones de dependencias:
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/icarusmx/creta-vim.git ~/creta-vim-temp
+git clone https://github.com/icarusmx/ariadna.git ~/ariadna-temp
 
 # Ejecutar instalador
-cd ~/creta-vim-temp
+cd ~/ariadna-temp
 chmod +x install.sh
 ./install.sh
 ```
@@ -187,19 +187,19 @@ chmod +x install.sh
 El script:
 - Verifica que Neovim, Git y Node.js estén instalados
 - Crea respaldos automáticos de tu configuración actual
-- Instala Creta Vim en `~/.config/nvim`
+- Instala Ariadna en `~/.config/nvim`
 - Ejecuta la sincronización inicial de plugins
 
 ### Opción 3: Probar sin Afectar tu Configuración
 
-Si ya usas Neovim y quieres probar Creta Vim sin tocar tu setup:
+Si ya usas Neovim y quieres probar Ariadna sin tocar tu setup:
 
 ```bash
 # Clonar en directorio temporal
-git clone https://github.com/icarusmx/creta-vim.git ~/creta-vim-test
+git clone https://github.com/icarusmx/ariadna.git ~/ariadna-test
 
 # Abrir con configuración aislada
-NVIM_APPNAME=creta-vim-test nvim
+NVIM_APPNAME=ariadna-test nvim
 ```
 
 Esto crea una instalación completamente independiente. Tu configuración actual no se toca.
@@ -223,13 +223,13 @@ Después de instalar, verifica que todo funcione correctamente:
 
 ### Primera Sesión: Flujo Básico
 
-Aquí está tu primer flujo de trabajo con Creta Vim:
+Aquí está tu primer flujo de trabajo con Ariadna:
 
 ```bash
 # 1. Abrir Neovim
 nvim
 
-# 2. Verás el dashboard de Creta Vim
+# 2. Verás el dashboard de Ariadna
 # Presiona 'f' para buscar archivos o 'n' para nuevo archivo
 
 # 3. Buscar un archivo con Telescope
@@ -298,7 +298,7 @@ nvim
 
 ### Trabajar con SvelteKit
 
-Creta Vim está optimizado para SvelteKit 5. Al abrir un archivo `.svelte`:
+Ariadna está optimizado para SvelteKit 5. Al abrir un archivo `.svelte`:
 
 **Autocompletado inteligente:**
 ```svelte
@@ -347,7 +347,7 @@ El LSP de Tailwind provee:
 
 ## Guía para Estudiantes de Icarus
 
-### Primer Día con Creta Vim
+### Primer Día con Ariadna
 
 **1. Familiarízate con los modos de Vim:**
 
@@ -403,11 +403,11 @@ $        →  Fin de línea
 
 ### Tutoriales Incluidos
 
-Creta Vim incluye tutoriales interactivos. Ejecútalos desde dentro de Neovim:
+Ariadna incluye tutoriales interactivos. Ejecútalos desde dentro de Neovim:
 
 ```vim
 :Tutor          " Tutorial oficial de Vim (en español cuando esté disponible)
-:help creta     " Ayuda de Creta Vim
+:help ariadna     " Ayuda de Ariadna
 :help <leader>  " Ayuda sobre la tecla líder
 ```
 
@@ -441,7 +441,7 @@ Creta Vim incluye tutoriales interactivos. Ejecútalos desde dentro de Neovim:
 
 ## Personalización
 
-Creta Vim está diseñado para ser tu punto de partida, no tu punto final. Aquí te mostramos cómo personalizarlo:
+Ariadna está diseñado para ser tu punto de partida, no tu punto final. Aquí te mostramos cómo personalizarlo:
 
 ### Cambiar el Tema
 
@@ -645,9 +645,9 @@ return {
 │   │   ├── keymaps.lua       # Keybindings personalizados
 │   │   └── autocmds.lua      # Auto-comandos (eventos automáticos)
 │   │
-│   └── plugins/              # Plugins personalizados de Creta
+│   └── plugins/              # Plugins personalizados de Ariadna
 │       ├── colorscheme.lua   # Tema Kanagawa con transparencia
-│       ├── creta.lua         # Dashboard + LSP auto-install (Mason)
+│       ├── ariadna.lua         # Dashboard + LSP auto-install (Mason)
 │       ├── svelte.lua        # SvelteKit 5 support (Treesitter + LSP)
 │       ├── tailwind.lua      # Tailwind CSS 4 support
 │       ├── markdown.lua      # Markdown preview con Glow
@@ -664,7 +664,7 @@ return {
 
 - **init.lua**: Ejecuta `require("config.lazy")` para iniciar todo
 - **config/lazy.lua**: Configura Lazy.nvim e importa LazyVim + plugins personalizados
-- **plugins/creta.lua**: Define el dashboard de Creta y LSP servers esenciales
+- **plugins/ariadna.lua**: Define el dashboard de Ariadna y LSP servers esenciales
 - **plugins/*.lua**: Cada archivo es un plugin o conjunto de plugins relacionados
 
 **Flujo de carga:**
@@ -832,17 +832,17 @@ Si ninguna de las soluciones anteriores funciona:
 
 1. **Documentación integrada:**
    ```vim
-   :help creta
+   :help ariadna
    :help lazy.nvim
    :help lspconfig
    ```
 
 2. **Comunidad de Icarus:**
-   - Slack de Icarus: canal `#creta-vim`
+   - Slack de Icarus: canal `#ariadna`
    - Discord de Icarus
 
 3. **GitHub Issues:**
-   - Reporta bugs: https://github.com/icarusmx/creta-vim/issues
+   - Reporta bugs: https://github.com/icarusmx/ariadna/issues
    - Busca problemas similares antes de crear uno nuevo
 
 4. **LazyVim Docs:**
@@ -853,7 +853,7 @@ Si ninguna de las soluciones anteriores funciona:
 
 ## Contribuir
 
-Creta Vim es open source y acepta contribuciones de estudiantes de Icarus y la comunidad en general.
+Ariadna es open source y acepta contribuciones de estudiantes de Icarus y la comunidad en general.
 
 ### Cómo Contribuir
 
@@ -862,8 +862,8 @@ Creta Vim es open source y acepta contribuciones de estudiantes de Icarus y la c
 ```bash
 # En GitHub, haz clic en "Fork"
 # Luego clona tu fork:
-git clone https://github.com/TU-USUARIO/creta-vim.git
-cd creta-vim
+git clone https://github.com/TU-USUARIO/ariadna.git
+cd ariadna
 ```
 
 **2. Crea una rama para tu feature:**
@@ -924,7 +924,7 @@ git push origin feature/mi-mejora
 **Avanzado:**
 - Optimizar tiempos de carga
 - Integrar herramientas de testing
-- Crear comandos personalizados de Creta
+- Crear comandos personalizados de Ariadna
 - Mejorar integración con Lazygit
 
 ### Guía de Estilo
@@ -954,15 +954,15 @@ Todos los PRs pasan por code review antes de merge:
 - Verifica que no rompa la configuración existente
 - Prueba en múltiples escenarios
 - Documenta cambios significativos
-- Mantiene consistencia con el estilo de Creta
+- Mantiene consistencia con el estilo de Ariadna
 
 ---
 
 ## Actualizaciones
 
-### Actualizar Creta Vim
+### Actualizar Ariadna
 
-Para obtener las últimas mejoras de Creta Vim:
+Para obtener las últimas mejoras de Ariadna:
 
 ```bash
 # Navegar a tu configuración de Neovim
@@ -1030,9 +1030,9 @@ git log v1.0.0..v1.1.0
 
 ## Comparación con Otras Configuraciones
 
-### Creta Vim vs Configuración desde Cero
+### Ariadna vs Configuración desde Cero
 
-| Aspecto | Creta Vim | Desde Cero |
+| Aspecto | Ariadna | Desde Cero |
 |---------|-----------|------------|
 | Tiempo de setup | 5 minutos | Varias horas/días |
 | LSP configurado | Automático | Manual complejo |
@@ -1041,9 +1041,9 @@ git log v1.0.0..v1.1.0
 | Soporte | Comunidad Icarus | Solo tú |
 | Optimización | Pre-optimizado | Trial and error |
 
-### Creta Vim vs LazyVim vanilla
+### Ariadna vs LazyVim vanilla
 
-| Aspecto | Creta Vim | LazyVim |
+| Aspecto | Ariadna | LazyVim |
 |---------|-----------|---------|
 | Base | LazyVim | LazyVim |
 | Idioma | Español | Inglés |
@@ -1052,9 +1052,9 @@ git log v1.0.0..v1.1.0
 | LSP | Auto-install para stack | Manual |
 | Documentación | Guías para principiantes | Docs técnicos |
 
-### Creta Vim vs VSCode
+### Ariadna vs VSCode
 
-| Aspecto | Creta Vim | VSCode |
+| Aspecto | Ariadna | VSCode |
 |---------|-----------|---------|
 | Velocidad | Ultrarrápido (<100ms) | Lento (varios segundos) |
 | Recursos | Mínimos (~50MB RAM) | Altos (500MB+ RAM) |
@@ -1064,7 +1064,7 @@ git log v1.0.0..v1.1.0
 | Soporte mouse | Limitado | Completo |
 | Remote development | SSH nativo | Extensión |
 
-**Cuándo usar Creta Vim:**
+**Cuándo usar Ariadna:**
 - Trabajas en servidores remotos vía SSH
 - Quieres velocidad y eficiencia máxima
 - Te gusta la personalización total
@@ -1082,13 +1082,13 @@ git log v1.0.0..v1.1.0
 
 ### General
 
-**P: Necesito saber Vim para usar Creta Vim?**
+**P: Necesito saber Vim para usar Ariadna?**
 R: No es necesario ser experto, pero sí debes aprender los básicos. Dedica una semana a practicar movimientos y modos. El tutorial incluido (`:Tutor`) es un excelente punto de partida.
 
-**P: Puedo usar Creta Vim en Windows?**
+**P: Puedo usar Ariadna en Windows?**
 R: Sí, Neovim funciona en Windows. Usa WSL2 para mejor experiencia, o instala Neovim nativo para Windows. Los paths cambiarán a `~/AppData/Local/nvim/`.
 
-**P: Cuánto espacio ocupa Creta Vim?**
+**P: Cuánto espacio ocupa Ariadna?**
 R: Aproximadamente 200-300MB después de instalar todos los plugins y LSP servers.
 
 **P: Afecta mi configuración de Vim/Vi normal?**
@@ -1096,7 +1096,7 @@ R: No. Neovim usa `~/.config/nvim/`, mientras que Vim usa `~/.vimrc`. Son comple
 
 ### Configuración
 
-**P: Puedo usar Creta Vim sin LazyVim?**
+**P: Puedo usar Ariadna sin LazyVim?**
 R: Técnicamente sí, pero no es recomendado. LazyVim provee muchísima funcionalidad base que tendrías que replicar manualmente.
 
 **P: Cómo desactivo un plugin que no uso?**
@@ -1200,7 +1200,7 @@ Características actuales en producción.
 ### Próximas Versiones
 
 **v1.1.0 - Mejoras de UX** (Próximo)
-- Tutoriales interactivos en español (`:CretaBasics`, `:CretaGit`)
+- Tutoriales interactivos en español (`:AriadnaBasics`, `:AriadnaGit`)
 - Snippets personalizados para SvelteKit y Tailwind
 - Mejoras al dashboard con estadísticas de proyecto
 - Keybindings adicionales para workflows comunes
@@ -1225,7 +1225,7 @@ Características actuales en producción.
 - Terminal integrado mejorado
 - Integración con Docker/Kubernetes
 
-**Vota por features o sugiere nuevas**: https://github.com/icarusmx/creta-vim/discussions
+**Vota por features o sugiere nuevas**: https://github.com/icarusmx/ariadna/discussions
 
 ---
 
@@ -1247,7 +1247,7 @@ Ver [LICENSE](LICENSE) para más detalles.
 
 ## Sobre Icarus
 
-Creta Vim es parte del ecosistema educativo de [Icarus](https://icarus.mx), una escuela de software que forma desarrolladores mediante proyectos reales y metodologías innovadoras.
+Ariadna es parte del ecosistema educativo de [Icarus](https://icarus.mx), una escuela de software que forma desarrolladores mediante proyectos reales y metodologías innovadoras.
 
 ### Filosofía Icarus
 
@@ -1257,7 +1257,7 @@ Icarus cree en el aprendizaje a través de la práctica, la construcción de her
 
 ### Otros Proyectos de Icarus
 
-- **[Creta CLI](https://github.com/icarusmx/creta)** - Escuela interactiva de línea de comandos
+- **[Creta CLI](https://github.com/icarusmx/ariadna)** - Escuela interactiva de línea de comandos
   - Aprende Bash, Git, y más con lecciones prácticas
   - Progresión gamificada con recompensas
   - Integración con Scythe blockchain
@@ -1283,7 +1283,7 @@ Icarus cree en el aprendizaje a través de la práctica, la construcción de her
 
 ## Agradecimientos
 
-Creta Vim no sería posible sin estas increíbles herramientas y comunidades:
+Ariadna no sería posible sin estas increíbles herramientas y comunidades:
 
 - **[Neovim](https://neovim.io)** - El editor de texto más potente y extensible
 - **[LazyVim](https://lazyvim.org)** - La distribución que hace Neovim accesible
@@ -1294,7 +1294,7 @@ Creta Vim no sería posible sin estas increíbles herramientas y comunidades:
 
 ### Contribuidores
 
-Gracias a todos los que han contribuido a Creta Vim:
+Gracias a todos los que han contribuido a Ariadna:
 
 <!-- Esto se actualiza automáticamente con contributors de GitHub -->
 

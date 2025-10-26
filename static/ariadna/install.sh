@@ -14,15 +14,68 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+# Function to install Neovim
+install_neovim() {
+    echo -e "${YELLOW}⚠️  Neovim no está instalado${NC}"
+    echo "   Instalando Neovim automáticamente..."
+    echo ""
+
+    # Detect OS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        if command -v brew &> /dev/null; then
+            echo "   Usando Homebrew..."
+            brew install neovim
+        else
+            echo -e "${RED}❌ Homebrew no está instalado${NC}"
+            echo "   Instala Homebrew primero: https://brew.sh"
+            exit 1
+        fi
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux - detect package manager
+        if command -v apt-get &> /dev/null; then
+            echo "   Usando apt (Debian/Ubuntu)..."
+            sudo apt-get update
+            sudo apt-get install -y neovim
+        elif command -v dnf &> /dev/null; then
+            echo "   Usando dnf (Fedora)..."
+            sudo dnf install -y neovim
+        elif command -v pacman &> /dev/null; then
+            echo "   Usando pacman (Arch)..."
+            sudo pacman -S --noconfirm neovim
+        elif command -v zypper &> /dev/null; then
+            echo "   Usando zypper (openSUSE)..."
+            sudo zypper install -y neovim
+        else
+            echo -e "${RED}❌ No se pudo detectar un gestor de paquetes compatible${NC}"
+            echo "   Por favor instala Neovim manualmente: https://github.com/neovim/neovim/releases"
+            exit 1
+        fi
+    elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
+        # Windows (Git Bash/Cygwin)
+        if command -v winget &> /dev/null; then
+            echo "   Usando winget..."
+            winget install Neovim.Neovim
+        elif command -v choco &> /dev/null; then
+            echo "   Usando Chocolatey..."
+            choco install neovim -y
+        else
+            echo -e "${RED}❌ No se encontró winget o Chocolatey${NC}"
+            echo "   Por favor instala Neovim manualmente: https://github.com/neovim/neovim/releases"
+            exit 1
+        fi
+    else
+        echo -e "${RED}❌ Sistema operativo no soportado: $OSTYPE${NC}"
+        echo "   Por favor instala Neovim manualmente: https://github.com/neovim/neovim/releases"
+        exit 1
+    fi
+
+    echo -e "${GREEN}✓${NC} Neovim instalado correctamente"
+}
+
 # Check Neovim version
 if ! command -v nvim &> /dev/null; then
-    echo -e "${RED}❌ Neovim no está instalado${NC}"
-    echo ""
-    echo "Instala Neovim primero:"
-    echo "  macOS:   brew install neovim"
-    echo "  Linux:   https://github.com/neovim/neovim/releases"
-    echo "  Windows: https://github.com/neovim/neovim/releases"
-    exit 1
+    install_neovim
 fi
 
 NVIM_VERSION=$(nvim --version | head -n1 | sed 's/NVIM v//')
