@@ -118,11 +118,78 @@ if [ -d "$HOME/.local/share/nvim" ]; then
 fi
 
 echo ""
-echo "📥 Clonando Ariadna desde GitHub..."
+echo "🏛️  Siguiendo el hilo de Ariadna..."
+echo ""
 
-# Clone from GitHub
-git clone https://github.com/icarusmx/ariadna.git "$HOME/.config/nvim"
-echo -e "${GREEN}✓${NC} Repositorio clonado"
+# Base URL for downloads
+BASE_URL="https://icarus.mx/ariadna"
+
+# Create directory structure
+mkdir -p "$HOME/.config/nvim/lua/config"
+mkdir -p "$HOME/.config/nvim/lua/plugins"
+
+# Files to download
+FILES=(
+    "init.lua"
+    "lua/config/autocmds.lua"
+    "lua/config/keymaps.lua"
+    "lua/config/lazy.lua"
+    "lua/config/options.lua"
+    "lua/plugins/ariadna.lua"
+    "lua/plugins/colorscheme.lua"
+    "lua/plugins/example.lua"
+    "lua/plugins/markdown.lua"
+    "lua/plugins/svelte.lua"
+    "lua/plugins/tailwind.lua"
+)
+
+# Fun loading messages
+MESSAGES=(
+    "Desenredando el laberinto..."
+    "Esquivando al Minotauro..."
+    "Siguiendo el hilo dorado..."
+    "Encontrando la salida..."
+    "Trazando el camino..."
+    "Navegando los pasillos..."
+    "Descubriendo secretos..."
+    "Iluminando el camino..."
+)
+
+TOTAL_FILES=${#FILES[@]}
+CURRENT=0
+
+# Download each file with progress
+for file in "${FILES[@]}"; do
+    CURRENT=$((CURRENT + 1))
+
+    # Pick a random message
+    MSG_INDEX=$((RANDOM % ${#MESSAGES[@]}))
+    MESSAGE="${MESSAGES[$MSG_INDEX]}"
+
+    # Progress bar
+    PERCENT=$((CURRENT * 100 / TOTAL_FILES))
+    FILLED=$((PERCENT / 10))
+    EMPTY=$((10 - FILLED))
+    BAR=$(printf '█%.0s' $(seq 1 $FILLED))
+    SPACE=$(printf '░%.0s' $(seq 1 $EMPTY))
+
+    # Display progress
+    printf "\r\033[K${MESSAGE} [${BAR}${SPACE}] %d%% - %s" "$PERCENT" "$(basename $file)"
+
+    # Download file
+    curl -fsSL "${BASE_URL}/${file}" -o "$HOME/.config/nvim/${file}" 2>/dev/null || {
+        echo ""
+        echo -e "${RED}❌ Error descargando ${file}${NC}"
+        exit 1
+    }
+
+    # Small delay for visual effect
+    sleep 0.1
+done
+
+echo ""
+echo ""
+echo -e "${GREEN}✓${NC} Hilo seguido - ¡Has escapado del laberinto!"
 
 echo ""
 echo "🎨 Instalando plugins y LSP servers..."
