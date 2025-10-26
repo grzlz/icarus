@@ -1,20 +1,21 @@
--- SvelteKit 5 support
+-- Svelte support with proper syntax highlighting
 return {
-  -- Svelte language support
+  -- Add Svelte treesitter parser
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
+      -- Add Svelte and related parsers
       vim.list_extend(opts.ensure_installed, {
         "svelte",
-        "javascript",
-        "typescript",
         "html",
         "css",
+        "javascript",
+        "typescript",
       })
     end,
   },
 
-  -- Svelte LSP
+  -- Svelte LSP support
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -22,31 +23,12 @@ return {
         svelte = {
           settings = {
             svelte = {
+              -- Enable experimental features for Svelte 5
               plugin = {
                 svelte = {
                   compilerWarnings = {
-                    ["a11y-aria-attributes"] = "ignore",
-                    ["a11y-incorrect-aria-attribute-type"] = "ignore",
-                    ["a11y-unknown-aria-attribute"] = "ignore",
-                    ["a11y-hidden"] = "ignore",
-                    ["a11y-misplaced-role"] = "ignore",
-                    ["a11y-unknown-role"] = "ignore",
-                    ["a11y-no-abstract-role"] = "ignore",
-                    ["a11y-no-redundant-roles"] = "ignore",
-                    ["a11y-role-has-required-aria-props"] = "ignore",
-                    ["a11y-accesskey"] = "ignore",
                     ["a11y-autofocus"] = "ignore",
-                    ["a11y-misplaced-scope"] = "ignore",
-                    ["a11y-positive-tabindex"] = "ignore",
-                    ["a11y-invalid-attribute"] = "ignore",
-                    ["a11y-missing-attribute"] = "ignore",
-                    ["a11y-img-redundant-alt"] = "ignore",
-                    ["a11y-label-has-associated-control"] = "ignore",
-                    ["a11y-media-has-caption"] = "ignore",
-                    ["a11y-distracting-elements"] = "ignore",
-                    ["a11y-structure"] = "ignore",
-                    ["a11y-mouse-events-have-key-events"] = "ignore",
-                    ["a11y-missing-content"] = "ignore",
+                    ["a11y-click-events-have-key-events"] = "ignore",
                   },
                 },
               },
@@ -55,16 +37,5 @@ return {
         },
       },
     },
-  },
-
-  -- Ensure svelte-language-server is installed
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, {
-        "svelte-language-server",
-      })
-    end,
   },
 }
