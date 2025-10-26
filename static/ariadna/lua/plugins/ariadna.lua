@@ -8,7 +8,8 @@ return {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
-    opts = function()
+    priority = 1000,
+    config = function()
       local logo = [[
 █████████████████████████████████████
 █   █   █   █   █   █   █   █   █
@@ -91,7 +92,7 @@ return {
         button.key_format = "  %s"
       end
 
-      return opts
+      require("dashboard").setup(opts)
     end,
   },
 
