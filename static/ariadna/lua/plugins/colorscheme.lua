@@ -4,14 +4,14 @@ return {
     priority = 1000,
     opts = {
       transparent = true,
-      theme = "wave", -- or "dragon" for even darker
+      theme = "lotus", -- light theme
     },
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "kanagawa-lotus",
     },
   },
 }
