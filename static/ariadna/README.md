@@ -28,8 +28,26 @@ La configuración de Neovim puede tomar **días de trabajo**. Ariadna te lo da t
 
 ## Instalación Rápida
 
+### macOS / Linux
+
 ```bash
 bash <(curl -fsSL https://icarus.mx/ariadna/install.sh)
+```
+
+### Windows (PowerShell)
+
+```powershell
+irm https://icarus.mx/ariadna/install.ps1 | iex
+```
+
+O descarga y ejecuta manualmente:
+
+```powershell
+# Descargar el instalador
+Invoke-WebRequest -Uri https://icarus.mx/ariadna/install.ps1 -OutFile install.ps1
+
+# Ejecutar (puede requerir cambiar política de ejecución temporalmente)
+powershell -ExecutionPolicy Bypass -File install.ps1
 ```
 
 El instalador automáticamente:
@@ -48,9 +66,22 @@ El instalador automáticamente:
 
 Si prefieres instalar paso a paso:
 
+**macOS / Linux:**
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/icarus-mx/ariadna.git ~/.config/nvim
+
+# 2. Abrir Neovim (instalará plugins automáticamente)
+nvim
+
+# 3. Esperar a que Mason instale LSP servers (~1 min)
+# 4. Reiniciar Neovim
+```
+
+**Windows:**
+```powershell
+# 1. Clonar el repositorio
+git clone https://github.com/icarus-mx/ariadna.git $env:LOCALAPPDATA\nvim
 
 # 2. Abrir Neovim (instalará plugins automáticamente)
 nvim
@@ -288,7 +319,7 @@ Edita `~/.config/nvim/lua/plugins/ariadna.lua`:
 - **Neovim**: >= 0.10.0 (se instala automáticamente si no lo tienes)
 - **Git**: >= 2.19.0 (para clonar plugins)
 - **Node.js**: >= 18.0.0 (para LSP servers de JavaScript/TypeScript)
-- **Sistema Operativo**: macOS, Linux, Windows (WSL)
+- **Sistema Operativo**: macOS, Linux, Windows (nativo con PowerShell o WSL)
 
 ### Requisitos Opcionales
 

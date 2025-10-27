@@ -1,0 +1,38 @@
+.
+├── LICENSE
+├── README.md
+├── docs
+│   ├── DOCUMENTATION_SUMMARY.md
+│   ├── README.es.md
+│   ├── README.md
+│   ├── diagams
+│   │   ├── mmd
+│   │   └── pdf
+│   ├── installation-flow.mmd
+│   ├── main-interfaces.mmd
+│   ├── plugin-dependencies.mmd
+│   ├── sequence-diagram.mmd
+│   └── system-architecture.mmd
+├── init.lua
+├── install.sh
+├── legacy
+├── lua
+│   ├── config
+│   │   ├── autocmds.lua
+│   │   ├── keymaps.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   └── plugins
+│       ├── ariadna.lua
+│       ├── colorscheme.lua
+│       ├── creta-logo.png
+│       ├── example.lua
+│       ├── logo2.png
+│       ├── markdown.lua
+│       ├── neo-tree.lua
+│       ├── svelte.lua
+│       ├── tailwind.lua
+│       └── telescope_noignore.lua
+└── more
+
+9 directories, 27 files
