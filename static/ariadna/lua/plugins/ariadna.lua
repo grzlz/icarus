@@ -19,43 +19,28 @@ return {
 		priority = 1000,
 		config = function()
 			local logo = [[
-
-                                   NWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW.
-                                   WWk''''''''''''''''''''''''''''''kWX''''''''''''''''''''''''''''''dWW.
-                                   WWd                              oWX                              cWW.
-                                   WWd    :k0Oc................     oWX.....................;xOkc    cWW.
-                                   WWd   'WWWWWWWWWWWWWWWWWWWWWx    oWWWWWWWWWWWWWWWWWWWWWWWWW:0W:   cWW.
-                                   WWd    oNWNd..............OWk     .......................oNWWd.   cWW.
-                                   WWd     OWO               kWk                             dWX     cWW.
-                                   WWd     OWO     ';;;;.    kW0;;;;;;;;;;;;;;;;;;;;;;;,     dWX     cWW.
-                                   WWd     OW0    .WWNXXo    oXXXXXXNWWXXXXXXXXXXXXXXXWW:    dWX     cWW.
-                                   WWd     OW0    .WWc              dWK              .WW:    dWX     cWW.
-                                   WWd     OW0    .WWc              dWK              .WW:    dWX     cWW.
-                                   WWd     OW0    .WWc    .lllllllll0WNlllllllll;    .WW:    dWX     cWW.
-                                   WWd    cNWNd   .WWc    cWWOkkkkkkkkkkkkkkkkXWX   .kWWK;   dWX     cWW.
-                                   WWd   .WX,XW:  .WWc    cWW.                kWX   kWk:WN   dWX     cWW.
-                                   WWd    :OKOc   .WWc    cWW.                kWX   .d00x'   dWX     cWW.
-                                   WWd            .WWc    cWW.   .XNNNNNNo    kWX            dWX     cWW.
-                                   WWKddddddddddddxWWc    cWWxdddxWWo,,XWk    kWNddddddo.    dWNdddddOWW.
-                                   WWKxxxxxXWXxxxxxxd.    cWWxdddxWWd;;XWk    kWWddddxWW:    dWNddddd0WW.
-                                   WWd     OWO            cWW.   .0KKKKKKl    kWN    .WW:    dWX     cWW.
-                                   WWd     OWO    .;:,    cWW.                kWN    .WW:    dWX     cWW.
-                                   WWd     kW0   ,WXxWX.  cWW.                kWN   cKWW0.   dWX     cWW.
-                                   WWd     kW0   ,WXxWK.  :WWWWWWWWWWWk   .XWWWWK   NWckWd   dWX     cWW.
-                                   WWd     kW0    .WWd     .''''''''xWX    .''''    .dWWx.   dWX     cWW.
-                                   WWd     kW0    .WWl              oWX              .WW:    dWX     cWW.
-                                   WWd     kW0    .WWx,,,,,,,,,.    oWN,,,,,,,,,,,,,,:WW:    dWX     cWW.
-                                   WWd     kW0     OKKKKKKKKKKKc    ;KKKKKKKKKKKKKKKKKKK'    dWX     cWW.
-                                   WWd     kW0                                               dWX     cWW.
-                                   WWd     OWX.                                              xWX.    cWW.
-                                   WWd   .XWWWWxoooooooooooooooooooooo,    looooooooooooooooXWkXN'   cWW.
-                                   WWd    0WWWNkxxxxxxxxxxxxxxxxxxxxKWK    dxxxxxxxxxxxxxxxxKWxKN,   cWW.
-                                   WWd     ';,.                     oWK                      ,:;.    cWW.
-                                   WWd                              oWK                              cWW.
-                                   WWKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxKWNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0WW.
-                                   ldddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddo
-
-      ]]
+ ▓▒▒▒                                                ░░▒▒▓
+ ▒░░   ░██                                       ██    ░▒▒
+ ░░   ███                                        ███   ░░▒
+ ░░   ███                                        ███░   ░▒
+ ░░   █ ██                                      ▓█ ██   ░░
+ ░    █  ███░                                 ███  ██   ░░
+ ░░   ██    ██████████████████████████████████    ██    ░░
+ ░░    ███░                 ▒█                  ███    ░░▒
+ ▒░░      ░███████████████  ██  ████████████████       ░▒▒
+ ▒░░     ███▓█          ██  ██  ▓█          ▓████░    ░░▒▒
+ ▒░░   ██    █████████  ██  ██  ██  █████████    ███  ░▒▒▓
+ ▒▒▒░   ▒███░        ██ ██      ██ ▒█        ░░░▒▒▓▓▓▓▒
+░█▓▓▒▒▒░░    █░   ██      ██████▒     ▓█    █▒   ░░▒▒▒▓▓▓█▒
+▒█▓▓▓▓▒▒░░   █▒   ██████          ▓█████    █▒   ░░▒▒▒▓▓██▒
+░▓▓▓▓▒▒░░    █░   █▒                   █    █▒   ░░░▒▒▓▓▓█▒
+░█▓▓▓▒▒░░    ██ ▒░██  ███████ ██████▒ ░█▒░▒▒█▒   ░░░▒▒▓▓▓█▒
+ ▓▓▓▓▒▒░░    ██ ▒ ██  █     ██      █  █▒░░▓█▒    ░░▒▓▓▓▓█▒
+ ▓▓▓▒▒▒░░    █░   ██  ███████ ██████▓ ░█    █▒    ░▒▒▒▓▓▓█░
+ ▓▓▒▒▒▒░░    █    ██                  ░█    █▒    ░░▒▒▓▓▓▓
+ ▓▒▒▒▒░░     ███████████████  ░███████████████    ░░░▒▒▓▓▓
+ ▒▒▒░░       ░  ░      ░░░▒    ▒░░                  ░▒▒▒▒▓
+			]]
 
 			logo = string.rep("\n", 8) .. logo .. "\n\n"
 
