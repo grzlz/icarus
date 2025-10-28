@@ -150,7 +150,8 @@ Write-Host "[DIR] Creando estructura de directorios..." -ForegroundColor Cyan
 $directories = @(
     "$nvimConfigPath",
     "$nvimConfigPath\lua\config",
-    "$nvimConfigPath\lua\plugins"
+    "$nvimConfigPath\lua\plugins",
+    "$nvimConfigPath\lua\assets"
 )
 
 foreach ($dir in $directories) {
@@ -173,7 +174,8 @@ $files = @(
     "lua/plugins/example.lua",
     "lua/plugins/markdown.lua",
     "lua/plugins/svelte.lua",
-    "lua/plugins/tailwind.lua"
+    "lua/plugins/tailwind.lua",
+    "lua/assets/arianda-logo.txt"
 )
 
 # Fun loading messages

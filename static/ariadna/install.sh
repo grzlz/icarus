@@ -235,6 +235,7 @@ create_dir() {
 create_dir "$HOME/.config"
 create_dir "$HOME/.config/nvim/lua/config"
 create_dir "$HOME/.config/nvim/lua/plugins"
+create_dir "$HOME/.config/nvim/lua/assets"
 create_dir "$HOME/.cache/nvim"
 create_dir "$HOME/.local/share/nvim"
 create_dir "$HOME/.local/state/nvim"
@@ -254,6 +255,7 @@ FILES=(
     "lua/plugins/markdown.lua"
     "lua/plugins/svelte.lua"
     "lua/plugins/tailwind.lua"
+    "lua/assets/arianda-logo.txt"
 )
 
 # Fun loading messages
