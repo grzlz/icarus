@@ -34,7 +34,14 @@ return {
 				},
 				config = {
 					header = vim.split(logo, "\n"),
-					center = {},
+					center = {
+						{
+							icon = "",
+							desc = "",
+							key = "",
+							action = "",
+						},
+					},
 					footer = function()
 						return {}
 					end,
