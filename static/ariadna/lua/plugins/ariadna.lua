@@ -15,7 +15,7 @@ return {
 	-- Dashboard with Ariadna branding
 	{
 		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			-- Minimal dark welcome message
@@ -34,67 +34,12 @@ return {
 				},
 				config = {
 					header = vim.split(logo, "\n"),
-					center = {
-						{
-							action = "Telescope find_files",
-							desc = " Buscar archivos",
-							icon = " ",
-							key = "f",
-						},
-						{
-							action = "ene | startinsert",
-							desc = " Nuevo archivo",
-							icon = " ",
-							key = "n",
-						},
-						{
-							action = "Telescope oldfiles",
-							desc = " Archivos recientes",
-							icon = " ",
-							key = "r",
-						},
-						{
-							action = "Telescope live_grep",
-							desc = " Buscar texto",
-							icon = " ",
-							key = "g",
-						},
-						{
-							action = 'lua require("persistence").load()',
-							desc = " Restaurar sesión",
-							icon = " ",
-							key = "s",
-						},
-						{
-							action = "Lazy",
-							desc = " Lazy (plugins)",
-							icon = "󰒲 ",
-							key = "l",
-						},
-						{
-							action = "qa",
-							desc = " Salir",
-							icon = " ",
-							key = "q",
-						},
-					},
+					center = {},
 					footer = function()
-						local stats = require("lazy").stats()
-						local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-						return {
-							"⚡ Ariadna cargado en " .. ms .. "ms",
-							"📦 " .. stats.loaded .. "/" .. stats.count .. " plugins",
-							"",
-							"🏛️ icarus.mx",
-						}
+						return {}
 					end,
 				},
 			}
-
-			for _, button in ipairs(opts.config.center) do
-				button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-				button.key_format = "  %s"
-			end
 
 			require("dashboard").setup(opts)
 		end,
