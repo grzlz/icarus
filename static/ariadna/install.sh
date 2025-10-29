@@ -256,6 +256,7 @@ FILES=(
     "lua/plugins/svelte.lua"
     "lua/plugins/tailwind.lua"
     "lua/assets/arianda-logo.txt"
+    "README.md"
 )
 
 # Fun loading messages
