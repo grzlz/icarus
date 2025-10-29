@@ -3,11 +3,11 @@ return {
     "folke/tokyonight.nvim",
     priority = 1000,
     opts = {
-      style = "day",  -- Light theme with blue accents
-      transparent = true,
+      style = "night",  -- Dark theme
+      transparent = false,
       styles = {
-        sidebars = "transparent",
-        floats = "transparent",
+        sidebars = "dark",
+        floats = "dark",
       },
     },
   },
@@ -15,7 +15,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-day",
+      colorscheme = "tokyonight-night",
     },
   },
 }

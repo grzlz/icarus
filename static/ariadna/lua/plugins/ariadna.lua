@@ -18,19 +18,14 @@ return {
 		event = "VimEnter",
 		priority = 1000,
 		config = function()
-			local config_path = vim.fn.stdpath("config")
-			local logo_file = io.open(config_path .. "/lua/assets/arianda-logo.txt", "r")
-			local logo = ""
+			-- Minimal dark welcome message
+			local logo = [[
 
-			if logo_file then
-				logo = logo_file:read("*a")
-				logo_file:close()
-			else
-				-- Fallback if file not found
-				logo = " Ariadna"
-			end
 
-			logo = string.rep("\n", 8) .. logo .. "\n\n"
+                    Bienvenido a Ariadna
+
+
+]]
 
 			local opts = {
 				theme = "doom",
