@@ -18,6 +18,20 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
+			-- Register Biblioteca command early to avoid timing issues
+			if not vim.fn.exists(":Biblioteca") then
+				vim.api.nvim_create_user_command("Biblioteca", function()
+					require("telescope.builtin").find_files({
+						prompt_title = "📚 Biblioteca de Ariadna",
+						cwd = vim.fn.stdpath("config") .. "/biblioteca",
+						hidden = false,
+						no_ignore = true,
+					})
+				end, {
+					desc = "Open Biblioteca resources",
+				})
+			end
+
 			-- Enhanced Ariadna dashboard with ASCII art
 			local logo = [[
 
