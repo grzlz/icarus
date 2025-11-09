@@ -151,7 +151,8 @@ $directories = @(
     "$nvimConfigPath",
     "$nvimConfigPath\lua\config",
     "$nvimConfigPath\lua\plugins",
-    "$nvimConfigPath\lua\assets"
+    "$nvimConfigPath\lua\assets",
+    "$nvimConfigPath\biblioteca"
 )
 
 foreach ($dir in $directories) {
@@ -170,6 +171,7 @@ $files = @(
     "lua/config/lazy.lua",
     "lua/config/options.lua",
     "lua/plugins/ariadna.lua",
+    "lua/plugins/biblioteca.lua",
     "lua/plugins/colorscheme.lua",
     "lua/plugins/creta.lua",
     "lua/plugins/example.lua",
@@ -177,6 +179,10 @@ $files = @(
     "lua/plugins/svelte.lua",
     "lua/plugins/tailwind.lua",
     "lua/assets/arianda-logo.txt",
+    "biblioteca/GLASSMORPHISM.md",
+    "biblioteca/guia-creta-ariadna.md",
+    "biblioteca/GUIDA.md",
+    "biblioteca/README.md",
     "README.md"
 )
 
