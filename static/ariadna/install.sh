@@ -251,6 +251,7 @@ FILES=(
     "lua/config/options.lua"
     "lua/plugins/ariadna.lua"
     "lua/plugins/colorscheme.lua"
+    "lua/plugins/creta.lua"
     "lua/plugins/example.lua"
     "lua/plugins/markdown.lua"
     "lua/plugins/svelte.lua"
