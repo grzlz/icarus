@@ -170,11 +170,15 @@ $files = @(
     "lua/config/lazy.lua",
     "lua/config/options.lua",
     "lua/plugins/ariadna.lua",
+    "lua/plugins/biblioteca.lua",
     "lua/plugins/colorscheme.lua",
+    "lua/plugins/creta.lua",
     "lua/plugins/example.lua",
     "lua/plugins/markdown.lua",
+    "lua/plugins/neo-tree.lua",
     "lua/plugins/svelte.lua",
     "lua/plugins/tailwind.lua",
+    "lua/plugins/telescope_noignore.lua",
     "lua/assets/arianda-logo.txt",
     "README.md"
 )

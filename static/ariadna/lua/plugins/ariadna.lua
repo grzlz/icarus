@@ -91,7 +91,9 @@ return {
 							key = "b",
 							key_hl = "Number",
 							key_format = " %s",
-							action = "Biblioteca",
+							action = function()
+							vim.cmd("Biblioteca")
+						end,
 						},
 						{
 							icon = " ",
