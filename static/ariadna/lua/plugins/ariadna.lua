@@ -7,6 +7,7 @@ return {
 	-- Disable snacks.nvim dashboard (LazyVim's current default)
 	{
 		"folke/snacks.nvim",
+		optional = true,
 		opts = {
 			dashboard = { enabled = false },
 		},
@@ -17,21 +18,29 @@ return {
 		"nvimdev/dashboard-nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			-- Register Biblioteca command early to avoid timing issues
-			if not vim.fn.exists(":Biblioteca") then
-				vim.api.nvim_create_user_command("Biblioteca", function()
-					require("telescope.builtin").find_files({
-						prompt_title = "📚 Biblioteca de Ariadna",
-						cwd = vim.fn.stdpath("config") .. "/biblioteca",
-						hidden = false,
-						no_ignore = true,
-					})
-				end, {
-					desc = "Open Biblioteca resources",
+		init = function()
+			-- Create commands early, before dashboard config runs
+			-- Biblioteca command
+			vim.api.nvim_create_user_command("Biblioteca", function()
+				require("telescope.builtin").find_files({
+					prompt_title = "📚 Biblioteca de Ariadna",
+					cwd = vim.fn.stdpath("config") .. "/biblioteca",
+					hidden = false,
+					no_ignore = true,
 				})
-			end
+			end, {
+				desc = "Open Biblioteca resources",
+			})
 
+			-- Creta command
+			vim.api.nvim_create_user_command("Creta", function()
+				local readme_path = vim.fn.stdpath("config") .. "/README.md"
+				vim.cmd("edit " .. readme_path)
+			end, {
+				desc = "Open Ariadna README",
+			})
+		end,
+		config = function()
 			-- Enhanced Ariadna dashboard with ASCII art
 			local logo = [[
 
@@ -61,7 +70,9 @@ return {
 							key = "f",
 							key_hl = "Number",
 							key_format = " %s", -- remove default surrounding `[]`
-							action = "Telescope find_files",
+							action = function()
+								require("telescope.builtin").find_files()
+							end,
 						},
 						{
 							icon = " ",
@@ -71,7 +82,9 @@ return {
 							key = "r",
 							key_hl = "Number",
 							key_format = " %s",
-							action = "Telescope oldfiles",
+							action = function()
+								require("telescope.builtin").oldfiles()
+							end,
 						},
 						{
 							icon = " ",
@@ -81,7 +94,9 @@ return {
 							key = "g",
 							key_hl = "Number",
 							key_format = " %s",
-							action = "Telescope live_grep",
+							action = function()
+								require("telescope.builtin").live_grep()
+							end,
 						},
 						{
 							icon = " ",
@@ -92,8 +107,8 @@ return {
 							key_hl = "Number",
 							key_format = " %s",
 							action = function()
-							vim.cmd("Biblioteca")
-						end,
+								vim.cmd("Biblioteca")
+							end,
 						},
 						{
 							icon = " ",
@@ -103,7 +118,9 @@ return {
 							key = "l",
 							key_hl = "Number",
 							key_format = " %s",
-							action = "Lazy",
+							action = function()
+								vim.cmd("Lazy")
+							end,
 						},
 						{
 							icon = " ",
@@ -113,7 +130,9 @@ return {
 							key = "q",
 							key_hl = "Number",
 							key_format = " %s",
-							action = "qa",
+							action = function()
+								vim.cmd("qa")
+							end,
 						},
 					},
 					footer = function()

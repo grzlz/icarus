@@ -3,6 +3,7 @@
 return {
 	{
 		"folke/lazy.nvim",
+		priority = 1001, -- Load before dashboard (priority 1000)
 		init = function()
 			-- Create :Biblioteca command (runs before plugin loading)
 			vim.api.nvim_create_user_command("Biblioteca", function()
