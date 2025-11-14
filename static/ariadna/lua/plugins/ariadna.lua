@@ -18,28 +18,6 @@ return {
 		"nvimdev/dashboard-nvim",
 		lazy = false,
 		priority = 1000,
-		init = function()
-			-- Create commands early, before dashboard config runs
-			-- Biblioteca command
-			vim.api.nvim_create_user_command("Biblioteca", function()
-				require("telescope.builtin").find_files({
-					prompt_title = "📚 Biblioteca de Ariadna",
-					cwd = vim.fn.stdpath("config") .. "/biblioteca",
-					hidden = false,
-					no_ignore = true,
-				})
-			end, {
-				desc = "Open Biblioteca resources",
-			})
-
-			-- Creta command
-			vim.api.nvim_create_user_command("Creta", function()
-				local readme_path = vim.fn.stdpath("config") .. "/README.md"
-				vim.cmd("edit " .. readme_path)
-			end, {
-				desc = "Open Ariadna README",
-			})
-		end,
 		config = function()
 			-- Enhanced Ariadna dashboard with ASCII art
 			local logo = [[
@@ -70,9 +48,7 @@ return {
 							key = "f",
 							key_hl = "Number",
 							key_format = " %s", -- remove default surrounding `[]`
-							action = function()
-								require("telescope.builtin").find_files()
-							end,
+							action = "Telescope find_files",
 						},
 						{
 							icon = " ",
@@ -82,9 +58,7 @@ return {
 							key = "r",
 							key_hl = "Number",
 							key_format = " %s",
-							action = function()
-								require("telescope.builtin").oldfiles()
-							end,
+							action = "Telescope oldfiles",
 						},
 						{
 							icon = " ",
@@ -94,9 +68,7 @@ return {
 							key = "g",
 							key_hl = "Number",
 							key_format = " %s",
-							action = function()
-								require("telescope.builtin").live_grep()
-							end,
+							action = "Telescope live_grep",
 						},
 						{
 							icon = " ",
@@ -106,9 +78,7 @@ return {
 							key = "b",
 							key_hl = "Number",
 							key_format = " %s",
-							action = function()
-								vim.cmd("Biblioteca")
-							end,
+							action = "Biblioteca",
 						},
 						{
 							icon = " ",
@@ -118,9 +88,7 @@ return {
 							key = "l",
 							key_hl = "Number",
 							key_format = " %s",
-							action = function()
-								vim.cmd("Lazy")
-							end,
+							action = "Lazy",
 						},
 						{
 							icon = " ",
@@ -130,9 +98,7 @@ return {
 							key = "q",
 							key_hl = "Number",
 							key_format = " %s",
-							action = function()
-								vim.cmd("qa")
-							end,
+							action = "qa",
 						},
 					},
 					footer = function()
