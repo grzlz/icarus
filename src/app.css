@@ -31,6 +31,19 @@
     --color-secondary-950: oklch(0.141 0.005 285.823);
 
     --font-primary: "Red Hat Display", sans-serif;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
+.app-gradient {
+    background: linear-gradient(
+        to bottom,
+        oklch(0.14 0.03 231) 0%,
+        oklch(0.22 0.06 232) 20%,
+        oklch(0.45 0.12 235) 50%,
+        oklch(0.22 0.05 255) 80%,
+        oklch(0.10 0.04 260) 100%
+    );
 }

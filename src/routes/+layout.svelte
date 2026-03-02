@@ -14,7 +14,7 @@
 </script>
 
 
-<div class="bg-primary-950 flex flex-col min-h-screen font-primary">
+<div class="app-gradient flex flex-col min-h-screen font-primary">
 	<Navbar />
 	
 	{@render children()}
