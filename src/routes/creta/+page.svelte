@@ -1,20 +1,11 @@
 <script>
-	import { track } from '@vercel/analytics/sveltekit';
 	import { onMount } from 'svelte';
 
-	// Replace with your actual Discord invite link
 	const DISCORD_INVITE = 'https://discord.gg/KXdwbP5yX';
 
 	let countdown = $state(10);
 
 	onMount(() => {
-		// Track Discord link visit
-		track('discord-visit', {
-			source: 'direct_link',
-			timestamp: new Date().toISOString()
-		});
-
-		// Countdown interval
 		const interval = setInterval(() => {
 			countdown--;
 			if (countdown <= 0) {

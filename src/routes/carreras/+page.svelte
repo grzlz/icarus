@@ -1,5 +1,4 @@
 <script>
-	import { track } from '@vercel/analytics/sveltekit';
 	import { fly } from 'svelte/transition';
 
 	const roles = [
@@ -79,7 +78,6 @@
 			});
 			if (res.ok) {
 				formStatus = 'sent';
-				track('career-apply', { position: roles[selected].title });
 				appEmail = '';
 				cvFile = null;
 			} else {

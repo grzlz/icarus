@@ -1,15 +1,8 @@
 <script>
-	import { track } from '@vercel/analytics/sveltekit';
-
-	let start = $state(Date.now());
 	let formName = $state('');
 	let formEmail = $state('');
 	let formMessage = $state('');
 	let formStatus = $state('idle');
-
-	function handleClick() {
-		track('Signup');
-	}
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -22,7 +15,6 @@
 			});
 			if (res.ok) {
 				formStatus = 'sent';
-				track('contact-form-submit');
 				formName = '';
 				formEmail = '';
 				formMessage = '';
@@ -33,18 +25,6 @@
 			formStatus = 'error';
 		}
 	}
-
-	function handleVisibilityChange() {
-		if (document.visibilityState === 'hidden') {
-			const seconds = Math.round((Date.now() - start) / 1000);
-			track('time-spent-home', { seconds });
-		}
-	}
-
-	$effect(() => {
-		document.addEventListener('visibilitychange', handleVisibilityChange);
-		return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-	});
 </script>
 
 <svelte:head>
@@ -112,10 +92,10 @@
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
 					</svg>
-					<h3 class="text-2xl font-bold text-primary-100">Desarrollo de Software</h3>
+					<h3 class="text-2xl font-bold text-primary-100">Desarrollo de software</h3>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Software a la medida, aplicaciones web y móviles.
+					Aplicaciones web, iOS y Android. Software a la medida de tus necesidades.
 				</p>
 				<a
 					href="https://wa.me/525548017016?text=Hola%2C%20me%20interesa%20desarrollo%20de%20software"
@@ -172,10 +152,10 @@
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" />
 					</svg>
-					<h3 class="text-2xl font-bold text-primary-100">Hosting</h3>
+					<h3 class="text-2xl font-bold text-primary-100">Icarus Cloud</h3>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Presentamos icarus-server: PAAS para deployment de contenedores.
+				Despliega tus aplicaciones en nuestra plataforma.<br/>La infraestructura es propia y está alojada en México.
 				</p>
 				<a
 					href="/icarus-server"

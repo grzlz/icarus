@@ -1,7 +1,3 @@
-<script>
-	import { track } from '@vercel/analytics/sveltekit';
-</script>
-
 <svelte:head>
 	<title>icarus-server | PAAS para contenedores</title>
 	<meta name="description" content="icarus-server: plataforma de deployment para contenedores. Despliega tu código en producción con un solo comando." />
