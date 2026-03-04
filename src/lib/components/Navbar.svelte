@@ -31,7 +31,7 @@
     <ul class="hidden md:flex gap-6 text-primary-200 text-sm font-medium">
         {#each links as link}
             <li>
-                <a href={link.href} class="hover:text-red-400 transition-colors duration-200">{link.label}</a>
+                <a href={link.href} class="hover:text-amber-400 transition-colors duration-200">{link.label}</a>
             </li>
         {/each}
     </ul>
