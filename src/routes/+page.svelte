@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>icarus.mx</title>
+	<title>icarus.mx | Desarrollo de software a la medida en México</title>
 	<meta name="description" content="Herramientas y comunidad para desarrolladores en México. Aprende, colabora y crece con nosotros." />
 
 	<meta property="og:type" content="website" />
