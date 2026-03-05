@@ -118,7 +118,7 @@
 							onclick={() => selectRole(i)}
 							class="text-left bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20 group cursor-pointer"
 						>
-							<h3 class="text-xl font-bold text-primary-100 mb-2 group-hover:text-amber-400 transition-colors duration-200">
+							<h3 class="text-xl font-bold text-primary-100 mb-2 group-hover:text-red-400 transition-colors duration-200">
 								{role.title}
 							</h3>
 							<p class="text-primary-200/70 leading-relaxed text-sm">{role.summary}</p>
@@ -130,7 +130,7 @@
 			<div in:fly={{ y: 20, duration: 300 }}>
 				<button
 					onclick={goBack}
-					class="flex items-center gap-2 text-primary-300 hover:text-amber-400 transition-colors mb-10 cursor-pointer"
+					class="flex items-center gap-2 text-primary-300 hover:text-red-400 transition-colors mb-10 cursor-pointer"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -170,7 +170,7 @@
 								type="email"
 								bind:value={appEmail}
 								required
-								class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-amber-400/50 transition-colors"
+								class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-red-400/50 transition-colors"
 								placeholder="tu@correo.com"
 							/>
 						</div>
@@ -183,7 +183,7 @@
 								ondrop={handleDrop}
 								ondragover={handleDragOver}
 								ondragleave={handleDragLeave}
-								class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors {dragOver ? 'border-amber-400 bg-amber-400/5' : 'border-white/10 hover:border-white/20 bg-white/5'}"
+								class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors {dragOver ? 'border-red-400 bg-red-400/5' : 'border-white/10 hover:border-white/20 bg-white/5'}"
 							>
 								{#if cvFile}
 									<p class="text-primary-200 text-sm">{cvFile.name}</p>
@@ -207,7 +207,7 @@
 						<button
 							type="submit"
 							disabled={formStatus === 'sending'}
-							class="w-full bg-amber-400 hover:bg-amber-300 disabled:opacity-50 text-primary-950 font-bold py-3 rounded-lg transition-all duration-300 cursor-pointer"
+							class="w-full bg-red-400 hover:bg-red-500 disabled:opacity-50 text-primary-950 font-bold py-3 rounded-lg transition-all duration-300 cursor-pointer"
 						>
 							{#if formStatus === 'sending'}
 								Enviando...

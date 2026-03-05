@@ -50,9 +50,9 @@
 	<div class="max-w-4xl mx-auto px-6 md:px-10 text-center relative z-10">
 		<div class="space-y-2">
 			<h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight">
-				Entregamos <span class="text-amber-400 relative inline-block">
+				Entregamos <span class="text-red-400 relative inline-block">
 					software
-					<div class="absolute -bottom-1 md:-bottom-2 left-0 w-full h-0.5 md:h-1 bg-amber-400 rounded"></div>
+					<div class="absolute -bottom-1 md:-bottom-2 left-0 w-full h-0.5 md:h-1 bg-red-400 rounded"></div>
 				</span>
 			</h1>
 			<h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight text-primary-600">
@@ -69,7 +69,7 @@
 				<a
 					href="https://wa.me/525548017016?text=Hola%2C%20quiero%20más%20información"
 					target="_blank"
-					class="inline-block bg-transparent border-2 border-primary-400 text-primary-400 hover:bg-amber-400 hover:border-amber-400 hover:text-primary-950 font-bold text-lg px-12 py-4 rounded-lg transition-all duration-300"
+					class="inline-block bg-transparent border-2 border-primary-400 text-primary-400 hover:bg-red-400 hover:border-red-400 hover:text-primary-950 font-bold text-lg px-12 py-4 rounded-lg transition-all duration-300"
 				>
 					Contáctanos
 				</a>
@@ -89,18 +89,18 @@
 			<!-- Desarrollo de software -->
 			<div class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
 				<div class="flex items-center gap-4 mb-4">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-red-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
 					</svg>
 					<h3 class="text-2xl font-bold text-primary-100">Desarrollo de software</h3>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Aplicaciones web, iOS y Android. Software a la medida de tus necesidades.
+					Aplicaciones web, iOS y Android.<br/>Software a la medida de tus necesidades.
 				</p>
 				<a
 					href="https://wa.me/525548017016?text=Hola%2C%20me%20interesa%20desarrollo%20de%20software"
 					target="_blank"
-					class="mt-auto inline-block text-amber-400 hover:text-amber-300 font-semibold transition-colors duration-200"
+					class="mt-auto inline-block text-red-400 hover:text-red-500 font-semibold transition-colors duration-200"
 				>
 					Platiquemos →
 				</a>
@@ -109,18 +109,18 @@
 			<!-- Consultoría -->
 			<div class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
 				<div class="flex items-center gap-4 mb-4">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-red-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
 					</svg>
 					<h3 class="text-2xl font-bold text-primary-100">Consultoría</h3>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Consultoría técnica, revisión de arquitectura y asesoría estratégica para tu equipo.
+					Consultoría técnica, revisión de arquitectura<br/>y asesoría estratégica para tu equipo.
 				</p>
 				<a
 					href="https://wa.me/525548017016?text=Hola%2C%20me%20interesa%20consultor%C3%ADa%20t%C3%A9cnica"
 					target="_blank"
-					class="mt-auto inline-block text-amber-400 hover:text-amber-300 font-semibold transition-colors duration-200"
+					class="mt-auto inline-block text-red-400 hover:text-red-500 font-semibold transition-colors duration-200"
 				>
 					Platiquemos →
 				</a>
@@ -129,18 +129,18 @@
 			<!-- Capacitación -->
 			<div class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
 				<div class="flex items-center gap-4 mb-4">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-red-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
 					</svg>
 					<h3 class="text-2xl font-bold text-primary-100">Capacitación</h3>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Talleres, cursos y mentoría para equipos de desarrollo. Aprendemos haciendo.
+					Talleres, cursos y mentoría para equipos de desarrollo.<br/>Aprendemos haciendo.
 				</p>
 				<a
 					href="https://wa.me/525548017016?text=Hola%2C%20me%20interesa%20capacitaci%C3%B3n%20para%20mi%20equipo"
 					target="_blank"
-					class="mt-auto inline-block text-amber-400 hover:text-amber-300 font-semibold transition-colors duration-200"
+					class="mt-auto inline-block text-red-400 hover:text-red-500 font-semibold transition-colors duration-200"
 				>
 					Platiquemos →
 				</a>
@@ -149,7 +149,7 @@
 			<!-- Hosting -->
 			<div class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
 				<div class="flex items-center gap-4 mb-4">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-red-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" />
 					</svg>
 					<h3 class="text-2xl font-bold text-primary-100">Icarus Cloud</h3>
@@ -158,8 +158,8 @@
 				Despliega tus aplicaciones en nuestra plataforma.<br/>La infraestructura es propia y está alojada en México.
 				</p>
 				<a
-					href="/icarus-server"
-					class="mt-auto inline-block text-amber-400 hover:text-amber-300 font-semibold transition-colors duration-200"
+					href="/icarus-cloud"
+					class="mt-auto inline-block text-red-400 hover:text-red-500 font-semibold transition-colors duration-200"
 				>
 					Saber más →
 				</a>
@@ -174,7 +174,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 			<!-- Left: Statement -->
 			<div>
-				<p class="text-amber-400 font-semibold text-sm uppercase tracking-widest mb-4">Cómo trabajamos</p>
+				<p class="text-red-400 font-semibold text-sm uppercase tracking-widest mb-4">Cómo trabajamos</p>
 				<h2 class="text-3xl md:text-5xl font-black text-primary-100 leading-tight">
 					Proceso claro,<br/>
 					<span class="text-primary-400">resultados reales.</span>
@@ -187,7 +187,7 @@
 			<!-- Right: 3 Promises -->
 			<div class="space-y-8">
 				<div class="flex gap-6 items-start">
-					<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">01</span>
+					<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">01</span>
 					<div>
 						<h3 class="text-xl font-bold text-primary-100 mb-1">Fechas que se cumplen</h3>
 						<p class="text-primary-300/70 leading-relaxed">Planeamos con margen real y cumplimos lo acordado.</p>
@@ -197,7 +197,7 @@
 				<div class="w-full h-px bg-white/10"></div>
 
 				<div class="flex gap-6 items-start">
-					<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">02</span>
+					<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">02</span>
 					<div>
 						<h3 class="text-xl font-bold text-primary-100 mb-1">Comunicación directa</h3>
 						<p class="text-primary-300/70 leading-relaxed">Hablas con quien construye tu proyecto. Así de simple.</p>
@@ -207,7 +207,7 @@
 				<div class="w-full h-px bg-white/10"></div>
 
 				<div class="flex gap-6 items-start">
-					<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">03</span>
+					<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">03</span>
 					<div>
 						<h3 class="text-xl font-bold text-primary-100 mb-1">Código que se mantiene</h3>
 						<p class="text-primary-300/70 leading-relaxed">Software limpio, documentado y listo para escalar.</p>
@@ -251,7 +251,7 @@
 						type="text"
 						bind:value={formName}
 						required
-						class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-amber-400/50 transition-colors"
+						class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-red-400/50 transition-colors"
 						placeholder="Tu nombre"
 					/>
 				</div>
@@ -262,7 +262,7 @@
 						type="email"
 						bind:value={formEmail}
 						required
-						class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-amber-400/50 transition-colors"
+						class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-red-400/50 transition-colors"
 						placeholder="tu@correo.com"
 					/>
 				</div>
@@ -273,7 +273,7 @@
 						bind:value={formMessage}
 						required
 						rows="4"
-						class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-amber-400/50 transition-colors resize-none"
+						class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-primary-100 placeholder-primary-400/50 focus:outline-none focus:border-red-400/50 transition-colors resize-none"
 						placeholder="Cuéntanos sobre tu proyecto..."
 					></textarea>
 				</div>

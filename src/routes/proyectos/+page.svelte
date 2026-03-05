@@ -1,0 +1,56 @@
+<svelte:head>
+	<title>Proyectos | icarus.mx</title>
+	<meta name="description" content="Hub de onboarding para contribuir a los proyectos de icarus.mx. Guías prácticas, paso a paso, para que empieces a colaborar." />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Proyectos | icarus.mx" />
+	<meta property="og:description" content="Hub de onboarding para contribuir a los proyectos de icarus.mx. Guías prácticas, paso a paso." />
+	<meta property="og:image" content="https://icarus.mx/logo_zoomed.png" />
+	<meta property="og:url" content="https://icarus.mx/proyectos" />
+	<meta property="og:site_name" content="icarus.mx" />
+
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://icarus.mx/proyectos" />
+	<meta property="twitter:title" content="Proyectos | icarus.mx" />
+	<meta property="twitter:description" content="Hub de onboarding para contribuir a los proyectos de icarus.mx. Guías prácticas, paso a paso." />
+	<meta property="twitter:image" content="https://icarus.mx/logo_zoomed.png" />
+</svelte:head>
+
+<!-- Hero -->
+<section class="py-24 px-6">
+	<div class="max-w-4xl mx-auto text-center">
+		<p class="text-red-400 font-semibold text-sm uppercase tracking-widest mb-4">Aprende haciendo</p>
+		<h1 class="text-4xl md:text-6xl font-black text-primary-100 leading-tight mb-6">
+			Proyectos
+		</h1>
+		<p class="text-lg md:text-xl text-primary-300 max-w-2xl mx-auto leading-relaxed">
+			Guías prácticas para que empieces a contribuir a los proyectos de icarus.mx. Cada guía te lleva paso a paso, desde cero hasta tu primer aporte.
+		</p>
+	</div>
+</section>
+
+<!-- Artifacts Grid -->
+<section class="pb-24 px-6">
+	<div class="max-w-4xl mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<a
+				href="/proyectos/como-hacer-prs"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">01</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						¿Cómo hacer PRs?
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Guía paso a paso para hacer tu primer Pull Request. Desde el fork hasta el merge.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+					<span class="text-xs text-primary-400">~15 min</span>
+				</div>
+			</a>
+		</div>
+	</div>
+</section>
