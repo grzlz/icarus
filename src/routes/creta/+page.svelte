@@ -18,13 +18,14 @@
 
 <!-- Hero -->
 <section class="py-24 px-6">
-	<div class="max-w-4xl mx-auto text-center">
+	<div class="max-w-4xl mx-auto">
 		<p class="text-red-400 font-semibold text-sm uppercase tracking-widest mb-4">Aprende haciendo</p>
-		<h1 class="text-4xl md:text-6xl font-black text-primary-100 leading-tight mb-6">
-			Empieza aquí tu ruta de aprendizaje
+		<h1 class="text-3xl md:text-5xl font-black text-primary-100 leading-tight mb-6">
+			Empieza aquí tu ruta<br/>
+			<span class="text-primary-400">de aprendizaje</span>
 		</h1>
-		<p class="text-lg md:text-xl text-primary-300 max-w-2xl mx-auto leading-relaxed">
-			Guías prácticas que te acompañan en tu camino. Cada guía te lleva paso a paso, desde cero hasta tu primer aporte en el mundo opensource  (si ya sabes algo de Git).
+		<p class="text-lg md:text-xl text-primary-300 max-w-2xl leading-relaxed">
+			Guías prácticas que te acompañan en tu camino. Cada una te lleva paso a paso, desde cero hasta tu primer aporte opensource.
 		</p>
 	</div>
 </section>
@@ -72,21 +73,21 @@
 			</a>
 
 			<a
-				href="/proyectos/instala-ariadna"
+				href="/proyectos/que-significa-head-en-git"
 				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
 			>
 				<div class="flex items-center gap-4 mb-4">
 					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">03</span>
 					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
-						Instala Ariadna
+						¿Qué significa HEAD en Git?
 					</h2>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Configura Neovim con LSP, plugins y keybindings listos en un solo comando.
+					Entiende qué es HEAD, cómo se mueve entre commits y por qué es clave para navegar tu historial.
 				</p>
 				<div class="mt-auto flex items-center gap-3">
 					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
-					<span class="text-xs text-primary-400">~5 min</span>
+					<span class="text-xs text-primary-400">~10 min</span>
 				</div>
 			</a>
 
@@ -101,7 +102,7 @@
 					</h2>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Únete al taller de software de icarus.mx. Un laberinto y la ruta para transitarlo.
+					Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo.
 				</p>
 				<div class="mt-auto flex items-center gap-3">
 					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Comunidad</span>
