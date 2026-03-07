@@ -1,12 +1,12 @@
 <svelte:head>
-	<title>Icarus Cloud | Infraestructura mexicana</title>
+	<title>Icarus Cloud | Infraestructura propia</title>
 	<meta name="description" content="Icarus Cloud: despliega tus aplicaciones en infraestructura propia, alojada en México. Sin intermediarios, sin fronteras." />
 
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Icarus Cloud | Infraestructura mexicana" />
+	<meta property="og:title" content="Icarus Cloud | Infraestructura propia" />
 	<meta property="og:description" content="Despliega tus aplicaciones en infraestructura propia, alojada en México. Sin intermediarios, sin fronteras." />
 	<meta property="og:image" content="https://icarus.mx/logo_zoomed.png" />
-	<meta property="og:url" content="https://icarus.mx/icarus-cloud" />
+	<meta property="og:url" content="https://icarus.mx/cloud" />
 </svelte:head>
 
 <!-- Hero -->

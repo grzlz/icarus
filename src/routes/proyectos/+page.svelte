@@ -51,6 +51,44 @@
 					<span class="text-xs text-primary-400">~15 min</span>
 				</div>
 			</a>
+
+			<a
+				href="/proyectos/como-personalizar-tus-comandos"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">02</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						¿Cómo personalizar tus comandos?
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Crea aliases y funciones en tu terminal para dejar de repetir lo mismo todos los días.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+					<span class="text-xs text-primary-400">~10 min</span>
+				</div>
+			</a>
+
+			<a
+				href="/proyectos/instala-ariadna"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">03</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						Instala Ariadna
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Configura Neovim con LSP, plugins y keybindings listos en un solo comando.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+					<span class="text-xs text-primary-400">~5 min</span>
+				</div>
+			</a>
 		</div>
 	</div>
 </section>

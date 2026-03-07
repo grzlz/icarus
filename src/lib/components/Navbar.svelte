@@ -4,10 +4,10 @@
     let mobileOpen = $state(false);
 
     const links = [
-        { label: 'Servicios', href: '#servicios' },
+        { label: 'Servicios', href: '/#servicios' },
         { label: 'Proyectos', href: '/proyectos' },
         { label: 'Carreras', href: '/carreras' },
-        { label: 'Contacto', href: '#contacto' }
+        { label: 'Contacto', href: '/#contacto' }
     ];
 </script>
 

@@ -158,7 +158,7 @@
 				Despliega tus aplicaciones en nuestra plataforma.<br/>La infraestructura es propia y está alojada en México.
 				</p>
 				<a
-					href="/icarus-cloud"
+					href="/cloud"
 					class="mt-auto inline-block text-red-400 hover:text-red-500 font-semibold transition-colors duration-200"
 				>
 					Saber más →
