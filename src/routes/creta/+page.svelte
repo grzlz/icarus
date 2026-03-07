@@ -1,78 +1,113 @@
-<script>
-	import { onMount } from 'svelte';
-
-	const DISCORD_INVITE = 'https://discord.gg/KXdwbP5yX';
-
-	let countdown = $state(10);
-
-	onMount(() => {
-		const interval = setInterval(() => {
-			countdown--;
-			if (countdown <= 0) {
-				clearInterval(interval);
-				window.location.href = DISCORD_INVITE;
-			}
-		}, 1000);
-
-		return () => clearInterval(interval);
-	});
-</script>
-
 <svelte:head>
-  <!-- Primary Meta Tags -->
-  <title>Entra a Creta</title>
-  <meta name="title" content="Únete a Creta" />
-  <meta name="description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
+	<title>Creta | icarus.mx</title>
+	<meta name="description" content="Guías prácticas para que empieces a contribuir a los proyectos de icarus.mx. Paso a paso, desde cero hasta tu primer aporte." />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://icarus.mx/creta" />
-  <meta property="og:title" content="Únete a Creta" />
-  <meta property="og:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
-  <meta property="og:image" content="https://icarus.mx/creta/creta_og.png?v=2" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Icarus" />
-  <meta property="og:locale" content="es_MX" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Creta | icarus.mx" />
+	<meta property="og:description" content="Guías prácticas para que empieces a contribuir a los proyectos de icarus.mx. Paso a paso." />
+	<meta property="og:image" content="https://icarus.mx/creta/creta_og.png?v=2" />
+	<meta property="og:url" content="https://icarus.mx/creta" />
+	<meta property="og:site_name" content="icarus.mx" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://icarus.mx/creta" />
-  <meta property="twitter:title" content="Únete a Creta" />
-  <meta property="twitter:description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
-  <meta property="twitter:image" content="https://icarus.mx/creta/creta_og.png?v=2" />
-
-  <!-- Additional SEO -->
-  <meta name="keywords" content="Creta, Icarus, Discord, aprendizaje, programación, SCYTHE, sickles, comunidad" />
-  <meta name="author" content="Icarus" />
-  <link rel="canonical" href="https://icarus.mx/creta" />
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content="https://icarus.mx/creta" />
+	<meta property="twitter:title" content="Creta | icarus.mx" />
+	<meta property="twitter:description" content="Guías prácticas para que empieces a contribuir a los proyectos de icarus.mx. Paso a paso." />
+	<meta property="twitter:image" content="https://icarus.mx/creta/creta_og.png?v=2" />
 </svelte:head>
 
-
-<section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-screen flex items-start md:items-center justify-center pt-24 md:pt-0">
-	<div class="max-w-2xl mx-auto px-6 text-left">
-		<!-- Heading -->
-		<h1 class="text-5xl md:text-6xl font-black mb-6">
-			Bienvenido a <span class="text-primary-400">Creta</span> 🏛️
+<!-- Hero -->
+<section class="py-24 px-6">
+	<div class="max-w-4xl mx-auto text-center">
+		<p class="text-red-400 font-semibold text-sm uppercase tracking-widest mb-4">Aprende haciendo</p>
+		<h1 class="text-4xl md:text-6xl font-black text-primary-100 leading-tight mb-6">
+			Creta
 		</h1>
-
-		<!-- Description -->
-		<p class="text-xl md:text-2xl text-primary-200 mb-8 leading-relaxed">
-			Creta es el taller de software de icarus.mx <br />
-			Aquí encontrarás un laberinto y la ruta para transitarlo.
+		<p class="text-lg md:text-xl text-primary-300 max-w-2xl mx-auto leading-relaxed">
+			Guías prácticas para que empieces a contribuir a los proyectos de icarus.mx. Cada guía te lleva paso a paso, desde cero hasta tu primer aporte.
 		</p>
+	</div>
+</section>
 
-		<!-- Redirect Message -->
-		<div class="mb-8 flex items-center gap-4">
-			<p class="text-2xl md:text-3xl text-primary-300">
-				> Entrando a Creta...
-			</p>
-			<span class="text-3xl md:text-4xl font-black text-primary-400">{countdown}</span>
-		</div>
+<!-- Artifacts Grid -->
+<section class="pb-24 px-6">
+	<div class="max-w-4xl mx-auto">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<a
+				href="/proyectos/como-hacer-prs"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">01</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						¿Cómo hacer PRs?
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Guía paso a paso para hacer tu primer Pull Request. Desde el fork hasta el merge.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+					<span class="text-xs text-primary-400">~15 min</span>
+				</div>
+			</a>
 
-		<!-- Info -->
-		<div class="mt-12 text-sm text-primary-400">
-			<p>→ Aprendiz → Constructor → Maestro</p>
+			<a
+				href="/proyectos/como-personalizar-tus-comandos"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">02</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						¿Cómo personalizar tus comandos?
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Crea aliases y funciones en tu terminal para dejar de repetir lo mismo todos los días.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+					<span class="text-xs text-primary-400">~10 min</span>
+				</div>
+			</a>
+
+			<a
+				href="/proyectos/instala-ariadna"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">03</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						Instala Ariadna
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Configura Neovim con LSP, plugins y keybindings listos en un solo comando.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+					<span class="text-xs text-primary-400">~5 min</span>
+				</div>
+			</a>
+
+			<a
+				href="/creta/init"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">04</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						Entra a Creta
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Únete al taller de software de icarus.mx. Un laberinto y la ruta para transitarlo.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Comunidad</span>
+					<span class="text-xs text-primary-400">Discord</span>
+				</div>
+			</a>
 		</div>
 	</div>
 </section>

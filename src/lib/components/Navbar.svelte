@@ -5,9 +5,8 @@
 
     const links = [
         { label: 'Servicios', href: '/#servicios' },
-        { label: 'Proyectos', href: '/proyectos' },
-        { label: 'Carreras', href: '/carreras' },
-        { label: 'Contacto', href: '/#contacto' }
+        { label: 'Aprender', href: '/creta' },
+        { label: 'Contactar', href: '/#contacto' }
     ];
 </script>
 

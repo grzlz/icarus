@@ -89,6 +89,25 @@
 					<span class="text-xs text-primary-400">~5 min</span>
 				</div>
 			</a>
+
+			<a
+				href="/creta/init"
+				class="flex flex-col bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 group"
+			>
+				<div class="flex items-center gap-4 mb-4">
+					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">04</span>
+					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
+						Entra a Creta
+					</h2>
+				</div>
+				<p class="text-primary-200/70 leading-relaxed mb-6">
+					Únete al taller de software de icarus.mx. Un laberinto y la ruta para transitarlo.
+				</p>
+				<div class="mt-auto flex items-center gap-3">
+					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Comunidad</span>
+					<span class="text-xs text-primary-400">Discord</span>
+				</div>
+			</a>
 		</div>
 	</div>
 </section>
