@@ -66,6 +66,15 @@
 			<p class="text-lg text-primary-300 mb-6 leading-relaxed">
 				El oficio se aprende como siempre se ha aprendido: a través de trabajo y práctica deliberada.
 			</p>
+			<!-- CTA -->
+			<a
+				href={DISCORD_INVITE}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-block border-2 border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-primary-950 font-bold text-lg px-8 py-4 rounded-lg transition-colors mb-8"
+			>
+				Entrar a Creta
+			</a>
 			<div class="flex items-center gap-3 text-lg">
 				<span class="text-primary-200 font-semibold">Aprendiz</span>
 				<span class="text-primary-500">→</span>
@@ -74,15 +83,5 @@
 				<span class="text-primary-200 font-semibold">Maestro</span>
 			</div>
 		</div>
-
-		<!-- CTA -->
-		<a
-			href={DISCORD_INVITE}
-			target="_blank"
-			rel="noopener noreferrer"
-			class="inline-block bg-red-500 hover:bg-red-400 text-white font-bold text-lg px-8 py-4 rounded-lg transition-colors"
-		>
-			Entrar a Creta
-		</a>
 	</div>
 </section>
