@@ -1,28 +1,12 @@
 <script>
-	import { onMount } from 'svelte';
-
 	const DISCORD_INVITE = 'https://discord.gg/KXdwbP5yX';
-
-	let countdown = $state(10);
-
-	onMount(() => {
-		const interval = setInterval(() => {
-			countdown--;
-			if (countdown <= 0) {
-				clearInterval(interval);
-				window.location.href = DISCORD_INVITE;
-			}
-		}, 1000);
-
-		return () => clearInterval(interval);
-	});
 </script>
 
 <svelte:head>
   <!-- Primary Meta Tags -->
   <title>Entra a Creta</title>
   <meta name="title" content="Únete a Creta" />
-  <meta name="description" content="Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo." />
+  <meta name="description" content="Creta es el taller de software de icarus.mx. <br>Aquí encontrarás un laberinto y la ruta para transitarlo." />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
@@ -48,31 +32,57 @@
   <link rel="canonical" href="https://icarus.mx/creta/init" />
 </svelte:head>
 
-
 <section class="bg-gradient-to-b from-primary-950 via-primary-900 to-primary-700 text-primary-50 min-h-screen flex items-start md:items-center justify-center pt-24 md:pt-0">
 	<div class="max-w-2xl mx-auto px-6 text-left">
-		<!-- Heading -->
+		<!-- Hero -->
 		<h1 class="text-5xl md:text-6xl font-black mb-6">
-			Bienvenido a <span class="text-primary-400">Creta</span> 🏛️
+			Bienvenido a <span class="text-primary-400">Creta</span>
 		</h1>
 
-		<!-- Description -->
-		<p class="text-xl md:text-2xl text-primary-200 mb-8 leading-relaxed">
-			Creta es el taller de software de icarus.mx <br />
-			Aquí encontrarás un laberinto y la ruta para transitarlo.
+		<!-- What it is -->
+		<p class="text-xl md:text-2xl text-primary-200 mb-4 leading-relaxed">
+			El taller de software de icarus.mx.
+		</p>
+		<p class="text-lg text-primary-300 mb-10 leading-relaxed">
+		Una ruta de aprendizaje estructurada para la nueva generación de desarrolladores, impulsados por <i>agentic AI</i>. Aprende construyendo, acompañado de una comunidad comprometida con tu desarrollo.
 		</p>
 
-		<!-- Redirect Message -->
-		<div class="mb-8 flex items-center gap-4">
-			<p class="text-2xl md:text-3xl text-primary-300">
-				> Entrando a Creta...
-			</p>
-			<span class="text-3xl md:text-4xl font-black text-primary-400">{countdown}</span>
+		<!-- Who it's for -->
+		<div class="mb-10">
+			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-3">Para quienes quieren</h2>
+			<ul class="space-y-2 text-primary-200 text-lg">
+				<li>Aprender a construir software de la forma moderna</li>
+				<li>Contribuir a proytectos reales closed y open source</li>
+				<li>Crecer junto a otros desarrolladores</li>
+			</ul>
 		</div>
 
-		<!-- Info -->
-		<div class="mt-12 text-sm text-primary-400">
-			<p>→ Aprendiz → Constructor → Maestro</p>
+		<!-- Learning path -->
+		<div class="mb-12">
+			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Ruta de aprendizaje</h2>
+			<p class="text-lg text-primary-300 mb-4 leading-relaxed">
+				Esto no es para venderte un curso. Es una invitación para unirte a nuestro taller de software, donde entran aprendices y salen maestros en el oficio de la construcción de software asistida con agentes.
+			</p>
+			<p class="text-lg text-primary-300 mb-6 leading-relaxed">
+				El oficio se aprende como siempre se ha aprendido: haciendo. Entras como Aprendiz, construyes junto a quienes ya llevan camino, y con el tiempo te conviertes en quien guía a los que vienen detrás. Cada nivel tiene responsabilidades reales — no es un badge, es un compromiso con tu desarrollo y con el taller.
+			</p>
+			<div class="flex items-center gap-3 text-lg">
+				<span class="text-primary-200 font-semibold">Aprendiz</span>
+				<span class="text-primary-500">→</span>
+				<span class="text-primary-200 font-semibold">Constructor</span>
+				<span class="text-primary-500">→</span>
+				<span class="text-primary-200 font-semibold">Maestro</span>
+			</div>
 		</div>
+
+		<!-- CTA -->
+		<a
+			href={DISCORD_INVITE}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-block bg-red-500 hover:bg-red-400 text-white font-bold text-lg px-8 py-4 rounded-lg transition-colors"
+		>
+			Entrar a Creta
+		</a>
 	</div>
 </section>

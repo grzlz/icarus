@@ -98,15 +98,15 @@
 				<div class="flex items-center gap-4 mb-4">
 					<span class="text-3xl font-black text-red-400/60 leading-none shrink-0">04</span>
 					<h2 class="text-xl font-bold text-primary-100 group-hover:text-red-400 transition-colors duration-200">
-						Entra a Creta
+						Continúa aprendiendo
 					</h2>
 				</div>
 				<p class="text-primary-200/70 leading-relaxed mb-6">
-					Creta es el taller de software de icarus.mx. Aquí encontrarás un laberinto y la ruta para transitarlo.
+				También tenemos  taller de software que es completamente gratuito.<br>Da click aquí para saber más.
 				</p>
 				<div class="mt-auto flex items-center gap-3">
 					<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Comunidad</span>
-					<span class="text-xs text-primary-400">Discord</span>
+					<span class="text-xs text-primary-400">Entra a Creta -></span>
 				</div>
 			</a>
 		</div>
