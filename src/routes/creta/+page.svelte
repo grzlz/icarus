@@ -21,10 +21,10 @@
 	<div class="max-w-4xl mx-auto text-center">
 		<p class="text-red-400 font-semibold text-sm uppercase tracking-widest mb-4">Aprende haciendo</p>
 		<h1 class="text-4xl md:text-6xl font-black text-primary-100 leading-tight mb-6">
-			Creta
+			Empieza aquí tu ruta de aprendizaje
 		</h1>
 		<p class="text-lg md:text-xl text-primary-300 max-w-2xl mx-auto leading-relaxed">
-			Guías prácticas para que empieces a contribuir a los proyectos de icarus.mx. Cada guía te lleva paso a paso, desde cero hasta tu primer aporte.
+			Guías prácticas que te acompañan en tu camino. Cada guía te lleva paso a paso, desde cero hasta tu primer aporte en el mundo opensource  (si ya sabes algo de Git).
 		</p>
 	</div>
 </section>
