@@ -52,19 +52,19 @@
 			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-3">Para quienes quieren</h2>
 			<ul class="space-y-2 text-primary-200 text-lg">
 				<li>Aprender a construir software de la forma moderna</li>
-				<li>Contribuir a proytectos reales closed y open source</li>
+				<li>Contribuir a proyectos reales closed y open source</li>
 				<li>Crecer junto a otros desarrolladores</li>
 			</ul>
 		</div>
 
 		<!-- Learning path -->
 		<div class="mb-12">
-			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Ruta de aprendizaje</h2>
+			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Detalles</h2>
 			<p class="text-lg text-primary-300 mb-4 leading-relaxed">
 				Esto no es para venderte un curso. Es una invitación para unirte a nuestro taller de software, donde entran aprendices y salen maestros en el oficio de la construcción de software asistida con agentes.
 			</p>
 			<p class="text-lg text-primary-300 mb-6 leading-relaxed">
-				El oficio se aprende como siempre se ha aprendido: haciendo. Entras como Aprendiz, construyes junto a quienes ya llevan camino, y con el tiempo te conviertes en quien guía a los que vienen detrás. Cada nivel tiene responsabilidades reales — no es un badge, es un compromiso con tu desarrollo y con el taller.
+				El oficio se aprende como siempre se ha aprendido: a través de trabajo y práctica deliberada.
 			</p>
 			<div class="flex items-center gap-3 text-lg">
 				<span class="text-primary-200 font-semibold">Aprendiz</span>
