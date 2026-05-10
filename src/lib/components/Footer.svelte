@@ -1,7 +1,4 @@
 <script>
-	import { fade } from 'svelte/transition';
-
-	let hovered = $state(false);
 	let email = $state('');
 	let status = $state('idle');
 	let message = $state('');
@@ -23,7 +20,7 @@
 
 			if (res.ok) {
 				status = 'success';
-				message = 'Listo, te mantendremos al tanto.';
+				message = 'Listo, te avisaremos.';
 				email = '';
 			} else {
 				status = 'error';
@@ -36,72 +33,142 @@
 	}
 </script>
 
-<footer class="text-primary-100 font-primary">
-	<div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
-		<div>
-			<h2 class="text-xl font-bold mb-4 text-primary-200">¿Quiénes somos?</h2>
-			<p class="text-sm leading-relaxed text-primary-300">Somos pensadores, diseñadores y desarrolladores.</p>
-			<p class="text-sm leading-relaxed text-primary-300 mt-2">Construimos software a la medida para empresas de todo el mundo desde México.</p>
+<footer class="bg-cream-200 text-charcoal-900 font-primary mt-24 border-t border-stone-600/15">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-5 md:px-10">
+		<!-- Brand summary -->
+		<div class="md:col-span-2">
+			<p class="text-charcoal-900 text-2xl font-extrabold tracking-[0.18em] uppercase">Icarus</p>
+			<p class="mt-4 max-w-sm text-sm leading-relaxed text-stone-700">
+				Ropa hecha para durar. Pensada en México para el campo, el trabajo y el camino.
+			</p>
 
-			<nav class="mt-6 flex flex-col gap-2">
-				<a href="#servicios" class="text-sm text-primary-400 hover:text-red-400 transition-colors">Servicios</a>
-				<a href="/carreras" class="text-sm text-primary-400 hover:text-red-400 transition-colors">Carreras</a>
-				<a href="#contacto" class="text-sm text-primary-400 hover:text-red-400 transition-colors">Contacto</a>
-			</nav>
-		</div>
-
-		<div>
-			<h2 class="text-xl font-bold mb-4 text-primary-200">Trade offer:</h2>
-			<p class="text-sm mb-6 text-primary-300">Si nos das tu correo, te damos acceso a nuestro resumen semanal del mundo de la tecnología.</p>
-			<form onsubmit={subscribe} class="flex flex-col sm:flex-row gap-2">
+			<form onsubmit={subscribe} class="mt-8 flex max-w-sm flex-col gap-2 sm:flex-row">
 				<input
 					type="email"
 					bind:value={email}
-					placeholder="Tu correo electrónico"
+					placeholder="Tu correo"
 					disabled={status === 'loading'}
-					class="flex-1 px-4 py-2 rounded-lg bg-primary-800/50 border border-primary-700/30 text-primary-100 placeholder-primary-400 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 transition-colors"
+					class="bg-cream-50 text-charcoal-900 focus:border-forest-500 focus:ring-forest-500 flex-1 rounded-none border border-stone-600/30 px-4 py-2.5 text-sm placeholder-stone-600 focus:ring-1 focus:outline-none"
 				/>
 				<button
 					type="submit"
 					disabled={status === 'loading'}
-					class="bg-red-400 hover:bg-red-500 text-primary-950 px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200 disabled:opacity-50"
+					class="bg-forest-700 hover:bg-forest-500 text-cream-50 rounded-none px-5 py-2.5 text-sm font-semibold tracking-wide uppercase transition-colors disabled:opacity-50"
 				>
-					{status === 'loading' ? '...' : 'Suscribirme'}
+					{status === 'loading' ? '...' : 'Suscribir'}
 				</button>
 			</form>
 			{#if message}
-				<p class="text-sm mt-2 {status === 'success' ? 'text-green-400' : 'text-red-400'}">{message}</p>
+				<p class="mt-2 text-sm {status === 'success' ? 'text-forest-700' : 'text-rust-600'}">
+					{message}
+				</p>
 			{/if}
 		</div>
 
 		<div>
-			<h2 class="text-xl font-bold mb-4 text-primary-200">Redes sociales</h2>
-			<div class="flex gap-5">
-				<!-- GitHub -->
-				<a href="https://github.com/icarus-devs" aria-label="GitHub" class="text-primary-400 hover:text-primary-100 transition-colors duration-200 p-2 rounded-lg hover:bg-primary-800/30">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-						<path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.385.6.11.793-.26.793-.577v-2.01c-3.338.725-4.033-1.608-4.033-1.608-.547-1.388-1.333-1.758-1.333-1.758-1.09-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.775.42-1.305.763-1.604-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.52.117-3.168 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.047.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.655 1.648.243 2.865.12 3.168.77.84 1.233 1.911 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.103.823 2.222v3.293c0 .32.192.694.8.576C20.565 21.796 24 17.298 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd" />
-					</svg>
-				</a>
+			<h3 class="text-charcoal-900 mb-4 text-xs font-bold tracking-widest uppercase">Tienda</h3>
+			<ul class="space-y-2 text-sm">
+				<li>
+					<a href="/tienda" class="hover:text-forest-700 text-stone-700 transition-colors">Todo</a>
+				</li>
+				<li>
+					<a href="/tienda#hombre" class="hover:text-forest-700 text-stone-700 transition-colors"
+						>Hombre</a
+					>
+				</li>
+				<li>
+					<a href="/tienda#mujer" class="hover:text-forest-700 text-stone-700 transition-colors"
+						>Mujer</a
+					>
+				</li>
+				<li>
+					<a
+						href="/tienda#accesorios"
+						class="hover:text-forest-700 text-stone-700 transition-colors">Accesorios</a
+					>
+				</li>
+			</ul>
+		</div>
 
-				<a href="https://www.instagram.com/icarusdev.mx" aria-label="Instagram" class="text-primary-400 hover:text-pink-400 transition-colors duration-200 p-2 rounded-lg hover:bg-pink-400/5">
-					<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-						<path d="M7.75 2C5.12665 2 3 4.12665 3 6.75V17.25C3 19.8734 5.12665 22 7.75 22H16.25C18.8734 22 21 19.8734 21 17.25V6.75C21 4.12665 18.8734 2 16.25 2H7.75ZM7.75 4H16.25C17.4926 4 18.5 5.00736 18.5 6.25V17.75C18.5 18.9926 17.4926 20 16.25 20H7.75C6.50736 20 5.5 18.9926 5.5 17.75V6.25C5.5 5.00736 6.50736 4 7.75 4ZM12 7C9.51472 7 7.5 9.01472 7.5 11.5C7.5 13.9853 9.51472 16 12 16C14.4853 16 16.5 13.9853 16.5 11.5C16.5 9.01472 14.4853 7 12 7ZM12 9C13.3807 9 14.5 10.1193 14.5 11.5C14.5 12.8807 13.3807 14 12 14C10.6193 14 9.5 12.8807 9.5 11.5C9.5 10.1193 10.6193 9 12 9ZM17.5 6.25C17.5 6.66421 17.1642 7 16.75 7C16.3358 7 16 6.66421 16 6.25C16 5.83579 16.3358 5.5 16.75 5.5C17.1642 5.5 17.5 5.83579 17.5 6.25Z"/>
-					</svg>
-				</a>
-			</div>
+		<div>
+			<h3 class="text-charcoal-900 mb-4 text-xs font-bold tracking-widest uppercase">Compañía</h3>
+			<ul class="space-y-2 text-sm">
+				<li>
+					<a href="/mision" class="hover:text-forest-700 text-stone-700 transition-colors">Misión</a
+					>
+				</li>
+				<li>
+					<a href="/diario" class="hover:text-forest-700 text-stone-700 transition-colors">Diario</a
+					>
+				</li>
+				<li>
+					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
+						>Contacto</a
+					>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<h3 class="text-charcoal-900 mb-4 text-xs font-bold tracking-widest uppercase">Soporte</h3>
+			<ul class="space-y-2 text-sm">
+				<li>
+					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
+						>Envíos</a
+					>
+				</li>
+				<li>
+					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
+						>Cambios</a
+					>
+				</li>
+				<li>
+					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
+						>Garantía</a
+					>
+				</li>
+				<li>
+					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors">FAQ</a
+					>
+				</li>
+			</ul>
 		</div>
 	</div>
 
-	<div class="border-t border-primary-700/40 text-sm text-primary-400 px-6 py-6 relative h-10 overflow-hidden">
-		<div class="max-w-6xl mx-auto text-center cursor-pointer relative h-full" onmouseenter={() => hovered = true} onmouseleave={() => hovered = false} role="button" tabindex="0">
-			{#if hovered}
-			<a href="/" in:fade={{ duration: 200 }} out:fade={{ duration: 0 }} class="absolute inset-0 flex items-center justify-center hover:text-red-400 transition-colors">
-				<img src="/logo.png" alt="icarus.mx logo" class="w-13 h-13" />
-			</a>
-			{:else}
-			<span in:fade={{ duration: 200 }} out:fade={{ duration: 0 }} class="absolute inset-0 flex items-center justify-center">&copy; {year} icarus.mx</span>
-			{/if}
+	<div class="border-t border-stone-600/15">
+		<div
+			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm md:flex-row md:px-10"
+		>
+			<p class="text-stone-700">&copy; {year} Icarus &middot; Hecho en México</p>
+			<div class="flex gap-5">
+				<a
+					href="https://www.instagram.com/icarus.mx"
+					aria-label="Instagram"
+					class="hover:text-forest-700 text-stone-700 transition-colors"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-5 w-5"
+						fill="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							d="M7.75 2C5.12665 2 3 4.12665 3 6.75V17.25C3 19.8734 5.12665 22 7.75 22H16.25C18.8734 22 21 19.8734 21 17.25V6.75C21 4.12665 18.8734 2 16.25 2H7.75ZM7.75 4H16.25C17.4926 4 18.5 5.00736 18.5 6.25V17.75C18.5 18.9926 17.4926 20 16.25 20H7.75C6.50736 20 5.5 18.9926 5.5 17.75V6.25C5.5 5.00736 6.50736 4 7.75 4ZM12 7C9.51472 7 7.5 9.01472 7.5 11.5C7.5 13.9853 9.51472 16 12 16C14.4853 16 16.5 13.9853 16.5 11.5C16.5 9.01472 14.4853 7 12 7ZM12 9C13.3807 9 14.5 10.1193 14.5 11.5C14.5 12.8807 13.3807 14 12 14C10.6193 14 9.5 12.8807 9.5 11.5C9.5 10.1193 10.6193 9 12 9ZM17.5 6.25C17.5 6.66421 17.1642 7 16.75 7C16.3358 7 16 6.66421 16 6.25C16 5.83579 16.3358 5.5 16.75 5.5C17.1642 5.5 17.5 5.83579 17.5 6.25Z"
+						/>
+					</svg>
+				</a>
+				<a
+					href="https://wa.me/525548017016"
+					aria-label="WhatsApp"
+					class="hover:text-forest-700 text-stone-700 transition-colors"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="h-5 w-5 fill-current">
+						<path
+							d="M16 .396c-8.837 0-16 7.163-16 16 0 2.82.735 5.59 2.13 8.031L0 32l7.745-2.021c2.355 1.29 5.028 1.97 7.794 1.97 8.837 0 16-7.163 16-16S24.837.396 16 .396zm0 29.202c-2.475 0-4.9-.661-7.03-1.916l-.506-.295-4.6 1.201 1.226-4.48-.313-.515a13.393 13.393 0 01-2.08-7.094c0-7.433 6.048-13.481 13.481-13.481S29.481 7.963 29.481 15.396 23.433 29.598 16 29.598z"
+						/>
+					</svg>
+				</a>
+			</div>
 		</div>
 	</div>
 </footer>
