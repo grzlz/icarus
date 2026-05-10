@@ -10,7 +10,7 @@
 	// - tag: optional badge (Hot, Nuevo, etc.)
 	const products = [
 		{
-			phrase: 'gpi\na un\ngpu',
+			phrase: 'no es bug\nes feature',
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
@@ -34,7 +34,7 @@
 			tag: 'Nuevo'
 		},
 		{
-			phrase: 'ctrl + Z\nmi vida',
+			phrase: "i'm the\nbottleneck",
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
@@ -50,7 +50,7 @@
 			tag: null
 		},
 		{
-			phrase: 'sudo\napt-get\ntortillas',
+			phrase: 'git commit -m\n"some\nchanges"',
 			type: 'Playera',
 			garment: 'white',
 			technique: 'estampado',
@@ -120,6 +120,15 @@
 			garment: 'olive',
 			technique: 'bordado',
 			price: '$490',
+			tag: 'Nuevo'
+		},
+		{
+			// Illustration: bottle with stick figures stacked inside, top one waving from the neck. Discreet "← yo" accent embroidered.
+			phrase: '← yo',
+			type: 'Playera',
+			garment: 'black',
+			technique: 'bordado',
+			price: '$590',
 			tag: 'Nuevo'
 		}
 	];

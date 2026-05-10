@@ -24,7 +24,7 @@
 	// `garment` controls the simulated tee color in the placeholder card.
 	const drops = [
 		{
-			phrase: 'le pegué\ngripa\na un GPU',
+			phrase: 'no es bug\nes feature',
 			type: 'Playera',
 			price: '$390',
 			garment: 'black',
@@ -45,7 +45,7 @@
 			tag: 'Nuevo'
 		},
 		{
-			phrase: 'ctrl + Z\nmi vida',
+			phrase: "i'm the\nbottleneck",
 			type: 'Playera',
 			price: '$390',
 			garment: 'black',
@@ -59,7 +59,7 @@
 			tag: null
 		},
 		{
-			phrase: 'sudo\napt-get\ntortillas',
+			phrase: 'git commit -m\n"some\nchanges"',
 			type: 'Playera',
 			price: '$390',
 			garment: 'white',
@@ -149,7 +149,7 @@
 			</div>
 		</div>
 
-		<!-- Hero shirt: the featured "gpi a un gpu" tee -->
+		<!-- Hero shirt: the featured "no es bug es feature" tee -->
 		<div class="hero-animate hero-animate-2 relative">
 			<div
 				class="aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-br from-bone-100 to-bone-200 p-6 md:p-10"
@@ -159,7 +159,7 @@
 					class="relative flex h-full w-full items-center justify-center rounded-2xl bg-ink-950 p-8"
 				>
 					<div class="print text-bone-50 text-4xl md:text-5xl lg:text-6xl">
-						gpi<br />a un<br />gpu
+						no es<br />bug<br />es feature
 					</div>
 					<span
 						class="absolute top-4 left-4 rounded-full bg-tomato-500 px-2.5 py-1 font-mono text-[9px] font-bold tracking-widest text-bone-50 uppercase"
@@ -173,7 +173,7 @@
 					<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-600 uppercase">
 						Featured · Playera negra
 					</p>
-					<p class="mt-1 text-base font-bold text-ink-950">"gpi a un gpu"</p>
+					<p class="mt-1 text-base font-bold text-ink-950">"no es bug es feature"</p>
 				</div>
 				<p class="text-2xl font-extrabold text-ink-950">$390</p>
 			</div>
