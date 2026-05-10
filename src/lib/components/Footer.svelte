@@ -83,6 +83,12 @@
 				<li>
 					<a href="/tienda#sudaderas" class="text-ink-950 hover:opacity-60">Sudaderas</a>
 				</li>
+				<li>
+					<a href="/tienda#estampado" class="text-ink-950 hover:opacity-60">Estampado</a>
+				</li>
+				<li>
+					<a href="/tienda#bordado" class="text-ink-950 hover:opacity-60">Bordado</a>
+				</li>
 			</ul>
 		</div>
 

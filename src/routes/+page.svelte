@@ -96,13 +96,13 @@
 	<title>Icarus · Mercancía para los que viven en la terminal</title>
 	<meta
 		name="description"
-		content="Playeras y sudaderas con frases para los que programan, debugan y siguen creyendo. Mercancía sencilla, hecha en México."
+		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
 	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Icarus · Mercancía para los que viven en la terminal" />
 	<meta
 		property="og:description"
-		content="Playeras y sudaderas con frases para los que programan, debugan y siguen creyendo."
+		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado o bordado, hecho en México."
 	/>
 	<meta property="og:url" content="https://icarus.mx" />
 	<meta property="og:site_name" content="Icarus" />
@@ -130,8 +130,8 @@
 				<span class="text-tomato-500">en la terminal.</span>
 			</h1>
 			<p class="hero-animate hero-animate-2 mt-6 max-w-md text-lg text-grey-600">
-				Algodón pesado, estampado en serigrafía, hecho en México. Para los que programan, debugan
-				y siguen creyendo.
+				Algodón pesado, estampado a serigrafía o bordado a máquina, hecho en México. Para los que
+				programan, debugan y siguen creyendo.
 			</p>
 			<div class="hero-animate hero-animate-3 mt-8 flex flex-wrap items-center gap-4">
 				<a
