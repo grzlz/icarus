@@ -19,7 +19,7 @@
 <section class="py-24 px-6">
 	<div class="max-w-3xl mx-auto">
 		<!-- Back link -->
-		<a href="/proyectos" class="inline-flex items-center gap-2 text-primary-400 hover:text-red-400 transition-colors duration-200 mb-12 text-sm font-medium">
+		<a href="/proyectos" class="inline-flex items-center gap-2 text-primary-400 hover:text-emerald-400 transition-colors duration-200 mb-12 text-sm font-medium">
 			<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
 			</svg>
@@ -29,7 +29,7 @@
 		<!-- Header -->
 		<div class="mb-16">
 			<div class="flex items-center gap-3 mb-4">
-				<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+				<span class="text-xs font-medium bg-emerald-400/10 text-emerald-400 px-3 py-1 rounded-full">Principiante</span>
 				<span class="text-xs text-primary-400">~15 min</span>
 			</div>
 			<h1 class="text-3xl md:text-5xl font-black text-primary-100 leading-tight mb-6">
@@ -44,11 +44,11 @@
 		<div class="space-y-16">
 			<!-- Step 1 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">01</span>
+				<span class="text-4xl font-black text-emerald-400/30 leading-none shrink-0">01</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Clonar y crear rama</h2>
 					<p class="text-primary-300/80 leading-relaxed">
-						Clona el repositorio a tu máquina local y crea una rama nueva para tus cambios. Nunca trabajes directo en <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">main</code>.
+						Clona el repositorio a tu máquina local y crea una rama nueva para tus cambios. Nunca trabajes directo en <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">main</code>.
 					</p>
 					<div class="bg-white/5 border border-white/10 rounded-lg p-4 font-mono text-sm text-primary-200 space-y-1 overflow-x-auto">
 						<p>git clone https://github.com/icarus-mx/el-repo.git</p>
@@ -56,7 +56,7 @@
 						<p>git switch -c "42-add-search-feature"</p>
 					</div>
 					<p class="text-primary-400 text-sm">
-						Incluye el número del issue de GitHub al inicio de la rama para tracking: <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">42-add-search-feature</code>, <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">15-fix-login-bug</code>, etc.
+						Incluye el número del issue de GitHub al inicio de la rama para tracking: <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">42-add-search-feature</code>, <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">15-fix-login-bug</code>, etc.
 					</p>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 
 			<!-- Step 3 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">02</span>
+				<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">02</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Hacer cambios y commits</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -76,7 +76,7 @@
 						<p>git commit -m "fix: corregir validación en formulario de login"</p>
 					</div>
 					<p class="text-primary-300/80 leading-relaxed">
-						Usa <a href="https://www.conventionalcommits.org" target="_blank" class="text-red-400 hover:underline">Conventional Commits</a> cuando sea posible: <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">feat:</code>, <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">fix:</code>, <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">docs:</code>, etc.
+						Usa <a href="https://www.conventionalcommits.org" target="_blank" class="text-amber-400 hover:underline">Conventional Commits</a> cuando sea posible: <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">feat:</code>, <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">fix:</code>, <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">docs:</code>, etc.
 					</p>
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 
 			<!-- Step 4 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">03</span>
+				<span class="text-4xl font-black text-cyan-400/30 leading-none shrink-0">03</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Push y abrir el PR</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -109,7 +109,7 @@
 
 			<!-- Step 5 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">04</span>
+				<span class="text-4xl font-black text-violet-400/30 leading-none shrink-0">04</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">El ciclo de review</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -163,7 +163,7 @@
 					'Merge — tu código es parte del proyecto'
 				] as item}
 					<li class="flex items-start gap-3 text-primary-300/80">
-						<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 						</svg>
 						{item}

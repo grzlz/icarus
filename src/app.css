@@ -47,3 +47,31 @@ html {
         oklch(0.10 0.04 260) 100%
     );
 }
+
+/* Hero entrance animation */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-animate {
+    animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-animate-1 { animation-delay: 150ms; }
+.hero-animate-2 { animation-delay: 300ms; }
+.hero-animate-3 { animation-delay: 450ms; }
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-animate {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}

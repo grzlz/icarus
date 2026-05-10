@@ -19,7 +19,7 @@
 <section class="py-24 px-6">
 	<div class="max-w-3xl mx-auto">
 		<!-- Back link -->
-		<a href="/proyectos" class="inline-flex items-center gap-2 text-primary-400 hover:text-red-400 transition-colors duration-200 mb-12 text-sm font-medium">
+		<a href="/proyectos" class="inline-flex items-center gap-2 text-primary-400 hover:text-amber-400 transition-colors duration-200 mb-12 text-sm font-medium">
 			<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
 			</svg>
@@ -29,7 +29,7 @@
 		<!-- Header -->
 		<div class="mb-16">
 			<div class="flex items-center gap-3 mb-4">
-				<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+				<span class="text-xs font-medium bg-amber-400/10 text-amber-400 px-3 py-1 rounded-full">Principiante</span>
 				<span class="text-xs text-primary-400">~10 min</span>
 			</div>
 			<h1 class="text-3xl md:text-5xl font-black text-primary-100 leading-tight mb-6">
@@ -44,11 +44,11 @@
 		<div class="space-y-16">
 			<!-- Step 1 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">01</span>
+				<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">01</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Tu primer alias</h2>
 					<p class="text-primary-300/80 leading-relaxed">
-						Un alias es un atajo para un comando largo. Lo defines con <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">alias</code> y listo — funciona como cualquier otro comando.
+						Un alias es un atajo para un comando largo. Lo defines con <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">alias</code> y listo — funciona como cualquier otro comando.
 					</p>
 					<div class="bg-white/5 border border-white/10 rounded-lg p-4 font-mono text-sm text-primary-200 space-y-1 overflow-x-auto">
 						<p>alias gs='git status'</p>
@@ -56,7 +56,7 @@
 						<p>alias dev='npm run dev'</p>
 					</div>
 					<p class="text-primary-400 text-sm">
-						Pruébalo: escribe <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">gs</code> en tu terminal y verás el resultado de <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">git status</code>.
+						Pruébalo: escribe <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">gs</code> en tu terminal y verás el resultado de <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">git status</code>.
 					</p>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 
 			<!-- Step 2 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">02</span>
+				<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">02</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Hacerlos permanentes</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -91,7 +91,7 @@
 
 			<!-- Step 3 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">03</span>
+				<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">03</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Funciones para cosas más complejas</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -104,7 +104,7 @@
 						<p>{'}'}</p>
 					</div>
 					<p class="text-primary-300/80 leading-relaxed">
-						Ahora puedes escribir <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">nueva_rama mi-feature</code> y se ejecuta <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">git switch -c mi-feature</code>. El <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">$1</code> es el primer argumento que le pases.
+						Ahora puedes escribir <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">nueva_rama mi-feature</code> y se ejecuta <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">git switch -c mi-feature</code>. El <code class="text-amber-400 bg-amber-400/5 px-1.5 py-0.5 rounded text-sm">$1</code> es el primer argumento que le pases.
 					</p>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 
 			<!-- Step 4 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">04</span>
+				<span class="text-4xl font-black text-amber-400/30 leading-none shrink-0">04</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Ejemplo real: commit rápido</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -152,7 +152,7 @@
 					'shipit — ejemplo real de automatización útil'
 				] as item}
 					<li class="flex items-start gap-3 text-primary-300/80">
-						<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 						</svg>
 						{item}

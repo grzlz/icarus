@@ -2,6 +2,15 @@
     import { slide } from 'svelte/transition';
 
     let mobileOpen = $state(false);
+    let scrolled = $state(false);
+
+    $effect(() => {
+        function onScroll() {
+            scrolled = window.scrollY > 40;
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    });
 
     const links = [
         { label: 'Servicios', href: '/#servicios' },
@@ -10,7 +19,7 @@
     ];
 </script>
 
-<nav class="sticky top-0 z-50 flex items-center justify-between backdrop-blur-sm bg-primary-950/20 md:px-8 min-h-[60px] px-4 py-2">
+<nav class="sticky top-0 z-50 flex items-center justify-between backdrop-blur-sm md:px-8 min-h-[60px] px-4 py-2 transition-[background-color,border-color] duration-300 {scrolled ? 'bg-primary-950/80 border-b border-white/5' : 'bg-primary-950/20 border-b border-transparent'}">
 
     <a href="/" class="text-primary-200 text-lg font-semibold font-primary hidden md:block">ICARUS</a>
 

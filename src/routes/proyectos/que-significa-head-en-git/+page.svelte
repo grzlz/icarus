@@ -19,7 +19,7 @@
 <section class="py-24 px-6">
 	<div class="max-w-3xl mx-auto">
 		<!-- Back link -->
-		<a href="/creta" class="inline-flex items-center gap-2 text-primary-400 hover:text-red-400 transition-colors duration-200 mb-12 text-sm font-medium">
+		<a href="/creta" class="inline-flex items-center gap-2 text-primary-400 hover:text-cyan-400 transition-colors duration-200 mb-12 text-sm font-medium">
 			<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
 			</svg>
@@ -29,7 +29,7 @@
 		<!-- Header -->
 		<div class="mb-16">
 			<div class="flex items-center gap-3 mb-4">
-				<span class="text-xs font-medium bg-red-400/10 text-red-400 px-3 py-1 rounded-full">Principiante</span>
+				<span class="text-xs font-medium bg-cyan-400/10 text-cyan-400 px-3 py-1 rounded-full">Principiante</span>
 				<span class="text-xs text-primary-400">~10 min</span>
 			</div>
 			<h1 class="text-3xl md:text-5xl font-black text-primary-100 leading-tight mb-6">
@@ -44,14 +44,14 @@
 		<div class="space-y-16">
 			<!-- Step 1 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">01</span>
+				<span class="text-4xl font-black text-cyan-400/30 leading-none shrink-0">01</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">HEAD es un puntero</h2>
 					<p class="text-primary-300/80 leading-relaxed">
 						En Git, HEAD es una referencia que apunta al commit actual en tu rama. Piensa en él como un marcador de "estás aquí" en un mapa.
 					</p>
 					<p class="text-primary-300/80 leading-relaxed">
-						Normalmente HEAD apunta a una rama (como <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">main</code>), y esa rama apunta al último commit. Cuando haces un nuevo commit, la rama avanza y HEAD se mueve con ella.
+						Normalmente HEAD apunta a una rama (como <code class="text-cyan-400 bg-cyan-400/5 px-1.5 py-0.5 rounded text-sm">main</code>), y esa rama apunta al último commit. Cuando haces un nuevo commit, la rama avanza y HEAD se mueve con ella.
 					</p>
 					<div class="bg-white/5 border border-white/10 rounded-lg p-4 font-mono text-sm text-primary-200 overflow-x-auto">
 						<p>git log --oneline -1</p>
@@ -64,11 +64,11 @@
 
 			<!-- Step 2 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">02</span>
+				<span class="text-4xl font-black text-cyan-400/30 leading-none shrink-0">02</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">HEAD se mueve cuando cambias de rama</h2>
 					<p class="text-primary-300/80 leading-relaxed">
-						Cada vez que haces <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">git switch</code> o <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">git checkout</code>, HEAD se mueve a apuntar a la nueva rama.
+						Cada vez que haces <code class="text-cyan-400 bg-cyan-400/5 px-1.5 py-0.5 rounded text-sm">git switch</code> o <code class="text-cyan-400 bg-cyan-400/5 px-1.5 py-0.5 rounded text-sm">git checkout</code>, HEAD se mueve a apuntar a la nueva rama.
 					</p>
 					<div class="bg-white/5 border border-white/10 rounded-lg p-4 font-mono text-sm text-primary-200 space-y-1 overflow-x-auto">
 						<p>git switch main</p>
@@ -77,7 +77,7 @@
 						<p class="text-primary-400"># HEAD -> feature</p>
 					</div>
 					<p class="text-primary-400 text-sm">
-						HEAD siempre sabe en qué rama estás. Por eso <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">git branch</code> marca con asterisco la rama actual.
+						HEAD siempre sabe en qué rama estás. Por eso <code class="text-cyan-400 bg-cyan-400/5 px-1.5 py-0.5 rounded text-sm">git branch</code> marca con asterisco la rama actual.
 					</p>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 
 			<!-- Step 3 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">03</span>
+				<span class="text-4xl font-black text-cyan-400/30 leading-none shrink-0">03</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Detached HEAD — cuando HEAD no apunta a una rama</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -109,7 +109,7 @@
 
 			<!-- Step 4 -->
 			<div class="flex gap-6 items-start">
-				<span class="text-4xl font-black text-red-400/30 leading-none shrink-0">04</span>
+				<span class="text-4xl font-black text-cyan-400/30 leading-none shrink-0">04</span>
 				<div class="space-y-4">
 					<h2 class="text-xl font-bold text-primary-100">Usando HEAD como referencia</h2>
 					<p class="text-primary-300/80 leading-relaxed">
@@ -124,7 +124,7 @@
 						<p>git reset HEAD~1</p>
 					</div>
 					<p class="text-primary-400 text-sm">
-						<code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">HEAD~1</code> = un commit antes. <code class="text-red-400 bg-white/5 px-1.5 py-0.5 rounded text-sm">HEAD~2</code> = dos commits antes. Y así.
+						<code class="text-cyan-400 bg-cyan-400/5 px-1.5 py-0.5 rounded text-sm">HEAD~1</code> = un commit antes. <code class="text-cyan-400 bg-cyan-400/5 px-1.5 py-0.5 rounded text-sm">HEAD~2</code> = dos commits antes. Y así.
 					</p>
 				</div>
 			</div>
@@ -142,7 +142,7 @@
 					'HEAD~N te deja referenciar commits anteriores sin hashes'
 				] as item}
 					<li class="flex items-start gap-3 text-primary-300/80">
-						<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 						</svg>
 						{item}

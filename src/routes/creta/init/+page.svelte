@@ -36,7 +36,7 @@
 	<div class="max-w-2xl mx-auto px-6 text-left">
 		<!-- Hero -->
 		<h1 class="text-5xl md:text-6xl font-black mb-6">
-			Bienvenido a <span class="text-primary-400">Creta</span>
+			Bienvenido a <span class="text-violet-400">Creta</span>
 		</h1>
 
 		<!-- What it is -->
@@ -49,7 +49,7 @@
 
 		<!-- Who it's for -->
 		<div class="mb-10">
-			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-3">Para quienes quieren</h2>
+			<h2 class="text-sm uppercase tracking-widest text-violet-400 mb-3">Para quienes quieren</h2>
 			<ul class="space-y-2 text-primary-200 text-lg">
 				<li>Aprender a construir software de la forma moderna</li>
 				<li>Contribuir a proyectos reales closed y open source</li>
@@ -59,7 +59,7 @@
 
 		<!-- Learning path -->
 		<div class="mb-12">
-			<h2 class="text-sm uppercase tracking-widest text-primary-400 mb-4">Detalles</h2>
+			<h2 class="text-sm uppercase tracking-widest text-violet-400 mb-4">Detalles</h2>
 			<p class="text-lg text-primary-300 mb-4 leading-relaxed">
 				Esto no es para venderte un curso. Es una invitación para unirte a nuestro taller de software, donde entran aprendices y salen maestros en el oficio de la construcción de software asistida con agentes.
 			</p>
@@ -71,15 +71,15 @@
 				href={DISCORD_INVITE}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="inline-block border-2 border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-primary-950 font-bold text-lg px-8 py-4 rounded-lg transition-colors mb-8"
+				class="inline-block border-2 border-violet-400/60 text-violet-400 hover:bg-violet-400 hover:text-primary-950 font-bold text-lg px-8 py-4 rounded-lg transition-colors mb-8"
 			>
 				Entrar a Creta
 			</a>
 			<div class="flex items-center gap-3 text-lg">
 				<span class="text-primary-200 font-semibold">Aprendiz</span>
-				<span class="text-primary-500">→</span>
+				<span class="text-violet-400/40">→</span>
 				<span class="text-primary-200 font-semibold">Constructor</span>
-				<span class="text-primary-500">→</span>
+				<span class="text-violet-400/40">→</span>
 				<span class="text-primary-200 font-semibold">Maestro</span>
 			</div>
 		</div>

@@ -5,24 +5,51 @@
 		{
 			title: 'Designer',
 			summary: 'UI/UX, branding y producto. Que se vea bien y funcione mejor.',
-			description: 'Diseñas interfaces, sistemas de diseño y experiencias de usuario para productos digitales. Trabajas de la mano con desarrollo para que cada pixel tenga sentido y cada flujo sea intuitivo.'
+			description: 'Diseñas interfaces, sistemas de diseño y experiencias de usuario para productos digitales. Trabajas de la mano con desarrollo para que cada pixel tenga sentido y cada flujo sea intuitivo.',
+			color: 'violet'
 		},
 		{
 			title: 'Agentic-Assisted Engineer',
 			summary: 'Desarrollo asistido por agentes de IA. El futuro del software.',
-			description: 'Construyes software junto con agentes de IA. Defines prompts, flujos de trabajo y arquitecturas que combinan código tradicional con modelos de lenguaje para resolver problemas reales.'
+			description: 'Construyes software junto con agentes de IA. Defines prompts, flujos de trabajo y arquitecturas que combinan código tradicional con modelos de lenguaje para resolver problemas reales.',
+			color: 'amber'
 		},
 		{
 			title: 'DevOps & Infrastructure Engineer',
 			summary: 'CI/CD, cloud, infraestructura. Que nada se caiga.',
-			description: 'Diseñas y mantienes la infraestructura que sostiene nuestros productos. CI/CD, monitoreo, cloud, automatización. Tu trabajo hace que todo lo demás funcione.'
+			description: 'Diseñas y mantienes la infraestructura que sostiene nuestros productos. CI/CD, monitoreo, cloud, automatización. Tu trabajo hace que todo lo demás funcione.',
+			color: 'cyan'
 		},
 		{
 			title: 'Frontend Developer',
 			summary: 'Interfaces rápidas, accesibles y con buen gusto.',
-			description: 'Construyes interfaces web con tecnologías modernas. Te importa el rendimiento, la accesibilidad y los detalles. Trabajas con Svelte, React o lo que el proyecto necesite.'
+			description: 'Construyes interfaces web con tecnologías modernas. Te importa el rendimiento, la accesibilidad y los detalles. Trabajas con Svelte, React o lo que el proyecto necesite.',
+			color: 'red'
 		}
 	];
+
+	const colorMap = {
+		violet: {
+			titleHover: 'group-hover:text-violet-400',
+			cardHover: 'hover:bg-violet-400/5 hover:border-violet-400/20',
+			back: 'hover:text-violet-400'
+		},
+		amber: {
+			titleHover: 'group-hover:text-amber-400',
+			cardHover: 'hover:bg-amber-400/5 hover:border-amber-400/20',
+			back: 'hover:text-amber-400'
+		},
+		cyan: {
+			titleHover: 'group-hover:text-cyan-400',
+			cardHover: 'hover:bg-cyan-400/5 hover:border-cyan-400/20',
+			back: 'hover:text-cyan-400'
+		},
+		red: {
+			titleHover: 'group-hover:text-red-400',
+			cardHover: 'hover:bg-red-400/5 hover:border-red-400/20',
+			back: 'hover:text-red-400'
+		}
+	};
 
 	let selected = $state(null);
 	let appEmail = $state('');
@@ -116,9 +143,9 @@
 					{#each roles as role, i}
 						<button
 							onclick={() => selectRole(i)}
-							class="text-left bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20 group cursor-pointer"
+							class="text-left bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6 transition-all duration-300 {colorMap[role.color].cardHover} group cursor-pointer"
 						>
-							<h3 class="text-xl font-bold text-primary-100 mb-2 group-hover:text-red-400 transition-colors duration-200">
+							<h3 class="text-xl font-bold text-primary-100 mb-2 {colorMap[role.color].titleHover} transition-colors duration-200">
 								{role.title}
 							</h3>
 							<p class="text-primary-200/70 leading-relaxed text-sm">{role.summary}</p>
@@ -130,7 +157,7 @@
 			<div in:fly={{ y: 20, duration: 300 }}>
 				<button
 					onclick={goBack}
-					class="flex items-center gap-2 text-primary-300 hover:text-red-400 transition-colors mb-10 cursor-pointer"
+					class="flex items-center gap-2 text-primary-300 {colorMap[roles[selected].color].back} transition-colors mb-10 cursor-pointer"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
