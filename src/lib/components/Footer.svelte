@@ -33,7 +33,7 @@
 	}
 </script>
 
-<footer class="mt-24 border-t border-ink-950/8 bg-bone-100 text-ink-950 font-primary">
+<footer class="border-ink-950/8 bg-bone-100 text-ink-950 font-primary mt-24 border-t">
 	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 py-14 md:grid-cols-4 md:px-10">
 		<!-- Brand -->
 		<div class="md:col-span-2">
@@ -41,9 +41,9 @@
 				<img src="/logo.png" alt="" class="h-7 w-auto" />
 				<p class="text-lg font-extrabold tracking-tight">Icarus</p>
 			</div>
-			<p class="mt-4 max-w-sm text-sm text-grey-600">
-				Playeras y sudaderas con frases para los que viven en la terminal. Hecho en México, en
-				lotes chicos.
+			<p class="text-grey-600 mt-4 max-w-sm text-sm">
+				Playeras y sudaderas con frases para los que viven en la terminal. Hecho en México, en lotes
+				chicos.
 			</p>
 
 			<form onsubmit={subscribe} class="mt-6 flex max-w-sm flex-col gap-2 sm:flex-row">
@@ -52,12 +52,12 @@
 					bind:value={email}
 					placeholder="tucorreo@dominio.mx"
 					disabled={status === 'loading'}
-					class="flex-1 rounded-full border border-ink-950/15 bg-bone-50 px-4 py-2.5 text-sm text-ink-950 placeholder-grey-500 focus:border-ink-950 focus:outline-none"
+					class="border-ink-950/15 bg-bone-50 text-ink-950 placeholder-grey-500 focus:border-ink-950 flex-1 rounded-full border px-4 py-2.5 text-sm focus:outline-none"
 				/>
 				<button
 					type="submit"
 					disabled={status === 'loading'}
-					class="rounded-full bg-ink-950 px-5 py-2.5 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800 disabled:opacity-50"
+					class="bg-ink-950 text-bone-50 hover:bg-ink-800 rounded-full px-5 py-2.5 text-sm font-bold transition-colors disabled:opacity-50"
 				>
 					{status === 'loading' ? '...' : 'Avísame'}
 				</button>
@@ -70,7 +70,7 @@
 		</div>
 
 		<div>
-			<h3 class="mb-4 font-mono text-[10px] font-bold tracking-widest text-grey-600 uppercase">
+			<h3 class="text-grey-600 mb-4 font-mono text-[10px] font-bold tracking-widest uppercase">
 				Tienda
 			</h3>
 			<ul class="space-y-2 text-sm">
@@ -93,7 +93,7 @@
 		</div>
 
 		<div>
-			<h3 class="mb-4 font-mono text-[10px] font-bold tracking-widest text-grey-600 uppercase">
+			<h3 class="text-grey-600 mb-4 font-mono text-[10px] font-bold tracking-widest uppercase">
 				Info
 			</h3>
 			<ul class="space-y-2 text-sm">
@@ -110,7 +110,7 @@
 		</div>
 	</div>
 
-	<div class="border-t border-ink-950/8">
+	<div class="border-ink-950/8 border-t">
 		<div
 			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs md:flex-row md:px-10"
 		>
@@ -119,7 +119,7 @@
 				<a
 					href="https://www.instagram.com/icarus.mx"
 					aria-label="Instagram"
-					class="text-grey-600 transition-colors hover:text-ink-950"
+					class="text-grey-600 hover:text-ink-950 transition-colors"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@
 				<a
 					href="https://wa.me/525548017016"
 					aria-label="WhatsApp"
-					class="text-grey-600 transition-colors hover:text-ink-950"
+					class="text-grey-600 hover:text-ink-950 transition-colors"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="h-5 w-5 fill-current">
 						<path

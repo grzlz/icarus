@@ -4,6 +4,18 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="/favicon.png" />
+		<script>
+			// Resolve theme before paint to avoid a flash. Order: explicit user
+			// override in localStorage → system preference → light.
+			(function () {
+				try {
+					var stored = localStorage.getItem('theme');
+					var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					var dark = stored ? stored === 'dark' : prefersDark;
+					if (dark) document.documentElement.classList.add('dark');
+				} catch (e) {}
+			})();
+		</script>
 		<script
 			defer
 			src="https://analytics.deploythebox.com/script.js"

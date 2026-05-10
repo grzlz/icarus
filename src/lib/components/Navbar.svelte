@@ -21,13 +21,13 @@
 
 <nav
 	class="sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 {scrolled
-		? 'border-b border-ink-950/8 bg-bone-50/85 backdrop-blur-md'
+		? 'border-ink-950/8 bg-bone-50/85 border-b backdrop-blur-md'
 		: 'border-b border-transparent bg-transparent'}"
 >
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
 		<a
 			href="/"
-			class="flex items-center gap-2.5 text-ink-950 transition-opacity hover:opacity-70"
+			class="text-ink-950 flex items-center gap-2.5 transition-opacity hover:opacity-70"
 			aria-label="Icarus"
 		>
 			<img src="/logo.png" alt="" class="h-7 w-auto" />
@@ -40,7 +40,7 @@
 				<li>
 					<a
 						href={link.href}
-						class="text-sm font-semibold text-ink-950 transition-opacity hover:opacity-60"
+						class="text-ink-950 text-sm font-semibold transition-opacity hover:opacity-60"
 					>
 						{link.label}
 					</a>
@@ -49,7 +49,7 @@
 			<li>
 				<a
 					href="/tienda"
-					class="rounded-full bg-ink-950 px-5 py-2 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800"
+					class="bg-ink-950 text-bone-50 hover:bg-ink-800 rounded-full px-5 py-2 text-sm font-bold transition-colors"
 				>
 					Comprar
 				</a>
@@ -83,15 +83,15 @@
 <!-- Mobile menu -->
 {#if mobileOpen}
 	<ul
-		class="flex flex-col border-b border-ink-950/8 bg-bone-50 md:hidden"
+		class="border-ink-950/8 bg-bone-50 flex flex-col border-b md:hidden"
 		in:slide={{ duration: 250 }}
 		out:slide={{ duration: 250 }}
 	>
 		{#each links as link (link.href)}
-			<li class="border-t border-ink-950/8">
+			<li class="border-ink-950/8 border-t">
 				<a
 					href={link.href}
-					class="flex items-center justify-between px-5 py-4 text-base font-semibold text-ink-950 hover:bg-bone-100"
+					class="text-ink-950 hover:bg-bone-100 flex items-center justify-between px-5 py-4 text-base font-semibold"
 					onclick={() => (mobileOpen = false)}
 				>
 					<span>{link.label}</span>
@@ -99,10 +99,10 @@
 				</a>
 			</li>
 		{/each}
-		<li class="border-t border-ink-950/8 p-4">
+		<li class="border-ink-950/8 border-t p-4">
 			<a
 				href="/tienda"
-				class="flex items-center justify-center rounded-full bg-ink-950 px-5 py-3 text-sm font-bold text-bone-50"
+				class="bg-ink-950 text-bone-50 flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold"
 				onclick={() => (mobileOpen = false)}
 			>
 				Comprar

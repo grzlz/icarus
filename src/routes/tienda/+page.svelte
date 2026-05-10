@@ -169,15 +169,17 @@
 		})
 	);
 
+	// Shirt placeholders use literal colors so the card always represents
+	// the actual garment color, regardless of light/dark UI theme.
 	function shirtBg(g) {
-		if (g === 'white') return 'bg-bone-100';
-		if (g === 'grey') return 'bg-grey-400/30';
+		if (g === 'white') return 'bg-[oklch(0.96_0.008_75)]';
+		if (g === 'grey') return 'bg-[oklch(0.62_0.008_270)]';
 		if (g === 'olive') return 'bg-[oklch(0.4_0.05_115)]';
-		return 'bg-ink-950';
+		return 'bg-[oklch(0.16_0.012_250)]';
 	}
 	function shirtText(g) {
-		if (g === 'white' || g === 'grey') return 'text-ink-950';
-		return 'text-bone-50';
+		if (g === 'white' || g === 'grey') return 'text-[oklch(0.16_0.012_250)]';
+		return 'text-[oklch(0.96_0.008_75)]';
 	}
 	function garmentLabel(g) {
 		if (g === 'white') return 'blanca';
@@ -185,10 +187,10 @@
 		if (g === 'olive') return 'olivo';
 		return 'negra';
 	}
-	// Embroidery thread color: contrast against the shirt
+	// Embroidery thread color: contrast against the literal shirt color
 	function bordadoColor(g) {
-		if (g === 'white') return 'text-ink-950';
-		if (g === 'grey') return 'text-ink-950';
+		if (g === 'white') return 'text-[oklch(0.16_0.012_250)]';
+		if (g === 'grey') return 'text-[oklch(0.16_0.012_250)]';
 		if (g === 'olive') return 'text-[oklch(0.92_0.08_95)]';
 		return 'text-[oklch(0.92_0.08_95)]'; // cream-on-black
 	}
@@ -213,23 +215,23 @@
 </svelte:head>
 
 <!-- ───────────────── HEADER ───────────────── -->
-<section class="bg-bone-50 border-b border-ink-950/8">
+<section class="bg-bone-50 border-ink-950/8 border-b">
 	<div class="mx-auto max-w-7xl px-5 pt-14 pb-10 md:px-10 md:pt-20 md:pb-14">
 		<p
 			use:reveal
-			class="font-mono text-[11px] font-semibold tracking-widest text-grey-600 uppercase"
+			class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase"
 		>
 			Drop 01 · {products.length} piezas
 		</p>
 		<h1
 			use:reveal={{ delay: 80 }}
-			class="mt-3 max-w-3xl text-4xl leading-[0.95] font-extrabold tracking-tight text-ink-950 md:text-6xl"
+			class="text-ink-950 mt-3 max-w-3xl text-4xl leading-[0.95] font-extrabold tracking-tight md:text-6xl"
 		>
 			Toda la mercancía,<br />en un solo lugar.
 		</h1>
-		<p use:reveal={{ delay: 160 }} class="mt-5 max-w-xl text-base text-grey-600">
-			Estampado a serigrafía o bordado en máquina. Algodón pesado, hecho en México, en lotes
-			chicos. Cuando se acaba un drop, se acaba.
+		<p use:reveal={{ delay: 160 }} class="text-grey-600 mt-5 max-w-xl text-base">
+			Estampado a serigrafía o bordado en máquina. Algodón pesado, hecho en México, en lotes chicos.
+			Cuando se acaba un drop, se acaba.
 		</p>
 	</div>
 
@@ -247,8 +249,11 @@
 					{filter.label}
 				</button>
 			{/each}
-			<span class="ml-auto self-center font-mono text-[11px] tracking-widest text-grey-600 uppercase">
-				{filtered.length} {filtered.length === 1 ? 'pieza' : 'piezas'}
+			<span
+				class="text-grey-600 ml-auto self-center font-mono text-[11px] tracking-widest uppercase"
+			>
+				{filtered.length}
+				{filtered.length === 1 ? 'pieza' : 'piezas'}
 			</span>
 		</div>
 	</div>
@@ -258,7 +263,7 @@
 <section class="bg-bone-50">
 	<div class="mx-auto max-w-7xl px-5 py-12 md:px-10 md:py-16">
 		{#if filtered.length === 0}
-			<p class="py-20 text-center text-grey-600">Nada por aquí. Prueba otro filtro.</p>
+			<p class="text-grey-600 py-20 text-center">Nada por aquí. Prueba otro filtro.</p>
 		{:else}
 			<div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{#each filtered as product, i (product.phrase + product.technique)}
@@ -270,7 +275,7 @@
 						>
 							{#if product.tag}
 								<span
-									class="absolute top-3 left-3 z-10 rounded-full bg-tomato-500 px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest text-bone-50 uppercase"
+									class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
 								>
 									{product.tag}
 								</span>
@@ -289,7 +294,10 @@
 								<!-- Bordado: small "patch" up on the chest area, dashed border for stitch feel -->
 								<div class="flex h-full w-full items-start justify-start pt-2 pl-2 md:pt-4 md:pl-4">
 									<div
-										class="rounded-md border border-dashed {product.garment === 'white' || product.garment === 'grey' ? 'border-ink-950/35' : 'border-bone-50/40'} px-2.5 py-1.5"
+										class="rounded-md border border-dashed {product.garment === 'white' ||
+										product.garment === 'grey'
+											? 'border-[oklch(0.16_0.012_250/0.35)]'
+											: 'border-[oklch(0.96_0.008_75/0.4)]'} px-2.5 py-1.5"
 									>
 										<div class="print {bordadoColor(product.garment)} text-sm md:text-base">
 											{#each product.phrase.split('\n') as line, idx (idx)}
@@ -305,7 +313,7 @@
 							<div class="min-w-0">
 								<div class="flex items-center gap-1.5">
 									<p
-										class="font-mono text-[10px] font-semibold tracking-widest text-grey-500 uppercase"
+										class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase"
 									>
 										{product.type} · {garmentLabel(product.garment)}
 									</p>
@@ -318,11 +326,11 @@
 										{product.technique}
 									</span>
 								</div>
-								<p class="mt-1 truncate text-sm font-bold text-ink-950">
+								<p class="text-ink-950 mt-1 truncate text-sm font-bold">
 									"{product.phrase.replace(/\n/g, ' ')}"
 								</p>
 							</div>
-							<p class="text-base font-extrabold whitespace-nowrap text-ink-950">{product.price}</p>
+							<p class="text-ink-950 text-base font-extrabold whitespace-nowrap">{product.price}</p>
 						</div>
 					</a>
 				{/each}
@@ -332,58 +340,58 @@
 </section>
 
 <!-- ───────────────── TÉCNICAS ───────────────── -->
-<section class="bg-bone-100 border-t border-ink-950/8">
+<section class="bg-bone-100 border-ink-950/8 border-t">
 	<div class="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
 		<div use:reveal class="mb-10 max-w-2xl">
-			<p class="font-mono text-[11px] font-semibold tracking-widest text-grey-600 uppercase">
+			<p class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase">
 				Técnicas
 			</p>
-			<h2 class="mt-3 text-3xl font-extrabold tracking-tight text-ink-950 md:text-4xl">
+			<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
 				Dos formas de poner una frase en una prenda.
 			</h2>
 		</div>
 
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-			<div use:reveal class="rounded-2xl bg-bone-50 p-6 md:p-8">
+			<div use:reveal class="bg-bone-50 rounded-2xl p-6 md:p-8">
 				<div class="flex items-center justify-between">
 					<span
-						class="rounded-full bg-tomato-500/15 px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-tomato-600 uppercase"
+						class="bg-tomato-500/15 text-tomato-600 rounded-full px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
 					>
 						Estampado
 					</span>
-					<span class="font-mono text-[10px] tracking-widest text-grey-500 uppercase">
+					<span class="text-grey-500 font-mono text-[10px] tracking-widest uppercase">
 						01 / Serigrafía
 					</span>
 				</div>
-				<h3 class="mt-5 text-2xl font-extrabold text-ink-950">Frase grande, presencia clara.</h3>
-				<p class="mt-3 text-sm leading-relaxed text-grey-600">
+				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">Frase grande, presencia clara.</h3>
+				<p class="text-grey-600 mt-3 text-sm leading-relaxed">
 					Serigrafía a mano en CDMX. Tinta suave al tacto, no se cuartea al primer ciclo. Para
 					cuando la frase es la prenda.
 				</p>
-				<ul class="mt-6 space-y-2 text-sm text-ink-950">
+				<ul class="text-ink-950 mt-6 space-y-2 text-sm">
 					<li>· Hasta 4 colores por diseño</li>
 					<li>· Tirajes desde 30 piezas</li>
 					<li>· Algodón pesado 220 g/m²</li>
 				</ul>
 			</div>
 
-			<div use:reveal={{ delay: 100 }} class="rounded-2xl bg-ink-950 p-6 text-bone-50 md:p-8">
+			<div use:reveal={{ delay: 100 }} class="bg-ink-950 text-bone-50 rounded-2xl p-6 md:p-8">
 				<div class="flex items-center justify-between">
 					<span
-						class="rounded-full bg-bone-50 px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-ink-950 uppercase"
+						class="bg-bone-50 text-ink-950 rounded-full px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
 					>
 						Bordado
 					</span>
-					<span class="font-mono text-[10px] tracking-widest text-grey-400 uppercase">
+					<span class="text-grey-400 font-mono text-[10px] tracking-widest uppercase">
 						02 / Máquina industrial
 					</span>
 				</div>
-				<h3 class="mt-5 text-2xl font-extrabold text-bone-50">Detalle discreto, larga vida.</h3>
-				<p class="mt-3 text-sm leading-relaxed text-grey-400">
+				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">Detalle discreto, larga vida.</h3>
+				<p class="text-grey-400 mt-3 text-sm leading-relaxed">
 					Bordado en máquina industrial. Hilo de algodón, parche al pecho o manga. Para cuando la
 					prenda es lo serio y la frase es el guiño.
 				</p>
-				<ul class="mt-6 space-y-2 text-sm text-bone-100">
+				<ul class="text-bone-100 mt-6 space-y-2 text-sm">
 					<li>· Hilo en hasta 6 colores</li>
 					<li>· Tirajes desde 20 piezas</li>
 					<li>· Mismo algodón pesado 220 g/m²</li>
@@ -394,21 +402,24 @@
 </section>
 
 <!-- ───────────────── CTA ───────────────── -->
-<section class="bg-bone-50 border-t border-ink-950/8">
+<section class="bg-bone-50 border-ink-950/8 border-t">
 	<div class="mx-auto max-w-4xl px-5 py-16 text-center md:px-10 md:py-20">
-		<p use:reveal class="font-mono text-[11px] font-semibold tracking-widest text-grey-600 uppercase">
+		<p
+			use:reveal
+			class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase"
+		>
 			Drop 02 · próximamente
 		</p>
 		<h2
 			use:reveal={{ delay: 100 }}
-			class="mt-4 text-3xl leading-tight font-extrabold tracking-tight text-ink-950 md:text-5xl"
+			class="text-ink-950 mt-4 text-3xl leading-tight font-extrabold tracking-tight md:text-5xl"
 		>
 			Avísame cuando salga<br />algo nuevo.
 		</h2>
 		<a
 			use:reveal={{ delay: 200 }}
 			href="/#contacto"
-			class="mt-8 inline-flex items-center gap-2 rounded-full bg-ink-950 px-7 py-3.5 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800"
+			class="bg-ink-950 text-bone-50 hover:bg-ink-800 mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-colors"
 		>
 			Avísame →
 		</a>

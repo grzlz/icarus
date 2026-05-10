@@ -1,35 +1,195 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+/* Class-based dark mode: <html class="dark"> activates `dark:` variants. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-    --color-primary-50: oklch(0.977 0.013 236.62);
-    --color-primary-100: oklch(0.951 0.026 236.824);
-    --color-primary-200: oklch(0.901 0.058 230.902);
-    --color-primary-300: oklch(0.828 0.111 230.318);
-    --color-primary-400: oklch(0.746 0.16 232.661);
-    --color-primary-500: oklch(0.685 0.169 237.323);
-    --color-primary-600: oklch(0.567 0.154556 248.5156);
-    --color-primary-700: oklch(0.5 0.134 242.749);
-    --color-primary-800: oklch(0.443 0.11 240.79);
-    --color-primary-900: oklch(0.391 0.09 240.876);
-    --color-primary-950: oklch(0.1448 0.0293 231.23);
-  
-    --color-secondary-50: oklch(0.985 0 0);
-    --color-secondary-100: oklch(0.967 0.001 286.375);
-    --color-secondary-200: oklch(0.92 0.004 286.32);
-    --color-secondary-300: oklch(0.871 0.006 286.286);
-    --color-secondary-400: oklch(0.705 0.015 286.067);
-    --color-secondary-500: oklch(0.552 0.016 285.938);
-    --color-secondary-600: oklch(0.442 0.017 285.786);
-    --color-secondary-700: oklch(0.3211 0 0);
-    --color-secondary-800: oklch(0.274 0.006 286.033);
-    --color-secondary-900: oklch(0.21 0.006 285.885);
-    --color-secondary-950: oklch(0.141 0.005 285.823);
+	/* Brand palette — light mode (defaults). */
+	--color-bone-50: oklch(0.985 0.006 85);
+	--color-bone-100: oklch(0.965 0.01 80);
+	--color-bone-200: oklch(0.935 0.014 78);
 
-    --font-primary: "Red Hat Display", sans-serif;
+	--color-ink-800: oklch(0.28 0.014 250);
+	--color-ink-900: oklch(0.2 0.012 250);
+	--color-ink-950: oklch(0.15 0.01 250);
 
+	--color-tomato-500: oklch(0.66 0.18 28);
+	--color-tomato-600: oklch(0.58 0.19 28);
 
+	--color-grey-400: oklch(0.74 0.012 270);
+	--color-grey-500: oklch(0.58 0.012 270);
+	--color-grey-600: oklch(0.46 0.012 270);
+
+	/* Legacy primary/secondary kept for any lingering refs. */
+	--color-primary-50: oklch(0.977 0.013 236.62);
+	--color-primary-100: oklch(0.951 0.026 236.824);
+	--color-primary-200: oklch(0.901 0.058 230.902);
+	--color-primary-300: oklch(0.828 0.111 230.318);
+	--color-primary-400: oklch(0.746 0.16 232.661);
+	--color-primary-500: oklch(0.685 0.169 237.323);
+	--color-primary-600: oklch(0.567 0.154556 248.5156);
+	--color-primary-700: oklch(0.5 0.134 242.749);
+	--color-primary-800: oklch(0.443 0.11 240.79);
+	--color-primary-900: oklch(0.391 0.09 240.876);
+	--color-primary-950: oklch(0.1448 0.0293 231.23);
+
+	--color-secondary-50: oklch(0.985 0 0);
+	--color-secondary-100: oklch(0.967 0.001 286.375);
+	--color-secondary-200: oklch(0.92 0.004 286.32);
+	--color-secondary-300: oklch(0.871 0.006 286.286);
+	--color-secondary-400: oklch(0.705 0.015 286.067);
+	--color-secondary-500: oklch(0.552 0.016 285.938);
+	--color-secondary-600: oklch(0.442 0.017 285.786);
+	--color-secondary-700: oklch(0.3211 0 0);
+	--color-secondary-800: oklch(0.274 0.006 286.033);
+	--color-secondary-900: oklch(0.21 0.006 285.885);
+	--color-secondary-950: oklch(0.141 0.005 285.823);
+
+	--font-primary: 'Inter', 'Red Hat Display', sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/*
+ * Dark mode token swap. Same Tailwind classes (bg-bone-50, text-ink-950, …)
+ * resolve via these CSS variables, so no component refactor is needed —
+ * the navbar inherits dark-mode colors without being touched.
+ *
+ * Strategy: bone/ink swap roles (bone becomes dark navy, ink becomes off-white),
+ * grey shifts lighter for legibility on dark, tomato stays warm.
+ */
+.dark {
+	--color-bone-50: oklch(0.16 0.035 250);
+	--color-bone-100: oklch(0.21 0.045 248);
+	--color-bone-200: oklch(0.27 0.055 245);
+
+	--color-ink-800: oklch(0.86 0.01 80);
+	--color-ink-900: oklch(0.93 0.008 80);
+	--color-ink-950: oklch(0.97 0.005 80);
+
+	--color-tomato-500: oklch(0.7 0.18 28);
+	--color-tomato-600: oklch(0.78 0.16 28);
+
+	--color-grey-400: oklch(0.6 0.014 270);
+	--color-grey-500: oklch(0.7 0.014 270);
+	--color-grey-600: oklch(0.78 0.014 270);
+}
+
+/*
+ * Deep navy → blue → indigo gradient from the previous app version,
+ * applied to <body> so it scrolls naturally with content. Fixed
+ * attachment keeps the same gradient visible at any scroll position.
+ */
+html.dark body {
+	background: linear-gradient(
+			to bottom,
+			oklch(0.14 0.03 231) 0%,
+			oklch(0.18 0.05 234) 22%,
+			oklch(0.32 0.1 240) 55%,
+			oklch(0.18 0.05 255) 82%,
+			oklch(0.1 0.04 260) 100%
+		)
+		fixed;
+}
+
+/*
+ * Section background overrides in dark mode. The token swap above already
+ * makes bg-bone-50 a dark navy, but that would cover the gradient — so
+ * instead we make the bone-* surfaces transparent (or subtle glass) so
+ * the gradient shows through. Inverted panels (bg-ink-950) keep the
+ * token-swapped light value, becoming bright cards on the dark gradient.
+ */
+.dark .bg-bone-50 {
+	background-color: transparent;
+}
+.dark .bg-bone-100 {
+	background-color: oklch(1 0 0 / 0.04);
+}
+.dark .bg-bone-200 {
+	background-color: oklch(1 0 0 / 0.06);
+}
+.dark .from-bone-100 {
+	--tw-gradient-from: oklch(1 0 0 / 0.05) var(--tw-gradient-from-position);
+}
+.dark .to-bone-200 {
+	--tw-gradient-to: oklch(1 0 0 / 0.08) var(--tw-gradient-to-position);
+}
+/* Borders that use bone tones — re-tone for dark mode legibility */
+.dark .border-bone-50\/40 {
+	border-color: oklch(1 0 0 / 0.25);
+}
+
+/*
+ * Floating theme toggle: needs an explicit surface that's NOT swept up by
+ * the section-bg transparency overrides. Cream in light, glass in dark.
+ */
+.theme-toggle {
+	background-color: var(--color-bone-50);
+}
+.dark .theme-toggle {
+	background-color: oklch(1 0 0 / 0.1);
+	border-color: oklch(1 0 0 / 0.2);
+}
+
+/* Smooth color transition when toggling. Skip transitions on transforms/layout. */
+html {
+	transition: background-color 280ms ease;
+}
+*,
+*::before,
+*::after {
+	transition-property: background-color, border-color, color, fill, stroke;
+	transition-duration: 240ms;
+	transition-timing-function: ease;
+}
+
+/*
+ * Screen-print utility used on product cards: tight monospace, balanced
+ * wrapping, centered. The phrase IS the visual.
+ */
+.print {
+	font-family: var(--font-mono);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	text-align: center;
+	text-wrap: balance;
+	text-transform: lowercase;
+}
+
+/* Hero entrance animation referenced by .hero-animate utility. */
+@keyframes hero-fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.hero-animate {
+	animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-animate-1 {
+	animation-delay: 80ms;
+}
+.hero-animate-2 {
+	animation-delay: 180ms;
+}
+.hero-animate-3 {
+	animation-delay: 280ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+		animation: none !important;
+	}
 }

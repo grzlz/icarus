@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	let { children } = $props();
 
 	let canonicalUrl = $derived(`https://icarus.mx${page.url.pathname}`);
@@ -19,3 +20,5 @@
 
 	<Footer />
 </div>
+
+<ThemeToggle />
