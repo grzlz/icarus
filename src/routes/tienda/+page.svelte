@@ -1,5 +1,6 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
+	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
 
 	// Each product has:
 	// - phrase: the printed/embroidered text (newlines render as line breaks)
@@ -8,9 +9,10 @@
 	// - technique: 'estampado' | 'bordado'
 	// - price: display string
 	// - tag: optional badge (Hot, Nuevo, etc.)
+	// - image: optional path to a flat-lay shirt photo in /static/shirts/
 	const products = [
 		{
-			phrase: 'no es bug\nes feature',
+			phrase: 'gpi a un gpu',
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
@@ -18,12 +20,12 @@
 			tag: 'Hot'
 		},
 		{
-			phrase: 'rm -rf\n/lunes',
-			type: 'Sudadera',
+			phrase: 'no es bug\nes feature',
+			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
-			price: '$890',
-			tag: null
+			price: '$390',
+			tag: 'Hot'
 		},
 		{
 			phrase: 'deploys\nlos\nviernes',
@@ -34,7 +36,7 @@
 			tag: 'Nuevo'
 		},
 		{
-			phrase: "i'm the\nbottleneck",
+			phrase: "i'm the\nbottleneck/\nhuman-on-the-loop",
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
@@ -42,7 +44,7 @@
 			tag: null
 		},
 		{
-			phrase: '404\nmotivación\nno encontrada',
+			phrase: 'systemctl to-major-tom',
 			type: 'Sudadera',
 			garment: 'grey',
 			technique: 'estampado',
@@ -58,7 +60,7 @@
 			tag: null
 		},
 		{
-			phrase: 'soy junior\npero cobro\ncomo senior',
+			phrase: 'git push\n--force\nthe situation',
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
@@ -169,30 +171,11 @@
 		})
 	);
 
-	// Shirt placeholders use literal colors so the card always represents
-	// the actual garment color, regardless of light/dark UI theme.
-	function shirtBg(g) {
-		if (g === 'white') return 'bg-[oklch(0.96_0.008_75)]';
-		if (g === 'grey') return 'bg-[oklch(0.62_0.008_270)]';
-		if (g === 'olive') return 'bg-[oklch(0.4_0.05_115)]';
-		return 'bg-[oklch(0.16_0.012_250)]';
-	}
-	function shirtText(g) {
-		if (g === 'white' || g === 'grey') return 'text-[oklch(0.16_0.012_250)]';
-		return 'text-[oklch(0.96_0.008_75)]';
-	}
 	function garmentLabel(g) {
 		if (g === 'white') return 'blanca';
 		if (g === 'grey') return 'gris';
 		if (g === 'olive') return 'olivo';
 		return 'negra';
-	}
-	// Embroidery thread color: contrast against the literal shirt color
-	function bordadoColor(g) {
-		if (g === 'white') return 'text-[oklch(0.16_0.012_250)]';
-		if (g === 'grey') return 'text-[oklch(0.16_0.012_250)]';
-		if (g === 'olive') return 'text-[oklch(0.92_0.08_95)]';
-		return 'text-[oklch(0.92_0.08_95)]'; // cream-on-black
 	}
 </script>
 
@@ -269,44 +252,15 @@
 				{#each filtered as product, i (product.phrase + product.technique)}
 					<a href="/tienda" use:reveal={{ delay: Math.min(i * 50, 300) }} class="group block">
 						<div
-							class="relative aspect-square w-full overflow-hidden rounded-2xl {shirtBg(
-								product.garment
-							)} p-5 transition-transform duration-300 group-hover:-translate-y-1"
+							class="aspect-square w-full transition-transform duration-300 group-hover:-translate-y-1"
 						>
-							{#if product.tag}
-								<span
-									class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
-								>
-									{product.tag}
-								</span>
-							{/if}
-
-							{#if product.technique === 'estampado'}
-								<!-- Big centered screen-print -->
-								<div class="flex h-full w-full items-center justify-center">
-									<div class="print {shirtText(product.garment)} text-2xl md:text-3xl">
-										{#each product.phrase.split('\n') as line, idx (idx)}
-											<div>{line}</div>
-										{/each}
-									</div>
-								</div>
-							{:else}
-								<!-- Bordado: small "patch" up on the chest area, dashed border for stitch feel -->
-								<div class="flex h-full w-full items-start justify-start pt-2 pl-2 md:pt-4 md:pl-4">
-									<div
-										class="rounded-md border border-dashed {product.garment === 'white' ||
-										product.garment === 'grey'
-											? 'border-[oklch(0.16_0.012_250/0.35)]'
-											: 'border-[oklch(0.96_0.008_75/0.4)]'} px-2.5 py-1.5"
-									>
-										<div class="print {bordadoColor(product.garment)} text-sm md:text-base">
-											{#each product.phrase.split('\n') as line, idx (idx)}
-												<div>{line}</div>
-											{/each}
-										</div>
-									</div>
-								</div>
-							{/if}
+							<ShirtMockup
+								phrase={product.phrase}
+								garment={product.garment}
+								technique={product.technique}
+								image={product.image ?? null}
+								tag={product.tag}
+							/>
 						</div>
 
 						<div class="mt-3 flex items-start justify-between gap-3">

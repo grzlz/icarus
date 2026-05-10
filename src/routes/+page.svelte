@@ -1,5 +1,6 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
+	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
 
 	let email = $state('');
 	let formStatus = $state('idle');
@@ -24,18 +25,18 @@
 	// `garment` controls the simulated tee color in the placeholder card.
 	const drops = [
 		{
-			phrase: 'no es bug\nes feature',
+			phrase: 'gpi a \nun gpu',
 			type: 'Playera',
 			price: '$390',
 			garment: 'black',
 			tag: 'Best seller'
 		},
 		{
-			phrase: 'rm -rf\n/lunes',
-			type: 'Sudadera',
-			price: '$890',
+			phrase: 'no es bug\nes feature',
+			type: 'Playera',
+			price: '$390',
 			garment: 'black',
-			tag: null
+			tag: 'Best seller'
 		},
 		{
 			phrase: 'deploys\nlos\nviernes',
@@ -52,28 +53,28 @@
 			tag: null
 		},
 		{
-			phrase: '404\nmotivación\nno encontrada',
+			phrase: 'systemctl\nto-major-tom',
 			type: 'Sudadera',
 			price: '$890',
 			garment: 'grey',
 			tag: null
 		},
 		{
-			phrase: 'git commit -m\n"some\nchanges"',
+			phrase: 'git commit -am\n"some changes"',
 			type: 'Playera',
 			price: '$390',
 			garment: 'white',
 			tag: null
 		},
 		{
-			phrase: 'soy junior\npero cobro\ncomo senior',
+			phrase: 'funciona en mi local',
 			type: 'Playera',
 			price: '$390',
 			garment: 'black',
 			tag: 'Nuevo'
 		},
 		{
-			phrase: 'works on\nmi máquina',
+			phrase: 'qué raro',
 			type: 'Sudadera',
 			price: '$890',
 			garment: 'black',
@@ -81,36 +82,32 @@
 		}
 	];
 
-	// Shirt placeholders use literal colors so the card always represents
-	// the actual garment color, regardless of light/dark UI theme.
-	function shirtBg(g) {
-		if (g === 'white') return 'bg-[oklch(0.96_0.008_75)]';
-		if (g === 'grey') return 'bg-[oklch(0.62_0.008_270)]';
-		return 'bg-[oklch(0.16_0.012_250)]';
-	}
-	function shirtText(g) {
-		if (g === 'white' || g === 'grey') return 'text-[oklch(0.16_0.012_250)]';
-		return 'text-[oklch(0.96_0.008_75)]';
-	}
+	// Featured hero shirt — pulled out so we can swap in a real photo later.
+	const hero = {
+		phrase: 'no es\nbug\nes feature',
+		garment: 'black',
+		image: null,
+		tag: 'Hot'
+	};
 </script>
 
 <svelte:head>
-	<title>Icarus · Mercancía para los que viven en la terminal</title>
+	<title>Icarus · Mercancía para quienes viven en la terminal</title>
 	<meta
 		name="description"
-		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
+		content="Ropa y sudaderas con frases para quienes viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
 	/>
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Icarus · Mercancía para los que viven en la terminal" />
+	<meta property="og:title" content="Icarus · Mercancía para quienes viven en la terminal" />
 	<meta
 		property="og:description"
-		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado o bordado, hecho en México."
+		content="Ropa y sudaderas con frases para quienes viven en la terminal. Estampado o bordado, hecho en México."
 	/>
 	<meta property="og:url" content="https://icarus.mx" />
 	<meta property="og:site_name" content="Icarus" />
 	<meta property="og:locale" content="es_MX" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Icarus · Mercancía para los que viven en la terminal" />
+	<meta name="twitter:title" content="Icarus · Mercancía para quienes viven en la terminal" />
 </svelte:head>
 
 <!-- ───────────────── HERO ───────────────── -->
@@ -128,11 +125,11 @@
 			<h1
 				class="hero-animate hero-animate-1 text-ink-950 mt-6 text-5xl leading-[0.95] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
 			>
-				Playeras para<br />los que viven<br />
+				Ropa para<br />quienes viven<br />
 				<span class="text-tomato-500">en la terminal.</span>
 			</h1>
 			<p class="hero-animate hero-animate-2 text-grey-600 mt-6 max-w-md text-lg">
-				Algodón pesado, estampado a serigrafía o bordado a máquina, hecho en México. Para los que
+				Algodón pesado, estampado a serigrafía o bordado a máquina, hecho en México. Para quienes
 				programan, debugan y siguen creyendo.
 			</p>
 			<div class="hero-animate hero-animate-3 mt-8 flex flex-wrap items-center gap-4">
@@ -156,19 +153,14 @@
 			<div
 				class="from-bone-100 to-bone-200 aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-br p-6 md:p-10"
 			>
-				<!-- Simulated shirt placeholder (literal black shirt — not theme-aware) -->
-				<div
-					class="relative flex h-full w-full items-center justify-center rounded-2xl bg-[oklch(0.16_0.012_250)] p-8"
-				>
-					<div class="print text-4xl text-[oklch(0.96_0.008_75)] md:text-5xl lg:text-6xl">
-						no es<br />bug<br />es feature
-					</div>
-					<span
-						class="bg-tomato-500 absolute top-4 left-4 rounded-full px-2.5 py-1 font-mono text-[9px] font-bold tracking-widest text-[oklch(0.96_0.008_75)] uppercase"
-					>
-						Hot
-					</span>
-				</div>
+				<ShirtMockup
+					phrase={hero.phrase}
+					garment={hero.garment}
+					technique="estampado"
+					image={hero.image}
+					tag={hero.tag}
+					size="hero"
+				/>
 			</div>
 			<div class="mt-4 flex items-end justify-between">
 				<div>
@@ -207,24 +199,15 @@
 			{#each drops as drop, i (drop.phrase)}
 				<a href="/tienda" use:reveal={{ delay: i * 60 }} class="group block">
 					<div
-						class="relative aspect-square w-full overflow-hidden rounded-2xl {shirtBg(
-							drop.garment
-						)} p-5 transition-transform duration-300 group-hover:-translate-y-1"
+						class="aspect-square w-full transition-transform duration-300 group-hover:-translate-y-1"
 					>
-						{#if drop.tag}
-							<span
-								class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
-							>
-								{drop.tag}
-							</span>
-						{/if}
-						<div class="flex h-full w-full items-center justify-center">
-							<div class="print {shirtText(drop.garment)} text-2xl md:text-3xl">
-								{#each drop.phrase.split('\n') as line, idx (idx)}
-									<div>{line}</div>
-								{/each}
-							</div>
-						</div>
+						<ShirtMockup
+							phrase={drop.phrase}
+							garment={drop.garment}
+							technique="estampado"
+							image={drop.image ?? null}
+							tag={drop.tag}
+						/>
 					</div>
 					<div class="mt-3 flex items-start justify-between gap-3">
 						<div>
