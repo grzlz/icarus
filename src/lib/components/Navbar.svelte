@@ -14,24 +14,24 @@
 
 	const links = [
 		{ label: 'Tienda', href: '/tienda' },
-		{ label: 'Colecciones', href: '/tienda#colecciones' },
-		{ label: 'Diario', href: '/diario' },
-		{ label: 'Misión', href: '/mision' },
+		{ label: 'Sobre', href: '/#sobre' },
 		{ label: 'Contacto', href: '/#contacto' }
 	];
 </script>
 
 <nav
-	class="sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 {scrolled
-		? 'bg-cream-100/95 border-b border-stone-600/15 shadow-sm'
+	class="sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 {scrolled
+		? 'border-b border-ink-950/8 bg-bone-50/85 backdrop-blur-md'
 		: 'border-b border-transparent bg-transparent'}"
 >
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
 		<a
 			href="/"
-			class="text-charcoal-900 hover:text-forest-700 text-xl font-extrabold tracking-[0.18em] uppercase transition-colors"
+			class="flex items-center gap-2.5 text-ink-950 transition-opacity hover:opacity-70"
+			aria-label="Icarus"
 		>
-			Icarus
+			<img src="/logo.png" alt="" class="h-7 w-auto" />
+			<span class="text-lg font-extrabold tracking-tight">Icarus</span>
 		</a>
 
 		<!-- Desktop menu -->
@@ -40,18 +40,26 @@
 				<li>
 					<a
 						href={link.href}
-						class="text-charcoal-800 hover:text-forest-700 text-sm font-medium tracking-wide transition-colors"
+						class="text-sm font-semibold text-ink-950 transition-opacity hover:opacity-60"
 					>
 						{link.label}
 					</a>
 				</li>
 			{/each}
+			<li>
+				<a
+					href="/tienda"
+					class="rounded-full bg-ink-950 px-5 py-2 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800"
+				>
+					Comprar
+				</a>
+			</li>
 		</ul>
 
 		<!-- Mobile toggle -->
 		<button
 			onclick={() => (mobileOpen = !mobileOpen)}
-			class="text-charcoal-900 md:hidden"
+			class="text-ink-950 md:hidden"
 			aria-label="Abrir menú"
 		>
 			<svg
@@ -75,30 +83,30 @@
 <!-- Mobile menu -->
 {#if mobileOpen}
 	<ul
-		class="bg-cream-100 flex flex-col border-b border-stone-600/15 md:hidden"
-		in:slide={{ duration: 300 }}
-		out:slide={{ duration: 300 }}
+		class="flex flex-col border-b border-ink-950/8 bg-bone-50 md:hidden"
+		in:slide={{ duration: 250 }}
+		out:slide={{ duration: 250 }}
 	>
 		{#each links as link (link.href)}
-			<li class="border-t border-stone-600/10">
+			<li class="border-t border-ink-950/8">
 				<a
 					href={link.href}
-					class="text-charcoal-900 hover:bg-cream-200 flex items-center justify-between px-6 py-4 text-base font-medium"
+					class="flex items-center justify-between px-5 py-4 text-base font-semibold text-ink-950 hover:bg-bone-100"
 					onclick={() => (mobileOpen = false)}
 				>
 					<span>{link.label}</span>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-4 w-4 text-stone-600"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						stroke-width="2"
-					>
-						<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-					</svg>
+					<span aria-hidden="true" class="text-grey-500">→</span>
 				</a>
 			</li>
 		{/each}
+		<li class="border-t border-ink-950/8 p-4">
+			<a
+				href="/tienda"
+				class="flex items-center justify-center rounded-full bg-ink-950 px-5 py-3 text-sm font-bold text-bone-50"
+				onclick={() => (mobileOpen = false)}
+			>
+				Comprar
+			</a>
+		</li>
 	</ul>
 {/if}

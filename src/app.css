@@ -1,37 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
 @theme {
-	/* Cream / off-white backgrounds */
-	--color-cream-50: oklch(0.985 0.012 85);
-	--color-cream-100: oklch(0.965 0.018 85);
-	--color-cream-200: oklch(0.935 0.024 84);
-	--color-cream-300: oklch(0.895 0.03 82);
+	/* Bone — warm off-whites for backgrounds */
+	--color-bone-50: oklch(0.985 0.005 90);
+	--color-bone-100: oklch(0.97 0.006 88);
+	--color-bone-200: oklch(0.94 0.008 86);
+	--color-bone-300: oklch(0.89 0.01 84);
 
-	/* Sand / stone mid-tones */
-	--color-sand-300: oklch(0.84 0.038 80);
-	--color-sand-500: oklch(0.7 0.045 75);
-	--color-stone-600: oklch(0.52 0.03 60);
-	--color-stone-700: oklch(0.42 0.028 55);
+	/* Ink — charcoal/blacks for text and shirt placeholders */
+	--color-ink-950: oklch(0.155 0.005 260);
+	--color-ink-900: oklch(0.21 0.006 260);
+	--color-ink-800: oklch(0.28 0.008 260);
+	--color-ink-700: oklch(0.36 0.009 260);
 
-	/* Charcoal text */
-	--color-charcoal-800: oklch(0.29 0.015 50);
-	--color-charcoal-900: oklch(0.205 0.012 45);
+	/* Greys */
+	--color-grey-400: oklch(0.66 0.01 260);
+	--color-grey-500: oklch(0.56 0.01 260);
+	--color-grey-600: oklch(0.46 0.01 260);
 
-	/* Forest accent (deep green) */
-	--color-forest-500: oklch(0.495 0.078 145);
-	--color-forest-700: oklch(0.355 0.062 145);
-	--color-forest-900: oklch(0.235 0.045 145);
+	/* Accents — single playful pop colors used sparingly */
+	--color-tomato-500: oklch(0.66 0.21 30);
+	--color-tomato-600: oklch(0.6 0.22 28);
+	--color-lime-500: oklch(0.85 0.18 130);
 
-	/* Rust / terracotta accents */
-	--color-rust-400: oklch(0.665 0.135 45);
-	--color-rust-600: oklch(0.53 0.15 38);
-	--color-terracotta-500: oklch(0.605 0.14 40);
-
-	--font-primary: 'Manrope', sans-serif;
+	--font-primary: 'Inter', sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 html {
@@ -39,15 +36,27 @@ html {
 }
 
 body {
-	background-color: var(--color-cream-100);
-	color: var(--color-charcoal-900);
+	background-color: var(--color-bone-50);
+	color: var(--color-ink-950);
+	font-family: var(--font-primary);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* The "shirt print" — used to simulate a screen-printed phrase on a colored tee */
+.print {
+	font-family: var(--font-mono);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	text-align: center;
+	text-wrap: balance;
 }
 
 /* Hero entrance animation */
 @keyframes fade-up {
 	from {
 		opacity: 0;
-		transform: translateY(24px);
+		transform: translateY(20px);
 	}
 	to {
 		opacity: 1;
@@ -56,16 +65,16 @@ body {
 }
 
 .hero-animate {
-	animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+	animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .hero-animate-1 {
-	animation-delay: 150ms;
+	animation-delay: 100ms;
 }
 .hero-animate-2 {
-	animation-delay: 300ms;
+	animation-delay: 220ms;
 }
 .hero-animate-3 {
-	animation-delay: 450ms;
+	animation-delay: 340ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,5 +82,8 @@ body {
 		animation: none;
 		opacity: 1;
 		transform: none;
+	}
+	html {
+		scroll-behavior: auto;
 	}
 }

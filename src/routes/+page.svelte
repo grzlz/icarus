@@ -1,9 +1,7 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
 
-	let formName = $state('');
-	let formEmail = $state('');
-	let formMessage = $state('');
+	let email = $state('');
 	let formStatus = $state('idle');
 
 	async function handleSubmit(e) {
@@ -13,252 +11,338 @@
 			const res = await fetch('https://formspree.io/f/xpwzgkvl', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name: formName, email: formEmail, message: formMessage })
+				body: JSON.stringify({ email })
 			});
-			if (res.ok) {
-				formStatus = 'sent';
-				formName = '';
-				formEmail = '';
-				formMessage = '';
-			} else {
-				formStatus = 'error';
-			}
+			formStatus = res.ok ? 'sent' : 'error';
+			if (res.ok) email = '';
 		} catch {
 			formStatus = 'error';
 		}
 	}
 
-	const products = [
-		{ name: 'Chamarra de Campo', detail: 'Lona encerada · clima frío', tone: 'bg-forest-700' },
-		{ name: 'Pantalón de Trabajo', detail: 'Algodón pesado · refuerzos', tone: 'bg-stone-700' },
-		{ name: 'Camisa de Franela', detail: 'Lana mexicana · tejido grueso', tone: 'bg-rust-600' },
-		{ name: 'Sombrero de Ala', detail: 'Fieltro natural · resistente al sol', tone: 'bg-sand-500' }
-	];
-
-	const journal = [
+	// Each "product" is a printed phrase. The phrase IS the product.
+	// `garment` controls the simulated tee color in the placeholder card.
+	const drops = [
 		{
-			kicker: 'Diario',
-			title: 'Sierra Norte: tres días con la chamarra de campo',
-			excerpt: 'Niebla, lluvia y caminos de tierra. Lo que aguantó y lo que aprendimos.'
+			phrase: 'le pegué\ngripa\na un GPU',
+			type: 'Playera',
+			price: '$390',
+			garment: 'black',
+			tag: 'Best seller'
 		},
 		{
-			kicker: 'Taller',
-			title: 'Quién cose nuestras camisas en Aguascalientes',
-			excerpt: 'Una visita al taller donde se hace cada prenda, una a la vez.'
+			phrase: 'rm -rf\n/lunes',
+			type: 'Sudadera',
+			price: '$890',
+			garment: 'black',
+			tag: null
 		},
 		{
-			kicker: 'Tierra',
-			title: 'Por qué dejamos de usar poliéster virgen',
-			excerpt: 'La decisión de cambiar materiales y lo que costó hacerla bien.'
+			phrase: 'deploys\nlos\nviernes',
+			type: 'Playera',
+			price: '$390',
+			garment: 'white',
+			tag: 'Nuevo'
+		},
+		{
+			phrase: 'ctrl + Z\nmi vida',
+			type: 'Playera',
+			price: '$390',
+			garment: 'black',
+			tag: null
+		},
+		{
+			phrase: '404\nmotivación\nno encontrada',
+			type: 'Sudadera',
+			price: '$890',
+			garment: 'grey',
+			tag: null
+		},
+		{
+			phrase: 'sudo\napt-get\ntortillas',
+			type: 'Playera',
+			price: '$390',
+			garment: 'white',
+			tag: null
+		},
+		{
+			phrase: 'soy junior\npero cobro\ncomo senior',
+			type: 'Playera',
+			price: '$390',
+			garment: 'black',
+			tag: 'Nuevo'
+		},
+		{
+			phrase: 'works on\nmi máquina',
+			type: 'Sudadera',
+			price: '$890',
+			garment: 'black',
+			tag: null
 		}
 	];
+
+	function shirtBg(g) {
+		if (g === 'white') return 'bg-bone-100';
+		if (g === 'grey') return 'bg-grey-400/30';
+		return 'bg-ink-950';
+	}
+	function shirtText(g) {
+		if (g === 'white' || g === 'grey') return 'text-ink-950';
+		return 'text-bone-50';
+	}
 </script>
 
 <svelte:head>
-	<title>Icarus · Ropa hecha para durar</title>
+	<title>Icarus · Mercancía para los que viven en la terminal</title>
 	<meta
 		name="description"
-		content="Ropa de campo y trabajo hecha en México para durar. Materiales honestos, prendas pensadas, respeto por la tierra."
+		content="Playeras y sudaderas con frases para los que programan, debugan y siguen creyendo. Mercancía sencilla, hecha en México."
 	/>
-
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Icarus · Ropa hecha para durar" />
+	<meta property="og:title" content="Icarus · Mercancía para los que viven en la terminal" />
 	<meta
 		property="og:description"
-		content="Ropa de campo y trabajo hecha en México para durar. Materiales honestos, prendas pensadas, respeto por la tierra."
+		content="Playeras y sudaderas con frases para los que programan, debugan y siguen creyendo."
 	/>
 	<meta property="og:url" content="https://icarus.mx" />
 	<meta property="og:site_name" content="Icarus" />
 	<meta property="og:locale" content="es_MX" />
-
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Icarus · Ropa hecha para durar" />
-	<meta name="twitter:description" content="Ropa de campo y trabajo hecha en México para durar." />
+	<meta name="twitter:title" content="Icarus · Mercancía para los que viven en la terminal" />
 </svelte:head>
 
-<!-- Hero -->
-<section class="relative">
-	<!-- Landscape placeholder: layered earth-tone gradient stands in for hero photography -->
+<!-- ───────────────── HERO ───────────────── -->
+<section class="bg-bone-50 border-b border-ink-950/8">
 	<div
-		class="from-forest-900 to-rust-600 relative h-[78vh] min-h-[560px] w-full overflow-hidden bg-gradient-to-br via-stone-700"
+		class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 py-16 md:grid-cols-2 md:gap-16 md:px-10 md:py-24"
 	>
-		<div class="from-charcoal-900/60 absolute inset-0 bg-gradient-to-t to-transparent"></div>
-		<div
-			class="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16 md:px-10 md:pb-24"
-		>
-			<p class="text-cream-100/80 hero-animate text-xs font-medium tracking-[0.3em] uppercase">
-				Otoño 2026 · Hecho en México
+		<div>
+			<p
+				class="hero-animate inline-flex items-center gap-2 rounded-full bg-ink-950 px-3 py-1 font-mono text-[10px] font-semibold tracking-wider text-bone-50 uppercase"
+			>
+				<span class="h-1.5 w-1.5 rounded-full bg-tomato-500"></span>
+				Drop 01 · ya disponible
 			</p>
 			<h1
-				class="text-cream-50 hero-animate hero-animate-1 mt-4 max-w-3xl text-5xl leading-[0.95] font-extrabold tracking-tight md:text-7xl lg:text-8xl"
+				class="hero-animate hero-animate-1 mt-6 text-5xl leading-[0.95] font-extrabold tracking-tight text-ink-950 md:text-6xl lg:text-7xl"
 			>
-				Vestir el campo<br />sin ponerle precio.
+				Playeras para<br />los que viven<br />
+				<span class="text-tomato-500">en la terminal.</span>
 			</h1>
-			<p
-				class="text-cream-100/85 hero-animate hero-animate-2 mt-6 max-w-xl text-lg leading-relaxed md:text-xl"
-			>
-				Prendas hechas con materiales honestos, pensadas para aguantar más de una temporada y
-				reparar cuando haga falta.
+			<p class="hero-animate hero-animate-2 mt-6 max-w-md text-lg text-grey-600">
+				Algodón pesado, estampado en serigrafía, hecho en México. Para los que programan, debugan
+				y siguen creyendo.
 			</p>
-			<div class="hero-animate hero-animate-3 mt-10">
+			<div class="hero-animate hero-animate-3 mt-8 flex flex-wrap items-center gap-4">
 				<a
-					href="/tienda"
-					class="bg-cream-50 text-charcoal-900 hover:bg-cream-200 inline-block px-8 py-4 text-sm font-bold tracking-widest uppercase transition-colors"
+					href="#mercancia"
+					class="inline-flex items-center gap-2 rounded-full bg-ink-950 px-7 py-3.5 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800"
 				>
-					Ver tienda
+					Ver mercancía →
 				</a>
+				<a
+					href="#sobre"
+					class="inline-flex items-center gap-2 px-3 py-3.5 text-sm font-semibold text-ink-950 underline-offset-4 hover:underline"
+				>
+					¿Qué es esto?
+				</a>
+			</div>
+		</div>
+
+		<!-- Hero shirt: the featured "gpi a un gpu" tee -->
+		<div class="hero-animate hero-animate-2 relative">
+			<div
+				class="aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-br from-bone-100 to-bone-200 p-6 md:p-10"
+			>
+				<!-- Simulated shirt placeholder -->
+				<div
+					class="relative flex h-full w-full items-center justify-center rounded-2xl bg-ink-950 p-8"
+				>
+					<div class="print text-bone-50 text-4xl md:text-5xl lg:text-6xl">
+						gpi<br />a un<br />gpu
+					</div>
+					<span
+						class="absolute top-4 left-4 rounded-full bg-tomato-500 px-2.5 py-1 font-mono text-[9px] font-bold tracking-widest text-bone-50 uppercase"
+					>
+						Hot
+					</span>
+				</div>
+			</div>
+			<div class="mt-4 flex items-end justify-between">
+				<div>
+					<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-600 uppercase">
+						Featured · Playera negra
+					</p>
+					<p class="mt-1 text-base font-bold text-ink-950">"gpi a un gpu"</p>
+				</div>
+				<p class="text-2xl font-extrabold text-ink-950">$390</p>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- Mission strip -->
-<section class="bg-cream-100 border-b border-stone-600/15">
-	<div class="mx-auto max-w-5xl px-6 py-20 text-center md:px-10 md:py-28">
-		<p use:reveal class="text-forest-700 text-xs font-bold tracking-[0.3em] uppercase">
-			Nuestra misión
+<!-- ───────────────── MERCANCÍA / GRID ───────────────── -->
+<section id="mercancia" class="bg-bone-50">
+	<div class="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
+		<div use:reveal class="mb-10 flex items-end justify-between">
+			<div>
+				<p class="font-mono text-[11px] font-semibold tracking-widest text-grey-600 uppercase">
+					Drop 01 · 8 piezas
+				</p>
+				<h2 class="mt-3 text-3xl font-extrabold tracking-tight text-ink-950 md:text-5xl">
+					Toda la mercancía
+				</h2>
+			</div>
+			<a
+				href="/tienda"
+				class="hidden text-sm font-semibold text-ink-950 underline-offset-4 hover:underline md:inline-block"
+			>
+				Ver tienda completa →
+			</a>
+		</div>
+
+		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{#each drops as drop, i (drop.phrase)}
+				<a
+					href="/tienda"
+					use:reveal={{ delay: i * 60 }}
+					class="group block"
+				>
+					<div
+						class="relative aspect-square w-full overflow-hidden rounded-2xl {shirtBg(drop.garment)} p-5 transition-transform duration-300 group-hover:-translate-y-1"
+					>
+						{#if drop.tag}
+							<span
+								class="absolute top-3 left-3 z-10 rounded-full bg-tomato-500 px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest text-bone-50 uppercase"
+							>
+								{drop.tag}
+							</span>
+						{/if}
+						<div class="flex h-full w-full items-center justify-center">
+							<div class="print {shirtText(drop.garment)} text-2xl md:text-3xl">
+								{#each drop.phrase.split('\n') as line, idx (idx)}
+									<div>{line}</div>
+								{/each}
+							</div>
+						</div>
+					</div>
+					<div class="mt-3 flex items-start justify-between gap-3">
+						<div>
+							<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-500 uppercase">
+								{drop.type} · {drop.garment === 'white' ? 'blanca' : drop.garment === 'grey' ? 'gris' : 'negra'}
+							</p>
+							<p class="mt-1 text-sm font-bold text-ink-950">"{drop.phrase.replace(/\n/g, ' ')}"</p>
+						</div>
+						<p class="text-base font-extrabold whitespace-nowrap text-ink-950">{drop.price}</p>
+					</div>
+				</a>
+			{/each}
+		</div>
+
+		<div class="mt-10 text-center md:hidden">
+			<a href="/tienda" class="text-sm font-semibold text-ink-950 underline-offset-4 hover:underline">
+				Ver tienda completa →
+			</a>
+		</div>
+	</div>
+</section>
+
+<!-- ───────────────── SOBRE / EXPLAINER ───────────────── -->
+<section id="sobre" class="bg-ink-950 text-bone-50">
+	<div class="mx-auto max-w-5xl px-5 py-20 text-center md:px-10 md:py-28">
+		<p
+			use:reveal
+			class="font-mono text-[11px] font-semibold tracking-widest text-tomato-500 uppercase"
+		>
+			Sobre Icarus
 		</p>
 		<p
 			use:reveal={{ delay: 100 }}
-			class="text-charcoal-900 mt-6 text-2xl leading-snug font-medium md:text-4xl"
+			class="mt-6 text-2xl leading-snug font-medium md:text-4xl"
 		>
-			Hacemos ropa que se compra una vez y se hereda. Sin temporada de moda, sin costuras flojas,
-			sin discursos vacíos.
+			Mercancía sencilla con frases que entiende quien las entiende. Sin colecciones cápsula, sin
+			marketing, sin drama. Una playera, un chiste, algodón bueno.
 		</p>
-		<a
-			use:reveal={{ delay: 200 }}
-			href="/mision"
-			class="text-forest-700 hover:text-charcoal-900 mt-8 inline-block text-sm font-semibold tracking-wide underline-offset-4 hover:underline"
-		>
-			Leer la misión completa →
-		</a>
-	</div>
-</section>
-
-<!-- Featured collection -->
-<section id="coleccion" class="bg-cream-50">
-	<div class="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
-		<div use:reveal class="mb-12 flex items-end justify-between">
-			<div>
-				<p class="text-xs font-bold tracking-[0.3em] text-stone-700 uppercase">Colección</p>
-				<h2 class="text-charcoal-900 mt-3 text-3xl font-extrabold md:text-5xl">Trabajo y campo</h2>
+		<div use:reveal={{ delay: 200 }} class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			<div class="rounded-2xl bg-ink-900 p-6 text-left">
+				<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-400 uppercase">
+					01 · Tela
+				</p>
+				<p class="mt-3 text-base text-bone-100">
+					Algodón pesado 220 g/m². Aguanta lavadas y miércoles intensos.
+				</p>
 			</div>
-			<a
-				href="/tienda"
-				class="text-charcoal-900 hover:text-forest-700 hidden text-sm font-semibold transition-colors md:inline-block"
-			>
-				Ver todo →
-			</a>
-		</div>
-
-		<div class="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
-			{#each products as product, i (product.name)}
-				<a href="/tienda" use:reveal={{ delay: i * 80 }} class="group block">
-					<div class="aspect-[3/4] w-full overflow-hidden {product.tone} relative">
-						<div
-							class="absolute inset-0 bg-gradient-to-b from-transparent to-black/15 opacity-0 transition-opacity group-hover:opacity-100"
-						></div>
-					</div>
-					<h3 class="text-charcoal-900 mt-4 text-base font-semibold">{product.name}</h3>
-					<p class="mt-1 text-sm text-stone-700">{product.detail}</p>
-					<p class="text-forest-700 mt-2 text-xs font-semibold tracking-widest uppercase">
-						Próximamente
-					</p>
-				</a>
-			{/each}
-		</div>
-
-		<div class="mt-12 text-center md:hidden">
-			<a
-				href="/tienda"
-				class="text-charcoal-900 hover:text-forest-700 text-sm font-semibold transition-colors"
-			>
-				Ver todo →
-			</a>
+			<div class="rounded-2xl bg-ink-900 p-6 text-left">
+				<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-400 uppercase">
+					02 · Estampado
+				</p>
+				<p class="mt-3 text-base text-bone-100">
+					Serigrafía a mano en CDMX. Frase grande, presencia clara.
+				</p>
+			</div>
+			<div class="rounded-2xl bg-ink-900 p-6 text-left">
+				<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-400 uppercase">
+					03 · Bordado
+				</p>
+				<p class="mt-3 text-base text-bone-100">
+					Bordado en máquina, hilo de algodón. Detalle discreto, larga vida.
+				</p>
+			</div>
+			<div class="rounded-2xl bg-ink-900 p-6 text-left">
+				<p class="font-mono text-[10px] font-semibold tracking-widest text-grey-400 uppercase">
+					04 · Hecho en
+				</p>
+				<p class="mt-3 text-base text-bone-100">
+					México, en lotes chicos. Cuando se acaba un drop, se acaba.
+				</p>
+			</div>
 		</div>
 	</div>
 </section>
 
-<!-- Field journal teaser -->
-<section class="bg-cream-100">
-	<div class="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
-		<div use:reveal class="mb-12">
-			<p class="text-xs font-bold tracking-[0.3em] text-stone-700 uppercase">Diario de campo</p>
-			<h2 class="text-charcoal-900 mt-3 text-3xl font-extrabold md:text-5xl">
-				Lo que probamos, lo que aprendimos.
-			</h2>
-		</div>
-
-		<div class="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-			{#each journal as story, i (story.title)}
-				<a href="/diario" use:reveal={{ delay: i * 100 }} class="group block">
-					<div
-						class="aspect-[4/3] w-full overflow-hidden bg-stone-600 {i === 0
-							? 'bg-forest-500'
-							: i === 1
-								? 'bg-sand-500'
-								: 'bg-rust-400'}"
-					></div>
-					<p class="mt-5 text-xs font-bold tracking-[0.25em] text-stone-700 uppercase">
-						{story.kicker}
-					</p>
-					<h3
-						class="text-charcoal-900 group-hover:text-forest-700 mt-2 text-xl leading-tight font-bold transition-colors md:text-2xl"
-					>
-						{story.title}
-					</h3>
-					<p class="mt-3 text-sm leading-relaxed text-stone-700">{story.excerpt}</p>
-				</a>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<!-- Contact / Newsletter -->
-<section id="contacto" class="bg-forest-900 text-cream-50">
+<!-- ───────────────── NEWSLETTER ───────────────── -->
+<section id="contacto" class="bg-bone-100 border-t border-ink-950/8">
 	<div
-		class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-20 md:grid-cols-2 md:px-10 md:py-28"
+		class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-5 py-20 md:grid-cols-2 md:px-10"
 	>
 		<div use:reveal>
-			<p class="text-cream-100/70 text-xs font-bold tracking-[0.3em] uppercase">Mantente cerca</p>
-			<h2 class="mt-4 text-3xl leading-tight font-extrabold md:text-5xl">
-				Una carta breve, cuando hay algo que contar.
+			<p class="font-mono text-[11px] font-semibold tracking-widest text-grey-600 uppercase">
+				Próximo drop
+			</p>
+			<h2 class="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-ink-950 md:text-5xl">
+				Avísame cuando salga<br />algo nuevo.
 			</h2>
-			<p class="text-cream-100/80 mt-6 text-base leading-relaxed">
-				Lanzamientos, notas del taller y reportes desde el campo. Sin promociones, sin spam.
+			<p class="mt-5 max-w-md text-base text-grey-600">
+				Un correo cuando hay drop nuevo. Sin promociones, sin spam, sin nada raro.
 			</p>
 		</div>
 
-		<form use:reveal={{ delay: 150 }} onsubmit={handleSubmit} class="flex flex-col gap-4">
-			<input
-				type="text"
-				bind:value={formName}
-				required
-				placeholder="Nombre"
-				class="text-cream-50 placeholder-cream-100/50 focus:border-cream-50 border-cream-100/30 w-full border-b bg-transparent px-1 py-3 focus:outline-none"
-			/>
+		<form
+			use:reveal={{ delay: 150 }}
+			onsubmit={handleSubmit}
+			class="flex flex-col gap-3 sm:flex-row"
+		>
 			<input
 				type="email"
-				bind:value={formEmail}
+				bind:value={email}
 				required
-				placeholder="Correo"
-				class="text-cream-50 placeholder-cream-100/50 focus:border-cream-50 border-cream-100/30 w-full border-b bg-transparent px-1 py-3 focus:outline-none"
+				placeholder="tucorreo@dominio.mx"
+				class="flex-1 rounded-full border border-ink-950/15 bg-bone-50 px-5 py-3.5 text-sm text-ink-950 placeholder-grey-500 focus:border-ink-950 focus:outline-none"
 			/>
-			<textarea
-				bind:value={formMessage}
-				rows="3"
-				placeholder="Mensaje (opcional)"
-				class="text-cream-50 placeholder-cream-100/50 focus:border-cream-50 border-cream-100/30 w-full resize-none border-b bg-transparent px-1 py-3 focus:outline-none"
-			></textarea>
 			<button
 				type="submit"
 				disabled={formStatus === 'sending'}
-				class="bg-cream-50 text-charcoal-900 hover:bg-cream-200 mt-4 w-fit px-8 py-3.5 text-sm font-bold tracking-widest uppercase transition-colors disabled:opacity-60"
+				class="rounded-full bg-ink-950 px-7 py-3.5 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800 disabled:opacity-60"
 			>
-				{#if formStatus === 'sending'}Enviando…
-				{:else if formStatus === 'sent'}Recibido
-				{:else if formStatus === 'error'}Reintentar
-				{:else}Enviar{/if}
+				{#if formStatus === 'sending'}
+					Enviando…
+				{:else if formStatus === 'sent'}
+					✓ Listo
+				{:else if formStatus === 'error'}
+					Reintentar
+				{:else}
+					Avísame →
+				{/if}
 			</button>
 		</form>
 	</div>

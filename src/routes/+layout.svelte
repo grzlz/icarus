@@ -12,7 +12,7 @@
 	<link rel="canonical" href={canonicalUrl} />
 </svelte:head>
 
-<div class="bg-cream-100 text-charcoal-900 font-primary flex min-h-screen flex-col">
+<div class="bg-bone-50 text-ink-950 font-primary flex min-h-screen flex-col">
 	<Navbar />
 
 	{@render children()}

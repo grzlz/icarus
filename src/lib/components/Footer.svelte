@@ -20,11 +20,11 @@
 
 			if (res.ok) {
 				status = 'success';
-				message = 'Listo, te avisaremos.';
+				message = '✓ Te avisamos.';
 				email = '';
 			} else {
 				status = 'error';
-				message = data.error || 'Algo salió mal.';
+				message = data.error || 'Error en el envío.';
 			}
 		} catch {
 			status = 'error';
@@ -33,118 +33,87 @@
 	}
 </script>
 
-<footer class="bg-cream-200 text-charcoal-900 font-primary mt-24 border-t border-stone-600/15">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-5 md:px-10">
-		<!-- Brand summary -->
+<footer class="mt-24 border-t border-ink-950/8 bg-bone-100 text-ink-950 font-primary">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 py-14 md:grid-cols-4 md:px-10">
+		<!-- Brand -->
 		<div class="md:col-span-2">
-			<p class="text-charcoal-900 text-2xl font-extrabold tracking-[0.18em] uppercase">Icarus</p>
-			<p class="mt-4 max-w-sm text-sm leading-relaxed text-stone-700">
-				Ropa hecha para durar. Pensada en México para el campo, el trabajo y el camino.
+			<div class="flex items-center gap-2.5">
+				<img src="/logo.png" alt="" class="h-7 w-auto" />
+				<p class="text-lg font-extrabold tracking-tight">Icarus</p>
+			</div>
+			<p class="mt-4 max-w-sm text-sm text-grey-600">
+				Playeras y sudaderas con frases para los que viven en la terminal. Hecho en México, en
+				lotes chicos.
 			</p>
 
-			<form onsubmit={subscribe} class="mt-8 flex max-w-sm flex-col gap-2 sm:flex-row">
+			<form onsubmit={subscribe} class="mt-6 flex max-w-sm flex-col gap-2 sm:flex-row">
 				<input
 					type="email"
 					bind:value={email}
-					placeholder="Tu correo"
+					placeholder="tucorreo@dominio.mx"
 					disabled={status === 'loading'}
-					class="bg-cream-50 text-charcoal-900 focus:border-forest-500 focus:ring-forest-500 flex-1 rounded-none border border-stone-600/30 px-4 py-2.5 text-sm placeholder-stone-600 focus:ring-1 focus:outline-none"
+					class="flex-1 rounded-full border border-ink-950/15 bg-bone-50 px-4 py-2.5 text-sm text-ink-950 placeholder-grey-500 focus:border-ink-950 focus:outline-none"
 				/>
 				<button
 					type="submit"
 					disabled={status === 'loading'}
-					class="bg-forest-700 hover:bg-forest-500 text-cream-50 rounded-none px-5 py-2.5 text-sm font-semibold tracking-wide uppercase transition-colors disabled:opacity-50"
+					class="rounded-full bg-ink-950 px-5 py-2.5 text-sm font-bold text-bone-50 transition-colors hover:bg-ink-800 disabled:opacity-50"
 				>
-					{status === 'loading' ? '...' : 'Suscribir'}
+					{status === 'loading' ? '...' : 'Avísame'}
 				</button>
 			</form>
 			{#if message}
-				<p class="mt-2 text-sm {status === 'success' ? 'text-forest-700' : 'text-rust-600'}">
+				<p class="mt-2 text-xs {status === 'success' ? 'text-ink-950' : 'text-tomato-600'}">
 					{message}
 				</p>
 			{/if}
 		</div>
 
 		<div>
-			<h3 class="text-charcoal-900 mb-4 text-xs font-bold tracking-widest uppercase">Tienda</h3>
+			<h3 class="mb-4 font-mono text-[10px] font-bold tracking-widest text-grey-600 uppercase">
+				Tienda
+			</h3>
 			<ul class="space-y-2 text-sm">
 				<li>
-					<a href="/tienda" class="hover:text-forest-700 text-stone-700 transition-colors">Todo</a>
+					<a href="/tienda" class="text-ink-950 hover:opacity-60">Toda la mercancía</a>
 				</li>
 				<li>
-					<a href="/tienda#hombre" class="hover:text-forest-700 text-stone-700 transition-colors"
-						>Hombre</a
-					>
+					<a href="/tienda#playeras" class="text-ink-950 hover:opacity-60">Playeras</a>
 				</li>
 				<li>
-					<a href="/tienda#mujer" class="hover:text-forest-700 text-stone-700 transition-colors"
-						>Mujer</a
-					>
-				</li>
-				<li>
-					<a
-						href="/tienda#accesorios"
-						class="hover:text-forest-700 text-stone-700 transition-colors">Accesorios</a
-					>
+					<a href="/tienda#sudaderas" class="text-ink-950 hover:opacity-60">Sudaderas</a>
 				</li>
 			</ul>
 		</div>
 
 		<div>
-			<h3 class="text-charcoal-900 mb-4 text-xs font-bold tracking-widest uppercase">Compañía</h3>
+			<h3 class="mb-4 font-mono text-[10px] font-bold tracking-widest text-grey-600 uppercase">
+				Info
+			</h3>
 			<ul class="space-y-2 text-sm">
 				<li>
-					<a href="/mision" class="hover:text-forest-700 text-stone-700 transition-colors">Misión</a
-					>
+					<a href="/#sobre" class="text-ink-950 hover:opacity-60">Sobre Icarus</a>
 				</li>
 				<li>
-					<a href="/diario" class="hover:text-forest-700 text-stone-700 transition-colors">Diario</a
-					>
+					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Contacto</a>
 				</li>
 				<li>
-					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
-						>Contacto</a
-					>
-				</li>
-			</ul>
-		</div>
-
-		<div>
-			<h3 class="text-charcoal-900 mb-4 text-xs font-bold tracking-widest uppercase">Soporte</h3>
-			<ul class="space-y-2 text-sm">
-				<li>
-					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
-						>Envíos</a
-					>
-				</li>
-				<li>
-					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
-						>Cambios</a
-					>
-				</li>
-				<li>
-					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors"
-						>Garantía</a
-					>
-				</li>
-				<li>
-					<a href="/#contacto" class="hover:text-forest-700 text-stone-700 transition-colors">FAQ</a
-					>
+					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Envíos y cambios</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 
-	<div class="border-t border-stone-600/15">
+	<div class="border-t border-ink-950/8">
 		<div
-			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm md:flex-row md:px-10"
+			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs md:flex-row md:px-10"
 		>
-			<p class="text-stone-700">&copy; {year} Icarus &middot; Hecho en México</p>
+			<p class="text-grey-600">&copy; {year} Icarus · Hecho en México con cariño y café</p>
 			<div class="flex gap-5">
 				<a
 					href="https://www.instagram.com/icarus.mx"
 					aria-label="Instagram"
-					class="hover:text-forest-700 text-stone-700 transition-colors"
+					class="text-grey-600 transition-colors hover:text-ink-950"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +129,7 @@
 				<a
 					href="https://wa.me/525548017016"
 					aria-label="WhatsApp"
-					class="hover:text-forest-700 text-stone-700 transition-colors"
+					class="text-grey-600 transition-colors hover:text-ink-950"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="h-5 w-5 fill-current">
 						<path
