@@ -27,56 +27,56 @@
 		{
 			phrase: 'gpi a \nun gpu',
 			type: 'Playera',
-			price: '$390',
+			price: '$299',
 			garment: 'black',
 			tag: 'Best seller'
 		},
 		{
 			phrase: 'no es bug\nes feature',
 			type: 'Playera',
-			price: '$390',
+			price: '$299',
 			garment: 'black',
 			tag: 'Best seller'
 		},
 		{
 			phrase: 'deploys\nlos\nviernes',
 			type: 'Playera',
-			price: '$390',
+			price: '$299',
 			garment: 'white',
 			tag: 'Nuevo'
 		},
 		{
-			phrase: "i'm the\nbottleneck",
+			phrase: "bottleneck-in-the-loop",
 			type: 'Playera',
-			price: '$390',
+			price: '$299',
 			garment: 'black',
 			tag: null
 		},
 		{
 			phrase: 'systemctl\nto-major-tom',
 			type: 'Sudadera',
-			price: '$890',
+			price: '$899',
 			garment: 'grey',
 			tag: null
 		},
 		{
 			phrase: 'git commit -am\n"some changes"',
 			type: 'Playera',
-			price: '$390',
+			price: '$299',
 			garment: 'white',
 			tag: null
 		},
 		{
 			phrase: 'funciona en mi local',
 			type: 'Playera',
-			price: '$390',
+			price: '$299',
 			garment: 'black',
 			tag: 'Nuevo'
 		},
 		{
 			phrase: 'qué raro',
 			type: 'Sudadera',
-			price: '$890',
+			price: '$899',
 			garment: 'black',
 			tag: null
 		}
@@ -169,7 +169,7 @@
 					</p>
 					<p class="text-ink-950 mt-1 text-base font-bold">"no es bug es feature"</p>
 				</div>
-				<p class="text-ink-950 text-2xl font-extrabold">$390</p>
+				<p class="text-ink-950 text-2xl font-extrabold">$299</p>
 			</div>
 		</div>
 	</div>

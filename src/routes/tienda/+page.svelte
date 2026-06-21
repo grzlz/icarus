@@ -16,7 +16,7 @@
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
-			price: '$390',
+			price: '$299',
 			tag: 'Hot'
 		},
 		{
@@ -24,7 +24,7 @@
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
-			price: '$390',
+			price: '$299',
 			tag: 'Hot'
 		},
 		{
@@ -32,7 +32,7 @@
 			type: 'Playera',
 			garment: 'white',
 			technique: 'estampado',
-			price: '$390',
+			price: '$299',
 			tag: 'Nuevo'
 		},
 		{
@@ -40,7 +40,7 @@
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
-			price: '$390',
+			price: '$299',
 			tag: null
 		},
 		{
@@ -48,7 +48,7 @@
 			type: 'Sudadera',
 			garment: 'grey',
 			technique: 'estampado',
-			price: '$890',
+			price: '$899',
 			tag: null
 		},
 		{
@@ -56,7 +56,7 @@
 			type: 'Playera',
 			garment: 'white',
 			technique: 'estampado',
-			price: '$390',
+			price: '$299',
 			tag: null
 		},
 		{
@@ -64,7 +64,7 @@
 			type: 'Playera',
 			garment: 'black',
 			technique: 'estampado',
-			price: '$390',
+			price: '$299',
 			tag: 'Nuevo'
 		},
 		{
@@ -72,7 +72,7 @@
 			type: 'Sudadera',
 			garment: 'black',
 			technique: 'estampado',
-			price: '$890',
+			price: '$899',
 			tag: null
 		},
 		// Bordado pieces — discreet patches, premium price, more "uniform" feel
