@@ -7,6 +7,8 @@
 	 * on the product. Estampado uses mix-blend-mode so the print "soaks into"
 	 * the fabric texture; bordado renders as an opaque patch sitting on top.
 	 */
+	import { fallbackBg, printColor, blendMode, threadColor } from '$lib/shirt.js';
+
 	let {
 		phrase,
 		garment = 'black',
@@ -16,37 +18,19 @@
 		size = 'card' // 'card' | 'hero'
 	} = $props();
 
-	function isLight(g) {
-		return g === 'white' || g === 'grey';
-	}
+	const bg = $derived(fallbackBg(garment));
+	const ink = $derived(printColor(garment));
+	const blend = $derived(blendMode(garment));
+	const thread = $derived(threadColor(garment));
 
-	function fallbackBg(g) {
-		if (g === 'white') return 'oklch(0.96 0.008 75)';
-		if (g === 'grey') return 'oklch(0.62 0.008 270)';
-		if (g === 'olive') return 'oklch(0.4 0.05 115)';
-		return 'oklch(0.16 0.012 250)';
-	}
-
-	const printColor = isLight(garment) ? 'oklch(0.16 0.012 250)' : 'oklch(0.96 0.008 75)';
-	const blend = isLight(garment) ? 'multiply' : 'screen';
-	const threadColor =
-		garment === 'olive' || !isLight(garment) ? 'oklch(0.92 0.08 95)' : 'oklch(0.16 0.012 250)';
-
-	const printSize =
-		size === 'hero' ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl';
+	const printSize = $derived(
+		size === 'hero' ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl'
+	);
 </script>
 
-<div
-	class="relative h-full w-full overflow-hidden rounded-2xl"
-	style="background-color: {fallbackBg(garment)};"
->
+<div class="relative h-full w-full overflow-hidden rounded-2xl" style="background-color: {bg};">
 	{#if image}
-		<img
-			src={image}
-			alt=""
-			loading="lazy"
-			class="absolute inset-0 h-full w-full object-cover"
-		/>
+		<img src={image} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
 	{/if}
 
 	{#if tag}
@@ -63,11 +47,7 @@
 			class="absolute inset-0 flex items-center justify-center px-5"
 			style:mix-blend-mode={image ? blend : 'normal'}
 		>
-			<div
-				class="print {printSize}"
-				style:color={printColor}
-				style:opacity={image ? 0.92 : 1}
-			>
+			<div class="print {printSize}" style:color={ink} style:opacity={image ? 0.92 : 1}>
 				{#each phrase.split('\n') as line, idx (idx)}
 					<div>{line}</div>
 				{/each}
@@ -78,9 +58,9 @@
 		<div class="absolute inset-0 flex items-start justify-start pt-[26%] pl-[24%]">
 			<div
 				class="rounded-md border border-dashed px-2.5 py-1.5"
-				style="border-color: color-mix(in oklch, {threadColor} 45%, transparent);"
+				style="border-color: color-mix(in oklch, {thread} 45%, transparent);"
 			>
-				<div class="print text-sm md:text-base" style:color={threadColor}>
+				<div class="print text-sm md:text-base" style:color={thread}>
 					{#each phrase.split('\n') as line, idx (idx)}
 						<div>{line}</div>
 					{/each}

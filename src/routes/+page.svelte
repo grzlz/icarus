@@ -46,7 +46,7 @@
 			tag: 'Nuevo'
 		},
 		{
-			phrase: "bottleneck-in-the-loop",
+			phrase: 'bottleneck-in-the-loop',
 			type: 'Playera',
 			price: '$299',
 			garment: 'black',
