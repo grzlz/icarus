@@ -3,139 +3,7 @@
 	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
 	import TiendaVista3D from '$lib/components/TiendaVista3D.svelte';
 	import { garmentLabel } from '$lib/shirt.js';
-
-	// Each product has:
-	// - phrase: the printed/embroidered text (newlines render as line breaks)
-	// - type: 'Playera' | 'Sudadera'
-	// - garment: 'black' | 'white' | 'grey' | 'olive' (shirt color)
-	// - technique: 'estampado' | 'bordado'
-	// - price: display string
-	// - tag: optional badge (Hot, Nuevo, etc.)
-	// - image: optional path to a flat-lay shirt photo in /static/shirts/
-	const products = [
-		{
-			phrase: 'gpi a un gpu',
-			type: 'Playera',
-			garment: 'black',
-			technique: 'estampado',
-			price: '$299',
-			tag: 'Hot'
-		},
-		{
-			phrase: 'no es bug\nes feature',
-			type: 'Playera',
-			garment: 'black',
-			technique: 'estampado',
-			price: '$299',
-			tag: 'Hot'
-		},
-		{
-			phrase: 'deploys\nlos\nviernes',
-			type: 'Playera',
-			garment: 'white',
-			technique: 'estampado',
-			price: '$299',
-			tag: 'Nuevo'
-		},
-		{
-			phrase: "i'm the\nbottleneck/\nhuman-on-the-loop",
-			type: 'Playera',
-			garment: 'black',
-			technique: 'estampado',
-			price: '$299',
-			tag: null
-		},
-		{
-			phrase: 'systemctl to-major-tom',
-			type: 'Sudadera',
-			garment: 'grey',
-			technique: 'estampado',
-			price: '$899',
-			tag: null
-		},
-		{
-			phrase: 'git commit -m\n"some\nchanges"',
-			type: 'Playera',
-			garment: 'white',
-			technique: 'estampado',
-			price: '$299',
-			tag: null
-		},
-		{
-			phrase: 'git push\n--force\nthe situation',
-			type: 'Playera',
-			garment: 'black',
-			technique: 'estampado',
-			price: '$299',
-			tag: 'Nuevo'
-		},
-		{
-			phrase: 'works on\nmi máquina',
-			type: 'Sudadera',
-			garment: 'black',
-			technique: 'estampado',
-			price: '$899',
-			tag: null
-		},
-		// Bordado pieces — discreet patches, premium price, more "uniform" feel
-		{
-			phrase: ':wq',
-			type: 'Playera',
-			garment: 'black',
-			technique: 'bordado',
-			price: '$490',
-			tag: null
-		},
-		{
-			phrase: '$ git',
-			type: 'Playera',
-			garment: 'white',
-			technique: 'bordado',
-			price: '$490',
-			tag: 'Nuevo'
-		},
-		{
-			phrase: '// TODO',
-			type: 'Sudadera',
-			garment: 'olive',
-			technique: 'bordado',
-			price: '$990',
-			tag: null
-		},
-		{
-			phrase: 'console\n.log(ñ)',
-			type: 'Playera',
-			garment: 'black',
-			technique: 'bordado',
-			price: '$490',
-			tag: null
-		},
-		{
-			phrase: '404',
-			type: 'Sudadera',
-			garment: 'black',
-			technique: 'bordado',
-			price: '$990',
-			tag: null
-		},
-		{
-			phrase: '</icarus>',
-			type: 'Playera',
-			garment: 'olive',
-			technique: 'bordado',
-			price: '$490',
-			tag: 'Nuevo'
-		},
-		{
-			// Illustration: bottle with stick figures stacked inside, top one waving from the neck. Discreet "← yo" accent embroidered.
-			phrase: '← yo',
-			type: 'Playera',
-			garment: 'black',
-			technique: 'bordado',
-			price: '$590',
-			tag: 'Nuevo'
-		}
-	];
+	import { products } from '$lib/products.js';
 
 	const filters = [
 		{ id: 'todo', label: 'Todo' },
@@ -255,7 +123,7 @@
 			<p class="text-grey-600 py-20 text-center">Nada por aquí. Prueba otro filtro.</p>
 		{:else}
 			<div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-				{#each filtered as product, i (product.phrase + product.technique)}
+				{#each filtered as product, i (product.slug)}
 					<button
 						type="button"
 						onclick={() => selectProduct(product)}

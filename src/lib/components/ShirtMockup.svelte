@@ -1,13 +1,11 @@
 <script>
 	/*
-	 * Renders a product card image: real shirt photo when `image` is provided,
-	 * colored placeholder block otherwise. Phrase is overlaid on top.
-	 *
-	 * Drop a flat-lay PNG in /static/shirts/ and pass `image="/shirts/foo.png"`
-	 * on the product. Estampado uses mix-blend-mode so the print "soaks into"
-	 * the fabric texture; bordado renders as an opaque patch sitting on top.
+	 * Renders a product card image. When `image` is provided it's a finished
+	 * product photo (print already on the shirt — e.g. generated via /taller or
+	 * a real flat-lay), shown as-is. Without `image`, falls back to the colored
+	 * placeholder block with the phrase rendered as a simulated print.
 	 */
-	import { fallbackBg, printColor, blendMode, threadColor } from '$lib/shirt.js';
+	import { fallbackBg, printColor, threadColor } from '$lib/shirt.js';
 
 	let {
 		phrase,
@@ -20,7 +18,6 @@
 
 	const bg = $derived(fallbackBg(garment));
 	const ink = $derived(printColor(garment));
-	const blend = $derived(blendMode(garment));
 	const thread = $derived(threadColor(garment));
 
 	const printSize = $derived(
@@ -29,10 +26,6 @@
 </script>
 
 <div class="relative h-full w-full overflow-hidden rounded-2xl" style="background-color: {bg};">
-	{#if image}
-		<img src={image} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
-	{/if}
-
 	{#if tag}
 		<span
 			class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
@@ -41,40 +34,44 @@
 		</span>
 	{/if}
 
-	{#if !image}
-		<!-- Icarus wing on the wearer's-left chest; a real flat-lay photo brings its own. -->
+	{#if image}
+		<img
+			src={image}
+			alt="{technique === 'bordado' ? 'Bordado' : 'Estampado'} «{phrase.replace(/\n/g, ' ')}»"
+			loading="lazy"
+			class="absolute inset-0 h-full w-full object-cover"
+		/>
+	{:else}
+		<!-- Icarus wing on the wearer's-left chest; a real photo brings its own. -->
 		<img
 			src="/logo.png"
 			alt=""
 			class="pointer-events-none absolute top-[19%] right-[21%] z-10 w-[13%]"
 		/>
-	{/if}
 
-	{#if technique === 'estampado'}
-		<!-- Big chest print, centered. Blend mode lets fabric texture leak through. -->
-		<div
-			class="absolute inset-0 flex items-center justify-center px-5"
-			style:mix-blend-mode={image ? blend : 'normal'}
-		>
-			<div class="print {printSize}" style:color={ink} style:opacity={image ? 0.92 : 1}>
-				{#each phrase.split('\n') as line, idx (idx)}
-					<div>{line}</div>
-				{/each}
-			</div>
-		</div>
-	{:else}
-		<!-- Bordado: small chest patch. No blend mode — embroidery sits on top of fabric. -->
-		<div class="absolute inset-0 flex items-start justify-start pt-[26%] pl-[24%]">
-			<div
-				class="rounded-md border border-dashed px-2.5 py-1.5"
-				style="border-color: color-mix(in oklch, {thread} 45%, transparent);"
-			>
-				<div class="print text-sm md:text-base" style:color={thread}>
+		{#if technique === 'estampado'}
+			<!-- Big chest print, centered. -->
+			<div class="absolute inset-0 flex items-center justify-center px-5">
+				<div class="print {printSize}" style:color={ink}>
 					{#each phrase.split('\n') as line, idx (idx)}
 						<div>{line}</div>
 					{/each}
 				</div>
 			</div>
-		</div>
+		{:else}
+			<!-- Bordado: small chest patch, upper-left, dashed outline. -->
+			<div class="absolute inset-0 flex items-start justify-start pt-[26%] pl-[24%]">
+				<div
+					class="rounded-md border border-dashed px-2.5 py-1.5"
+					style="border-color: color-mix(in oklch, {thread} 45%, transparent);"
+				>
+					<div class="print text-sm md:text-base" style:color={thread}>
+						{#each phrase.split('\n') as line, idx (idx)}
+							<div>{line}</div>
+						{/each}
+					</div>
+				</div>
+			</div>
+		{/if}
 	{/if}
 </div>

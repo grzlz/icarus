@@ -1,6 +1,9 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
 	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
+	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
+	import { featured } from '$lib/products.js';
+	import { garmentLabel } from '$lib/shirt.js';
 
 	let email = $state('');
 	let formStatus = $state('idle');
@@ -21,66 +24,8 @@
 		}
 	}
 
-	// Each "product" is a printed phrase. The phrase IS the product.
-	// `garment` controls the simulated tee color in the placeholder card.
-	const drops = [
-		{
-			phrase: 'gpi a \nun gpu',
-			type: 'Playera',
-			price: '$299',
-			garment: 'black',
-			tag: 'Best seller'
-		},
-		{
-			phrase: 'no es bug\nes feature',
-			type: 'Playera',
-			price: '$299',
-			garment: 'black',
-			tag: 'Best seller'
-		},
-		{
-			phrase: 'deploys\nlos\nviernes',
-			type: 'Playera',
-			price: '$299',
-			garment: 'white',
-			tag: 'Nuevo'
-		},
-		{
-			phrase: 'bottleneck-in-the-loop',
-			type: 'Playera',
-			price: '$299',
-			garment: 'black',
-			tag: null
-		},
-		{
-			phrase: 'systemctl\nto-major-tom',
-			type: 'Sudadera',
-			price: '$899',
-			garment: 'grey',
-			tag: null
-		},
-		{
-			phrase: 'git commit -am\n"some changes"',
-			type: 'Playera',
-			price: '$299',
-			garment: 'white',
-			tag: null
-		},
-		{
-			phrase: 'funciona en mi local',
-			type: 'Playera',
-			price: '$299',
-			garment: 'black',
-			tag: 'Nuevo'
-		},
-		{
-			phrase: 'qué raro',
-			type: 'Sudadera',
-			price: '$899',
-			garment: 'black',
-			tag: null
-		}
-	];
+	// The homepage grid shows the `featured` subset of the shared catalog
+	// ($lib/products.js). The phrase IS the product.
 
 	// Featured hero shirt — pulled out so we can swap in a real photo later.
 	const hero = {
@@ -148,19 +93,19 @@
 			</div>
 		</div>
 
-		<!-- Hero shirt: the featured "no es bug es feature" tee -->
+		<!-- Hero shirt: the featured "no es bug es feature" tee, spinning in 3D -->
 		<div class="hero-animate hero-animate-2 relative">
 			<div
-				class="from-bone-100 to-bone-200 aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-br p-6 md:p-10"
+				class="from-bone-100 to-bone-200 relative aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-br"
 			>
-				<ShirtMockup
-					phrase={hero.phrase}
-					garment={hero.garment}
-					technique="estampado"
-					image={hero.image}
-					tag={hero.tag}
-					size="hero"
-				/>
+				{#if hero.tag}
+					<span
+						class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
+					>
+						{hero.tag}
+					</span>
+				{/if}
+				<Shirt3DView phrase={hero.phrase} garment={hero.garment} technique="estampado" />
 			</div>
 			<div class="mt-4 flex items-end justify-between">
 				<div>
@@ -181,7 +126,7 @@
 		<div use:reveal class="mb-10 flex items-end justify-between">
 			<div>
 				<p class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase">
-					Drop 01 · 8 piezas
+					Drop 01 · {featured.length} piezas
 				</p>
 				<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
 					Toda la mercancía
@@ -196,7 +141,7 @@
 		</div>
 
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-			{#each drops as drop, i (drop.phrase)}
+			{#each featured as drop, i (drop.slug)}
 				<a href="/tienda" use:reveal={{ delay: i * 60 }} class="group block">
 					<div
 						class="aspect-square w-full transition-transform duration-300 group-hover:-translate-y-1"
@@ -204,8 +149,8 @@
 						<ShirtMockup
 							phrase={drop.phrase}
 							garment={drop.garment}
-							technique="estampado"
-							image={drop.image ?? null}
+							technique={drop.technique}
+							image={drop.image}
 							tag={drop.tag}
 						/>
 					</div>
@@ -214,11 +159,7 @@
 							<p
 								class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase"
 							>
-								{drop.type} · {drop.garment === 'white'
-									? 'blanca'
-									: drop.garment === 'grey'
-										? 'gris'
-										: 'negra'}
+								{drop.type} · {garmentLabel(drop.garment)}
 							</p>
 							<p class="text-ink-950 mt-1 text-sm font-bold">"{drop.phrase.replace(/\n/g, ' ')}"</p>
 						</div>

@@ -32,10 +32,6 @@ export function printColor(g) {
 	return isLight(g) ? 'oklch(0.16 0.012 250)' : 'oklch(0.96 0.008 75)';
 }
 
-export function blendMode(g) {
-	return isLight(g) ? 'multiply' : 'screen';
-}
-
 export function threadColor(g) {
 	return g === 'olive' || !isLight(g) ? 'oklch(0.92 0.08 95)' : 'oklch(0.16 0.012 250)';
 }
