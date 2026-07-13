@@ -10,32 +10,40 @@ chest as a decal — see `src/lib/printDecal.js`.
 maps). CC0 model from the pmndrs market (https://market.pmnd.rs), the same
 tee used by the classic Three.js shirt-configurator demos.
 
-## sudadera.glb (Sudadera) — NOT COMMITTED YET
+## sudadera.glb (Sudadera)
 
-Until this file exists, sudadera products render on the tee with a
-"vista previa en playera" notice (`sudaderaAvailable()` in models3d.js
-probes for it at runtime, so dropping the file in is the only step).
+~0.7 MB — pullover hoodie, single mesh (`test_lambert1_0`), untextured
+neutral material so the viewer's per-garment tint lands cleanly.
 
-What the file should be:
+**Attribution (CC BY 4.0):** "hoodie" by **pokoponmaru** —
+https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9
+Modified: node transforms baked, parts merged into one mesh, original
+material/UVs replaced with a neutral tintable one. The site credit lives
+in `TiendaVista3D.svelte` (shown when a sudadera is selected).
 
-- A single garment-only mesh (no body/avatar parts). The scene grabs the
-  first mesh it finds, so node names don't matter.
-- Any size — it's auto-fitted (scaled + centered) at load. Node transforms
-  are ignored, so bake them into the vertices first if the export has any:
-  `npx @gltf-transform/cli flatten in.glb out.glb`
+Sketchfab downloads now require an Epic Games account, so the file was
+pulled from the **Objaverse** mirror (AllenAI's research dataset of
+CC-licensed Sketchfab models, same UID, no account needed):
+`https://huggingface.co/datasets/allenai/objaverse` →
+`glbs/000-084/5ffe31a324a6452c8c4ada71daa12da9.glb`.
+
+Prep steps (with `@gltf-transform/core` + `@gltf-transform/functions`):
+`flatten()` + `dedup()` → assign one neutral doubleSided material
+(white, roughness 1, metallic 0) to every primitive → strip all vertex
+attributes except POSITION/NORMAL → `join()` → `prune()`.
+
+## Swapping in a different garment asset later
+
+- A single garment-only mesh (no body/avatar parts) joins cleanest; the
+  scene falls back to the first mesh it finds if `node` doesn't match.
+- Any size — it's auto-fitted (scaled + centered) at load via `fit` in
+  models3d.js. Node transforms are ignored, so bake them into the
+  vertices first (`flatten`).
 - Prefer an untextured / neutral material: the viewer tints
   `material.color` per garment (black/white/grey/olive), and a strong
   baseColorTexture will fight the tint.
-- Decal placement guesses in models3d.js (`Sudadera.print/patch/logo`)
-  will need calibrating against the real mesh — use
-  `npm run screenshot` to iterate.
-
-Shortlisted candidates (Sketchfab, free account needed to download, all
-CC Attribution — credit the author here and on the site if used):
-
-- Basic sweatshirt — Alexander Kurmanin, 20k faces (crewneck, matches the
-  catalog photos): https://sketchfab.com/3d-models/basic-sweatshirt-92800a4c11ce4b8daccb75e60035535f
-- Hoodie — Pieter Ferreira, 26k faces: https://sketchfab.com/3d-models/hoodie-6dca9cd855a8441881f0b324236cf325
-- Long Hoodie — dejan31, 53k faces: https://sketchfab.com/3d-models/long-hoodie-f201f4c2e0c84d2c9806aaaeb0910abe
-
-Download as glTF, convert/rename to `sudadera.glb`, drop it here.
+- Recalibrate the decal transforms in models3d.js (`print/patch/logo`)
+  against the new mesh — use `npm run screenshot` to iterate.
+- To search Objaverse for CC garments: grep its metadata shards for the
+  garment name, check `license` is `by`/`by-sa` (not `-nc`), and verify
+  the author via the Sketchfab API for the credit line.

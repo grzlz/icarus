@@ -39,6 +39,24 @@
 			<p class="text-grey-600 mt-6 max-w-md text-sm leading-relaxed">
 				Elige cualquier pieza del catálogo para verla aquí. Gírala como si la trajeras en la mano.
 			</p>
+			{#if product.type === 'Sudadera'}
+				<!-- CC BY 4.0 attribution for the hoodie mesh (the tee is CC0). -->
+				<p class="text-grey-500 mt-4 font-mono text-[10px] tracking-wide">
+					modelo 3D: <a
+						href="https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9"
+						class="underline decoration-dotted underline-offset-2"
+						target="_blank"
+						rel="noopener">"hoodie" por pokoponmaru</a
+					>
+					·
+					<a
+						href="https://creativecommons.org/licenses/by/4.0/"
+						class="underline decoration-dotted underline-offset-2"
+						target="_blank"
+						rel="noopener">CC BY 4.0</a
+					> · recoloreado
+				</p>
+			{/if}
 		</div>
 	</div>
 </section>

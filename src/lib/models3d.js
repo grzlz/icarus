@@ -19,9 +19,11 @@ export const MODELS = {
 		logo: { position: [0.1, 0.14, 0.12], scale: [0.075, 0.075, 0.1] }
 	},
 	Sudadera: {
+		// "hoodie" by pokoponmaru (CC BY 4.0), via the Objaverse mirror —
+		// see static/models/README.md for provenance and prep steps.
 		url: '/models/sudadera.glb',
-		node: null, // asset not picked yet — scene uses the first mesh it finds
-		fit: 0.65,
+		node: 'test_lambert1_0',
+		fit: 0.6, // arms-out pose is wide; keep the sleeve tips inside the card
 		print: { position: [0, 0.02, 0.16], scale: [0.28, 0.28, 0.2] },
 		patch: { position: [-0.08, 0.08, 0.16], scale: [0.13, 0.13, 0.15] },
 		logo: { position: [0.09, 0.12, 0.16], scale: [0.07, 0.07, 0.12] }
@@ -30,16 +32,4 @@ export const MODELS = {
 
 export function modelFor(type) {
 	return MODELS[type] ?? MODELS.Playera;
-}
-
-// The sudadera GLB may not be deployed yet. Probe once per session; while
-// it's missing the viewer falls back to the tee ("vista previa en playera").
-// Delete this (and its call sites) once the asset is a permanent part of
-// the repo, if you want one less request.
-let probe;
-export function sudaderaAvailable() {
-	probe ??= fetch(MODELS.Sudadera.url, { method: 'HEAD' })
-		.then((r) => r.ok && !(r.headers.get('content-type') ?? '').includes('text/html'))
-		.catch(() => false);
-	return probe;
 }
