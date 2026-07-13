@@ -1,19 +1,12 @@
 <script>
 	/*
 	 * "Vista 3D" band for /tienda: interactive preview of the selected product.
-	 * The three.js chunk (~170 KB gzip) loads lazily on mount; until it
-	 * arrives, the flat ShirtMockup fills the frame so nothing jumps.
+	 * Shirt3DView handles the lazy three.js load and the flat fallback.
 	 */
-	import { onMount } from 'svelte';
-	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
+	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
 	import { garmentLabel } from '$lib/shirt.js';
 
 	let { product } = $props();
-
-	let Shirt3D = $state(null);
-	onMount(async () => {
-		Shirt3D = (await import('$lib/components/Shirt3D.svelte')).default;
-	});
 </script>
 
 <section id="vista-3d" class="bg-bone-100 border-ink-950/8 border-b">
@@ -23,21 +16,11 @@
 		<div
 			class="bg-bone-50 border-ink-950/10 relative aspect-square w-full overflow-hidden rounded-2xl border"
 		>
-			{#if Shirt3D}
-				<Shirt3D phrase={product.phrase} garment={product.garment} technique={product.technique} />
-			{:else}
-				<ShirtMockup
-					phrase={product.phrase}
-					garment={product.garment}
-					technique={product.technique}
-					size="hero"
-				/>
-			{/if}
-			<span
-				class="text-grey-500 pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-widest whitespace-nowrap uppercase"
-			>
-				arrastra para girar
-			</span>
+			<Shirt3DView
+				phrase={product.phrase}
+				garment={product.garment}
+				technique={product.technique}
+			/>
 		</div>
 
 		<div>
