@@ -13,8 +13,8 @@
 		{ id: 'model', label: 'En modelo' }
 	];
 	const qualities = [
-		{ id: 'rapido', label: 'Rápido', note: 'Nano Banana 2 · ~$0.045' },
-		{ id: 'calidad', label: 'Calidad', note: 'Nano Banana Pro · ~$0.134' }
+		{ id: 'rapido', label: 'Rápido', note: 'GPT Image · low' },
+		{ id: 'calidad', label: 'Calidad', note: 'GPT Image · high' }
 	];
 
 	const chip =

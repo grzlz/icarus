@@ -2,19 +2,21 @@ import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 
 /*
- * /taller image generation. Takes the deterministic exact-text reference render
- * from the browser and asks a Gemini "Nano Banana" model to make it photoreal
- * while preserving the print verbatim (image editing, not text-to-image).
+ * /taller image generation via OpenAI's image-edit API (GPT Image 1.5).
+ * Takes the deterministic exact-text reference render from the browser and
+ * makes it photoreal while preserving the print verbatim — image editing, not
+ * text-to-image. `input_fidelity: high` tells the model to keep the uploaded
+ * image's details (the print text) intact and only change fabric/scene.
  *
- * Secrets stay here: GEMINI_API_KEY is read server-side and never sent to the
+ * Secrets stay here: OPENAI_API_KEY is read server-side and never sent to the
  * client. TALLER_PASSWORD (optional) gates the endpoint so a guessed /taller
  * URL can't burn API credits.
  */
 
-const MODELS = {
-	rapido: 'gemini-3.1-flash-image', // Nano Banana 2 — fast, ~$0.045/img
-	calidad: 'gemini-3-pro-image' // Nano Banana Pro — best text, ~$0.134/img
-};
+const MODEL = 'gpt-image-1.5';
+
+// Our two-tier "rápido / calidad" maps to OpenAI's quality knob.
+const QUALITY = { rapido: 'low', calidad: 'high' };
 
 const TYPES = {
 	playera: 't-shirt',
@@ -44,13 +46,13 @@ function buildPrompt({ type, garment, technique, scene }) {
 			: 'The design is screen-printed directly onto the fabric, soft matte ink settled into the cotton weave.';
 
 	return [
-		`Photorealistic product photo of a ${color} ${typeWord}, ${sceneText}.`,
-		`Apply the print shown in the attached reference image to the garment EXACTLY as given:`,
-		`reproduce every character, symbol, line break and punctuation mark verbatim — do not`,
-		`correct spelling, translate, rephrase, restyle, or add any extra text, numbers or logos.`,
+		`Turn this flat reference into a photorealistic product photo of a ${color} ${typeWord}, ${sceneText}.`,
+		`Keep the print shown in the reference EXACTLY as given: reproduce every character, symbol,`,
+		`line break and punctuation mark verbatim — do not correct spelling, translate, rephrase,`,
+		`restyle, or add any extra text, numbers or logos.`,
 		techniqueText,
 		`Heavyweight 220 gsm cotton with natural folds and realistic fabric texture, soft even`,
-		`studio lighting, true-to-life colors, sharp focus on the print, square 1:1 framing.`,
+		`studio lighting, true-to-life colors, sharp focus on the print, square framing.`,
 		`No watermark, no mockup template outlines, no hands. The reference's flat colored`,
 		`background only indicates the garment color and print placement — it is not part of`,
 		`the final photo.`
@@ -67,8 +69,8 @@ export async function POST({ request }) {
 		return json({ error: 'Acceso denegado' }, { status: 401 });
 	}
 
-	if (!env.GEMINI_API_KEY) {
-		return json({ error: 'Falta GEMINI_API_KEY en el servidor (.env)' }, { status: 500 });
+	if (!env.OPENAI_API_KEY) {
+		return json({ error: 'Falta OPENAI_API_KEY en el servidor (.env)' }, { status: 500 });
 	}
 
 	const match = /^data:(image\/\w+);base64,(.+)$/s.exec(referenceImage ?? '');
@@ -76,51 +78,46 @@ export async function POST({ request }) {
 		return json({ error: 'Imagen de referencia inválida' }, { status: 400 });
 	}
 	const [, mimeType, data] = match;
-	const model = MODELS[quality] ?? MODELS.rapido;
 	const prompt = buildPrompt({ type, garment, technique, scene });
+
+	// OpenAI's edits endpoint is multipart/form-data with the reference as a file.
+	const form = new FormData();
+	form.append('model', MODEL);
+	form.append('prompt', prompt);
+	form.append('size', '1024x1024');
+	form.append('quality', QUALITY[quality] ?? QUALITY.rapido);
+	form.append('input_fidelity', 'high'); // preserve the exact print text
+	form.append('n', '1');
+	form.append(
+		'image',
+		new Blob([Buffer.from(data, 'base64')], { type: mimeType }),
+		'reference.png'
+	);
 
 	let res;
 	try {
-		res = await fetch(
-			`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'x-goog-api-key': env.GEMINI_API_KEY
-				},
-				body: JSON.stringify({
-					contents: [
-						{ role: 'user', parts: [{ text: prompt }, { inlineData: { mimeType, data } }] }
-					],
-					generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
-				})
-			}
-		);
+		res = await fetch('https://api.openai.com/v1/images/edits', {
+			method: 'POST',
+			headers: { Authorization: `Bearer ${env.OPENAI_API_KEY}` },
+			body: form
+		});
 	} catch {
 		return json({ error: 'No se pudo contactar al servicio de imágenes' }, { status: 502 });
 	}
 
-	if (!res.ok) {
-		const detail = await res.text().catch(() => '');
-		console.error('[taller] Gemini error', res.status, detail);
-		return json({ error: `Servicio de imágenes respondió ${res.status}` }, { status: 502 });
-	}
-
 	const payload = await res.json().catch(() => null);
-	const parts = payload?.candidates?.[0]?.content?.parts ?? [];
-	const imgPart = parts.find((p) => p.inlineData ?? p.inline_data);
-	const inline = imgPart?.inlineData ?? imgPart?.inline_data;
 
-	if (!inline?.data) {
-		const reason = payload?.candidates?.[0]?.finishReason ?? payload?.promptFeedback?.blockReason;
-		console.error('[taller] no image part', reason, JSON.stringify(payload)?.slice(0, 500));
-		return json(
-			{ error: reason ? `Sin imagen (${reason})` : 'El modelo no devolvió una imagen' },
-			{ status: 502 }
-		);
+	if (!res.ok) {
+		const msg = payload?.error?.message ?? `respondió ${res.status}`;
+		console.error('[taller] OpenAI error', res.status, msg);
+		return json({ error: `Servicio de imágenes: ${msg}` }, { status: 502 });
 	}
 
-	const outMime = inline.mimeType ?? inline.mime_type ?? 'image/png';
-	return json({ image: `data:${outMime};base64,${inline.data}` });
+	const b64 = payload?.data?.[0]?.b64_json;
+	if (!b64) {
+		console.error('[taller] no image in response', JSON.stringify(payload)?.slice(0, 500));
+		return json({ error: 'El modelo no devolvió una imagen' }, { status: 502 });
+	}
+
+	return json({ image: `data:image/png;base64,${b64}` });
 }
