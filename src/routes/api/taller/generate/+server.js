@@ -24,15 +24,17 @@ const TYPES = {
 };
 
 const COLORS = {
-	black: 'black',
-	white: 'natural off-white',
+	black: 'true black',
+	white: 'pure white',
 	grey: 'heather grey',
 	olive: 'olive green'
 };
 
 const SCENES = {
-	flatlay: 'laid flat (flat-lay) on a seamless neutral studio background, shot from directly above',
-	colgada: 'on a plain wooden hanger against a clean neutral wall',
+	flatlay: 'laid flat (flat-lay), shot from directly above',
+	colgada: 'on a plain wooden hanger against a clean wall',
+	detalle:
+		'an extreme close-up detail shot of the chest area, the garment fabric filling the frame edge to edge',
 	model: 'worn by a model, relaxed upper-body crop, natural pose, clean studio lighting'
 };
 
@@ -42,19 +44,21 @@ function buildPrompt({ type, garment, technique, scene }) {
 	const sceneText = SCENES[scene] ?? SCENES.flatlay;
 	const techniqueText =
 		technique === 'bordado'
-			? 'The design is a small embroidered chest patch with visible raised thread stitching.'
-			: 'The design is screen-printed directly onto the fabric, soft matte ink settled into the cotton weave.';
+			? 'The design is embroidered directly into the fabric: raised thread stitching with a slight pucker. No patch, no border, no box or outline of any kind around the lettering.'
+			: 'The design is screen-printed directly onto the fabric, soft matte ink settled into the cotton weave. The small wing graphic near the collar is the brand logo — reproduce its shape, placement and blue color exactly.';
 
 	return [
 		`Turn this flat reference into a photorealistic product photo of a ${color} ${typeWord}, ${sceneText}.`,
-		`Keep the print shown in the reference EXACTLY as given: reproduce every character, symbol,`,
+		`Keep the design shown in the reference EXACTLY as given: reproduce every character, symbol,`,
 		`line break and punctuation mark verbatim — do not correct spelling, translate, rephrase,`,
-		`restyle, or add any extra text, numbers or logos.`,
+		`restyle, or add any text or graphics beyond what the reference shows.`,
 		techniqueText,
 		`Heavyweight 220 gsm cotton with natural folds and realistic fabric texture, soft even`,
-		`studio lighting, true-to-life colors, sharp focus on the print, square framing.`,
+		`studio lighting, true-to-life garment color, sharp focus on the design, square framing.`,
+		`Background: the same seamless warm off-white studio backdrop for every photo, hex #F4F1EA,`,
+		`with one soft natural product shadow — the whole catalog must look shot in one session.`,
 		`No watermark, no mockup template outlines, no hands. The reference's flat colored`,
-		`background only indicates the garment color and print placement — it is not part of`,
+		`background only indicates the garment color and design placement — it is not part of`,
 		`the final photo.`
 	].join(' ');
 }

@@ -18,7 +18,19 @@ Each run costs OpenAI credits per generated image; existing files are skipped
 unless `FORCE=1`. The script re-encodes the API's ~1-2 MB PNGs to WebP
 (~20-100 KB) before saving — don't commit raw PNGs here.
 
+Catalog photo conventions (all baked into the pipeline prompts):
+
+- **One backdrop for everything** — warm off-white `#F4F1EA` (≈ bone-100),
+  soft product shadow. The grid must look shot in a single session, and the
+  light tiles read as intentional "product wells" in dark mode.
+- **Estampado** — full flat-lay, phrase across the chest, the Icarus wing
+  small on the wearer's-left chest (the reference render includes it).
+- **Bordado** — close-up detail of the chest so the embroidery is legible at
+  card size. No boxes or outlines around the lettering: anything drawn in the
+  reference gets stitched into the "photo" literally (the first batch shipped
+  with dashed placeholder borders embroidered on).
+
 Real photography can replace any file later — keep the same square crop
-(1:1, ~1024×1024), shirt centered, neutral background, print readable. A
-product with no image file (set `image: null` in `products.js`) falls back to
-the colored placeholder card.
+(1:1, ~1024×1024), same backdrop, print readable. A product with no image
+file (set `image: null` in `products.js`) falls back to the colored
+placeholder card.

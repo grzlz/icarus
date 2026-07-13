@@ -25,7 +25,12 @@
 	);
 </script>
 
-<div class="relative h-full w-full overflow-hidden rounded-2xl" style="background-color: {bg};">
+<!-- ring-ink-950/5 is a hairline that adapts via the dark token swap: faint
+     dark line on bone, faint light line on the dark gradient. -->
+<div
+	class="ring-ink-950/5 relative h-full w-full overflow-hidden rounded-2xl ring-1 ring-inset"
+	style="background-color: {bg};"
+>
 	{#if tag}
 		<span
 			class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"

@@ -8,9 +8,14 @@ import { fallbackBg, printColor, threadColor } from '$lib/shirt.js';
  * code-y prints like `:wq` or `console.log(ñ)`.
  *
  * Mirrors the `.print` utility + ShirtMockup layout (mono 700, tight tracking,
- * lowercase, centered for estampado; small dashed patch for bordado).
+ * lowercase, centered for estampado; small chest lettering for bordado).
+ * `closeup` frames the bordado lettering large, as a chest-detail crop — the
+ * catalog uses it so the embroidery stays legible at card size.
  */
-export async function renderReference({ phrase, garment, technique }, size = 1024) {
+export async function renderReference(
+	{ phrase, garment, technique, closeup = false },
+	size = 1024
+) {
 	// Make sure the screen-print font is loaded before we measure/draw, else the
 	// reference falls back to a different monospace and widths drift.
 	try {
@@ -33,18 +38,37 @@ export async function renderReference({ phrase, garment, technique }, size = 102
 		.map((l) => l.toLowerCase());
 
 	if (technique === 'bordado') {
-		drawBordado(ctx, lines, garment, size);
+		drawBordado(ctx, lines, garment, size, closeup);
 	} else {
 		drawEstampado(ctx, lines, garment, size);
+		await drawWing(ctx, size);
 	}
 
 	return canvas.toDataURL('image/png');
 }
 
-// Big centered chest print, auto-fit to the artwork area.
+// Icarus wing on the wearer's-left chest — same placement as ShirtMockup
+// (top 19%, right 21%, width 13%) so the generated photos keep the brand mark.
+async function drawWing(ctx, size) {
+	const img = new Image();
+	img.src = '/logo.png';
+	try {
+		await img.decode();
+	} catch {
+		return; // logo unavailable — the reference still works without the mark
+	}
+	const w = size * 0.13;
+	const h = w * (img.naturalHeight / img.naturalWidth);
+	ctx.drawImage(img, size * (1 - 0.21 - 0.13), size * 0.19, w, h);
+}
+
+// Big centered chest print, auto-fit to the artwork area. Height is capped
+// and the block top clamped so tall phrases never climb into the wing zone
+// (~19–26% height on the wearer's-left chest) — "deploys los viernes" once
+// generated with the wing fused into the 'y'.
 function drawEstampado(ctx, lines, garment, size) {
 	const maxWidth = size * 0.82;
-	const maxHeight = size * 0.72;
+	const maxHeight = size * 0.58;
 	const lineHeight = 1.05;
 
 	let fontPx = Math.floor(maxHeight);
@@ -61,41 +85,47 @@ function drawEstampado(ctx, lines, garment, size) {
 	ctx.textBaseline = 'middle';
 
 	const lineH = fontPx * lineHeight;
-	const startY = size / 2 - (lines.length * lineH) / 2 + lineH / 2;
-	lines.forEach((l, i) => ctx.fillText(l, size / 2, startY + i * lineH));
+	const blockH = lines.length * lineH;
+	const top = Math.max(size * 0.3, size / 2 - blockH / 2);
+	lines.forEach((l, i) => ctx.fillText(l, size / 2, top + lineH / 2 + i * lineH));
 }
 
-// Small embroidered patch, upper-left, dashed outline — mirrors the bordado card.
-function drawBordado(ctx, lines, garment, size) {
+// Embroidered lettering only — never draw an outline here: the image model
+// reproduces the reference literally, so a dashed box ends up stitched into
+// the "photo". (That's exactly what happened to the first catalog batch.)
+function drawBordado(ctx, lines, garment, size, closeup) {
 	const thread = threadColor(garment);
-	const fontPx = Math.round(size * 0.05);
-	const lineHeight = 1.1;
+	ctx.fillStyle = thread;
 
+	if (closeup) {
+		// Chest-detail crop: lettering large and centered, auto-fit.
+		const maxWidth = size * 0.55;
+		const maxHeight = size * 0.26;
+		const lineHeight = 1.15;
+
+		let fontPx = Math.floor(maxHeight);
+		for (; fontPx > 6; fontPx -= 2) {
+			applyPrintFont(ctx, fontPx);
+			const widest = Math.max(...lines.map((l) => ctx.measureText(l).width), 0);
+			if (widest <= maxWidth && lines.length * fontPx * lineHeight <= maxHeight) break;
+		}
+
+		applyPrintFont(ctx, fontPx);
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+		const lineH = fontPx * lineHeight;
+		const startY = size / 2 - (lines.length * lineH) / 2 + lineH / 2;
+		lines.forEach((l, i) => ctx.fillText(l, size / 2, startY + i * lineH));
+		return;
+	}
+
+	// Full-garment view (/taller): small lettering at the upper-left chest.
+	const fontPx = Math.round(size * 0.05);
+	const lineH = fontPx * 1.1;
 	applyPrintFont(ctx, fontPx);
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'top';
-
-	const padX = fontPx * 0.7;
-	const padY = fontPx * 0.55;
-	const widest = Math.max(...lines.map((l) => ctx.measureText(l).width), 1);
-	const lineH = fontPx * lineHeight;
-	const blockH = lines.length * lineH;
-
-	const originX = size * 0.24;
-	const originY = size * 0.26;
-
-	ctx.save();
-	ctx.globalAlpha = 0.45;
-	ctx.strokeStyle = thread;
-	ctx.lineWidth = Math.max(2, size * 0.0025);
-	ctx.setLineDash([size * 0.012, size * 0.01]);
-	ctx.beginPath();
-	ctx.roundRect(originX - padX, originY - padY, widest + padX * 2, blockH + padY * 2, fontPx * 0.3);
-	ctx.stroke();
-	ctx.restore();
-
-	ctx.fillStyle = thread;
-	lines.forEach((l, i) => ctx.fillText(l, originX, originY + i * lineH));
+	lines.forEach((l, i) => ctx.fillText(l, size * 0.24, size * 0.26 + i * lineH));
 }
 
 function applyPrintFont(ctx, fontPx) {

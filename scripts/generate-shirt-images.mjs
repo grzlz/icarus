@@ -52,7 +52,13 @@ for (const p of queue) {
 				const { renderReference } = await import('/src/lib/taller/renderReference.js');
 				return renderReference(product);
 			},
-			{ phrase: p.phrase, garment: p.garment, technique: p.technique }
+			{
+				phrase: p.phrase,
+				garment: p.garment,
+				technique: p.technique,
+				// Bordado ships as a chest-detail close-up so the joke reads at card size.
+				closeup: p.technique === 'bordado'
+			}
 		);
 
 		const res = await fetch(`${baseUrl}/api/taller/generate`, {
@@ -63,7 +69,7 @@ for (const p of queue) {
 				garment: p.garment,
 				technique: p.technique,
 				type: p.type.toLowerCase(),
-				scene: 'flatlay',
+				scene: p.technique === 'bordado' ? 'detalle' : 'flatlay',
 				quality,
 				password
 			})
