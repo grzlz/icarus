@@ -41,6 +41,15 @@
 		</span>
 	{/if}
 
+	{#if !image}
+		<!-- Icarus wing on the wearer's-left chest; a real flat-lay photo brings its own. -->
+		<img
+			src="/logo.png"
+			alt=""
+			class="pointer-events-none absolute top-[19%] right-[21%] z-10 w-[13%]"
+		/>
+	{/if}
+
 	{#if technique === 'estampado'}
 		<!-- Big chest print, centered. Blend mode lets fabric texture leak through. -->
 		<div

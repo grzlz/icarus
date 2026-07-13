@@ -9,7 +9,7 @@
 	 */
 	import { T } from '@threlte/core';
 	import { OrbitControls, Decal, useGltf } from '@threlte/extras';
-	import { CanvasTexture, SRGBColorSpace } from 'three';
+	import { CanvasTexture, SRGBColorSpace, TextureLoader } from 'three';
 	import { paintDecal } from '$lib/printDecal.js';
 	import { fallbackBg } from '$lib/shirt.js';
 
@@ -17,6 +17,13 @@
 
 	// CC0 tee from the pmndrs market (see static/models/README.md).
 	const gltf = useGltf('/models/shirt.glb');
+
+	// The Icarus wing (same mark as Navbar/Footer), printed on every shirt at
+	// its true brand blue — the Decal's material is unlit, so studio lights
+	// don't shift the color. Loaded once; this scene is client-only.
+	const logo = new TextureLoader().load('/logo.png');
+	logo.colorSpace = SRGBColorSpace;
+	logo.anisotropy = 8;
 
 	// shirt.js speaks oklch; three.js doesn't parse it. Paint 1px and read it
 	// back so shirt.js stays the single source of truth for garment colors.
@@ -92,5 +99,15 @@
 				/>
 			{/if}
 		{/if}
+
+		<!-- Brand wing, small, wearer's-left chest (opposite the bordado patch).
+		     polygonOffset pulls it in front where it grazes the phrase print. -->
+		<Decal
+			src={logo}
+			position={[0.1, 0.14, 0.12]}
+			rotation={[0, 0, 0]}
+			scale={[0.075, 0.075, 0.1]}
+			polygonOffsetFactor={-20}
+		/>
 	</T.Mesh>
 {/await}
