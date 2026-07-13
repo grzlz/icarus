@@ -1,6 +1,8 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
 	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
+	import TiendaVista3D from '$lib/components/TiendaVista3D.svelte';
+	import { garmentLabel } from '$lib/shirt.js';
 
 	// Each product has:
 	// - phrase: the printed/embroidered text (newlines render as line breaks)
@@ -160,6 +162,14 @@
 		}
 	}
 
+	// Product shown in the 3D viewer; clicking any card loads it there.
+	let selected = $state(products[0]);
+
+	function selectProduct(product) {
+		selected = product;
+		document.getElementById('vista-3d')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}
+
 	let filtered = $derived(
 		products.filter((p) => {
 			if (active === 'todo') return true;
@@ -170,13 +180,6 @@
 			return true;
 		})
 	);
-
-	function garmentLabel(g) {
-		if (g === 'white') return 'blanca';
-		if (g === 'grey') return 'gris';
-		if (g === 'olive') return 'olivo';
-		return 'negra';
-	}
 </script>
 
 <svelte:head>
@@ -242,6 +245,9 @@
 	</div>
 </section>
 
+<!-- ───────────────── VISTA 3D ───────────────── -->
+<TiendaVista3D product={selected} />
+
 <!-- ───────────────── PRODUCT GRID ───────────────── -->
 <section class="bg-bone-50">
 	<div class="mx-auto max-w-7xl px-5 py-12 md:px-10 md:py-16">
@@ -250,7 +256,12 @@
 		{:else}
 			<div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{#each filtered as product, i (product.phrase + product.technique)}
-					<a href="/tienda" use:reveal={{ delay: Math.min(i * 50, 300) }} class="group block">
+					<button
+						type="button"
+						onclick={() => selectProduct(product)}
+						use:reveal={{ delay: Math.min(i * 50, 300) }}
+						class="group block w-full cursor-pointer text-left"
+					>
 						<div
 							class="aspect-square w-full transition-transform duration-300 group-hover:-translate-y-1"
 						>
@@ -286,7 +297,7 @@
 							</div>
 							<p class="text-ink-950 text-base font-extrabold whitespace-nowrap">{product.price}</p>
 						</div>
-					</a>
+					</button>
 				{/each}
 			</div>
 		{/if}
