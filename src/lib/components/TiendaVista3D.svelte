@@ -20,6 +20,7 @@
 				phrase={product.phrase}
 				garment={product.garment}
 				technique={product.technique}
+				type={product.type}
 			/>
 		</div>
 
@@ -33,9 +34,6 @@
 			<p class="text-grey-600 mt-2 text-sm">
 				{product.type}
 				{garmentLabel(product.garment)} · {product.technique}
-				{#if product.type === 'Sudadera'}
-					· vista previa en playera
-				{/if}
 			</p>
 			<p class="text-ink-950 mt-4 text-2xl font-extrabold">{product.price}</p>
 			<p class="text-grey-600 mt-6 max-w-md text-sm leading-relaxed">

@@ -11,9 +11,13 @@
 	import { NoToneMapping } from 'three';
 	import ShirtScene from './ShirtScene.svelte';
 
-	let { phrase, garment = 'black', technique = 'estampado' } = $props();
+	let { phrase, garment = 'black', technique = 'estampado', type = 'Playera' } = $props();
 </script>
 
 <Canvas toneMapping={NoToneMapping}>
-	<ShirtScene {phrase} {garment} {technique} />
+	<!-- The scene resolves its GLB at init (Threlte context), so remount it
+	     when the garment type changes instead of swapping models in place. -->
+	{#key type}
+		<ShirtScene {phrase} {garment} {technique} {type} />
+	{/key}
 </Canvas>
