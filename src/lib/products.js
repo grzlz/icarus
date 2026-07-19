@@ -50,34 +50,37 @@ const catalog = [
 		featured: true
 	},
 	{
-		slug: 'estampado-bottleneck-human-on-the-loop',
-		phrase: "i'm the\nbottleneck/\nhuman-on-the-loop",
+		slug: 'estampado-bottleneck-in-the-loop',
+		phrase: 'bottleneck-\nin-the-loop',
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
 		price: '$299',
 		tag: null,
-		featured: true
+		featured: true,
+		image: null
 	},
 	{
-		slug: 'estampado-systemctl-to-major-tom',
-		phrase: 'systemctl to-major-tom',
+		slug: 'estampado-systemctl-restart-major-tom',
+		phrase: 'systemctl restart\nmajor-tom',
 		type: 'Sudadera',
 		garment: 'grey',
 		technique: 'estampado',
 		price: '$899',
 		tag: null,
-		featured: true
+		featured: true,
+		image: null
 	},
 	{
-		slug: 'estampado-git-commit-some-changes',
-		phrase: 'git commit -m\n"some\nchanges"',
+		slug: 'estampado-git-commit-am-some-changes',
+		phrase: 'git commit -am\n"some\nchanges"',
 		type: 'Playera',
 		garment: 'white',
 		technique: 'estampado',
 		price: '$299',
 		tag: null,
-		featured: true
+		featured: true,
+		image: null
 	},
 	{
 		slug: 'estampado-git-push-force',
@@ -90,14 +93,15 @@ const catalog = [
 		featured: true
 	},
 	{
-		slug: 'estampado-works-on-mi-maquina',
-		phrase: 'works on\nmi máquina',
+		slug: 'estampado-funciona-en-mi-local',
+		phrase: 'funciona en\nmi local',
 		type: 'Sudadera',
 		garment: 'black',
 		technique: 'estampado',
 		price: '$899',
 		tag: null,
-		featured: true
+		featured: true,
+		image: null
 	},
 	// Bordado pieces — discreet patches, premium price, more "uniform" feel
 	{
@@ -108,16 +112,6 @@ const catalog = [
 		technique: 'bordado',
 		price: '$490',
 		tag: null,
-		featured: false
-	},
-	{
-		slug: 'bordado-git',
-		phrase: '$ git',
-		type: 'Playera',
-		garment: 'white',
-		technique: 'bordado',
-		price: '$490',
-		tag: 'Nuevo',
 		featured: false
 	},
 	{
@@ -137,16 +131,6 @@ const catalog = [
 		garment: 'black',
 		technique: 'bordado',
 		price: '$490',
-		tag: null,
-		featured: false
-	},
-	{
-		slug: 'bordado-404',
-		phrase: '404',
-		type: 'Sudadera',
-		garment: 'black',
-		technique: 'bordado',
-		price: '$990',
 		tag: null,
 		featured: false
 	},
