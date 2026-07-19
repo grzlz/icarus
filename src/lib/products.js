@@ -57,8 +57,7 @@ const catalog = [
 		technique: 'estampado',
 		price: '$299',
 		tag: null,
-		featured: true,
-		image: null
+		featured: true
 	},
 	{
 		slug: 'estampado-systemctl-restart-major-tom',
@@ -68,8 +67,7 @@ const catalog = [
 		technique: 'estampado',
 		price: '$899',
 		tag: null,
-		featured: true,
-		image: null
+		featured: true
 	},
 	{
 		slug: 'estampado-git-commit-am-some-changes',
@@ -79,8 +77,7 @@ const catalog = [
 		technique: 'estampado',
 		price: '$299',
 		tag: null,
-		featured: true,
-		image: null
+		featured: true
 	},
 	{
 		slug: 'estampado-git-push-force',
@@ -100,8 +97,7 @@ const catalog = [
 		technique: 'estampado',
 		price: '$899',
 		tag: null,
-		featured: true,
-		image: null
+		featured: true
 	},
 	// Bordado pieces — discreet patches, premium price, more "uniform" feel
 	{
