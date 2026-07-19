@@ -190,8 +190,7 @@
 			Sobre Icarus
 		</p>
 		<p use:reveal={{ delay: 100 }} class="mt-6 text-2xl leading-snug font-medium md:text-4xl">
-			Mercancía sencilla con frases que entiende quien las entiende. Sin colecciones cápsula, sin
-			marketing, sin drama. Una playera, un chiste, algodón bueno.
+			Cambiamos playeras por infraestructura y transformamos chistes en comunidad.
 		</p>
 		<div
 			use:reveal={{ delay: 200 }}
@@ -202,7 +201,7 @@
 					01 · Tela
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Algodón pesado 220 g/m². Aguanta lavadas y viernes de deploy.
+					Algodón pesado 220 g/m². Aguanta todo.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
@@ -210,7 +209,7 @@
 					02 · Estampado
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Serigrafía a mano en CDMX. Frase grande, que se lea hasta la última fila.
+					Serigrafía a mano en CDMX. Grande, para que se lea.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
@@ -218,15 +217,15 @@
 					03 · Bordado
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Bordado a máquina, hilo de algodón. El chiste es para quien se fija.
+					Bordado a máquina. Para quien se fija.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					04 · Hecho en
+					04 · A dónde va
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					México, en lotes chicos. Cuando se acaba un drop, se acaba.
+					Cada venta suma para el cluster de GPUs. En serio.
 				</p>
 			</div>
 		</div>

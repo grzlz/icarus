@@ -181,7 +181,7 @@
 				Técnicas
 			</p>
 			<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
-				Dos formas de traer el chiste puesto.
+				Dos técnicas, la misma línea.
 			</h2>
 		</div>
 
@@ -197,10 +197,10 @@
 						01 / Serigrafía
 					</span>
 				</div>
-				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">El chiste, a todo pecho.</h3>
+				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">Chistes en comunidad.</h3>
 				<p class="text-grey-600 mt-3 text-sm leading-relaxed">
-					Serigrafía a mano en CDMX. Para cuando la frase es la prenda y quieres que se lea desde la
-					otra banqueta.
+					Serigrafía a mano en CDMX. La frase se lee de lejos: alguien se ríe, pregunta, y ya son
+					dos.
 				</p>
 				<ul class="text-ink-950 mt-6 space-y-2 text-sm">
 					<li>· Tinta suave al tacto, nada plastificada</li>
@@ -220,10 +220,9 @@
 						02 / Máquina industrial
 					</span>
 				</div>
-				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">El chiste, en voz baja.</h3>
+				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">Playeras en infraestructura.</h3>
 				<p class="text-grey-400 mt-3 text-sm leading-relaxed">
-					Parche bordado al pecho o en la manga. Solo lo nota quien se acerca — y el que lo nota, es
-					de los tuyos.
+					Parche bordado, discreto. Cada pieza vendida suma para el cluster de GPUs.
 				</p>
 				<ul class="text-bone-100 mt-6 space-y-2 text-sm">
 					<li>· Hilo de algodón, relieve que se siente</li>
