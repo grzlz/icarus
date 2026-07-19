@@ -81,19 +81,19 @@
 
 /*
  * Deep navy → blue → indigo gradient from the previous app version,
- * applied to <body> so it scrolls naturally with content. Fixed
- * attachment keeps the same gradient visible at any scroll position.
+ * applied to <body>. Sized to the full body height (not `fixed` — that
+ * anchored the gradient to a single viewport, so anything scrolled past
+ * the first screen fell through to plain white behind dark-mode text).
  */
 html.dark body {
 	background: linear-gradient(
-			to bottom,
-			oklch(0.14 0.03 231) 0%,
-			oklch(0.18 0.05 234) 22%,
-			oklch(0.32 0.1 240) 55%,
-			oklch(0.18 0.05 255) 82%,
-			oklch(0.1 0.04 260) 100%
-		)
-		fixed;
+		to bottom,
+		oklch(0.14 0.03 231) 0%,
+		oklch(0.18 0.05 234) 22%,
+		oklch(0.32 0.1 240) 55%,
+		oklch(0.18 0.05 255) 82%,
+		oklch(0.1 0.04 260) 100%
+	);
 }
 
 /*
