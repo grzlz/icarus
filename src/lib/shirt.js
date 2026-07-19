@@ -9,7 +9,8 @@ export const garments = [
 	{ id: 'black', label: 'negra' },
 	{ id: 'white', label: 'blanca' },
 	{ id: 'grey', label: 'gris' },
-	{ id: 'olive', label: 'olivo' }
+	{ id: 'olive', label: 'olivo' },
+	{ id: 'blue', label: 'azul' }
 ];
 
 export const techniques = [
@@ -25,6 +26,7 @@ export function fallbackBg(g) {
 	if (g === 'white') return 'oklch(0.96 0.008 75)';
 	if (g === 'grey') return 'oklch(0.62 0.008 270)';
 	if (g === 'olive') return 'oklch(0.4 0.05 115)';
+	if (g === 'blue') return 'oklch(0.57 0.155 249)';
 	return 'oklch(0.16 0.012 250)';
 }
 

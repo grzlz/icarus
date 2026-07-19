@@ -25,7 +25,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$299',
+		price: '$399',
 		tag: 'Hot',
 		featured: true
 	},
@@ -35,28 +35,8 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$299',
+		price: '$399',
 		tag: 'Hot',
-		featured: true
-	},
-	{
-		slug: 'estampado-deploys-los-viernes',
-		phrase: 'deploys\nlos\nviernes',
-		type: 'Playera',
-		garment: 'white',
-		technique: 'estampado',
-		price: '$299',
-		tag: 'Nuevo',
-		featured: true
-	},
-	{
-		slug: 'estampado-rm-rf-lunes',
-		phrase: 'rm -rf\n/lunes',
-		type: 'Playera',
-		garment: 'black',
-		technique: 'estampado',
-		price: '$299',
-		tag: null,
 		featured: true
 	},
 	{
@@ -70,28 +50,28 @@ const catalog = [
 		featured: true
 	},
 	{
-		slug: 'estampado-git-commit-ya-quedo',
-		phrase: 'git commit -m\n"ya quedó"',
+		slug: 'estampado-git-commit-am-some-changes',
+		phrase: 'git commit -am\n"some\nchanges"',
 		type: 'Playera',
 		garment: 'white',
 		technique: 'estampado',
-		price: '$299',
+		price: '$399',
 		tag: null,
 		featured: true
 	},
 	{
-		slug: 'estampado-git-push-force',
-		phrase: 'git push\n--force\nthe situation',
+		slug: 'estampado-git-pull-rebase',
+		phrase: 'git pull\n--rebase',
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$299',
+		price: '$399',
 		tag: 'Nuevo',
 		featured: true
 	},
 	{
-		slug: 'estampado-works-on-mi-maquina',
-		phrase: 'works on\nmi máquina',
+		slug: 'estampado-funciona-en-mi-local',
+		phrase: 'funciona en\nmi local',
 		type: 'Sudadera',
 		garment: 'black',
 		technique: 'estampado',
@@ -101,8 +81,8 @@ const catalog = [
 	},
 	// Bordado pieces — discreet patches, premium price, more "uniform" feel
 	{
-		slug: 'bordado-wq',
-		phrase: ':wq',
+		slug: 'bordado-qa',
+		phrase: ':qa!',
 		type: 'Playera',
 		garment: 'black',
 		technique: 'bordado',
@@ -121,32 +101,32 @@ const catalog = [
 		featured: false
 	},
 	{
-		slug: 'bordado-console-log',
-		phrase: 'console\n.log(ñ)',
-		type: 'Playera',
-		garment: 'black',
-		technique: 'bordado',
-		price: '$490',
-		tag: null,
-		featured: false
-	},
-	{
 		slug: 'bordado-icarus',
 		phrase: '</icarus>',
 		type: 'Playera',
-		garment: 'olive',
+		garment: 'blue',
 		technique: 'bordado',
 		price: '$490',
 		tag: 'Nuevo',
 		featured: false
 	},
 	{
-		slug: 'bordado-git-blame-yo',
-		phrase: 'git blame: yo',
+		slug: 'bordado-caffeinate-dimsu',
+		phrase: 'caffeinate\n-dimsu',
 		type: 'Playera',
 		garment: 'black',
 		technique: 'bordado',
-		price: '$590',
+		price: '$490',
+		tag: 'Nuevo',
+		featured: false
+	},
+	{
+		slug: 'estampado-dangerously-skip-permissions',
+		phrase: 'dangerously\nskip\npermissions',
+		type: 'Sudadera',
+		garment: 'black',
+		technique: 'estampado',
+		price: '$899',
 		tag: 'Nuevo',
 		featured: false
 	}
