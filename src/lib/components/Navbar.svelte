@@ -14,7 +14,7 @@
 
 	const links = [
 		{ label: 'Tienda', href: '/tienda' },
-		{ label: 'Sobre', href: '/#sobre' },
+		{ label: 'Qué es esto', href: '/#sobre' },
 		{ label: 'Contacto', href: '/#contacto' }
 	];
 </script>
@@ -51,7 +51,7 @@
 					href="/tienda"
 					class="bg-ink-950 text-bone-50 hover:bg-ink-800 rounded-full px-5 py-2 text-sm font-bold transition-colors"
 				>
-					Comprar
+					Ver el drop
 				</a>
 			</li>
 		</ul>
@@ -105,7 +105,7 @@
 				class="bg-ink-950 text-bone-50 flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold"
 				onclick={() => (mobileOpen = false)}
 			>
-				Comprar
+				Ver el drop
 			</a>
 		</li>
 	</ul>

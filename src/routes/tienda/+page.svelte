@@ -81,11 +81,10 @@
 			use:reveal={{ delay: 80 }}
 			class="text-ink-950 mt-3 max-w-3xl text-4xl leading-[0.95] font-extrabold tracking-tight md:text-6xl"
 		>
-			Toda la mercancía,<br />en un solo lugar.
+			Toda la mercancía.<br />Elige tu chiste.
 		</h1>
 		<p use:reveal={{ delay: 160 }} class="text-grey-600 mt-5 max-w-xl text-base">
-			Estampado a serigrafía o bordado en máquina. Algodón pesado, hecho en México, en lotes chicos.
-			Cuando se acaba un drop, se acaba.
+			Estampado o bordado — mismo algodón, dos volúmenes.
 		</p>
 	</div>
 
@@ -120,7 +119,9 @@
 <section class="bg-bone-50">
 	<div class="mx-auto max-w-7xl px-5 py-12 md:px-10 md:py-16">
 		{#if filtered.length === 0}
-			<p class="text-grey-600 py-20 text-center">Nada por aquí. Prueba otro filtro.</p>
+			<p class="text-grey-600 py-20 text-center font-mono text-sm">
+				grep: 0 resultados. Prueba otro filtro.
+			</p>
 		{:else}
 			<div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{#each filtered as product, i (product.slug)}
@@ -160,7 +161,7 @@
 									</span>
 								</div>
 								<p class="text-ink-950 mt-1 truncate text-sm font-bold">
-									"{product.phrase.replace(/\n/g, ' ')}"
+									“{product.phrase.replace(/\n/g, ' ')}”
 								</p>
 							</div>
 							<p class="text-ink-950 text-base font-extrabold whitespace-nowrap">{product.price}</p>
@@ -180,7 +181,7 @@
 				Técnicas
 			</p>
 			<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
-				Dos formas de poner una frase en una prenda.
+				Dos formas de traer el chiste puesto.
 			</h2>
 		</div>
 
@@ -196,14 +197,14 @@
 						01 / Serigrafía
 					</span>
 				</div>
-				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">Frase grande, presencia clara.</h3>
+				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">El chiste, a todo pecho.</h3>
 				<p class="text-grey-600 mt-3 text-sm leading-relaxed">
-					Serigrafía a mano en CDMX. Tinta suave al tacto, no se cuartea al primer ciclo. Para
-					cuando la frase es la prenda.
+					Serigrafía a mano en CDMX. Para cuando la frase es la prenda y quieres que se lea desde la
+					otra banqueta.
 				</p>
 				<ul class="text-ink-950 mt-6 space-y-2 text-sm">
-					<li>· Hasta 4 colores por diseño</li>
-					<li>· Tirajes desde 30 piezas</li>
+					<li>· Tinta suave al tacto, nada plastificada</li>
+					<li>· No se cuartea ni se pela con las lavadas</li>
 					<li>· Algodón pesado 220 g/m²</li>
 				</ul>
 			</div>
@@ -219,14 +220,14 @@
 						02 / Máquina industrial
 					</span>
 				</div>
-				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">Detalle discreto, larga vida.</h3>
+				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">El chiste, en voz baja.</h3>
 				<p class="text-grey-400 mt-3 text-sm leading-relaxed">
-					Bordado en máquina industrial. Hilo de algodón, parche al pecho o manga. Para cuando la
-					prenda es lo serio y la frase es el guiño.
+					Parche bordado al pecho o en la manga. Solo lo nota quien se acerca — y el que lo nota, es
+					de los tuyos.
 				</p>
 				<ul class="text-bone-100 mt-6 space-y-2 text-sm">
-					<li>· Hilo en hasta 6 colores</li>
-					<li>· Tirajes desde 20 piezas</li>
+					<li>· Hilo de algodón, relieve que se siente</li>
+					<li>· No se destiñe: dura más que la playera</li>
 					<li>· Mismo algodón pesado 220 g/m²</li>
 				</ul>
 			</div>
@@ -247,7 +248,7 @@
 			use:reveal={{ delay: 100 }}
 			class="text-ink-950 mt-4 text-3xl leading-tight font-extrabold tracking-tight md:text-5xl"
 		>
-			Avísame cuando salga<br />algo nuevo.
+			El Drop 02 ya se<br />está cocinando.
 		</h2>
 		<a
 			use:reveal={{ delay: 200 }}

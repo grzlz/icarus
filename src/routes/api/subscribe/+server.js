@@ -13,7 +13,7 @@ export async function POST({ request }) {
 		return json({ ok: true });
 	} catch (err) {
 		if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
-			return json({ error: 'Ya estás suscrito' }, { status: 409 });
+			return json({ error: 'Ya estabas en la lista' }, { status: 409 });
 		}
 		return json({ error: 'Error interno' }, { status: 500 });
 	}

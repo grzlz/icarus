@@ -42,8 +42,7 @@
 				<p class="text-lg font-extrabold tracking-tight">Icarus</p>
 			</div>
 			<p class="text-grey-600 mt-4 max-w-sm text-sm">
-				Playeras y sudaderas con frases para los que viven en la terminal. Hecho en México, en lotes
-				chicos.
+				Playeras y sudaderas para los que viven en la terminal. El chiste va incluido.
 			</p>
 
 			<form onsubmit={subscribe} class="mt-6 flex max-w-sm flex-col gap-2 sm:flex-row">
@@ -104,7 +103,9 @@
 					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Contacto</a>
 				</li>
 				<li>
-					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Envíos y cambios</a>
+					<a href="https://wa.me/525548017016" class="text-ink-950 hover:opacity-60"
+						>Dudas y pedidos</a
+					>
 				</li>
 			</ul>
 		</div>
@@ -114,7 +115,7 @@
 		<div
 			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs md:flex-row md:px-10"
 		>
-			<p class="text-grey-600">&copy; {year} Icarus · Hecho en México con cariño y café</p>
+			<p class="text-grey-600">&copy; {year} Icarus · Hecho en México con más café que sueño</p>
 			<div class="flex gap-5">
 				<a
 					href="https://www.instagram.com/icarus.mx"

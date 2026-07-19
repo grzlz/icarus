@@ -29,7 +29,7 @@
 				Vista 3D
 			</p>
 			<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
-				"{product.phrase.replace(/\n/g, ' ')}"
+				“{product.phrase.replace(/\n/g, ' ')}”
 			</h2>
 			<p class="text-grey-600 mt-2 text-sm">
 				{product.type}

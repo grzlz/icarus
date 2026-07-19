@@ -2,7 +2,7 @@
 	import { reveal } from '$lib/actions/reveal.js';
 	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
 	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
-	import { featured } from '$lib/products.js';
+	import { featured, products } from '$lib/products.js';
 	import { garmentLabel } from '$lib/shirt.js';
 
 	let email = $state('');
@@ -28,8 +28,9 @@
 	// ($lib/products.js). The phrase IS the product.
 
 	// Featured hero shirt — pulled out so we can swap in a real photo later.
+	// "gpi a un gpu" is the flagship: it's the joke only a Mexican dev gets.
 	const hero = {
-		phrase: 'no es\nbug\nes feature',
+		phrase: 'gpi\na un gpu',
 		garment: 'black',
 		image: null,
 		tag: 'Hot'
@@ -37,22 +38,22 @@
 </script>
 
 <svelte:head>
-	<title>Icarus · Mercancía para quienes viven en la terminal</title>
+	<title>Icarus · Mercancía para los que viven en la terminal</title>
 	<meta
 		name="description"
-		content="Ropa y sudaderas con frases para quienes viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
+		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
 	/>
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Icarus · Mercancía para quienes viven en la terminal" />
+	<meta property="og:title" content="Icarus · Mercancía para los que viven en la terminal" />
 	<meta
 		property="og:description"
-		content="Ropa y sudaderas con frases para quienes viven en la terminal. Estampado o bordado, hecho en México."
+		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado o bordado, hecho en México."
 	/>
 	<meta property="og:url" content="https://icarus.mx" />
 	<meta property="og:site_name" content="Icarus" />
 	<meta property="og:locale" content="es_MX" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Icarus · Mercancía para quienes viven en la terminal" />
+	<meta name="twitter:title" content="Icarus · Mercancía para los que viven en la terminal" />
 </svelte:head>
 
 <!-- ───────────────── HERO ───────────────── -->
@@ -70,12 +71,11 @@
 			<h1
 				class="hero-animate hero-animate-1 text-ink-950 mt-6 text-5xl leading-[0.95] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
 			>
-				Ropa para<br />quienes viven<br />
+				Ropa para<br />los que viven<br />
 				<span class="text-tomato-500">en la terminal.</span>
 			</h1>
 			<p class="hero-animate hero-animate-2 text-grey-600 mt-6 max-w-md text-lg">
-				Algodón pesado, estampado a serigrafía o bordado a máquina, hecho en México. Para quienes
-				programan, debugan y siguen creyendo.
+				Playeras y sudaderas hechas en México. Frases que tu manager no va a entender.
 			</p>
 			<div class="hero-animate hero-animate-3 mt-8 flex flex-wrap items-center gap-4">
 				<a
@@ -110,9 +110,9 @@
 			<div class="mt-4 flex items-end justify-between">
 				<div>
 					<p class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
-						Featured · Playera negra
+						La consentida · Playera negra
 					</p>
-					<p class="text-ink-950 mt-1 text-base font-bold">"no es bug es feature"</p>
+					<p class="text-ink-950 mt-1 text-base font-bold">“gpi a un gpu”</p>
 				</div>
 				<p class="text-ink-950 text-2xl font-extrabold">$299</p>
 			</div>
@@ -126,10 +126,10 @@
 		<div use:reveal class="mb-10 flex items-end justify-between">
 			<div>
 				<p class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase">
-					Drop 01 · {featured.length} piezas
+					Drop 01 · {featured.length} de {products.length} piezas
 				</p>
 				<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
-					Toda la mercancía
+					Lo mero bueno
 				</h2>
 			</div>
 			<a
@@ -161,7 +161,7 @@
 							>
 								{drop.type} · {garmentLabel(drop.garment)}
 							</p>
-							<p class="text-ink-950 mt-1 text-sm font-bold">"{drop.phrase.replace(/\n/g, ' ')}"</p>
+							<p class="text-ink-950 mt-1 text-sm font-bold">“{drop.phrase.replace(/\n/g, ' ')}”</p>
 						</div>
 						<p class="text-ink-950 text-base font-extrabold whitespace-nowrap">{drop.price}</p>
 					</div>
@@ -202,7 +202,7 @@
 					01 · Tela
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Algodón pesado 220 g/m². Aguanta lavadas y miércoles intensos.
+					Algodón pesado 220 g/m². Aguanta lavadas y viernes de deploy.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
@@ -210,7 +210,7 @@
 					02 · Estampado
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Serigrafía a mano en CDMX. Frase grande, presencia clara.
+					Serigrafía a mano en CDMX. Frase grande, que se lea hasta la última fila.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
@@ -218,7 +218,7 @@
 					03 · Bordado
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Bordado en máquina, hilo de algodón. Detalle discreto, larga vida.
+					Bordado a máquina, hilo de algodón. El chiste es para quien se fija.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
@@ -248,7 +248,7 @@
 				Avísame cuando salga<br />algo nuevo.
 			</h2>
 			<p class="text-grey-600 mt-5 max-w-md text-base">
-				Un correo cuando hay drop nuevo. Sin promociones, sin spam, sin nada raro.
+				Un correo por drop, y ya. Nada de “ÚLTIMAS HORAS” ni contadores regresivos.
 			</p>
 		</div>
 
@@ -272,7 +272,7 @@
 				{#if formStatus === 'sending'}
 					Enviando…
 				{:else if formStatus === 'sent'}
-					✓ Listo
+					✓ exit 0
 				{:else if formStatus === 'error'}
 					Reintentar
 				{:else}

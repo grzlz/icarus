@@ -50,8 +50,8 @@ const catalog = [
 		featured: true
 	},
 	{
-		slug: 'estampado-bottleneck-in-the-loop',
-		phrase: 'bottleneck-\nin-the-loop',
+		slug: 'estampado-rm-rf-lunes',
+		phrase: 'rm -rf\n/lunes',
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
@@ -70,8 +70,8 @@ const catalog = [
 		featured: true
 	},
 	{
-		slug: 'estampado-git-commit-am-some-changes',
-		phrase: 'git commit -am\n"some\nchanges"',
+		slug: 'estampado-git-commit-ya-quedo',
+		phrase: 'git commit -m\n"ya quedó"',
 		type: 'Playera',
 		garment: 'white',
 		technique: 'estampado',
@@ -90,8 +90,8 @@ const catalog = [
 		featured: true
 	},
 	{
-		slug: 'estampado-funciona-en-mi-local',
-		phrase: 'funciona en\nmi local',
+		slug: 'estampado-works-on-mi-maquina',
+		phrase: 'works on\nmi máquina',
 		type: 'Sudadera',
 		garment: 'black',
 		technique: 'estampado',
@@ -141,10 +141,8 @@ const catalog = [
 		featured: false
 	},
 	{
-		// Illustration idea: bottle with stick figures stacked inside, top one
-		// waving from the neck. For now the patch is just the "← yo" accent.
-		slug: 'bordado-yo',
-		phrase: '← yo',
+		slug: 'bordado-git-blame-yo',
+		phrase: 'git blame: yo',
 		type: 'Playera',
 		garment: 'black',
 		technique: 'bordado',
