@@ -45,7 +45,7 @@ function buildPrompt({ type, garment, technique, scene }) {
 	const techniqueText =
 		technique === 'bordado'
 			? 'The design is embroidered directly into the fabric: raised thread stitching with a slight pucker. No patch, no border, no box or outline of any kind around the lettering.'
-			: 'The design is screen-printed directly onto the fabric, soft matte ink settled into the cotton weave. The small wing graphic near the collar is the brand logo — reproduce its shape, placement and blue color exactly.';
+			: 'The design is screen-printed directly onto the fabric, soft matte ink settled into the cotton weave. The small wing graphic near the collar is the brand logo — reproduce its shape, placement and color exactly as shown in the reference.';
 
 	return [
 		`Turn this flat reference into a photorealistic product photo of a ${color} ${typeWord}, ${sceneText}.`,

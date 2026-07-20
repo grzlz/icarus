@@ -1,4 +1,5 @@
 import { fallbackBg, printColor, threadColor } from '$lib/shirt.js';
+import { tintedWing } from '$lib/wing.js';
 
 /*
  * Paints the deterministic shirt mockup to an offscreen canvas and returns a
@@ -41,25 +42,21 @@ export async function renderReference(
 		drawBordado(ctx, lines, garment, size, closeup);
 	} else {
 		drawEstampado(ctx, lines, garment, size);
-		await drawWing(ctx, size);
+		await drawWing(ctx, garment, size);
 	}
 
 	return canvas.toDataURL('image/png');
 }
 
 // Icarus wing on the wearer's-left chest — same placement as ShirtMockup
-// (top 19%, right 21%, width 13%) so the generated photos keep the brand mark.
-async function drawWing(ctx, size) {
-	const img = new Image();
-	img.src = '/logo.png';
-	try {
-		await img.decode();
-	} catch {
-		return; // logo unavailable — the reference still works without the mark
-	}
+// (top 19%, right 21%, width 13%) so the generated photos keep the brand mark,
+// tinted per garment so the model reproduces a color that actually reads.
+async function drawWing(ctx, garment, size) {
+	const wing = await tintedWing(garment);
+	if (!wing) return; // logo unavailable — the reference still works without the mark
 	const w = size * 0.13;
-	const h = w * (img.naturalHeight / img.naturalWidth);
-	ctx.drawImage(img, size * (1 - 0.21 - 0.13), size * 0.19, w, h);
+	const h = w * (wing.height / wing.width);
+	ctx.drawImage(wing, size * (1 - 0.21 - 0.13), size * 0.19, w, h);
 }
 
 // Big centered chest print, auto-fit to the artwork area. Height is capped

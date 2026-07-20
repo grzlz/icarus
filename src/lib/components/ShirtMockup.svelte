@@ -5,7 +5,7 @@
 	 * a real flat-lay), shown as-is. Without `image`, falls back to the colored
 	 * placeholder block with the phrase rendered as a simulated print.
 	 */
-	import { fallbackBg, printColor, threadColor } from '$lib/shirt.js';
+	import { fallbackBg, logoColor, printColor, threadColor } from '$lib/shirt.js';
 
 	let {
 		phrase,
@@ -19,6 +19,7 @@
 	const bg = $derived(fallbackBg(garment));
 	const ink = $derived(printColor(garment));
 	const thread = $derived(threadColor(garment));
+	const wing = $derived(logoColor(garment));
 
 	const printSize = $derived(
 		size === 'hero' ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl'
@@ -47,12 +48,13 @@
 			class="absolute inset-0 h-full w-full object-cover"
 		/>
 	{:else}
-		<!-- Icarus wing on the wearer's-left chest; a real photo brings its own. -->
-		<img
-			src="/logo.png"
-			alt=""
-			class="pointer-events-none absolute top-[19%] right-[21%] z-10 w-[13%]"
-		/>
+		<!-- Icarus wing on the wearer's-left chest, tinted per garment (logoColor);
+		     a real photo brings its own. The PNG works as a mask so the mark keeps
+		     its soft edges at any color. -->
+		<div
+			class="pointer-events-none absolute top-[19%] right-[21%] z-10 aspect-square w-[13%]"
+			style="background-color: {wing}; -webkit-mask: url('/logo.png') center / contain no-repeat; mask: url('/logo.png') center / contain no-repeat;"
+		></div>
 
 		{#if technique === 'estampado'}
 			<!-- Big chest print, centered. -->

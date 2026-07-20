@@ -11,8 +11,9 @@
 	 */
 	import { T } from '@threlte/core';
 	import { OrbitControls, Decal, useGltf } from '@threlte/extras';
-	import { CanvasTexture, SRGBColorSpace, TextureLoader } from 'three';
+	import { CanvasTexture, SRGBColorSpace } from 'three';
 	import { paintDecal } from '$lib/printDecal.js';
+	import { tintedWing } from '$lib/wing.js';
 	import { fallbackBg } from '$lib/shirt.js';
 	import { modelFor } from '$lib/models3d.js';
 
@@ -21,12 +22,22 @@
 	const model = modelFor(type);
 	const gltf = useGltf(model.url);
 
-	// The Icarus wing (same mark as Navbar/Footer), printed on every garment at
-	// its true brand blue — the Decal's material is unlit, so studio lights
-	// don't shift the color. Loaded once; this scene is client-only.
-	const logo = new TextureLoader().load('/logo.png');
-	logo.colorSpace = SRGBColorSpace;
-	logo.anisotropy = 8;
+	// The Icarus wing (same mark as Navbar/Footer), tinted per garment via
+	// $lib/wing.js — the Decal's material is unlit, so studio lights don't
+	// shift the color.
+	let logo = $state(null);
+	$effect(() => {
+		let stale = false;
+		tintedWing(garment).then((canvas) => {
+			if (stale || !canvas) return;
+			const next = new CanvasTexture(canvas);
+			next.colorSpace = SRGBColorSpace;
+			next.anisotropy = 8;
+			logo?.dispose();
+			logo = next;
+		});
+		return () => (stale = true);
+	});
 
 	// shirt.js speaks oklch; three.js doesn't parse it. Paint 1px and read it
 	// back so shirt.js stays the single source of truth for garment colors.
@@ -138,13 +149,15 @@
 
 			<!-- Brand wing, small, wearer's-left chest (opposite the bordado patch).
 			     polygonOffset pulls it in front where it grazes the phrase print. -->
-			<Decal
-				src={logo}
-				position={f.local(model.logo.position)}
-				rotation={[0, 0, 0]}
-				scale={f.localScale(model.logo.scale)}
-				polygonOffsetFactor={-20}
-			/>
+			{#if logo}
+				<Decal
+					src={logo}
+					position={f.local(model.logo.position)}
+					rotation={[0, 0, 0]}
+					scale={f.localScale(model.logo.scale)}
+					polygonOffsetFactor={-20}
+				/>
+			{/if}
 		</T.Mesh>
 	</T.Group>
 {/await}

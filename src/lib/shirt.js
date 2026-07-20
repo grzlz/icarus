@@ -38,6 +38,15 @@ export function threadColor(g) {
 	return g === 'olive' || !isLight(g) ? 'oklch(0.92 0.08 95)' : 'oklch(0.16 0.012 250)';
 }
 
+// The wing's true brand blue, sampled from static/logo.png.
+export const logoBlue = '#008cdd';
+
+// Brand wing per garment: blue wherever it reads, bone where it doesn't —
+// on the blue tee it vanishes into the fabric, on olive it muddies.
+export function logoColor(g) {
+	return g === 'blue' || g === 'olive' ? 'oklch(0.96 0.008 75)' : logoBlue;
+}
+
 export function garmentLabel(g) {
 	return garments.find((x) => x.id === g)?.label ?? 'negra';
 }
