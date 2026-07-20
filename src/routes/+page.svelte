@@ -190,7 +190,7 @@
 			Sobre Icarus
 		</p>
 		<p use:reveal={{ delay: 100 }} class="mt-6 text-2xl leading-snug font-medium md:text-4xl">
-			Cambiamos playeras por infraestructura y transformamos chistes en comunidad.
+			Cambiamos playeras por infraestructura y transformamos frases en comunidad.
 		</p>
 		<div
 			use:reveal={{ delay: 200 }}

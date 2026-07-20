@@ -81,7 +81,7 @@
 			use:reveal={{ delay: 80 }}
 			class="text-ink-950 mt-3 max-w-3xl text-4xl leading-[0.95] font-extrabold tracking-tight md:text-6xl"
 		>
-			Toda la mercancía.<br />Elige tu chiste.
+			Toda la mercancía.<br />Elige tu frase.
 		</h1>
 		<p use:reveal={{ delay: 160 }} class="text-grey-600 mt-5 max-w-xl text-base">
 			Estampado o bordado — mismo algodón, dos volúmenes.
@@ -197,10 +197,10 @@
 						01 / Serigrafía
 					</span>
 				</div>
-				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">Chistes en comunidad.</h3>
+				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">Frases en comunidad.</h3>
 				<p class="text-grey-600 mt-3 text-sm leading-relaxed">
-					Serigrafía a mano en CDMX. La frase se lee de lejos: alguien se ríe, pregunta, y ya son
-					dos.
+					Serigrafía a mano en CDMX. La frase se lee de lejos: alguien la reconoce, pregunta, y ya
+					son dos.
 				</p>
 				<ul class="text-ink-950 mt-6 space-y-2 text-sm">
 					<li>· Tinta suave al tacto, nada plastificada</li>

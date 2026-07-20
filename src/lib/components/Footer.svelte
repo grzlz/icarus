@@ -42,7 +42,7 @@
 				<p class="text-lg font-extrabold tracking-tight">Icarus</p>
 			</div>
 			<p class="text-grey-600 mt-4 max-w-sm text-sm">
-				Playeras y sudaderas para los que viven en la terminal. El chiste va incluido.
+				Playeras y sudaderas para los que viven en la terminal. La frase va incluida.
 			</p>
 
 			<form onsubmit={subscribe} class="mt-6 flex max-w-sm flex-col gap-2 sm:flex-row">
