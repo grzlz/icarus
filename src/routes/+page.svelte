@@ -200,9 +200,7 @@
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
 					01 · Tela
 				</p>
-				<p class="text-bone-100 mt-3 text-base">
-					Algodón pesado 220 g/m². Aguanta todo.
-				</p>
+				<p class="text-bone-100 mt-3 text-base">Algodón pesado 220 g/m². Aguanta todo.</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
@@ -216,17 +214,13 @@
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
 					03 · Bordado
 				</p>
-				<p class="text-bone-100 mt-3 text-base">
-					Bordado a máquina. Para quien se fija.
-				</p>
+				<p class="text-bone-100 mt-3 text-base">Bordado a máquina. Para quien se fija.</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
 					04 · A dónde va
 				</p>
-				<p class="text-bone-100 mt-3 text-base">
-					Cada venta suma para el cluster de GPUs. En serio.
-				</p>
+				<p class="text-bone-100 mt-3 text-base">Cada venta suma para el cluster de GPUs.</p>
 			</div>
 		</div>
 	</div>
