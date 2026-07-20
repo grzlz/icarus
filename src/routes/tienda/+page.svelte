@@ -84,7 +84,7 @@
 			Toda la mercancía.<br />Elige tu frase.
 		</h1>
 		<p use:reveal={{ delay: 160 }} class="text-grey-600 mt-5 max-w-xl text-base">
-			Estampado o bordado — mismo algodón, dos volúmenes.
+			Unas frases van estampadas en grande, otras bordadas en chiquito.
 		</p>
 	</div>
 
@@ -181,22 +181,17 @@
 				Técnicas
 			</p>
 			<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">
-				Dos técnicas, la misma línea.
+				¿Estampado o bordado?
 			</h2>
 		</div>
 
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
 			<div use:reveal class="bg-bone-50 rounded-2xl p-6 md:p-8">
-				<div class="flex items-center justify-between">
-					<span
-						class="bg-tomato-500/15 text-tomato-600 rounded-full px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
-					>
-						Estampado
-					</span>
-					<span class="text-grey-500 font-mono text-[10px] tracking-widest uppercase">
-						01 / Serigrafía
-					</span>
-				</div>
+				<span
+					class="bg-tomato-500/15 text-tomato-600 inline-block rounded-full px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
+				>
+					Estampado
+				</span>
 				<h3 class="text-ink-950 mt-5 text-2xl font-extrabold">Frases en comunidad.</h3>
 				<p class="text-grey-600 mt-3 text-sm leading-relaxed">
 					Serigrafía a mano en CDMX. La frase se lee de lejos: alguien la reconoce, pregunta, y ya
@@ -205,29 +200,25 @@
 				<ul class="text-ink-950 mt-6 space-y-2 text-sm">
 					<li>· Tinta suave al tacto, nada plastificada</li>
 					<li>· No se cuartea ni se pela con las lavadas</li>
-					<li>· Algodón pesado 220 g/m²</li>
+					<li>· Algodón pesado que no se transparenta</li>
 				</ul>
 			</div>
 
 			<div use:reveal={{ delay: 100 }} class="bg-ink-950 text-bone-50 rounded-2xl p-6 md:p-8">
-				<div class="flex items-center justify-between">
-					<span
-						class="bg-bone-50 text-ink-950 rounded-full px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
-					>
-						Bordado
-					</span>
-					<span class="text-grey-400 font-mono text-[10px] tracking-widest uppercase">
-						02 / Máquina industrial
-					</span>
-				</div>
+				<span
+					class="bg-bone-50 text-ink-950 inline-block rounded-full px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
+				>
+					Bordado
+				</span>
 				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">Playeras en infraestructura.</h3>
 				<p class="text-grey-400 mt-3 text-sm leading-relaxed">
-					Parche bordado, discreto. Cada pieza vendida suma para el cluster de GPUs.
+					La frase va bordada en un parche en el pecho. Cada pieza vendida suma para el cluster de
+					GPUs.
 				</p>
 				<ul class="text-bone-100 mt-6 space-y-2 text-sm">
 					<li>· Hilo de algodón, relieve que se siente</li>
 					<li>· No se destiñe: dura más que la playera</li>
-					<li>· Mismo algodón pesado 220 g/m²</li>
+					<li>· El mismo algodón pesado que el estampado</li>
 				</ul>
 			</div>
 		</div>

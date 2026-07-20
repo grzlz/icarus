@@ -198,27 +198,31 @@
 		>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					01 · Tela
-				</p>
-				<p class="text-bone-100 mt-3 text-base">Algodón pesado 220 g/m². Aguanta todo.</p>
-			</div>
-			<div class="bg-ink-900 rounded-2xl p-6 text-left">
-				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					02 · Estampado
+					Tela
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					Serigrafía a mano en CDMX. Grande, para que se lea.
+					Algodón pesado que aguanta más que tu código en producción.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					03 · Bordado
+					Estampado
 				</p>
-				<p class="text-bone-100 mt-3 text-base">Bordado a máquina. Para quien se fija.</p>
+				<p class="text-bone-100 mt-3 text-base">
+					La frase va bien grande, serigrafiada a mano en CDMX.
+				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">
 				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					04 · A dónde va
+					Bordado
+				</p>
+				<p class="text-bone-100 mt-3 text-base">
+					El parche va bordado a máquina, discreto en el pecho.
+				</p>
+			</div>
+			<div class="bg-ink-900 rounded-2xl p-6 text-left">
+				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
+					A dónde va
 				</p>
 				<p class="text-bone-100 mt-3 text-base">Cada venta suma para el cluster de GPUs.</p>
 			</div>
