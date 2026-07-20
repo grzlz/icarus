@@ -79,7 +79,7 @@ const catalog = [
 		tag: null,
 		featured: true
 	},
-	// Bordado pieces — discreet patches, premium price, more "uniform" feel
+	// Bordado pieces — embroidered phrases, premium price; placement varies per piece
 	{
 		slug: 'bordado-qa',
 		phrase: ':qa!',

@@ -75,7 +75,7 @@
 				<span class="text-tomato-500">en la terminal.</span>
 			</h1>
 			<p class="hero-animate hero-animate-2 text-grey-600 mt-6 max-w-md text-lg">
-				Playeras y sudaderas hechas en México. Frases que tu manager no va a entender.
+				Playeras y sudaderas hechas en México.
 			</p>
 			<div class="hero-animate hero-animate-3 mt-8 flex flex-wrap items-center gap-4">
 				<a
@@ -217,7 +217,7 @@
 					Bordado
 				</p>
 				<p class="text-bone-100 mt-3 text-base">
-					El parche va bordado a máquina, discreto en el pecho.
+					La frase va bordada a máquina, en hilo de algodón.
 				</p>
 			</div>
 			<div class="bg-ink-900 rounded-2xl p-6 text-left">

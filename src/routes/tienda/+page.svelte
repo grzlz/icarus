@@ -84,7 +84,7 @@
 			Toda la mercancía.<br />Elige tu frase.
 		</h1>
 		<p use:reveal={{ delay: 160 }} class="text-grey-600 mt-5 max-w-xl text-base">
-			Unas frases van estampadas en grande, otras bordadas en chiquito.
+			Unas frases van estampadas en tinta, otras bordadas en hilo.
 		</p>
 	</div>
 
@@ -212,8 +212,8 @@
 				</span>
 				<h3 class="text-bone-50 mt-5 text-2xl font-extrabold">Playeras en infraestructura.</h3>
 				<p class="text-grey-400 mt-3 text-sm leading-relaxed">
-					La frase va bordada en un parche en el pecho. Cada pieza vendida suma para el cluster de
-					GPUs.
+					La frase va bordada a máquina, puntada por puntada. Cada pieza vendida suma para el
+					cluster de GPUs.
 				</p>
 				<ul class="text-bone-100 mt-6 space-y-2 text-sm">
 					<li>· Hilo de algodón, relieve que se siente</li>
