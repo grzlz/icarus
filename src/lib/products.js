@@ -9,7 +9,8 @@
  * - type: 'Playera' | 'Sudadera'
  * - garment: 'black' | 'white' | 'grey' | 'olive' (shirt color)
  * - technique: 'estampado' | 'bordado'
- * - price: display string
+ * - price: display string, IVA incluido (16%). El precio que ve el cliente es
+ *   el que se cobra; al netear, lo tuyo es price / 1.16.
  * - tag: optional badge (Hot, Nuevo, etc.)
  * - featured: shown on the homepage grid
  *
@@ -25,7 +26,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$399',
+		price: '$469',
 		tag: 'Hot',
 		featured: true
 	},
@@ -35,7 +36,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$399',
+		price: '$469',
 		tag: 'Hot',
 		featured: true
 	},
@@ -45,7 +46,7 @@ const catalog = [
 		type: 'Sudadera',
 		garment: 'grey',
 		technique: 'estampado',
-		price: '$899',
+		price: '$1,049',
 		tag: null,
 		featured: true
 	},
@@ -55,7 +56,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'white',
 		technique: 'estampado',
-		price: '$399',
+		price: '$469',
 		tag: null,
 		featured: true
 	},
@@ -65,7 +66,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$399',
+		price: '$469',
 		tag: 'Nuevo',
 		featured: true
 	},
@@ -75,7 +76,7 @@ const catalog = [
 		type: 'Sudadera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$899',
+		price: '$1,049',
 		tag: null,
 		featured: true
 	},
@@ -86,7 +87,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'bordado',
-		price: '$490',
+		price: '$570',
 		tag: null,
 		featured: false
 	},
@@ -96,7 +97,7 @@ const catalog = [
 		type: 'Sudadera',
 		garment: 'olive',
 		technique: 'bordado',
-		price: '$990',
+		price: '$1,150',
 		tag: null,
 		featured: false
 	},
@@ -106,7 +107,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'blue',
 		technique: 'bordado',
-		price: '$490',
+		price: '$570',
 		tag: 'Nuevo',
 		featured: false
 	},
@@ -116,7 +117,7 @@ const catalog = [
 		type: 'Playera',
 		garment: 'black',
 		technique: 'bordado',
-		price: '$490',
+		price: '$570',
 		tag: 'Nuevo',
 		featured: false
 	},
@@ -126,7 +127,7 @@ const catalog = [
 		type: 'Sudadera',
 		garment: 'black',
 		technique: 'estampado',
-		price: '$899',
+		price: '$1,049',
 		tag: 'Nuevo',
 		featured: false
 	}
