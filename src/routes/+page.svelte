@@ -71,7 +71,7 @@
 			<h1
 				class="hero-animate hero-animate-1 text-ink-950 mt-6 text-5xl leading-[0.95] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
 			>
-				Ropa para<br />quienes vienen<br />
+				Ropa para quienes<br />viven<br />
 				<span class="text-tomato-500">en la terminal.</span>
 			</h1>
 			<p class="hero-animate hero-animate-2 text-grey-600 mt-6 max-w-md text-lg">
@@ -114,7 +114,7 @@
 					</p>
 					<p class="text-ink-950 mt-1 text-base font-bold">“gpi a un gpu”</p>
 				</div>
-				<p class="text-ink-950 text-2xl font-extrabold">$299</p>
+				<p class="text-ink-950 text-2xl font-extrabold">$399</p>
 			</div>
 		</div>
 	</div>
