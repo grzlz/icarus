@@ -27,14 +27,11 @@
 	// The homepage grid shows the `featured` subset of the shared catalog
 	// ($lib/products.js). The phrase IS the product.
 
-	// Featured hero shirt — pulled out so we can swap in a real photo later.
-	// "gpi a un gpu" is the flagship: it's the joke only a Mexican dev gets.
-	const hero = {
-		phrase: 'gpi\na un gpu',
-		garment: 'black',
-		image: null,
-		tag: 'Hot'
-	};
+	// Featured hero shirt — read from the catalog, never hand-copied. It used to
+	// be a literal here and drifted from products.js twice: once in the headline,
+	// once in the price. "gpi a un gpu" is the flagship: the joke only a Mexican
+	// dev gets.
+	const hero = products.find((p) => p.slug === 'estampado-gpi-a-un-gpu') ?? featured[0];
 </script>
 
 <svelte:head>
@@ -105,16 +102,17 @@
 						{hero.tag}
 					</span>
 				{/if}
-				<Shirt3DView phrase={hero.phrase} garment={hero.garment} technique="estampado" />
+				<Shirt3DView phrase={hero.phrase} garment={hero.garment} technique={hero.technique} />
 			</div>
 			<div class="mt-4 flex items-end justify-between">
 				<div>
 					<p class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
-						La consentida · Playera negra
+						La consentida · {hero.type}
+						{garmentLabel(hero.garment)}
 					</p>
-					<p class="text-ink-950 mt-1 text-base font-bold">“gpi a un gpu”</p>
+					<p class="text-ink-950 mt-1 text-base font-bold">“{hero.phrase.replace(/\n/g, ' ')}”</p>
 				</div>
-				<p class="text-ink-950 text-2xl font-extrabold">$399</p>
+				<p class="text-ink-950 text-2xl font-extrabold">{hero.price}</p>
 			</div>
 		</div>
 	</div>
