@@ -7,6 +7,8 @@
 	let { children } = $props();
 
 	let canonicalUrl = $derived(`https://icarus.mx${page.url.pathname}`);
+	// /admin brings its own chrome — no store navbar/footer there.
+	let isAdmin = $derived(page.url.pathname.startsWith('/admin'));
 </script>
 
 <svelte:head>
@@ -14,11 +16,15 @@
 </svelte:head>
 
 <div class="bg-bone-50 text-ink-950 font-primary flex min-h-screen flex-col">
-	<Navbar />
+	{#if !isAdmin}
+		<Navbar />
+	{/if}
 
 	{@render children()}
 
-	<Footer />
+	{#if !isAdmin}
+		<Footer />
+	{/if}
 </div>
 
 <ThemeToggle />
