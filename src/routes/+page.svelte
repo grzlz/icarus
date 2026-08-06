@@ -2,8 +2,63 @@
 	import { reveal } from '$lib/actions/reveal.js';
 	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
 	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
-	import { featured, products } from '$lib/products.js';
 	import { garmentLabel } from '$lib/shirt.js';
+	import { products } from '$lib/products.js';
+
+	const filters = [
+		{ id: 'todo', label: 'Todo' },
+		{ id: 'playeras', label: 'Playeras' },
+		{ id: 'sudaderas', label: 'Sudaderas' },
+		{ id: 'estampado', label: 'Estampado' },
+		{ id: 'bordado', label: 'Bordado' }
+	];
+
+	let active = $state('todo');
+
+	// Sync active filter with URL hash so /#bordado works from anywhere —
+	// on load (/tienda#bordado redirects here, hash intact) and on same-page
+	// hash clicks like the footer's filter links, which only fire hashchange.
+	$effect(() => {
+		function apply(scroll = false) {
+			const fromHash = window.location.hash.replace('#', '');
+			if (fromHash && filters.find((f) => f.id === fromHash)) {
+				active = fromHash;
+				if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+		}
+		apply();
+		const onHash = () => apply(true);
+		window.addEventListener('hashchange', onHash);
+		return () => window.removeEventListener('hashchange', onHash);
+	});
+
+	function setFilter(id) {
+		active = id;
+		if (typeof history !== 'undefined') {
+			history.replaceState(null, '', id === 'todo' ? '/' : `/#${id}`);
+		}
+	}
+
+	function matchesFilter(p, id) {
+		if (id === 'todo') return true;
+		if (id === 'playeras') return p.type === 'Playera';
+		if (id === 'sudaderas') return p.type === 'Sudadera';
+		return p.technique === id;
+	}
+
+	let filtered = $derived(products.filter((p) => matchesFilter(p, active)));
+
+	// Product on the center stage; clicking any tile swaps it in place.
+	// $state.raw: it's only ever reassigned, and identity comparisons against
+	// catalog entries (selected === product, filtered.includes) must hold.
+	let selected = $state.raw(products[0]);
+
+	// If a filter hides the selected piece, hand the stage to the first visible one.
+	$effect(() => {
+		if (filtered.length && !filtered.includes(selected)) {
+			selected = filtered[0];
+		}
+	});
 
 	let email = $state('');
 	let formStatus = $state('idle');
@@ -23,15 +78,6 @@
 			formStatus = 'error';
 		}
 	}
-
-	// The homepage grid shows the `featured` subset of the shared catalog
-	// ($lib/products.js). The phrase IS the product.
-
-	// Featured hero shirt — read from the catalog, never hand-copied. It used to
-	// be a literal here and drifted from products.js twice: once in the headline,
-	// once in the price. "gpi a un gpu" is the flagship: the joke only a Mexican
-	// dev gets.
-	const hero = products.find((p) => p.slug === 'estampado-gpi-a-un-gpu') ?? featured[0];
 </script>
 
 <svelte:head>
@@ -53,204 +99,181 @@
 	<meta name="twitter:title" content="Icarus · Mercancía para los que viven en la terminal" />
 </svelte:head>
 
-<!-- ───────────────── HERO ───────────────── -->
-<section class="bg-bone-50 border-ink-950/8 border-b">
+<!-- ───────────────── HEADER: one line, no prose ───────────────── -->
+<section class="bg-bone-50">
 	<div
-		class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 py-16 md:grid-cols-2 md:gap-16 md:px-10 md:py-24"
+		class="mx-auto flex max-w-7xl flex-wrap items-baseline gap-x-8 gap-y-3 px-5 pt-12 pb-5 md:px-10 md:pt-16 md:pb-6"
 	>
-		<div>
-			<p
-				class="hero-animate bg-ink-950 text-bone-50 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-wider uppercase"
-			>
-				<span class="bg-tomato-500 h-1.5 w-1.5 rounded-full"></span>
-				Drop 01 · ya disponible
-			</p>
-			<h1
-				class="hero-animate hero-animate-1 text-ink-950 mt-6 text-5xl leading-[0.95] font-extrabold tracking-tight md:text-6xl lg:text-7xl"
-			>
-				Ropa para quienes<br />viven<br />
-				<span class="text-tomato-500">en la terminal.</span>
-			</h1>
-			<p class="hero-animate hero-animate-2 text-grey-600 mt-6 max-w-md text-lg">
-				Playeras y sudaderas hechas en México.
-			</p>
-			<div class="hero-animate hero-animate-3 mt-8 flex flex-wrap items-center gap-4">
-				<a
-					href="#mercancia"
-					class="bg-ink-950 text-bone-50 hover:bg-ink-800 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-colors"
+		<h1 class="text-ink-950 text-2xl font-extrabold tracking-tight md:text-3xl">Drop 01</h1>
+		<nav class="flex flex-wrap items-baseline gap-x-5 gap-y-2" aria-label="Filtros">
+			{#each filters as filter (filter.id)}
+				<button
+					onclick={() => setFilter(filter.id)}
+					class="cursor-pointer font-mono text-[11px] font-semibold tracking-widest uppercase transition-colors {active ===
+					filter.id
+						? 'text-tomato-600 underline decoration-2 underline-offset-4'
+						: 'text-grey-500 hover:text-ink-950'}"
 				>
-					Ver mercancía →
-				</a>
-				<a
-					href="#sobre"
-					class="text-ink-950 inline-flex items-center gap-2 px-3 py-3.5 text-sm font-semibold underline-offset-4 hover:underline"
-				>
-					¿Qué es esto?
-				</a>
-			</div>
-		</div>
-
-		<!-- Hero shirt: the featured "no es bug es feature" tee, spinning in 3D -->
-		<div class="hero-animate hero-animate-2 relative">
-			<div
-				class="from-bone-100 to-bone-200 relative aspect-square w-full overflow-hidden rounded-3xl bg-gradient-to-br"
-			>
-				{#if hero.tag}
-					<span
-						class="bg-tomato-500 text-bone-50 absolute top-3 left-3 z-10 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
-					>
-						{hero.tag}
-					</span>
-				{/if}
-				<Shirt3DView phrase={hero.phrase} garment={hero.garment} technique={hero.technique} />
-			</div>
-			<div class="mt-4 flex items-end justify-between">
-				<div>
-					<p class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
-						La consentida · {hero.type}
-						{garmentLabel(hero.garment)}
-					</p>
-					<p class="text-ink-950 mt-1 text-base font-bold">“{hero.phrase.replace(/\n/g, ' ')}”</p>
-				</div>
-				<p class="text-ink-950 text-2xl font-extrabold">{hero.price}</p>
-			</div>
-		</div>
+					{filter.label}
+				</button>
+			{/each}
+		</nav>
+		<span class="text-grey-500 ml-auto font-mono text-[11px] tracking-widest uppercase">
+			{filtered.length}
+			{filtered.length === 1 ? 'pieza' : 'piezas'}
+		</span>
 	</div>
 </section>
 
-<!-- ───────────────── MERCANCÍA / GRID ───────────────── -->
-<section id="mercancia" class="bg-bone-50">
-	<div class="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24">
-		<div use:reveal class="mb-10 flex items-end justify-between">
-			<div>
-				<p class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase">
-					Drop 01 · {featured.length} de {products.length} piezas
-				</p>
-				<h2 class="text-ink-950 mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
-					Lo mero bueno
-				</h2>
-			</div>
-			<a
-				href="/tienda"
-				class="text-ink-950 hidden text-sm font-semibold underline-offset-4 hover:underline md:inline-block"
-			>
-				Ver tienda completa →
-			</a>
-		</div>
-
-		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-			{#each featured as drop, i (drop.slug)}
-				<a href="/tienda" use:reveal={{ delay: i * 60 }} class="group block">
-					<div
-						class="aspect-square w-full transition-transform duration-300 group-hover:-translate-y-1"
-					>
-						<ShirtMockup
-							phrase={drop.phrase}
-							garment={drop.garment}
-							technique={drop.technique}
-							image={drop.image}
-							tag={drop.tag}
+<!-- ───────────────── MOSAIC: silent tiles around a floating 3D stage ───────────────── -->
+<section class="bg-bone-50">
+	<div class="mx-auto max-w-7xl px-5 pb-16 md:px-10 md:pb-24">
+		{#if filtered.length === 0}
+			<p class="text-grey-600 py-20 text-center font-mono text-sm">
+				grep: 0 resultados. Prueba otro filtro.
+			</p>
+		{:else}
+			<div class="grid grid-flow-dense grid-cols-2 gap-1.5 lg:grid-cols-4">
+				<!-- Center stage: the selected piece floats and spins mid-grid. -->
+				<div
+					class="from-bone-100 to-bone-200 relative col-span-2 row-span-2 row-start-2 aspect-square overflow-hidden bg-gradient-to-br lg:col-start-2"
+				>
+					<div class="stage-float absolute inset-0">
+						<Shirt3DView
+							phrase={selected.phrase}
+							garment={selected.garment}
+							technique={selected.technique}
+							type={selected.type}
+							hint={false}
+							rounded=""
 						/>
 					</div>
-					<div class="mt-3 flex items-start justify-between gap-3">
-						<div>
+
+					{#if selected.tag}
+						<span
+							class="bg-tomato-500 text-bone-50 absolute top-3 left-3 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
+						>
+							{selected.tag}
+						</span>
+					{/if}
+
+					<!-- Caption sits straight on the gradient — no bar, let it shine. -->
+					<div
+						class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 md:p-5"
+					>
+						<div class="min-w-0">
 							<p
-								class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase"
+								class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase"
 							>
-								{drop.type} · {garmentLabel(drop.garment)}
+								{selected.type} · {garmentLabel(selected.garment)} · {selected.technique}
 							</p>
-							<p class="text-ink-950 mt-1 text-sm font-bold">“{drop.phrase.replace(/\n/g, ' ')}”</p>
+							<p class="text-ink-950 mt-1 truncate text-base font-extrabold md:text-lg">
+								“{selected.phrase.replace(/\n/g, ' ')}”
+							</p>
 						</div>
-						<p class="text-ink-950 text-base font-extrabold whitespace-nowrap">{drop.price}</p>
+						<p class="text-ink-950 text-xl font-extrabold whitespace-nowrap md:text-2xl">
+							{selected.price}
+						</p>
 					</div>
-				</a>
-			{/each}
-		</div>
 
-		<div class="mt-10 text-center md:hidden">
-			<a
-				href="/tienda"
-				class="text-ink-950 text-sm font-semibold underline-offset-4 hover:underline"
-			>
-				Ver tienda completa →
-			</a>
-		</div>
+					{#if selected.type === 'Sudadera'}
+						<!-- CC BY 4.0 attribution for the hoodie mesh (the tee is CC0). -->
+						<p class="text-grey-500 absolute top-3 right-3 font-mono text-[9px] tracking-wide">
+							<a
+								href="https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9"
+								class="underline decoration-dotted underline-offset-2"
+								target="_blank"
+								rel="noopener">"hoodie" por pokoponmaru</a
+							>
+							·
+							<a
+								href="https://creativecommons.org/licenses/by/4.0/"
+								class="underline decoration-dotted underline-offset-2"
+								target="_blank"
+								rel="noopener">CC BY 4.0</a
+							>
+						</p>
+					{/if}
+				</div>
+
+				{#each filtered as product, i (product.slug)}
+					<button
+						type="button"
+						onclick={() => (selected = product)}
+						use:reveal={{ delay: Math.min(i * 40, 240) }}
+						aria-pressed={selected === product}
+						class="group focus-visible:outline-tomato-500 relative aspect-square cursor-pointer overflow-hidden text-left focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2"
+					>
+						<div class="h-full w-full transition-transform duration-500 group-hover:scale-[1.04]">
+							<ShirtMockup
+								phrase={product.phrase}
+								garment={product.garment}
+								technique={product.technique}
+								image={product.image ?? null}
+								tag={product.tag}
+								rounded=""
+							/>
+						</div>
+
+						<!-- Phrase + price only on hover/focus: the mosaic stays silent. -->
+						<div
+							class="from-ink-950/70 via-ink-950/25 absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+						>
+							<p class="text-bone-50 truncate text-xs font-bold">
+								“{product.phrase.replace(/\n/g, ' ')}”
+							</p>
+							<p class="text-bone-50 font-mono text-[10px] font-semibold whitespace-nowrap">
+								{product.price}
+							</p>
+						</div>
+
+						{#if selected === product}
+							<span class="bg-tomato-500 absolute top-2.5 right-2.5 h-1.5 w-1.5 rounded-full"
+							></span>
+						{/if}
+					</button>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </section>
 
-<!-- ───────────────── SOBRE / EXPLAINER ───────────────── -->
-<section id="sobre" class="bg-ink-950 text-bone-50">
-	<div class="mx-auto max-w-5xl px-5 py-20 text-center md:px-10 md:py-28">
-		<p
-			use:reveal
-			class="text-tomato-500 font-mono text-[11px] font-semibold tracking-widest uppercase"
-		>
-			Sobre Icarus
-		</p>
-		<p use:reveal={{ delay: 100 }} class="mt-6 text-2xl leading-snug font-medium md:text-4xl">
-			Cambiamos playeras por infraestructura y transformamos frases en comunidad.
-		</p>
-		<div
-			use:reveal={{ delay: 200 }}
-			class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
-		>
-			<div class="bg-ink-900 rounded-2xl p-6 text-left">
-				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					Tela
-				</p>
-				<p class="text-bone-100 mt-3 text-base">
-					Algodón pesado que aguanta más que tu código en producción.
-				</p>
-			</div>
-			<div class="bg-ink-900 rounded-2xl p-6 text-left">
-				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					Estampado
-				</p>
-				<p class="text-bone-100 mt-3 text-base">
-					La frase va bien grande, serigrafiada a mano en CDMX.
-				</p>
-			</div>
-			<div class="bg-ink-900 rounded-2xl p-6 text-left">
-				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					Bordado
-				</p>
-				<p class="text-bone-100 mt-3 text-base">
-					La frase va bordada a máquina, en hilo de algodón.
-				</p>
-			</div>
-			<div class="bg-ink-900 rounded-2xl p-6 text-left">
-				<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-					A dónde va
-				</p>
-				<p class="text-bone-100 mt-3 text-base">Cada venta suma para el cluster de GPUs.</p>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- ───────────────── NEWSLETTER ───────────────── -->
-<section id="contacto" class="bg-bone-100 border-ink-950/8 border-t">
+<!-- ───────────────── TÉCNICAS: one line each ───────────────── -->
+<section class="bg-ink-950 text-bone-50">
 	<div
-		class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-5 py-20 md:grid-cols-2 md:px-10"
+		class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-12 md:grid-cols-2 md:gap-12 md:px-10 md:py-16"
 	>
 		<div use:reveal>
-			<p class="text-grey-600 font-mono text-[11px] font-semibold tracking-widest uppercase">
-				Próximo drop
+			<p class="text-tomato-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
+				Estampado
 			</p>
-			<h2
-				class="text-ink-950 mt-3 text-3xl leading-tight font-extrabold tracking-tight md:text-5xl"
-			>
-				Avísame cuando salga<br />algo nuevo.
-			</h2>
-			<p class="text-grey-600 mt-5 max-w-md text-base">
-				Un correo por drop, y ya. Nada de “ÚLTIMAS HORAS” ni contadores regresivos.
+			<p class="text-bone-100 mt-2 text-lg font-medium">
+				Serigrafía a mano en CDMX. Tinta suave que aguanta las lavadas.
 			</p>
 		</div>
+		<div use:reveal={{ delay: 80 }}>
+			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
+				Bordado
+			</p>
+			<p class="text-bone-100 mt-2 text-lg font-medium">
+				Hilo de algodón, puntada por puntada. Cada pieza suma al cluster de GPUs.
+			</p>
+		</div>
+	</div>
+</section>
 
+<!-- ───────────────── NEWSLETTER: one row ───────────────── -->
+<section id="contacto" class="bg-bone-50 border-ink-950/8 border-t">
+	<div
+		class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-10 gap-y-6 px-5 py-12 md:px-10"
+	>
+		<h2 use:reveal class="text-ink-950 text-2xl font-extrabold tracking-tight md:text-3xl">
+			El Drop 02 ya se está cocinando.
+		</h2>
 		<form
-			use:reveal={{ delay: 150 }}
+			use:reveal={{ delay: 100 }}
 			onsubmit={handleSubmit}
-			class="flex flex-col gap-3 sm:flex-row"
+			class="flex w-full max-w-md flex-col gap-3 sm:flex-row md:w-auto"
 		>
 			<input
 				type="email"
@@ -277,3 +300,25 @@
 		</form>
 	</div>
 </section>
+
+<style>
+	.stage-float {
+		animation: stage-float 6s ease-in-out infinite;
+	}
+
+	@keyframes stage-float {
+		0%,
+		100% {
+			transform: translateY(6px);
+		}
+		50% {
+			transform: translateY(-6px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.stage-float {
+			animation: none;
+		}
+	}
+</style>

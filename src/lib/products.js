@@ -1,18 +1,17 @@
 /*
- * Single source of truth for the Drop 01 catalog. `/tienda` renders the full
- * list; `/` renders the `featured` subset. The homepage used to carry its own
- * drifted copy of this list — don't do that again, edit here.
+ * Single source of truth for the Drop 01 catalog, rendered as the homepage
+ * mosaic (`/`). `/tienda` is a permanent redirect to `/` — don't add a
+ * second copy of this list anywhere, edit here.
  *
  * Each product:
  * - slug: filename key for the generated mockup in /static/shirts/<slug>.png
  * - phrase: the printed/embroidered text (newlines render as line breaks)
  * - type: 'Playera' | 'Sudadera'
- * - garment: 'black' | 'white' | 'grey' | 'olive' (shirt color)
+ * - garment: 'black' | 'white' | 'grey' | 'olive' | 'blue' (shirt color)
  * - technique: 'estampado' | 'bordado'
  * - price: display string, IVA incluido (16%). El precio que ve el cliente es
  *   el que se cobra; al netear, lo tuyo es price / 1.16.
  * - tag: optional badge (Hot, Nuevo, etc.)
- * - featured: shown on the homepage grid
  *
  * Mockups are batch-generated with `node scripts/generate-shirt-images.mjs`
  * (drives the /taller pipeline). If a product has no PNG yet, set
@@ -27,8 +26,7 @@ const catalog = [
 		garment: 'black',
 		technique: 'estampado',
 		price: '$469',
-		tag: 'Hot',
-		featured: true
+		tag: 'Hot'
 	},
 	{
 		slug: 'estampado-no-es-bug-es-feature',
@@ -37,8 +35,7 @@ const catalog = [
 		garment: 'black',
 		technique: 'estampado',
 		price: '$469',
-		tag: 'Hot',
-		featured: true
+		tag: 'Hot'
 	},
 	{
 		slug: 'estampado-systemctl-restart-major-tom',
@@ -47,8 +44,7 @@ const catalog = [
 		garment: 'grey',
 		technique: 'estampado',
 		price: '$1,049',
-		tag: null,
-		featured: true
+		tag: null
 	},
 	{
 		slug: 'estampado-git-commit-am-some-changes',
@@ -57,8 +53,7 @@ const catalog = [
 		garment: 'white',
 		technique: 'estampado',
 		price: '$469',
-		tag: null,
-		featured: true
+		tag: null
 	},
 	{
 		slug: 'estampado-git-pull-rebase',
@@ -67,8 +62,7 @@ const catalog = [
 		garment: 'black',
 		technique: 'estampado',
 		price: '$469',
-		tag: 'Nuevo',
-		featured: true
+		tag: 'Nuevo'
 	},
 	{
 		slug: 'estampado-funciona-en-mi-local',
@@ -77,8 +71,7 @@ const catalog = [
 		garment: 'black',
 		technique: 'estampado',
 		price: '$1,049',
-		tag: null,
-		featured: true
+		tag: null
 	},
 	// Bordado pieces — embroidered phrases, premium price; placement varies per piece
 	{
@@ -88,8 +81,7 @@ const catalog = [
 		garment: 'black',
 		technique: 'bordado',
 		price: '$570',
-		tag: null,
-		featured: false
+		tag: null
 	},
 	{
 		slug: 'bordado-todo',
@@ -98,8 +90,7 @@ const catalog = [
 		garment: 'olive',
 		technique: 'bordado',
 		price: '$1,150',
-		tag: null,
-		featured: false
+		tag: null
 	},
 	{
 		slug: 'bordado-icarus',
@@ -108,8 +99,7 @@ const catalog = [
 		garment: 'blue',
 		technique: 'bordado',
 		price: '$570',
-		tag: 'Nuevo',
-		featured: false
+		tag: 'Nuevo'
 	},
 	{
 		slug: 'bordado-caffeinate-dimsu',
@@ -118,8 +108,7 @@ const catalog = [
 		garment: 'black',
 		technique: 'bordado',
 		price: '$570',
-		tag: 'Nuevo',
-		featured: false
+		tag: 'Nuevo'
 	},
 	{
 		slug: 'estampado-dangerously-skip-permissions',
@@ -128,8 +117,58 @@ const catalog = [
 		garment: 'black',
 		technique: 'estampado',
 		price: '$1,049',
+		tag: 'Nuevo'
+	},
+	// Drop 01.5 — new skus, mockups pending (image: null → phrase placeholder)
+	{
+		slug: 'estampado-deploy-en-viernes',
+		phrase: 'deploy en\nviernes',
+		type: 'Playera',
+		garment: 'white',
+		technique: 'estampado',
+		price: '$469',
 		tag: 'Nuevo',
-		featured: false
+		image: null
+	},
+	{
+		slug: 'estampado-sudo-dame-un-cafe',
+		phrase: 'sudo dame\nun café',
+		type: 'Sudadera',
+		garment: 'grey',
+		technique: 'estampado',
+		price: '$1,049',
+		tag: null,
+		image: null
+	},
+	{
+		slug: 'estampado-chmod-777-mi-corazon',
+		phrase: 'chmod 777\nmi corazón',
+		type: 'Playera',
+		garment: 'blue',
+		technique: 'estampado',
+		price: '$469',
+		tag: null,
+		image: null
+	},
+	{
+		slug: 'bordado-wq',
+		phrase: ':wq',
+		type: 'Playera',
+		garment: 'white',
+		technique: 'bordado',
+		price: '$570',
+		tag: null,
+		image: null
+	},
+	{
+		slug: 'bordado-kernel-panic',
+		phrase: 'kernel panic',
+		type: 'Sudadera',
+		garment: 'black',
+		technique: 'bordado',
+		price: '$1,150',
+		tag: 'Nuevo',
+		image: null
 	}
 ];
 
@@ -137,5 +176,3 @@ export const products = catalog.map((p) => ({
 	...p,
 	image: p.image === null ? null : `/shirts/${p.slug}.webp`
 }));
-
-export const featured = products.filter((p) => p.featured);

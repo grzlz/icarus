@@ -74,19 +74,19 @@
 			</h3>
 			<ul class="space-y-2 text-sm">
 				<li>
-					<a href="/tienda" class="text-ink-950 hover:opacity-60">Toda la mercancía</a>
+					<a href="/" class="text-ink-950 hover:opacity-60">Toda la mercancía</a>
 				</li>
 				<li>
-					<a href="/tienda#playeras" class="text-ink-950 hover:opacity-60">Playeras</a>
+					<a href="/#playeras" class="text-ink-950 hover:opacity-60">Playeras</a>
 				</li>
 				<li>
-					<a href="/tienda#sudaderas" class="text-ink-950 hover:opacity-60">Sudaderas</a>
+					<a href="/#sudaderas" class="text-ink-950 hover:opacity-60">Sudaderas</a>
 				</li>
 				<li>
-					<a href="/tienda#estampado" class="text-ink-950 hover:opacity-60">Estampado</a>
+					<a href="/#estampado" class="text-ink-950 hover:opacity-60">Estampado</a>
 				</li>
 				<li>
-					<a href="/tienda#bordado" class="text-ink-950 hover:opacity-60">Bordado</a>
+					<a href="/#bordado" class="text-ink-950 hover:opacity-60">Bordado</a>
 				</li>
 			</ul>
 		</div>
@@ -96,9 +96,6 @@
 				Info
 			</h3>
 			<ul class="space-y-2 text-sm">
-				<li>
-					<a href="/#sobre" class="text-ink-950 hover:opacity-60">Sobre Icarus</a>
-				</li>
 				<li>
 					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Contacto</a>
 				</li>
