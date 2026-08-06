@@ -5,7 +5,8 @@
 	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
 	import { garmentLabel } from '$lib/shirt.js';
 	import { products } from '$lib/products.js';
-	import { track } from '$lib/ab/client.js';
+	import { knob, track } from '$lib/ab/client.js';
+	import { page } from '$app/state';
 
 	const filters = [
 		{ id: 'todo', label: 'Todo' },
@@ -206,7 +207,10 @@
 	<div
 		class="mx-auto flex max-w-7xl flex-wrap items-baseline gap-x-8 gap-y-3 px-5 pt-12 pb-5 md:px-10 md:pt-16 md:pb-6"
 	>
-		<h1 class="text-ink-950 text-2xl font-extrabold tracking-tight md:text-3xl">Drop 01</h1>
+		<!-- Punto de ajuste 'titulo-drop': editable en vivo desde /admin/experimentos -->
+		<h1 class="text-ink-950 text-2xl font-extrabold tracking-tight md:text-3xl">
+			{knob(page.data.ab, 'titulo-drop', 'Drop 01')}
+		</h1>
 		<nav class="flex flex-wrap items-baseline gap-x-5 gap-y-2" aria-label="Filtros">
 			{#each filters as filter (filter.id)}
 				<button
@@ -312,7 +316,10 @@
 			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
 				Drop 02
 			</p>
-			<p class="text-bone-100 mt-2 text-lg font-medium">Ya se está cocinando.</p>
+			<!-- Punto de ajuste 'drop02-texto': editable en vivo desde /admin/experimentos -->
+			<p class="text-bone-100 mt-2 text-lg font-medium">
+				{knob(page.data.ab, 'drop02-texto', 'Ya se está cocinando.')}
+			</p>
 		</div>
 	</div>
 </section>

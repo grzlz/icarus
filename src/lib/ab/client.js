@@ -5,8 +5,13 @@
  * closing, fetch(keepalive) as fallback.
  *
  *   track('producto', { meta: slug })
- *   variantOf(page.data.ab, 'hero-2026')          → 'a' | 'b' | ...
- *   knob(page.data.ab, 'precios-drop01', 'titulo', 'Drop 01')
+ *   variantOf(page.data.ab, 'hero-2026')       → 'a' | 'b' | ...
+ *   knob(page.data.ab, 'titulo-drop', 'Drop 01')
+ *
+ * knob() looks the key up across every experiment the visitor is assigned to,
+ * so a call site is wired ONCE per key — any future 'ajuste' experiment that
+ * defines that clave takes control from the dashboard with no code changes.
+ * Wired keys are listed in $lib/ab/knobs.js.
  */
 import { browser } from '$app/environment';
 
@@ -26,7 +31,10 @@ export function track(name, { value = null, path = null, meta = null } = {}) {
 
 export const variantOf = (ab, slug) => ab?.[slug]?.variant ?? 'a';
 
-export function knob(ab, slug, key, fallback) {
-	const v = ab?.[slug]?.payload?.[key];
-	return v === undefined ? fallback : v;
+export function knob(ab, key, fallback) {
+	for (const exp of Object.values(ab ?? {})) {
+		const v = exp?.payload?.[key];
+		if (v !== undefined && v !== '') return v;
+	}
+	return fallback;
 }

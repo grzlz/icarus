@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { KNOB_POINTS } from '$lib/ab/knobs.js';
 
 	let { data, form } = $props();
 
@@ -7,7 +8,7 @@
 		{
 			id: 'ajuste',
 			label: 'Ajustes',
-			desc: 'Textos, precios o valores. Las variantes se definen y editan aquí mismo — sin tocar código.'
+			desc: 'Textos, precios o valores, editables en vivo desde el panel. Las claves ya cableadas en el sitio no requieren código; una clave nueva necesita un knob() en la página.'
 		},
 		{
 			id: 'seccion',
@@ -51,11 +52,12 @@
 
 	let weightSum = $derived(variants.reduce((s, v) => s + (Number(v.weight) || 0), 0));
 
+	// Dedupe: duplicate strings would crash the keyed {#each} below while typing.
+	let cleanKeys = $derived([...new Set(knobKeys.filter(Boolean))]);
+
 	const payloadOf = (v) =>
 		kind === 'ajuste'
-			? JSON.stringify(
-					Object.fromEntries(knobKeys.filter(Boolean).map((k) => [k, v.values[k] ?? '']))
-				)
+			? JSON.stringify(Object.fromEntries(cleanKeys.map((k) => [k, v.values[k] ?? ''])))
 			: '{}';
 
 	const input =
@@ -174,7 +176,8 @@
 							type="text"
 							bind:value={knobKeys[ki]}
 							placeholder="clave"
-							class="{input} w-32 font-mono text-xs"
+							list="knob-points"
+							class="{input} w-40! font-mono text-xs"
 						/>
 					{/each}
 					<button
@@ -185,6 +188,15 @@
 						+ otra clave
 					</button>
 				</div>
+				<datalist id="knob-points">
+					{#each KNOB_POINTS as p (p.key)}<option value={p.key}>{p.desc}</option>{/each}
+				</datalist>
+				<p class="text-grey-500 mt-1.5 text-xs">
+					Cableadas en el sitio (funcionan sin tocar código):
+					{#each KNOB_POINTS as p, i (p.key)}
+						<code class="font-mono">{p.key}</code>{i < KNOB_POINTS.length - 1 ? ', ' : ''}
+					{/each}
+				</p>
 			</div>
 		{/if}
 
@@ -205,7 +217,7 @@
 							min="0"
 							max="100"
 							required
-							class="{input} w-16 text-right tabular-nums"
+							class="{input} w-16! text-right tabular-nums"
 						/>
 						<span class="text-grey-500 text-xs">%</span>
 					</div>
@@ -222,7 +234,7 @@
 				</div>
 				{#if kind === 'ajuste'}
 					<div class="mt-2 grid gap-2 sm:grid-cols-2">
-						{#each knobKeys.filter(Boolean) as k (k)}
+						{#each cleanKeys as k (k)}
 							<div>
 								<label class="text-grey-500 mb-0.5 block font-mono text-[10px]" for="v{i}-{k}"
 									>{k}</label

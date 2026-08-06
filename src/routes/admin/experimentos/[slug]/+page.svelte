@@ -1,7 +1,8 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { shortDate } from '$lib/admin/format.js';
+	import { shortDate, shortDateTime } from '$lib/admin/format.js';
 	import VariantResults from '$lib/components/admin/VariantResults.svelte';
+	import CodeBridge from '$lib/components/admin/CodeBridge.svelte';
 
 	let { data, form } = $props();
 	let exp = $derived(data.exp);
@@ -29,29 +30,6 @@
 		Object.fromEntries(exp.breakdown.map((b) => [`${b.key}:${b.name}`, b]))
 	);
 	let maxDaily = $derived(Math.max(...exp.daily.map((d) => d.n), 1));
-
-	// El puente al código: el snippet exacto para esta configuración.
-	let code = $derived(
-		exp.kind === 'ajuste'
-			? [
-					`import { page } from '$app/state';`,
-					`import { knob } from '$lib/ab/client.js';`,
-					'',
-					`// en ${exp.path} — el tercer argumento es el valor si no hay experimento`,
-					...knobKeys.map(
-						(k) => `const ${k} = $derived(knob(page.data.ab, '${exp.slug}', '${k}', '…'));`
-					)
-				].join('\n')
-			: [
-					'<script>',
-					`\timport Experiment from '$lib/components/Experiment.svelte';`,
-					'</' + 'script>',
-					'',
-					`<Experiment slug="${exp.slug}">`,
-					...exp.variants.map((v) => `\t{#snippet ${v.key}()}<!-- ${v.name} -->{/snippet}`),
-					'</Experiment>'
-				].join('\n')
-	);
 
 	const running = $derived(['activo', 'pausado'].includes(exp.status));
 	const input =
@@ -162,6 +140,12 @@
 	{#if exp.status === 'borrador'}
 		<p class="text-grey-500 mt-3 text-sm">Sin datos: el experimento aún no se activa.</p>
 	{:else}
+		{#if exp.weights_changed_at}
+			<p class="mt-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-600">
+				Los pesos cambiaron el {shortDateTime(exp.weights_changed_at)} — para no mezclar épocas, solo
+				se cuentan visitantes asignados desde entonces.
+			</p>
+		{/if}
 		<div class="mt-3">
 			<VariantResults variants={exp.variants} winner={exp.winner} />
 		</div>
@@ -266,7 +250,10 @@
 			class="border-bone-200 bg-bone-100 h-fit space-y-3 rounded-2xl border p-5"
 		>
 			<h2 class="text-ink-950 font-semibold">Reparto de tráfico</h2>
-			<p class="text-grey-500 -mt-2 text-xs">Deben sumar 100%. Solo afecta a visitantes nuevos.</p>
+			<p class="text-grey-500 -mt-2 text-xs">
+				Deben sumar 100%. Solo afecta a visitantes nuevos — y en un experimento en marcha el conteo
+				de estadísticas se reinicia (mezclar épocas de reparto sesga la comparación).
+			</p>
 			{#each exp.variants as v (v.key)}
 				<div class="flex items-center gap-3">
 					<span class="text-ink-950 w-40 truncate text-sm font-medium">
@@ -279,7 +266,7 @@
 						value={v.weight}
 						min="0"
 						max="100"
-						class="{input} w-20 text-right tabular-nums"
+						class="{input} w-20! text-right tabular-nums"
 					/>
 					<span class="text-grey-500 text-xs">%</span>
 				</div>
@@ -288,24 +275,5 @@
 		</form>
 	{/if}
 
-	<!-- Código -->
-	<div
-		class="border-bone-200 bg-bone-100 rounded-2xl border p-5 {exp.kind === 'ajuste'
-			? ''
-			: 'lg:col-span-2'}"
-	>
-		<h2 class="text-ink-950 font-semibold">Integración en el código</h2>
-		<p class="text-grey-500 mt-1 text-xs">
-			{#if exp.kind === 'ajuste'}
-				Lee cada clave con <code class="font-mono">knob()</code> en
-				<code class="font-mono">{exp.path}</code> — si el experimento no corre, todos ven el valor por
-				defecto.
-			{:else}
-				Declara un snippet por variante en <code class="font-mono">{exp.path}</code>. Sin asignación
-				(experimento pausado o terminado) todos ven <code class="font-mono">a</code>.
-			{/if}
-		</p>
-		<pre
-			class="bg-ink-950 text-bone-100 mt-3 overflow-x-auto rounded-xl p-4 font-mono text-xs leading-relaxed">{code}</pre>
-	</div>
+	<CodeBridge {exp} {knobKeys} />
 </div>

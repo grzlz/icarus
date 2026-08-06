@@ -59,6 +59,13 @@ export const actions = {
 
 		const slug = slugify(name);
 		if (!slug) return fail(400, { error: 'El nombre no genera un identificador válido' });
+		// 'nuevo' is this wizard's own route: an experiment with that slug
+		// would be shadowed forever (unreachable and undeletable).
+		if (slug === 'nuevo') {
+			return fail(400, {
+				error: 'Ese nombre genera el identificador reservado "nuevo" — elige otro'
+			});
+		}
 		if (getExperiment(slug)) {
 			return fail(400, { error: `Ya existe un experimento con el identificador "${slug}"` });
 		}
