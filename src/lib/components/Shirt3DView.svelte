@@ -15,7 +15,8 @@
 		garment = 'black',
 		technique = 'estampado',
 		type = 'Playera',
-		hint = true
+		hint = true,
+		rounded = 'rounded-2xl'
 	} = $props();
 
 	let Shirt3D = $state(null);
@@ -28,7 +29,7 @@
 	{#if Shirt3D}
 		<Shirt3D {phrase} {garment} {technique} {type} />
 	{:else}
-		<ShirtMockup {phrase} {garment} {technique} size="hero" />
+		<ShirtMockup {phrase} {garment} {technique} size="hero" {rounded} />
 	{/if}
 
 	{#if hint}

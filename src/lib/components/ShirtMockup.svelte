@@ -13,7 +13,8 @@
 		technique = 'estampado',
 		image = null,
 		tag = null,
-		size = 'card' // 'card' | 'hero'
+		size = 'card', // 'card' | 'hero'
+		rounded = 'rounded-2xl'
 	} = $props();
 
 	const bg = $derived(fallbackBg(garment));
@@ -29,7 +30,7 @@
 <!-- ring-ink-950/5 is a hairline that adapts via the dark token swap: faint
      dark line on bone, faint light line on the dark gradient. -->
 <div
-	class="ring-ink-950/5 relative h-full w-full overflow-hidden rounded-2xl ring-1 ring-inset"
+	class="ring-ink-950/5 relative h-full w-full overflow-hidden ring-1 ring-inset {rounded}"
 	style="background-color: {bg};"
 >
 	{#if tag}
