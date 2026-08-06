@@ -5,7 +5,10 @@
  *
  *   probBeat — P(variant's true rate > control's true rate)
  *   ci       — central 95% credible interval of the rate
- *   lift     — E[(variant − control) / control]
+ *   lift     — posterior MEDIAN of (variant − control) / control; the mean
+ *              is undefined when the control has 0 conversions (E[1/c] = ∞
+ *              for Beta(1, b)) and Jensen-inflated otherwise, so we never
+ *              report it — and lift is null entirely at 0 control conversions
  *
  * 20k samples keeps the error on probBeat well under one percentage point,
  * and reads honestly at low traffic (wide intervals, probabilities near 50%)
@@ -71,13 +74,16 @@ export function compareVariants(rows) {
 		if (r.key !== control.key) {
 			const c = samples.get(control.key);
 			let wins = 0;
-			let liftSum = 0;
 			for (let i = 0; i < N; i++) {
 				if (s[i] > c[i]) wins++;
-				liftSum += (s[i] - c[i]) / c[i];
 			}
 			probBeat = wins / N;
-			lift = liftSum / N;
+			if (control.converted > 0) {
+				const lifts = new Float64Array(N);
+				for (let i = 0; i < N; i++) lifts[i] = (s[i] - c[i]) / c[i];
+				lifts.sort();
+				lift = lifts[N >> 1];
+			}
 		}
 
 		return {

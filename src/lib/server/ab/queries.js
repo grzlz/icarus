@@ -91,16 +91,28 @@ export function declareWinner(slug, key) {
 	return true;
 }
 
-/* weights: { [key]: percent } — must cover every variant and sum to 100. */
+/*
+ * weights: { [key]: percent } — must cover every variant and sum to 100.
+ * Changing weights on a running experiment stamps weights_changed_at: pooling
+ * cohorts recruited under different allocations confounds the comparison
+ * (Simpson's paradox), so experimentStats only counts visitors assigned after
+ * the last ramp. The dashboard warns about the reset before saving.
+ */
 export function updateWeights(slug, weights) {
 	const exp = getExperiment(slug);
 	if (!exp || exp.status === 'terminado') return false;
 	const values = exp.variants.map((v) => Math.round(Number(weights[v.key])));
 	if (values.some((w) => !Number.isFinite(w) || w < 0 || w > 100)) return false;
 	if (values.reduce((s, w) => s + w, 0) !== 100) return false;
+	const changed = exp.variants.some((v, i) => v.weight !== values[i]);
 	const update = db.prepare('UPDATE variants SET weight = ? WHERE experiment_id = ? AND key = ?');
 	db.transaction(() => {
 		exp.variants.forEach((v, i) => update.run(values[i], exp.id, v.key));
+		if (changed && exp.status !== 'borrador') {
+			db.prepare(
+				"UPDATE experiments SET weights_changed_at = datetime('now','localtime') WHERE id = ?"
+			).run(exp.id);
+		}
 	})();
 	return true;
 }
@@ -136,43 +148,63 @@ export function deleteExperiment(slug) {
  * Everything the detail page needs: per-variant exposures, conversions on the
  * primary metric (distinct visitors, event at-or-after assignment), Bayesian
  * comparison, time-on-page, full event breakdown, and daily exposure trend.
+ *
+ * The stats window keeps the single-Binomial assumption honest:
+ *   @since — visitors assigned before the last weight change are excluded
+ *            (mixed-allocation cohorts would confound the comparison), and
+ *   @ended — events after termination are ignored, so a finished experiment's
+ *            numbers freeze instead of drifting as old visitors keep browsing.
  */
 export function experimentStats(slug) {
 	const exp = getExperiment(slug);
 	if (!exp) return null;
+	const win = {
+		id: exp.id,
+		since: exp.weights_changed_at ?? null,
+		ended: exp.ended_at ?? null
+	};
 
 	const exposures = db
 		.prepare(
 			`SELECT variant_key AS key, COUNT(*) AS exposed
-			 FROM assignments WHERE experiment_id = ? GROUP BY variant_key`
+			 FROM assignments WHERE experiment_id = @id
+			   AND (@since IS NULL OR created_at >= @since)
+			 GROUP BY variant_key`
 		)
-		.all(exp.id);
+		.all(win);
 	const conversions = db
 		.prepare(
 			`SELECT a.variant_key AS key, COUNT(DISTINCT e.vid) AS converted
 			 FROM assignments a
-			 JOIN ab_events e ON e.vid = a.vid AND e.name = ? AND e.created_at >= a.created_at
-			 WHERE a.experiment_id = ? GROUP BY a.variant_key`
+			 JOIN ab_events e ON e.vid = a.vid AND e.name = @metric
+			   AND e.created_at >= a.created_at
+			   AND (@ended IS NULL OR e.created_at <= @ended)
+			 WHERE a.experiment_id = @id AND (@since IS NULL OR a.created_at >= @since)
+			 GROUP BY a.variant_key`
 		)
-		.all(exp.metric, exp.id);
+		.all({ ...win, metric: exp.metric });
 	const tiempo = db
 		.prepare(
 			`SELECT a.variant_key AS key, AVG(e.value) AS avg_seconds, COUNT(*) AS n
 			 FROM assignments a
 			 JOIN ab_events e ON e.vid = a.vid AND e.name = 'tiempo'
-			   AND e.path = ? AND e.created_at >= a.created_at
-			 WHERE a.experiment_id = ? GROUP BY a.variant_key`
+			   AND e.path = @path AND e.created_at >= a.created_at
+			   AND (@ended IS NULL OR e.created_at <= @ended)
+			 WHERE a.experiment_id = @id AND (@since IS NULL OR a.created_at >= @since)
+			 GROUP BY a.variant_key`
 		)
-		.all(exp.path, exp.id);
+		.all({ ...win, path: exp.path });
 	const breakdown = db
 		.prepare(
 			`SELECT a.variant_key AS key, e.name, COUNT(*) AS total, COUNT(DISTINCT e.vid) AS visitors
 			 FROM assignments a
 			 JOIN ab_events e ON e.vid = a.vid AND e.created_at >= a.created_at
-			 WHERE a.experiment_id = ? AND e.name != 'tiempo'
+			   AND (@ended IS NULL OR e.created_at <= @ended)
+			 WHERE a.experiment_id = @id AND e.name != 'tiempo'
+			   AND (@since IS NULL OR a.created_at >= @since)
 			 GROUP BY a.variant_key, e.name ORDER BY e.name`
 		)
-		.all(exp.id);
+		.all(win);
 	const daily = db
 		.prepare(
 			`SELECT date(created_at) AS day, COUNT(*) AS n FROM assignments

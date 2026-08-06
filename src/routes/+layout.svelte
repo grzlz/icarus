@@ -13,8 +13,12 @@
 
 	// Seconds on page per route, for the experiment dashboards. Flushes once
 	// per path view — on navigation, tab-hide, or close (sendBeacon survives).
+	// Keyed on this derived, not page.url directly: the url object is
+	// reassigned wholesale on hash-only clicks (the homepage filters), and
+	// deriveds only propagate when the computed value actually changes.
+	let currentPath = $derived(page.url.pathname);
 	$effect(() => {
-		const path = page.url.pathname;
+		const path = currentPath;
 		if (path.startsWith('/admin')) return;
 		const start = Date.now();
 		let sent = false;
