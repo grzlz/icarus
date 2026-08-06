@@ -131,8 +131,8 @@ const catalog = [
 		image: null
 	},
 	{
-		slug: 'estampado-sudo-dame-un-cafe',
-		phrase: 'sudo dame\nun café',
+		slug: 'estampado-sudo-frio-deployando',
+		phrase: 'sudo frío\ndeployando',
 		type: 'Sudadera',
 		garment: 'grey',
 		technique: 'estampado',
@@ -141,8 +141,8 @@ const catalog = [
 		image: null
 	},
 	{
-		slug: 'estampado-chmod-777-mi-corazon',
-		phrase: 'chmod 777\nmi corazón',
+		slug: 'estampado-vim-nano',
+		phrase: 'vim > nano',
 		type: 'Playera',
 		garment: 'blue',
 		technique: 'estampado',
@@ -161,12 +161,12 @@ const catalog = [
 		image: null
 	},
 	{
-		slug: 'bordado-kernel-panic',
-		phrase: 'kernel panic',
+		slug: 'estampado-la-vida-es-un-riesgo-kernel',
+		phrase: 'la vida es un\nriesgo, kernel',
 		type: 'Sudadera',
 		garment: 'black',
-		technique: 'bordado',
-		price: '$1,150',
+		technique: 'estampado',
+		price: '$1,049',
 		tag: 'Nuevo',
 		image: null
 	}
