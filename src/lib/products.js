@@ -12,6 +12,8 @@
  * - price: display string, IVA incluido (16%). El precio que ve el cliente es
  *   el que se cobra; al netear, lo tuyo es price / 1.16.
  * - tag: optional badge (Hot, Nuevo, etc.)
+ * - nerd: 1-5, qué tan deep es el chiste (1 = cualquiera lo pesca, 5 = deep
+ *   cut de terminal). Ordena la exploración móvil "más serio / más nerd".
  *
  * Mockups are batch-generated with `node scripts/generate-shirt-images.mjs`
  * (drives the /taller pipeline). If a product has no PNG yet, set
@@ -21,6 +23,7 @@
 const catalog = [
 	{
 		slug: 'estampado-gpi-a-un-gpu',
+		nerd: 2,
 		phrase: 'gpi a un gpu',
 		type: 'Playera',
 		garment: 'black',
@@ -30,6 +33,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-no-es-bug-es-feature',
+		nerd: 1,
 		phrase: 'no es bug\nes feature',
 		type: 'Playera',
 		garment: 'black',
@@ -39,6 +43,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-systemctl-restart-major-tom',
+		nerd: 4,
 		phrase: 'systemctl restart\nmajor-tom',
 		type: 'Sudadera',
 		garment: 'grey',
@@ -48,6 +53,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-git-commit-am-some-changes',
+		nerd: 3,
 		phrase: 'git commit -am\n"some\nchanges"',
 		type: 'Playera',
 		garment: 'white',
@@ -57,6 +63,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-git-pull-rebase',
+		nerd: 3,
 		phrase: 'git pull\n--rebase',
 		type: 'Playera',
 		garment: 'black',
@@ -66,6 +73,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-funciona-en-mi-local',
+		nerd: 1,
 		phrase: 'funciona en\nmi local',
 		type: 'Sudadera',
 		garment: 'black',
@@ -76,6 +84,7 @@ const catalog = [
 	// Bordado pieces — embroidered phrases, premium price; placement varies per piece
 	{
 		slug: 'bordado-qa',
+		nerd: 5,
 		phrase: ':qa!',
 		type: 'Playera',
 		garment: 'black',
@@ -85,6 +94,7 @@ const catalog = [
 	},
 	{
 		slug: 'bordado-todo',
+		nerd: 2,
 		phrase: '// TODO',
 		type: 'Sudadera',
 		garment: 'olive',
@@ -94,6 +104,7 @@ const catalog = [
 	},
 	{
 		slug: 'bordado-icarus',
+		nerd: 1,
 		phrase: '</icarus>',
 		type: 'Playera',
 		garment: 'blue',
@@ -103,6 +114,7 @@ const catalog = [
 	},
 	{
 		slug: 'bordado-caffeinate-dimsu',
+		nerd: 5,
 		phrase: 'caffeinate\n-dimsu',
 		type: 'Playera',
 		garment: 'black',
@@ -112,6 +124,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-dangerously-skip-permissions',
+		nerd: 4,
 		phrase: 'dangerously\nskip\npermissions',
 		type: 'Sudadera',
 		garment: 'black',
@@ -122,6 +135,7 @@ const catalog = [
 	// Drop 01.5 — new skus, mockups pending (image: null → phrase placeholder)
 	{
 		slug: 'estampado-deploy-en-viernes',
+		nerd: 1,
 		phrase: 'deploy en\nviernes',
 		type: 'Playera',
 		garment: 'white',
@@ -132,6 +146,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-sudo-frio-deployando',
+		nerd: 2,
 		phrase: 'sudo frío\ndeployando',
 		type: 'Sudadera',
 		garment: 'grey',
@@ -142,6 +157,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-vim-nano',
+		nerd: 3,
 		phrase: 'vim > nano',
 		type: 'Playera',
 		garment: 'blue',
@@ -152,6 +168,7 @@ const catalog = [
 	},
 	{
 		slug: 'bordado-wq',
+		nerd: 4,
 		phrase: ':wq',
 		type: 'Playera',
 		garment: 'white',
@@ -162,6 +179,7 @@ const catalog = [
 	},
 	{
 		slug: 'estampado-la-vida-es-un-riesgo-kernel',
+		nerd: 1,
 		phrase: 'la vida es un\nriesgo, kernel',
 		type: 'Sudadera',
 		garment: 'black',

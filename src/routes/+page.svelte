@@ -1,4 +1,5 @@
 <script>
+	import { MediaQuery } from 'svelte/reactivity';
 	import { reveal } from '$lib/actions/reveal.js';
 	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
 	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
@@ -66,7 +67,87 @@
 			selected = filtered[0];
 		}
 	});
+
+	// The stage is one WebGL canvas, so it mounts in exactly one place:
+	// a full-viewport hero above the filters on mobile, the center grid tile on lg+.
+	const desktop = new MediaQuery('(min-width: 1024px)', false);
+
+	// Mobile exploration: two pills walk the visible catalog along the
+	// serio ↔ nerd dial (the `nerd` score in products.js). At either end the
+	// exhausted direction becomes a random jump, so both pills always do something.
+	let dial = $derived([...filtered].sort((a, b) => (a.nerd ?? 3) - (b.nerd ?? 3)));
+	let dialIdx = $derived(dial.indexOf(selected));
+
+	function explore(dir) {
+		const target = dial[dialIdx + dir];
+		if (target) {
+			selected = target;
+		} else {
+			const others = dial.filter((p) => p !== selected);
+			selected = others[Math.floor(Math.random() * others.length)];
+		}
+		// The pills stay fixed while you scroll the catalog; bring the stage back.
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
 </script>
+
+{#snippet stage()}
+	<div class="stage-float absolute inset-0">
+		<Shirt3DView
+			phrase={selected.phrase}
+			garment={selected.garment}
+			technique={selected.technique}
+			type={selected.type}
+			hint={false}
+			rounded=""
+		/>
+	</div>
+
+	{#if selected.tag}
+		<span
+			class="bg-tomato-500 text-bone-50 absolute top-3 left-3 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
+		>
+			{selected.tag}
+		</span>
+	{/if}
+
+	<!-- Caption sits straight on the gradient — no bar, let it shine.
+	     Extra bottom/right padding below lg keeps it clear of the fixed pills + theme toggle. -->
+	<div
+		class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 pr-20 pb-24 md:p-5 md:pr-20 md:pb-24 lg:pr-5 lg:pb-5"
+	>
+		<div class="min-w-0">
+			<p class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
+				{selected.type} · {garmentLabel(selected.garment)} · {selected.technique}
+			</p>
+			<p class="text-ink-950 mt-1 truncate text-base font-extrabold md:text-lg">
+				“{selected.phrase.replace(/\n/g, ' ')}”
+			</p>
+		</div>
+		<p class="text-ink-950 text-xl font-extrabold whitespace-nowrap md:text-2xl">
+			{selected.price}
+		</p>
+	</div>
+
+	{#if selected.type === 'Sudadera'}
+		<!-- CC BY 4.0 attribution for the hoodie mesh (the tee is CC0). -->
+		<p class="text-grey-500 absolute top-3 right-3 font-mono text-[9px] tracking-wide">
+			<a
+				href="https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9"
+				class="underline decoration-dotted underline-offset-2"
+				target="_blank"
+				rel="noopener">"hoodie" por pokoponmaru</a
+			>
+			·
+			<a
+				href="https://creativecommons.org/licenses/by/4.0/"
+				class="underline decoration-dotted underline-offset-2"
+				target="_blank"
+				rel="noopener">CC BY 4.0</a
+			>
+		</p>
+	{/if}
+{/snippet}
 
 <svelte:head>
 	<title>Icarus · Mercancía para los que viven en la terminal</title>
@@ -86,6 +167,39 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Icarus · Mercancía para los que viven en la terminal" />
 </svelte:head>
+
+<!-- ───────────────── MOBILE HERO: the render owns the first viewport ───────────────── -->
+{#if !desktop.current}
+	<section
+		class="from-bone-100 to-bone-200 relative h-[100svh] overflow-hidden bg-gradient-to-br lg:hidden"
+	>
+		{@render stage()}
+
+		<p
+			class="text-grey-500 absolute inset-x-0 bottom-16 text-center font-mono text-[9px] tracking-widest uppercase"
+		>
+			↓ desliza para ver todo el drop
+		</p>
+	</section>
+
+	<!-- Two pills, always on screen: the whole mobile exploration. -->
+	{#if dial.length > 1}
+		<div class="fixed inset-x-16 bottom-5 z-40 flex justify-center gap-2 lg:hidden">
+			<button
+				onclick={() => explore(-1)}
+				class="bg-ink-950 text-bone-50 shadow-ink-950/20 cursor-pointer rounded-full px-4 py-2.5 font-mono text-[11px] font-semibold tracking-widest whitespace-nowrap uppercase shadow-lg transition-transform active:scale-95"
+			>
+				{dialIdx > 0 ? 'Algo más serio' : 'Sorpréndeme'}
+			</button>
+			<button
+				onclick={() => explore(1)}
+				class="bg-ink-950 text-bone-50 shadow-ink-950/20 cursor-pointer rounded-full px-4 py-2.5 font-mono text-[11px] font-semibold tracking-widest whitespace-nowrap uppercase shadow-lg transition-transform active:scale-95"
+			>
+				{dialIdx < dial.length - 1 ? 'Algo más nerd' : 'Sorpréndeme'}
+			</button>
+		</div>
+	{/if}
+{/if}
 
 <!-- ───────────────── HEADER: one line, no prose ───────────────── -->
 <section class="bg-bone-50">
@@ -122,67 +236,14 @@
 			</p>
 		{:else}
 			<div class="grid grid-flow-dense grid-cols-2 gap-1.5 lg:grid-cols-4">
-				<!-- Center stage: the selected piece floats and spins mid-grid. -->
-				<div
-					class="from-bone-100 to-bone-200 relative col-span-2 row-span-2 row-start-2 aspect-square overflow-hidden bg-gradient-to-br lg:col-start-2"
-				>
-					<div class="stage-float absolute inset-0">
-						<Shirt3DView
-							phrase={selected.phrase}
-							garment={selected.garment}
-							technique={selected.technique}
-							type={selected.type}
-							hint={false}
-							rounded=""
-						/>
-					</div>
-
-					{#if selected.tag}
-						<span
-							class="bg-tomato-500 text-bone-50 absolute top-3 left-3 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
-						>
-							{selected.tag}
-						</span>
-					{/if}
-
-					<!-- Caption sits straight on the gradient — no bar, let it shine. -->
+				{#if desktop.current}
+					<!-- Center stage: the selected piece floats and spins mid-grid. -->
 					<div
-						class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 md:p-5"
+						class="from-bone-100 to-bone-200 relative col-span-2 col-start-2 row-span-2 row-start-2 aspect-square overflow-hidden bg-gradient-to-br"
 					>
-						<div class="min-w-0">
-							<p
-								class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase"
-							>
-								{selected.type} · {garmentLabel(selected.garment)} · {selected.technique}
-							</p>
-							<p class="text-ink-950 mt-1 truncate text-base font-extrabold md:text-lg">
-								“{selected.phrase.replace(/\n/g, ' ')}”
-							</p>
-						</div>
-						<p class="text-ink-950 text-xl font-extrabold whitespace-nowrap md:text-2xl">
-							{selected.price}
-						</p>
+						{@render stage()}
 					</div>
-
-					{#if selected.type === 'Sudadera'}
-						<!-- CC BY 4.0 attribution for the hoodie mesh (the tee is CC0). -->
-						<p class="text-grey-500 absolute top-3 right-3 font-mono text-[9px] tracking-wide">
-							<a
-								href="https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9"
-								class="underline decoration-dotted underline-offset-2"
-								target="_blank"
-								rel="noopener">"hoodie" por pokoponmaru</a
-							>
-							·
-							<a
-								href="https://creativecommons.org/licenses/by/4.0/"
-								class="underline decoration-dotted underline-offset-2"
-								target="_blank"
-								rel="noopener">CC BY 4.0</a
-							>
-						</p>
-					{/if}
-				</div>
+				{/if}
 
 				{#each filtered as product, i (product.slug)}
 					<button

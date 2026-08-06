@@ -28,7 +28,7 @@
 		onclick={toggle}
 		aria-label={dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
 		title={dark ? 'Modo claro' : 'Modo oscuro'}
-		class="theme-toggle border-ink-950/15 text-ink-950 shadow-ink-950/10 hover:shadow-ink-950/20 fixed right-5 bottom-5 z-50 flex h-11 w-11 items-center justify-center rounded-full border shadow-lg backdrop-blur transition-transform hover:-translate-y-0.5 md:right-8 md:bottom-8"
+		class="theme-toggle border-ink-950/15 text-ink-950 shadow-ink-950/10 hover:shadow-ink-950/20 fixed right-5 bottom-20 z-50 flex h-11 w-11 items-center justify-center rounded-full border shadow-lg backdrop-blur transition-transform hover:-translate-y-0.5 md:right-8 md:bottom-8"
 	>
 		{#if dark}
 			<!-- sun -->
