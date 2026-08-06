@@ -219,34 +219,32 @@
 	</div>
 </section>
 
-<!-- ───────────────── TÉCNICAS + DROP 02: one light strip, three blocks ─────────────────
-     Continuous with the mosaic surface above (bg-bone-50 → gradient in dark);
-     the footer below stays the page's only distinct block. -->
-<section class="bg-bone-50 border-ink-950/8 border-t">
+<!-- ───────────────── TÉCNICAS + DROP 02: dark band, three blocks ───────────────── -->
+<section class="bg-ink-950 text-bone-50">
 	<div
 		class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-12 md:grid-cols-3 md:gap-12 md:px-10 md:py-16"
 	>
 		<div use:reveal>
-			<p class="text-tomato-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
+			<p class="text-tomato-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
 				Estampado
 			</p>
-			<p class="text-ink-950 mt-2 text-lg font-medium">
+			<p class="text-bone-100 mt-2 text-lg font-medium">
 				Serigrafía a mano en CDMX. Tinta suave que aguanta las lavadas.
 			</p>
 		</div>
 		<div use:reveal={{ delay: 80 }}>
-			<p class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
+			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
 				Bordado
 			</p>
-			<p class="text-ink-950 mt-2 text-lg font-medium">
+			<p class="text-bone-100 mt-2 text-lg font-medium">
 				Hilo de algodón, puntada por puntada. Cada pieza suma al cluster de GPUs.
 			</p>
 		</div>
 		<div use:reveal={{ delay: 160 }}>
-			<p class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
+			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
 				Drop 02
 			</p>
-			<p class="text-ink-950 mt-2 text-lg font-medium">Ya se está cocinando.</p>
+			<p class="text-bone-100 mt-2 text-lg font-medium">Ya se está cocinando.</p>
 		</div>
 	</div>
 </section>
