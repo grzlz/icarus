@@ -1,4 +1,6 @@
 <script>
+	import { track } from '$lib/ab/client.js';
+
 	let email = $state('');
 	let status = $state('idle');
 	let message = $state('');
@@ -102,8 +104,10 @@
 					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Contacto</a>
 				</li>
 				<li>
-					<a href="https://wa.me/525548017016" class="text-ink-950 hover:opacity-60"
-						>Dudas y pedidos</a
+					<a
+						href="https://wa.me/525548017016"
+						class="text-ink-950 hover:opacity-60"
+						onclick={() => track('whatsapp', { meta: 'footer-link' })}>Dudas y pedidos</a
 					>
 				</li>
 			</ul>
@@ -136,6 +140,7 @@
 					href="https://wa.me/525548017016"
 					aria-label="WhatsApp"
 					class="text-grey-600 hover:text-ink-950 transition-colors"
+					onclick={() => track('whatsapp', { meta: 'footer-icono' })}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="h-5 w-5 fill-current">
 						<path

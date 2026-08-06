@@ -6,7 +6,8 @@
 		{ href: '/admin', label: 'Panel' },
 		{ href: '/admin/inventario', label: 'Inventario' },
 		{ href: '/admin/ventas', label: 'Ventas' },
-		{ href: '/admin/gastos', label: 'Gastos' }
+		{ href: '/admin/gastos', label: 'Gastos' },
+		{ href: '/admin/experimentos', label: 'Experimentos' }
 	];
 
 	let current = $derived(page.url.pathname);

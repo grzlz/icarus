@@ -4,6 +4,7 @@
 	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
 	import { garmentLabel } from '$lib/shirt.js';
 	import { products } from '$lib/products.js';
+	import { track } from '$lib/ab/client.js';
 
 	const filters = [
 		{ id: 'todo', label: 'Todo' },
@@ -34,9 +35,15 @@
 
 	function setFilter(id) {
 		active = id;
+		track('filtro', { meta: id });
 		if (typeof history !== 'undefined') {
 			history.replaceState(null, '', id === 'todo' ? '/' : `/#${id}`);
 		}
+	}
+
+	function selectProduct(product) {
+		selected = product;
+		track('producto', { meta: product.slug });
 	}
 
 	function matchesFilter(p, id) {
@@ -180,7 +187,7 @@
 				{#each filtered as product, i (product.slug)}
 					<button
 						type="button"
-						onclick={() => (selected = product)}
+						onclick={() => selectProduct(product)}
 						use:reveal={{ delay: Math.min(i * 40, 240) }}
 						aria-pressed={selected === product}
 						class="group focus-visible:outline-tomato-500 relative aspect-square cursor-pointer overflow-hidden text-left focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2"

@@ -1,7 +1,8 @@
 import { json } from '@sveltejs/kit';
 import db from '$lib/server/db.js';
+import { recordEvent } from '$lib/server/ab/core.js';
 
-export async function POST({ request }) {
+export async function POST({ request, cookies }) {
 	const { email } = await request.json();
 
 	if (!email || !email.includes('@')) {
@@ -10,6 +11,8 @@ export async function POST({ request }) {
 
 	try {
 		db.prepare('INSERT INTO subscribers (email) VALUES (?)').run(email);
+		// Conversion for any experiment this visitor is assigned to.
+		recordEvent(cookies.get('icarus_vid'), { name: 'registro' });
 		return json({ ok: true });
 	} catch (err) {
 		if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
