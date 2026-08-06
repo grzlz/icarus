@@ -59,25 +59,6 @@
 			selected = filtered[0];
 		}
 	});
-
-	let email = $state('');
-	let formStatus = $state('idle');
-
-	async function handleSubmit(e) {
-		e.preventDefault();
-		formStatus = 'sending';
-		try {
-			const res = await fetch('https://formspree.io/f/xpwzgkvl', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email })
-			});
-			formStatus = res.ok ? 'sent' : 'error';
-			if (res.ok) email = '';
-		} catch {
-			formStatus = 'error';
-		}
-	}
 </script>
 
 <svelte:head>
@@ -238,66 +219,35 @@
 	</div>
 </section>
 
-<!-- ───────────────── TÉCNICAS: one line each ───────────────── -->
-<section class="bg-ink-950 text-bone-50">
+<!-- ───────────────── TÉCNICAS + DROP 02: one light strip, three blocks ─────────────────
+     Continuous with the mosaic surface above (bg-bone-50 → gradient in dark);
+     the footer below stays the page's only distinct block. -->
+<section class="bg-bone-50 border-ink-950/8 border-t">
 	<div
-		class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-12 md:grid-cols-2 md:gap-12 md:px-10 md:py-16"
+		class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-12 md:grid-cols-3 md:gap-12 md:px-10 md:py-16"
 	>
 		<div use:reveal>
-			<p class="text-tomato-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
+			<p class="text-tomato-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
 				Estampado
 			</p>
-			<p class="text-bone-100 mt-2 text-lg font-medium">
+			<p class="text-ink-950 mt-2 text-lg font-medium">
 				Serigrafía a mano en CDMX. Tinta suave que aguanta las lavadas.
 			</p>
 		</div>
 		<div use:reveal={{ delay: 80 }}>
-			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
+			<p class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
 				Bordado
 			</p>
-			<p class="text-bone-100 mt-2 text-lg font-medium">
+			<p class="text-ink-950 mt-2 text-lg font-medium">
 				Hilo de algodón, puntada por puntada. Cada pieza suma al cluster de GPUs.
 			</p>
 		</div>
-	</div>
-</section>
-
-<!-- ───────────────── NEWSLETTER: one row ───────────────── -->
-<section id="contacto" class="bg-bone-50 border-ink-950/8 border-t">
-	<div
-		class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-10 gap-y-6 px-5 py-12 md:px-10"
-	>
-		<h2 use:reveal class="text-ink-950 text-2xl font-extrabold tracking-tight md:text-3xl">
-			El Drop 02 ya se está cocinando.
-		</h2>
-		<form
-			use:reveal={{ delay: 100 }}
-			onsubmit={handleSubmit}
-			class="flex w-full max-w-md flex-col gap-3 sm:flex-row md:w-auto"
-		>
-			<input
-				type="email"
-				bind:value={email}
-				required
-				placeholder="tucorreo@dominio.mx"
-				class="border-ink-950/15 bg-bone-50 text-ink-950 placeholder-grey-500 focus:border-ink-950 flex-1 rounded-full border px-5 py-3.5 text-sm focus:outline-none"
-			/>
-			<button
-				type="submit"
-				disabled={formStatus === 'sending'}
-				class="bg-ink-950 text-bone-50 hover:bg-ink-800 rounded-full px-7 py-3.5 text-sm font-bold transition-colors disabled:opacity-60"
-			>
-				{#if formStatus === 'sending'}
-					Enviando…
-				{:else if formStatus === 'sent'}
-					✓ exit 0
-				{:else if formStatus === 'error'}
-					Reintentar
-				{:else}
-					Avísame →
-				{/if}
-			</button>
-		</form>
+		<div use:reveal={{ delay: 160 }}>
+			<p class="text-grey-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
+				Drop 02
+			</p>
+			<p class="text-ink-950 mt-2 text-lg font-medium">Ya se está cocinando.</p>
+		</div>
 	</div>
 </section>
 

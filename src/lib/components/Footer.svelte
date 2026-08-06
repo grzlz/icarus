@@ -33,7 +33,9 @@
 	}
 </script>
 
-<footer class="border-ink-950/8 bg-bone-100 text-ink-950 font-primary mt-24 border-t">
+<!-- id="contacto": the navbar's Contacto link and the old /#contacto anchors
+     land here — the footer form is the site's one signup. -->
+<footer id="contacto" class="border-ink-950/8 bg-bone-100 text-ink-950 font-primary mt-24 border-t">
 	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 py-14 md:grid-cols-4 md:px-10">
 		<!-- Brand -->
 		<div class="md:col-span-2">
