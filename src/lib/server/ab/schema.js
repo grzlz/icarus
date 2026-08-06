@@ -68,6 +68,20 @@ db.exec(`
   );
   CREATE INDEX IF NOT EXISTS idx_ab_events_vid ON ab_events (vid, name);
   CREATE INDEX IF NOT EXISTS idx_ab_events_name ON ab_events (name, created_at);
+
+  CREATE TABLE IF NOT EXISTS ab_meta (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+  );
 `);
+
+/* Migrations for columns added after the tables shipped. */
+const expCols = db
+	.prepare('PRAGMA table_info(experiments)')
+	.all()
+	.map((c) => c.name);
+if (!expCols.includes('weights_changed_at')) {
+	db.exec('ALTER TABLE experiments ADD COLUMN weights_changed_at TEXT');
+}
 
 export default db;

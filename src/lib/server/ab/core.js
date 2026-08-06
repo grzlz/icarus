@@ -10,7 +10,38 @@
  * Everything reads/writes through prepared statements; with WAL this is
  * microseconds per request, so there's no cache to invalidate.
  */
+import crypto from 'node:crypto';
 import db from './schema.js';
+
+/*
+ * The vid cookie is HMAC-signed (uuid.sig) so /api/ab/track only counts
+ * visitors this server actually minted — forged vids can't stuff the stats.
+ * The secret lives in ab_meta so cookies survive restarts and deploys.
+ */
+const SECRET = (() => {
+	const row = db.prepare("SELECT value FROM ab_meta WHERE key = 'vid_secret'").get();
+	if (row) return row.value;
+	const secret = crypto.randomBytes(32).toString('hex');
+	db.prepare("INSERT INTO ab_meta (key, value) VALUES ('vid_secret', ?)").run(secret);
+	return secret;
+})();
+
+const sign = (id) => crypto.createHmac('sha256', SECRET).update(id).digest('hex').slice(0, 16);
+
+export const mintVid = () => {
+	const id = crypto.randomUUID();
+	return { id, cookie: `${id}.${sign(id)}` };
+};
+
+/* Cookie value → bare vid, or null if missing/forged. */
+export function verifyVid(cookie) {
+	const dot = (cookie ?? '').lastIndexOf('.');
+	if (dot < 1) return null;
+	const id = cookie.slice(0, dot);
+	const sig = Buffer.from(cookie.slice(dot + 1));
+	const good = Buffer.from(sign(id));
+	return sig.length === good.length && crypto.timingSafeEqual(sig, good) ? id : null;
+}
 
 /* Conversion events the dashboard can pick as an experiment's primary metric.
  * 'tiempo' (seconds on page) is continuous, not a conversion — it's always
@@ -103,11 +134,16 @@ export function assignAll(vid, path) {
 const insertEvent = db.prepare(`
 	INSERT INTO ab_events (vid, name, value, path, meta) VALUES (?, ?, ?, ?, ?)
 `);
+const dailyEvents = db.prepare(`
+	SELECT COUNT(*) AS n FROM ab_events WHERE vid = ? AND created_at >= date('now','localtime')
+`);
 
 export function recordEvent(vid, { name, value = null, path = null, meta = null }) {
 	if (!vid || !EVENT_NAME_RE.test(name ?? '')) return false;
 	const num = value === null || value === undefined ? null : Number(value);
 	if (num !== null && (!Number.isFinite(num) || Math.abs(num) > 1e9)) return false;
+	// A real visitor never gets near this; a replaying client hits a wall.
+	if (dailyEvents.get(vid).n >= 500) return false;
 	insertEvent.run(
 		String(vid).slice(0, 64),
 		name,
