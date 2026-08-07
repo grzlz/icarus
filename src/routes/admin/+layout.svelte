@@ -7,6 +7,7 @@
 		{ href: '/admin/inventario', label: 'Inventario' },
 		{ href: '/admin/ventas', label: 'Ventas' },
 		{ href: '/admin/gastos', label: 'Gastos' },
+		{ href: '/admin/contabilidad', label: 'Contabilidad' },
 		{ href: '/admin/experimentos', label: 'Experimentos' }
 	];
 

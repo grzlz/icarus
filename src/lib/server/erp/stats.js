@@ -4,6 +4,7 @@
  */
 import db from './schema.js';
 import { LOW_STOCK_THRESHOLD } from './queries.js';
+import { monthKey } from '$lib/admin/format.js';
 
 const monthIncomeStmt = db.prepare(`
   SELECT COALESCE(SUM(total_cents), 0) AS total
@@ -53,14 +54,6 @@ const cumulativeProfitStmt = db.prepare(`
     (SELECT COALESCE(SUM(total_cents), 0) FROM sales WHERE status = 'completada')
     - (SELECT COALESCE(SUM(amount_cents), 0) FROM expenses) AS total
 `);
-
-/* Month key ('2026-08') in server localtime, offset by delta months. */
-function monthKey(delta = 0) {
-	const d = new Date();
-	d.setDate(1);
-	d.setMonth(d.getMonth() + delta);
-	return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
-}
 
 /* Last `n` weeks of gross income as a dense series (missing weeks = 0). */
 function weeklySeries(n = 12) {

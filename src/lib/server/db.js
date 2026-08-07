@@ -1,7 +1,9 @@
 import Database from 'better-sqlite3';
 import { resolve } from 'path';
 
-const DB_PATH = resolve('data/icarus.db');
+/* ICARUS_DB lets tests and one-off scripts run against a copy instead of the
+ * live database. Unset in normal operation. */
+const DB_PATH = resolve(process.env.ICARUS_DB ?? 'data/icarus.db');
 
 const db = new Database(DB_PATH);
 

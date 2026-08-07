@@ -48,3 +48,15 @@ export const monthName = (key) => {
 	const [y, m] = key.split('-');
 	return `${MONTHS[Number(m) - 1]} ${y}`;
 };
+
+/* Month key ('2026-08') in server localtime, offset by delta months. */
+export function monthKey(delta = 0) {
+	const d = new Date();
+	d.setDate(1);
+	d.setMonth(d.getMonth() + delta);
+	return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+
+/* Percentages that may be null when there's no denominator to divide by. */
+export const pct = (ratio, digits = 1) =>
+	ratio === null || ratio === undefined ? '—' : `${(ratio * 100).toFixed(digits)}%`;
