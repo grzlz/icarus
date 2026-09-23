@@ -86,8 +86,7 @@
 			>.
 		</h1>
 		<p class="text-grey-600 mt-8 max-w-md text-base leading-relaxed md:text-lg">
-			Algodón bueno, una frase por pieza. Estampado a serigrafía o bordado a máquina. Sin
-			colecciones cápsula, sin drama.
+			Algodón bueno, una frase por pieza. <br /> Estampado a serigrafía o bordado a máquina.
 		</p>
 	</div>
 
