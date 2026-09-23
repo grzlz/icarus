@@ -1,8 +1,9 @@
 // Pre-rendered 3D turntables: paints each piece's print + wing with the site's
 // own painters (printDecal.js / wing.js, so the JetBrains Mono print matches),
 // renders a full spin headless in Blender (scripts/turntable.py, Cycles on CPU),
-// then encodes a looping MP4 + WebP poster to static/turntables/<slug>.*.
-// Like the mockup photos, the bone studio background is baked in.
+// then encodes a looping MP4 + WebP poster per theme to
+// static/turntables/<slug>[-dark].* with the page background baked in, so the
+// garment floats on the page (Turntable.svelte picks the variant).
 // Slow — about a minute of CPU per frame-second; skips pieces already rendered.
 //
 // Usage: node scripts/render-turntable.mjs
@@ -27,8 +28,14 @@ const ffmpeg = process.env.FFMPEG ?? 'ffmpeg';
 const frames = process.env.FRAMES ?? '288';
 const only = process.env.ONLY?.split(',').map((s) => s.trim());
 
-// bone-100 (light) as sRGB — the same studio background as the mockup photos.
-const BONE = '0xF7F3EC';
+// Page background (bone-50) per theme. The WebP poster gets it exactly; the
+// MP4 gets a color measured to decode back to it in Chromium (H.264 in
+// limited range lands a level or two off; dark stays ~1 off, which
+// Turntable.svelte's edge feather hides).
+const THEMES = [
+	{ suffix: '', poster: '0xFCFAF6', video: '0xFEFCF8' },
+	{ suffix: '-dark', poster: '0x0B1015', video: '0x0D1217' }
+];
 // Garments turntable.py has a model + decal boxes for.
 const SUPPORTED = ['Playera'];
 
@@ -110,45 +117,28 @@ for (const p of queue) {
 			{ stdio: ['ignore', 'ignore', 'inherit'] }
 		);
 
-		// Composite the transparent frames onto bone; faststart so it plays
-		// before the whole file arrives.
-		const bg = ['-f', 'lavfi', '-i', `color=${BONE}:s=720x720:r=24`];
+		// Composite the transparent frames onto each theme's page color; tagged
+		// bt709 so browsers decode it predictably, faststart so it plays before
+		// the whole file arrives.
 		const frameInput = ['-framerate', '24', '-i', join(framesDir, 'f_%04d.png')];
-		execFileSync(ffmpeg, [
-			'-loglevel',
-			'error',
-			'-y',
-			...bg,
-			...frameInput,
-			'-filter_complex',
-			'[0][1]overlay=shortest=1',
-			'-c:v',
-			'libx264',
-			'-preset',
-			'slow',
-			'-crf',
-			'24',
-			'-pix_fmt',
-			'yuv420p',
-			'-movflags',
-			'+faststart',
-			'-an',
-			join(outDir, `${p.slug}.mp4`)
-		]);
-		execFileSync(ffmpeg, [
-			'-loglevel',
-			'error',
-			'-y',
-			...bg,
-			...frameInput,
-			'-filter_complex',
-			'[0][1]overlay',
-			'-frames:v',
-			'1',
-			'-quality',
-			'85',
-			join(outDir, `${p.slug}.webp`)
-		]);
+		const bg = (color) => ['-f', 'lavfi', '-i', `color=${color}:s=720x720:r=24`];
+		for (const theme of THEMES) {
+			const name = `${p.slug}${theme.suffix}`;
+			execFileSync(ffmpeg, [
+				...['-loglevel', 'error', '-y', ...bg(theme.video), ...frameInput],
+				'-filter_complex',
+				'[0][1]overlay=shortest=1,scale=out_color_matrix=bt709:out_range=tv,format=yuv420p',
+				...['-c:v', 'libx264', '-preset', 'slow', '-crf', '24'],
+				...['-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709'],
+				...['-color_range', 'tv', '-movflags', '+faststart', '-an'],
+				join(outDir, `${name}.mp4`)
+			]);
+			execFileSync(ffmpeg, [
+				...['-loglevel', 'error', '-y', ...bg(theme.poster), ...frameInput],
+				...['-filter_complex', '[0][1]overlay', '-frames:v', '1', '-quality', '85'],
+				join(outDir, `${name}.webp`)
+			]);
+		}
 		console.log(`ok ${p.slug} in ${Math.round((Date.now() - t0) / 60000)} min`);
 	} catch (err) {
 		console.error(`failed ${p.slug}: ${err.message}`);

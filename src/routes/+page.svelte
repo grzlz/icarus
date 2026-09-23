@@ -91,10 +91,9 @@
 		</p>
 	</div>
 
-	<!-- Pre-rendered spin (Blender), not WebGL — so it keeps turning while a spread is spun. -->
-	<div
-		class="bg-bone-100 relative ml-auto aspect-square w-1/2 self-end overflow-hidden rounded-2xl md:col-span-3 md:w-full"
-	>
+	<!-- Pre-rendered spin (Blender), not WebGL. No plate: the video carries the page
+	     background, so the tee floats beside the headline. -->
+	<div class="relative ml-auto aspect-square w-1/2 self-end md:col-span-3 md:w-full">
 		<Turntable slug={flagship.slug} label="Playera negra “{flagship.phrase}” girando" />
 	</div>
 </header>
