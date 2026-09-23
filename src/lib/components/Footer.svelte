@@ -38,7 +38,7 @@
 <!-- id="contacto": the navbar's Contacto link and the old /#contacto anchors
      land here — the footer form is the site's one signup. -->
 <footer id="contacto" class="rule bg-bone-100 text-ink-950 border-t">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 py-14 md:grid-cols-4 md:px-10">
+	<div class="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-5 py-14 md:grid-cols-4 md:px-10">
 		<!-- Brand -->
 		<div class="md:col-span-2">
 			<div class="flex items-center gap-2.5">
@@ -112,7 +112,7 @@
 
 	<div class="rule border-t">
 		<div
-			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs md:flex-row md:px-10"
+			class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-5 py-5 text-xs md:flex-row md:px-10"
 		>
 			<p class="text-grey-600">&copy; {year} Icarus · Hecho en México con más café que sueño</p>
 			<div class="flex gap-5">

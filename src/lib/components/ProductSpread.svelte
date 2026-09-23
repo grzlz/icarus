@@ -50,6 +50,27 @@
 			{folio}<span class="text-grey-400">/{total}</span>
 		</span>
 
+		{#if spinning && product.type === 'Sudadera'}
+			<!-- CC BY 4.0 requires a visible credit for the hoodie mesh (the tee is CC0). -->
+			<p
+				class="text-grey-600 bg-bone-100/85 absolute top-10 left-2.5 rounded-full px-1.5 py-0.5 font-mono text-[10px] tracking-wide"
+			>
+				<a
+					href="https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9"
+					class="underline decoration-dotted underline-offset-2"
+					target="_blank"
+					rel="noopener">"hoodie" por pokoponmaru</a
+				>
+				·
+				<a
+					href="https://creativecommons.org/licenses/by/4.0/"
+					class="underline decoration-dotted underline-offset-2"
+					target="_blank"
+					rel="noopener">CC BY 4.0</a
+				>
+			</p>
+		{/if}
+
 		{#if product.tag}
 			<span
 				class="label bg-icarus-500 absolute top-3.5 right-4 rounded-full px-2.5 py-1 text-white"
