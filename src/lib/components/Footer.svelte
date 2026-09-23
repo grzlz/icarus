@@ -37,13 +37,13 @@
 
 <!-- id="contacto": the navbar's Contacto link and the old /#contacto anchors
      land here — the footer form is the site's one signup. -->
-<footer id="contacto" class="border-ink-950/8 bg-bone-100 text-ink-950 font-primary mt-24 border-t">
+<footer id="contacto" class="rule bg-bone-100 text-ink-950 border-t">
 	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 py-14 md:grid-cols-4 md:px-10">
 		<!-- Brand -->
 		<div class="md:col-span-2">
 			<div class="flex items-center gap-2.5">
 				<img src="/logo.png" alt="" class="h-7 w-auto" />
-				<p class="text-lg font-extrabold tracking-tight">Icarus</p>
+				<p class="wordmark text-xl">Icarus</p>
 			</div>
 			<p class="text-grey-600 mt-4 max-w-sm text-sm">
 				Playeras y sudaderas para los que viven en la terminal. La frase va incluida.
@@ -55,7 +55,7 @@
 					bind:value={email}
 					placeholder="tucorreo@dominio.mx"
 					disabled={status === 'loading'}
-					class="border-ink-950/15 bg-bone-50 text-ink-950 placeholder-grey-500 focus:border-ink-950 flex-1 rounded-full border px-4 py-2.5 text-sm focus:outline-none"
+					class="rule bg-bone-50 text-ink-950 placeholder-grey-500 focus:border-ink-950 flex-1 rounded-full border px-4 py-2.5 text-sm focus:outline-none"
 				/>
 				<button
 					type="submit"
@@ -66,16 +66,14 @@
 				</button>
 			</form>
 			{#if message}
-				<p class="mt-2 text-xs {status === 'success' ? 'text-ink-950' : 'text-tomato-600'}">
+				<p class="mt-2 text-xs {status === 'success' ? 'text-ink-950' : 'text-icarus-500'}">
 					{message}
 				</p>
 			{/if}
 		</div>
 
 		<div>
-			<h3 class="text-grey-600 mb-4 font-mono text-[10px] font-bold tracking-widest uppercase">
-				Tienda
-			</h3>
+			<h3 class="label text-grey-600 mb-4">Tienda</h3>
 			<ul class="space-y-2 text-sm">
 				<li>
 					<a href="/" class="text-ink-950 hover:opacity-60">Toda la mercancía</a>
@@ -96,9 +94,7 @@
 		</div>
 
 		<div>
-			<h3 class="text-grey-600 mb-4 font-mono text-[10px] font-bold tracking-widest uppercase">
-				Info
-			</h3>
+			<h3 class="label text-grey-600 mb-4">Info</h3>
 			<ul class="space-y-2 text-sm">
 				<li>
 					<a href="/#contacto" class="text-ink-950 hover:opacity-60">Contacto</a>
@@ -114,7 +110,7 @@
 		</div>
 	</div>
 
-	<div class="border-ink-950/8 border-t">
+	<div class="rule border-t">
 		<div
 			class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs md:flex-row md:px-10"
 		>

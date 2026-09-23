@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import { products } from '$lib/products.js';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { track } from '$lib/ab/client.js';
 	let { children } = $props();
@@ -45,7 +46,7 @@
 
 <div class="bg-bone-50 text-ink-950 font-primary flex min-h-screen flex-col">
 	{#if !isAdmin}
-		<Navbar />
+		<Navbar count={products.length} />
 	{/if}
 
 	{@render children()}

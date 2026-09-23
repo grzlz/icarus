@@ -1,9 +1,6 @@
 <script>
-	import { MediaQuery } from 'svelte/reactivity';
 	import { reveal } from '$lib/actions/reveal.js';
-	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
-	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
-	import { garmentLabel } from '$lib/shirt.js';
+	import ProductSpread from '$lib/components/ProductSpread.svelte';
 	import { products } from '$lib/products.js';
 	import { knob, track } from '$lib/ab/client.js';
 	import { page } from '$app/state';
@@ -18,34 +15,19 @@
 
 	let active = $state('todo');
 
-	// Sync active filter with URL hash so /#bordado works from anywhere —
+	// Sync the active filter with the URL hash so /#bordado works from anywhere —
 	// on load (/tienda#bordado redirects here, hash intact) and on same-page
 	// hash clicks like the footer's filter links, which only fire hashchange.
-	$effect(() => {
-		function apply(scroll = false) {
-			const fromHash = window.location.hash.replace('#', '');
-			if (fromHash && filters.find((f) => f.id === fromHash)) {
-				active = fromHash;
-				if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-			}
-		}
-		apply();
-		const onHash = () => apply(true);
-		window.addEventListener('hashchange', onHash);
-		return () => window.removeEventListener('hashchange', onHash);
-	});
+	function applyHash() {
+		const fromHash = window.location.hash.replace('#', '');
+		if (filters.some((f) => f.id === fromHash)) active = fromHash;
+	}
+	$effect(() => applyHash());
 
 	function setFilter(id) {
 		active = id;
 		track('filtro', { meta: id });
-		if (typeof history !== 'undefined') {
-			history.replaceState(null, '', id === 'todo' ? '/' : `/#${id}`);
-		}
-	}
-
-	function selectProduct(product) {
-		selected = product;
-		track('producto', { meta: product.slug });
+		history.replaceState(null, '', id === 'todo' ? '/' : `/#${id}`);
 	}
 
 	function matchesFilter(p, id) {
@@ -55,109 +37,29 @@
 		return p.technique === id;
 	}
 
-	let filtered = $derived(products.filter((p) => matchesFilter(p, active)));
+	// The catalog reads top to bottom from the joke anyone gets to the deep
+	// terminal cut — the `nerd` score is the running order.
+	const ordered = [...products].sort((a, b) => (a.nerd ?? 3) - (b.nerd ?? 3));
+	let visible = $derived(ordered.filter((p) => matchesFilter(p, active)));
 
-	// Product on the center stage; clicking any tile swaps it in place.
-	// $state.raw: it's only ever reassigned, and identity comparisons against
-	// catalog entries (selected === product, filtered.includes) must hold.
-	let selected = $state.raw(products[0]);
-
-	// If a filter hides the selected piece, hand the stage to the first visible one.
-	$effect(() => {
-		if (filtered.length && !filtered.includes(selected)) {
-			selected = filtered[0];
-		}
-	});
-
-	// The stage is one WebGL canvas, so it mounts in exactly one place:
-	// a full-viewport hero above the filters on mobile, the center grid tile on lg+.
-	const desktop = new MediaQuery('(min-width: 1024px)', false);
-
-	// Mobile exploration: two pills walk the visible catalog along the
-	// serio ↔ nerd dial (the `nerd` score in products.js). At either end the
-	// exhausted direction becomes a random jump, so both pills always do something.
-	let dial = $derived([...filtered].sort((a, b) => (a.nerd ?? 3) - (b.nerd ?? 3)));
-	let dialIdx = $derived(dial.indexOf(selected));
-
-	function explore(dir) {
-		const target = dial[dialIdx + dir];
-		if (target) {
-			selected = target;
-		} else {
-			const others = dial.filter((p) => p !== selected);
-			selected = others[Math.floor(Math.random() * others.length)];
-		}
-		// The pills stay fixed while you scroll the catalog; bring the stage back.
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+	// At most one live WebGL canvas: the spread whose slug is here shows the render.
+	let spinning = $state(null);
+	function spin(product) {
+		spinning = product?.slug ?? null;
+		if (product) track('producto', { meta: product.slug });
 	}
 </script>
 
-{#snippet stage()}
-	<div class="stage-float absolute inset-0">
-		<Shirt3DView
-			phrase={selected.phrase}
-			garment={selected.garment}
-			technique={selected.technique}
-			type={selected.type}
-			hint={false}
-			rounded=""
-		/>
-	</div>
-
-	{#if selected.tag}
-		<span
-			class="bg-tomato-500 text-bone-50 absolute top-3 left-3 rounded-full px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase"
-		>
-			{selected.tag}
-		</span>
-	{/if}
-
-	<!-- Caption sits straight on the gradient — no bar, let it shine.
-	     Extra bottom/right padding below lg keeps it clear of the fixed pills + theme toggle. -->
-	<div
-		class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 pr-20 pb-24 md:p-5 md:pr-20 md:pb-24 lg:pr-5 lg:pb-5"
-	>
-		<div class="min-w-0">
-			<p class="text-grey-600 font-mono text-[10px] font-semibold tracking-widest uppercase">
-				{selected.type} · {garmentLabel(selected.garment)} · {selected.technique}
-			</p>
-			<p class="text-ink-950 mt-1 truncate text-base font-extrabold md:text-lg">
-				“{selected.phrase.replace(/\n/g, ' ')}”
-			</p>
-		</div>
-		<p class="text-ink-950 text-xl font-extrabold whitespace-nowrap md:text-2xl">
-			{selected.price}
-		</p>
-	</div>
-
-	{#if selected.type === 'Sudadera'}
-		<!-- CC BY 4.0 attribution for the hoodie mesh (the tee is CC0). -->
-		<p class="text-grey-500 absolute top-3 right-3 font-mono text-[9px] tracking-wide">
-			<a
-				href="https://sketchfab.com/3d-models/hoodie-5ffe31a324a6452c8c4ada71daa12da9"
-				class="underline decoration-dotted underline-offset-2"
-				target="_blank"
-				rel="noopener">"hoodie" por pokoponmaru</a
-			>
-			·
-			<a
-				href="https://creativecommons.org/licenses/by/4.0/"
-				class="underline decoration-dotted underline-offset-2"
-				target="_blank"
-				rel="noopener">CC BY 4.0</a
-			>
-		</p>
-	{/if}
-{/snippet}
+<svelte:window onhashchange={applyHash} />
 
 <svelte:head>
-	<title>Icarus · Mercancía para los que viven en la terminal</title>
+	<title>Icarus · Playeras y sudaderas para los que viven en la terminal</title>
 	<meta
 		name="description"
 		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
 	/>
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Icarus · Mercancía para los que viven en la terminal" />
+	<meta property="og:title" content="Icarus · Para los que viven en la terminal" />
 	<meta
 		property="og:description"
 		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado o bordado, hecho en México."
@@ -166,182 +68,100 @@
 	<meta property="og:site_name" content="Icarus" />
 	<meta property="og:locale" content="es_MX" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Icarus · Mercancía para los que viven en la terminal" />
+	<meta name="twitter:title" content="Icarus · Para los que viven en la terminal" />
 </svelte:head>
 
-<!-- ───────────────── MOBILE HERO: the render owns the first viewport ───────────────── -->
-{#if !desktop.current}
-	<section
-		class="from-bone-100 to-bone-200 relative h-[100svh] overflow-hidden bg-gradient-to-br lg:hidden"
-	>
-		{@render stage()}
+<!-- ───────────── MASTHEAD: the statement, set big, no image ───────────── -->
+<header class="mx-auto max-w-[1400px] px-5 pt-14 pb-10 md:px-10 md:pt-24 md:pb-16">
+	<p class="label text-grey-600">
+		{knob(page.data.ab, 'titulo-drop', 'Drop 01')} · Hecho en México
+	</p>
+	<h1 class="display text-ink-950 mt-5 max-w-[15ch] text-[clamp(2.75rem,8.5vw,8.5rem)]">
+		Playeras y sudaderas para los que viven en la <em class="text-icarus-500 not-italic"
+			>terminal</em
+		>.
+	</h1>
+	<p class="text-grey-600 mt-8 max-w-md text-base leading-relaxed md:text-lg">
+		Algodón bueno, una frase por pieza. Estampado a serigrafía o bordado a máquina. Sin colecciones
+		cápsula, sin drama.
+	</p>
+</header>
 
-		<p
-			class="text-grey-500 absolute inset-x-0 bottom-16 text-center font-mono text-[9px] tracking-widest uppercase"
-		>
-			↓ desliza para ver todo el drop
-		</p>
-	</section>
-
-	<!-- Two pills, always on screen: the whole mobile exploration. -->
-	{#if dial.length > 1}
-		<div class="fixed inset-x-16 bottom-5 z-40 flex justify-center gap-2 lg:hidden">
-			<button
-				onclick={() => explore(-1)}
-				class="bg-ink-950 text-bone-50 shadow-ink-950/20 cursor-pointer rounded-full px-4 py-2.5 font-mono text-[11px] font-semibold tracking-widest whitespace-nowrap uppercase shadow-lg transition-transform active:scale-95"
-			>
-				{dialIdx > 0 ? 'Algo más serio' : 'Sorpréndeme'}
-			</button>
-			<button
-				onclick={() => explore(1)}
-				class="bg-ink-950 text-bone-50 shadow-ink-950/20 cursor-pointer rounded-full px-4 py-2.5 font-mono text-[11px] font-semibold tracking-widest whitespace-nowrap uppercase shadow-lg transition-transform active:scale-95"
-			>
-				{dialIdx < dial.length - 1 ? 'Algo más nerd' : 'Sorpréndeme'}
-			</button>
-		</div>
-	{/if}
-{/if}
-
-<!-- ───────────────── HEADER: one line, no prose ───────────────── -->
-<section class="bg-bone-50">
-	<div
-		class="mx-auto flex max-w-7xl flex-wrap items-baseline gap-x-8 gap-y-3 px-5 pt-12 pb-5 md:px-10 md:pt-16 md:pb-6"
-	>
-		<!-- Punto de ajuste 'titulo-drop': editable en vivo desde /admin/experimentos -->
-		<h1 class="text-ink-950 text-2xl font-extrabold tracking-tight md:text-3xl">
-			{knob(page.data.ab, 'titulo-drop', 'Drop 01')}
-		</h1>
+<!-- ───────────── INDEX LINE: filters + running order, one rule above and below ───────────── -->
+<div id="catalogo" class="mx-auto max-w-[1400px] px-5 md:px-10">
+	<div class="rule flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-y py-4">
 		<nav class="flex flex-wrap items-baseline gap-x-5 gap-y-2" aria-label="Filtros">
 			{#each filters as filter (filter.id)}
 				<button
 					onclick={() => setFilter(filter.id)}
-					class="cursor-pointer font-mono text-[11px] font-semibold tracking-widest uppercase transition-colors {active ===
-					filter.id
-						? 'text-tomato-600 underline decoration-2 underline-offset-4'
+					aria-pressed={active === filter.id}
+					class="label cursor-pointer transition-colors {active === filter.id
+						? 'text-ink-950 decoration-icarus-500 underline decoration-2 underline-offset-[6px]'
 						: 'text-grey-500 hover:text-ink-950'}"
 				>
 					{filter.label}
 				</button>
 			{/each}
 		</nav>
-		<span class="text-grey-500 ml-auto font-mono text-[11px] tracking-widest uppercase">
-			{filtered.length}
-			{filtered.length === 1 ? 'pieza' : 'piezas'}
-		</span>
+		<p class="label text-grey-500">
+			{visible.length}
+			{visible.length === 1 ? 'pieza' : 'piezas'} · de lo más serio a lo más nerd
+		</p>
 	</div>
+</div>
+
+<!-- ───────────── CATALOG: spreads on a 12-col editorial grid ─────────────
+     Desktop: pairs alternate a 7/5 then 5/7 split, and the narrow plate drops
+     a little so the eye zigzags down the page instead of scanning rows.
+     Mobile: one column, full width, nothing hidden. -->
+<section class="mx-auto max-w-[1400px] px-5 pt-10 pb-24 md:px-10 md:pt-16 md:pb-32">
+	{#if visible.length === 0}
+		<p class="text-grey-600 py-24 font-mono text-sm">grep: 0 resultados. Prueba otro filtro.</p>
+	{:else}
+		<div class="grid grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-12 md:gap-y-28">
+			{#each visible as product, i (product.slug)}
+				{@const wide = i % 4 === 0 || i % 4 === 3}
+				<div
+					use:reveal={{ delay: (i % 2) * 90 }}
+					class="{wide ? 'md:col-span-7' : 'md:col-span-5 md:pt-24'} {i % 4 === 2
+						? 'md:col-start-1'
+						: ''}"
+				>
+					<ProductSpread
+						{product}
+						index={i}
+						total={visible.length}
+						spinning={spinning === product.slug}
+						onspin={spin}
+						onorder={(p) => track('whatsapp', { meta: p.slug })}
+					/>
+				</div>
+			{/each}
+		</div>
+	{/if}
 </section>
 
-<!-- ───────────────── MOSAIC: silent tiles around a floating 3D stage ───────────────── -->
-<section class="bg-bone-50">
-	<div class="mx-auto max-w-7xl px-5 pb-16 md:px-10 md:pb-24">
-		{#if filtered.length === 0}
-			<p class="text-grey-600 py-20 text-center font-mono text-sm">
-				grep: 0 resultados. Prueba otro filtro.
-			</p>
-		{:else}
-			<div class="grid grid-flow-dense grid-cols-2 gap-1.5 lg:grid-cols-4">
-				{#if desktop.current}
-					<!-- Center stage: the selected piece floats and spins mid-grid. -->
-					<div
-						class="from-bone-100 to-bone-200 relative col-span-2 col-start-2 row-span-2 row-start-2 aspect-square overflow-hidden bg-gradient-to-br"
-					>
-						{@render stage()}
-					</div>
-				{/if}
-
-				{#each filtered as product, i (product.slug)}
-					<button
-						type="button"
-						onclick={() => selectProduct(product)}
-						use:reveal={{ delay: Math.min(i * 40, 240) }}
-						aria-pressed={selected === product}
-						class="group focus-visible:outline-tomato-500 relative aspect-square cursor-pointer overflow-hidden text-left focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2"
-					>
-						<div class="h-full w-full transition-transform duration-500 group-hover:scale-[1.04]">
-							<ShirtMockup
-								phrase={product.phrase}
-								garment={product.garment}
-								technique={product.technique}
-								image={product.image ?? null}
-								tag={product.tag}
-								rounded=""
-							/>
-						</div>
-
-						<!-- Phrase + price only on hover/focus: the mosaic stays silent. -->
-						<div
-							class="from-ink-950/70 via-ink-950/25 absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
-						>
-							<p class="text-bone-50 truncate text-xs font-bold">
-								“{product.phrase.replace(/\n/g, ' ')}”
-							</p>
-							<p class="text-bone-50 font-mono text-[10px] font-semibold whitespace-nowrap">
-								{product.price}
-							</p>
-						</div>
-
-						{#if selected === product}
-							<span class="bg-tomato-500 absolute top-2.5 right-2.5 h-1.5 w-1.5 rounded-full"
-							></span>
-						{/if}
-					</button>
-				{/each}
-			</div>
-		{/if}
-	</div>
-</section>
-
-<!-- ───────────────── TÉCNICAS + DROP 02: dark band, three blocks ───────────────── -->
-<section class="bg-ink-950 text-bone-50">
-	<div
-		class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-5 py-12 md:grid-cols-3 md:gap-12 md:px-10 md:py-16"
-	>
+<!-- ───────────── TÉCNICAS + DROP 02: three columns of type, hairlines, no dark band ───────────── -->
+<section class="mx-auto max-w-[1400px] px-5 pb-8 md:px-10">
+	<div class="rule grid grid-cols-1 gap-10 border-t pt-10 md:grid-cols-3 md:gap-12 md:pt-14">
 		<div use:reveal>
-			<p class="text-tomato-500 font-mono text-[10px] font-semibold tracking-widest uppercase">
-				Estampado
-			</p>
-			<p class="text-bone-100 mt-2 text-lg font-medium">
+			<p class="label text-icarus-500">Estampado</p>
+			<p class="display text-ink-950 mt-3 text-2xl md:text-3xl">
 				Serigrafía a mano en CDMX. Tinta suave que aguanta las lavadas.
 			</p>
 		</div>
 		<div use:reveal={{ delay: 80 }}>
-			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-				Bordado
-			</p>
-			<p class="text-bone-100 mt-2 text-lg font-medium">
+			<p class="label text-grey-600">Bordado</p>
+			<p class="display text-ink-950 mt-3 text-2xl md:text-3xl">
 				Hilo de algodón, puntada por puntada. Cada pieza suma al cluster de GPUs.
 			</p>
 		</div>
 		<div use:reveal={{ delay: 160 }}>
-			<p class="text-grey-400 font-mono text-[10px] font-semibold tracking-widest uppercase">
-				Drop 02
-			</p>
+			<p class="label text-grey-600">Drop 02</p>
 			<!-- Punto de ajuste 'drop02-texto': editable en vivo desde /admin/experimentos -->
-			<p class="text-bone-100 mt-2 text-lg font-medium">
+			<p class="display text-ink-950 mt-3 text-2xl md:text-3xl">
 				{knob(page.data.ab, 'drop02-texto', 'Ya se está cocinando.')}
 			</p>
 		</div>
 	</div>
 </section>
-
-<style>
-	.stage-float {
-		animation: stage-float 6s ease-in-out infinite;
-	}
-
-	@keyframes stage-float {
-		0%,
-		100% {
-			transform: translateY(6px);
-		}
-		50% {
-			transform: translateY(-6px);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.stage-float {
-			animation: none;
-		}
-	}
-</style>
