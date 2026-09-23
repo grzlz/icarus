@@ -57,22 +57,22 @@
 <svelte:window onhashchange={applyHash} />
 
 <svelte:head>
-	<title>Icarus · Playeras y sudaderas para los que viven en la terminal</title>
+	<title>Icarus · Playeras y sudaderas para quienes viven en la terminal</title>
 	<meta
 		name="description"
-		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
+		content="Playeras y sudaderas con frases para quienes viven en la terminal. Estampado a serigrafía o bordado a máquina, hecho en México."
 	/>
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Icarus · Para los que viven en la terminal" />
+	<meta property="og:title" content="Icarus · Para quienes viven en la terminal" />
 	<meta
 		property="og:description"
-		content="Playeras y sudaderas con frases para los que viven en la terminal. Estampado o bordado, hecho en México."
+		content="Playeras y sudaderas con frases para quienes viven en la terminal. Estampado o bordado, hecho en México."
 	/>
 	<meta property="og:url" content="https://icarus.mx" />
 	<meta property="og:site_name" content="Icarus" />
 	<meta property="og:locale" content="es_MX" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Icarus · Para los que viven en la terminal" />
+	<meta name="twitter:title" content="Icarus · Para quienes viven en la terminal" />
 </svelte:head>
 
 <!-- ───────────── MASTHEAD: the statement, set big; the flagship tee spins in the lower-right quarter ───────────── -->
@@ -81,7 +81,7 @@
 >
 	<div class="md:col-span-9">
 		<h1 class="display text-ink-950 max-w-[15ch] text-[clamp(2.75rem,7.5vw,7.5rem)]">
-			Playeras y sudaderas para los que viven en la <em class="text-icarus-500 not-italic"
+			Playeras y sudaderas para quienes viven en la <em class="text-icarus-500 not-italic"
 				>terminal</em
 			>.
 		</h1>
