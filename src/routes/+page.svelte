@@ -1,8 +1,7 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
 	import ProductSpread from '$lib/components/ProductSpread.svelte';
-	import ShirtMockup from '$lib/components/ShirtMockup.svelte';
-	import Shirt3DView from '$lib/components/Shirt3DView.svelte';
+	import Turntable from '$lib/components/Turntable.svelte';
 	import { products } from '$lib/products.js';
 	import { knob, track } from '$lib/ab/client.js';
 	import { page } from '$app/state';
@@ -47,8 +46,7 @@
 	// The masthead's render: the flagship tee.
 	const flagship = products.find((p) => p.slug === 'estampado-gpi-a-un-gpu');
 
-	// At most one live WebGL canvas: the spread whose slug is here shows the render
-	// (and the masthead drops to its flat mockup meanwhile).
+	// At most one live WebGL canvas: the spread whose slug is here shows the render.
 	let spinning = $state(null);
 	function spin(product) {
 		spinning = product?.slug ?? null;
@@ -93,28 +91,11 @@
 		</p>
 	</div>
 
-	<!-- Still one live canvas max: while a spread is spun, this falls back to the flat mockup. -->
+	<!-- Pre-rendered spin (Blender), not WebGL — so it keeps turning while a spread is spun. -->
 	<div
 		class="bg-bone-100 relative ml-auto aspect-square w-1/2 self-end overflow-hidden rounded-2xl md:col-span-3 md:w-full"
 	>
-		{#if spinning}
-			<ShirtMockup
-				phrase={flagship.phrase}
-				garment={flagship.garment}
-				technique={flagship.technique}
-				size="hero"
-				rounded=""
-			/>
-		{:else}
-			<Shirt3DView
-				phrase={flagship.phrase}
-				garment={flagship.garment}
-				technique={flagship.technique}
-				type={flagship.type}
-				hint={false}
-				rounded=""
-			/>
-		{/if}
+		<Turntable slug={flagship.slug} label="Playera negra “{flagship.phrase}” girando" />
 	</div>
 </header>
 
