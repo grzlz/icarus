@@ -4,7 +4,7 @@ phrase and the Icarus wing projected onto the chest, spinning one full turn.
 Renders RGBA PNG frames (transparent background); render-turntable.mjs paints
 the textures beforehand and encodes the frames afterwards.
 
-    blender -b -P scripts/turntable.py -- --type Playera --print print.png \
+    blender -b -P scripts/turntable.py -- --type Playera --technique estampado --print print.png \
         --wing wing.png --fabric 9,14,18 --out frames/ [--frames 288] \
         [--samples 48] [--size 720] [--only N]
 
@@ -26,6 +26,7 @@ MODELS = {
         'url': f'{ROOT}/static/models/shirt.glb',
         # decal boxes: center (x, z) and width on the chest, in mesh units
         'print': {'center': (0.0, 0.03), 'width': 0.26},
+        'patch': {'center': (-0.08, 0.1), 'width': 0.14},
         'logo': {'center': (0.1, 0.14), 'width': 0.07},
     },
 }
@@ -35,6 +36,7 @@ def parse_args():
     argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
     p = argparse.ArgumentParser()
     p.add_argument('--type', default='Playera')
+    p.add_argument('--technique', default='estampado', choices=['estampado', 'bordado'])
     p.add_argument('--print', dest='print_png', required=True)
     p.add_argument('--wing', required=True)
     p.add_argument('--fabric', required=True, help='sRGB r,g,b 0-255')
@@ -115,15 +117,17 @@ def dress(mesh, model, args):
     nsep = nodes.new('ShaderNodeSeparateXYZ')
     links.new(tex.outputs['Normal'], nsep.inputs[0])
     front = nodes.new('ShaderNodeMapRange')
-    front.inputs['From Min'].default_value = -0.05
-    front.inputs['From Max'].default_value = -0.25
+    front.inputs['From Min'].default_value = 0.0
+    front.inputs['From Max'].default_value = -0.08
     links.new(nsep.outputs['Y'], front.inputs['Value'])
 
     color = bsdf.inputs['Base Color'].default_value[:]
     base = nodes.new('ShaderNodeRGB')
     base.outputs[0].default_value = color
     layer = base.outputs[0]
-    for png, box in ((args.print_png, model['print']), (args.wing, model['logo'])):
+    # bordado: small patch, wearer's-right chest; estampado: big centered print
+    art = model['patch'] if args.technique == 'bordado' else model['print']
+    for png, box in ((args.print_png, art), (args.wing, model['logo'])):
         alpha, rgb = decal_alpha(nodes, links, tex.outputs['Object'], front.outputs[0], png, box)
         mix = nodes.new('ShaderNodeMix')
         mix.data_type = 'RGBA'

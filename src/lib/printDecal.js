@@ -67,7 +67,14 @@ function drawPrint(ctx, lines, garment, size) {
 function drawPatch(ctx, lines, garment, size) {
 	const thread = threadColor(garment);
 	const lineHeight = 1.1;
-	const fontPx = fitFont(ctx, lines, size * 0.62, size * 0.5, lineHeight);
+	let fontPx = fitFont(ctx, lines, size * 0.62, size * 0.5, lineHeight);
+	// The outline pads 0.7em per side; short phrases (":wq") would push it
+	// off the canvas, so shrink until text + padding fits.
+	for (; fontPx > 6; fontPx -= 2) {
+		applyPrintFont(ctx, fontPx);
+		const w = Math.max(...lines.map((l) => ctx.measureText(l).width), 1);
+		if (w + fontPx * 1.4 <= size * 0.94) break;
+	}
 
 	applyPrintFont(ctx, fontPx);
 	ctx.textAlign = 'center';

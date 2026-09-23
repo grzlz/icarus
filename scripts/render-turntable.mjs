@@ -94,6 +94,8 @@ for (const p of queue) {
 				'--',
 				'--type',
 				p.type,
+				'--technique',
+				p.technique,
 				'--print',
 				png('print', painted.print),
 				'--wing',
